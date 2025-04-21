@@ -22,7 +22,7 @@ const CompanyDetails = () => {
       location: "New York",
       numberOfVacancy: 52,
       label: true,
-      labelRating: 4.9
+      labelRating: 4.9,
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const CompanyDetails = () => {
       location: "UK",
       numberOfVacancy: 11,
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ const CompanyDetails = () => {
       location: "London",
       numberOfVacancy: "09",
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 4,
@@ -49,7 +49,7 @@ const CompanyDetails = () => {
       location: "Canada",
       numberOfVacancy: 27,
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 5,
@@ -58,7 +58,7 @@ const CompanyDetails = () => {
       location: "America",
       numberOfVacancy: "07",
       label: true,
-      labelRating: 4.8
+      labelRating: 4.8,
     },
     {
       id: 6,
@@ -67,7 +67,7 @@ const CompanyDetails = () => {
       location: "California",
       numberOfVacancy: 20,
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 7,
@@ -76,7 +76,7 @@ const CompanyDetails = () => {
       location: "New York",
       numberOfVacancy: 27,
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 8,
@@ -85,7 +85,7 @@ const CompanyDetails = () => {
       location: "Uk",
       numberOfVacancy: 35,
       label: false,
-      labelRating: null
+      labelRating: null,
     },
     {
       id: 9,
@@ -94,15 +94,15 @@ const CompanyDetails = () => {
       location: "America",
       numberOfVacancy: 14,
       label: true,
-      labelRating: 3.0
-    }
+      labelRating: 3.0,
+    },
   ];
   return (
     <React.Fragment>
       <Row className="align-items-center mb-4">
         <Col lg={8}>
           <div className="mb-3 mb-lg-0">
-            <h6 className="fs-16 mb-0"> Showing 1 – 8 of 11 results </h6>
+            <h6 className="fs-16 mb-0"> Exibindo 1 – 8 de 11 resultados </h6>
           </div>
         </Col>
 
@@ -118,10 +118,10 @@ const CompanyDetails = () => {
                     id="choices-single-filter-orderby"
                     aria-label="Default select example"
                   >
-                    <option value="df">Default</option>
-                    <option value="ne">Newest</option>
-                    <option value="od">Oldest</option>
-                    <option value="rd">Random</option>
+                    <option value="df">Padrão</option>
+                    <option value="ne">Mais recentes</option>
+                    <option value="od">Mais antigos</option>
+                    <option value="rd">Aleatório</option>
                   </select>
                 </div>
               </Col>
@@ -134,9 +134,9 @@ const CompanyDetails = () => {
                     id="choices-candidate-page"
                     aria-label="Default select example"
                   >
-                    <option value="df">All</option>
-                    <option value="ne">8 per Page</option>
-                    <option value="ne">12 per Page</option>
+                    <option value="df">Todos</option>
+                    <option value="ne">8 por página</option>
+                    <option value="ne">12 por página</option>
                   </select>
                 </div>
               </Col>
@@ -173,7 +173,7 @@ const CompanyDetails = () => {
                     {companyDetailsNew.location}
                   </p>
                   <Link to="/companydetails" className="btn btn-primary">
-                    {companyDetailsNew.numberOfVacancy} Opening Jobs
+                    {companyDetailsNew.numberOfVacancy} Vagas abertas
                   </Link>
                 </div>
               </CardBody>

@@ -20,15 +20,15 @@ const AccordianContentLeft = () => {
             onClick={toggleFirst}
             type="button"
           >
-            Where does it come from ?
+            De onde isso vem?
           </button>
         </h2>
         <Collapse isOpen={isCollapseFirst} id="buying-one">
           <div className="accordion-body">
-            If several languages coalesce, the grammar of the resulting language
-            is more simple and regular than that of the individual languages.
-            The new common language will be more simple and regular than the
-            existing European languages.
+            Se várias línguas se unirem, a gramática da nova língua resultante
+            será mais simples e regular do que a das línguas individuais. A nova
+            língua comum será mais simples e regular do que as línguas europeias
+            existentes.
           </div>
         </Collapse>
       </div>
@@ -40,15 +40,15 @@ const AccordianContentLeft = () => {
             onClick={toggleSecond}
             type="button"
           >
-            How Hireway Work ?
+            Como funciona o Hireway?
           </button>
         </h2>
         <Collapse isOpen={isCollapseSecond} id="buying-two">
           <div className="accordion-body">
-            To an English person, it will seem like simplified English, as a
-            skeptical Cambridge friend of mine told me what Occidental is. The
-            European languages are members of the same family. Their separate
-            existence is a myth.
+            Para um falante de inglês, parecerá um inglês simplificado, como um
+            amigo cético de Cambridge me disse sobre o que é o Occidental. As
+            línguas europeias são membros da mesma família. Sua existência
+            separada é um mito.
           </div>
         </Collapse>
       </div>
@@ -60,15 +60,15 @@ const AccordianContentLeft = () => {
             onClick={toggleThird}
             type="button"
           >
-            What is your shipping policy?
+            Qual é a sua política de envio?
           </button>
         </h2>
         <Collapse isOpen={isCollapseThird} id="buying-three">
           <div className="accordion-body">
-            Everyone realizes why a new common language would be desirable: one
-            could refuse to pay expensive translators. To achieve this, it would
-            be necessary to have uniform grammar, pronunciation and more common
-            words.
+            Todos percebem por que uma nova língua comum seria desejável: assim
+            poderia-se recusar pagar tradutores caros. Para isso, seria
+            necessário ter uma gramática uniforme, pronúncia padronizada e
+            vocabulário comum.
           </div>
         </Collapse>
       </div>

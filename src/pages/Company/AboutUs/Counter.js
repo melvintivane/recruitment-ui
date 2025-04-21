@@ -16,7 +16,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3 ">Available Jobs</h6>
+                  <h6 className="fs-16 mt-3 ">Vagas Disponíveis</h6>
                 </div>
               </div>
             </Col>
@@ -28,7 +28,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Applications</h6>
+                  <h6 className="fs-16 mt-3">Candidaturas</h6>
                 </div>
               </div>
             </Col>
@@ -41,7 +41,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Positive Feedback</h6>
+                  <h6 className="fs-16 mt-3">Feedback Positivo</h6>
                 </div>
               </div>
             </Col>
@@ -53,7 +53,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Members</h6>
+                  <h6 className="fs-16 mt-3">Membros</h6>
                 </div>
               </div>
             </Col>

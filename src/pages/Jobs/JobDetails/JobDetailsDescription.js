@@ -24,10 +24,10 @@ const JobDetailsDescription = () => {
           <div>
             <Row>
               <Col md={8}>
-                <h5 className="mb-1">Product Designer / UI Designer</h5>
+                <h5 className="mb-1">Designer de Produto / Designer de UI</h5>
                 <ul className="list-inline text-muted mb-0">
                   <li className="list-inline-item">
-                    <i className="mdi mdi-account"></i> 8 Vacancy
+                    <i className="mdi mdi-account"></i> 8 Vagas
                   </li>
                   <li className="list-inline-item text-warning review-rating">
                     <span className="badge bg-warning">4.8</span>{" "}
@@ -64,127 +64,128 @@ const JobDetailsDescription = () => {
             <Row className="g-2">
               <Col lg={3}>
                 <div className="border rounded-start p-3">
-                  <p className="text-muted mb-0 fs-13">Experience</p>
-                  <p className="fw-medium fs-15 mb-0">Minimum 1 Year</p>
+                  <p className="text-muted mb-0 fs-13">Experiência</p>
+                  <p className="fw-medium fs-15 mb-0">Mínimo 1 Ano</p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
-                  <p className="text-muted fs-13 mb-0">Employee type</p>
-                  <p className="fw-medium mb-0">Full Time</p>
+                  <p className="text-muted fs-13 mb-0">Tipo de Emprego</p>
+                  <p className="fw-medium mb-0">Tempo Integral</p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
-                  <p className="text-muted fs-13 mb-0">Position</p>
-                  <p className="fw-medium mb-0">Senior</p>
+                  <p className="text-muted fs-13 mb-0">Posição</p>
+                  <p className="fw-medium mb-0">Pleno</p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border rounded-end p-3">
-                  <p className="text-muted fs-13 mb-0">Offer Salary</p>
-                  <p className="fw-medium mb-0">$2150/ Month</p>
+                  <p className="text-muted fs-13 mb-0">Salário Oferecido</p>
+                  <p className="fw-medium mb-0">$55000 / Mês</p>
                 </div>
               </Col>
             </Row>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Job Description</h5>
+            <h5 className="mb-3">Descrição da Vaga</h5>
             <div className="job-detail-desc">
               <p className="text-muted mb-0">
-                As a Product Designer, you will work within a Product Delivery
-                Team fused with UX, engineering, product and data talent. You
-                will help the team design beautiful interfaces that solve
-                business challenges for our clients. We work with a number of
-                Tier 1 banks on building web-based applications for AML, KYC and
-                Sanctions List management workflows. This role is ideal if you
-                are looking to segue your career into the FinTech or Big Data
-                arenas.
+                Como Designer de Produto, você trabalhará dentro de uma Entrega
+                de Produto Equipe fundida com talentos em UX, engenharia,
+                produto e dados. Você ajudará a equipe a projetar belas
+                interfaces que resolvem desafios de negócio para os nossos
+                clientes. Trabalhamos com uma série de Bancos de nível 1 na
+                criação de aplicações baseadas na Web para AML, KYC e Fluxos de
+                trabalho de gerenciamento da Lista de Sanções. Este papel é
+                ideal se você está à procura de seguir a sua carreira na FinTech
+                ou Big Data arenas.
               </p>
             </div>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Responsibilities</h5>
+            <h5 className="mb-3">Responsabilidades</h5>
             <div className="job-detail-desc mt-2">
               <p className="text-muted">
-                As a Product Designer, you will work within a Product Delivery
-                Team fused with UX, engineering, product and data talent.
+                Como Designer de Produto, você trabalhará dentro de uma Entrega
+                de Produto Equipe fundida com talentos em UX, engenharia,
+                produto e dados.
               </p>
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 <li>
-                  <i className="uil uil-circle"></i> Have sound knowledge of
-                  commercial activities.
+                  <i className="uil uil-circle"></i> Ter bom conhecimento de
+                  atividades comerciais.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Build next-generation web
-                  applications with a focus on the client side
+                  <i className="uil uil-circle"></i> Construir aplicações web de
+                  próxima geração com foco no lado do cliente.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Work on multiple projects
-                  at once, and consistently meet draft deadlines
+                  <i className="uil uil-circle"></i> Trabalhar em vários
+                  projetos ao mesmo tempo e cumprir prazos.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> have already graduated or
-                  are currently in any year of study
+                  <i className="uil uil-circle"></i> Já ter se formado ou estar
+                  cursando.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Revise the work of previous
-                  designers to create a unified aesthetic for our brand
-                  materials
+                  <i className="uil uil-circle"></i> Revisar o trabalho de
+                  designers anteriores para manter a estética da marca.
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Qualification </h5>
+            <h5 className="mb-3">Qualificações </h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 <li>
-                  <i className="uil uil-circle"></i> B.C.A / M.C.A under
-                  National University course complete.
+                  <i className="uil uil-circle"></i> B.C.A / M.C.A concluído em
+                  universidade nacional.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> 3 or more years of
-                  professional design experience
+                  <i className="uil uil-circle"></i> 3 ou mais anos de
+                  experiência profissional em design.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> have already graduated or
-                  are currently in any year of study
+                  <i className="uil uil-circle"></i> Já se formou ou está
+                  estudando atualmente.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Advanced degree or
-                  equivalent experience in graphic and web design
+                  <i className="uil uil-circle"></i> Grau avançado ou
+                  experiência equivalente em design gráfico e web.
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Skill & Experience</h5>
+            <h5 className="mb-3">Habilidades e Experiência</h5>
             <div className="job-details-desc">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 <li>
-                  <i className="uil uil-circle"></i> Understanding of key Design
-                  Principal
+                  <i className="uil uil-circle"></i> Compreensão dos principais
+                  princípios de design.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Proficiency With HTML, CSS,
-                  Bootstrap
+                  <i className="uil uil-circle"></i> Proficiência em HTML, CSS,
+                  Bootstrap.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Wordpress: 1 year
-                  (Required)
+                  <i className="uil uil-circle"></i> Wordpress: 1 ano
+                  (Requerido)
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Experience designing and
-                  developing responsive design websites
+                  <i className="uil uil-circle"></i> Experiência em design e
+                  desenvolvimento de sites responsivos.
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> web designing: 1 year
-                  (Preferred)
+                  <i className="uil uil-circle"></i> Web design: 1 ano
+                  (Preferencial)
                 </li>
               </ul>
               <div className="mt-4 d-flex flex-wrap align-items-start gap-1">
@@ -199,7 +200,7 @@ const JobDetailsDescription = () => {
 
           <div className="mt-4 pt-3">
             <ul className="list-inline mb-0">
-              <li className="list-inline-item mt-1">Share this job:</li>
+              <li className="list-inline-item mt-1">Compartilhar esta vaga:</li>
               <li className="list-inline-item mt-1">
                 <Link to="#" className="btn btn-primary btn-hover">
                   <i className="uil uil-facebook-f"></i> Facebook

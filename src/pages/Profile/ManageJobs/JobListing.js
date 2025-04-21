@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Col, Modal, ModalBody, Row } from "reactstrap";
 
-import Pagination from "../../Jobs/JobList2/Pagination";
+import Pagination from "../../../components/Pagination";
 
 //Import Images
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
@@ -15,117 +15,118 @@ import jobImage6 from "../../../assets/images/featured-job/img-06.png";
 const JobListing = () => {
   //Delete Modal
   const [modal, setModal] = useState(false);
-
   const openModal = () => setModal(!modal);
+
   const jobListing = [
     {
       id: 1,
       companyImg: jobImage1,
-      jobDescription: "Business Associate",
+      jobDescription: "Associado de Negócios",
       experience: "",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       partTime: true,
-      timing: "Part Time",
+      timing: "Meio Período",
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
-        }
-      ]
+          badgeName: "Urgente",
+        },
+      ],
     },
     {
       id: 2,
       companyImg: jobImage2,
-      jobDescription: "Marketing Director",
-      experience: "2-4 Yrs Exp.",
-      companyName: "Creative Agency",
-      location: "New York",
-      salary: "$250 - $800 / month",
+      jobDescription: "Diretor de Marketing",
+      experience: "2-4 anos de experiência",
+      companyName: "Agência Criativa",
+      location: "Nova Iorque",
+      salary: "$250 - $800 / mês",
       partTime: true,
-      timing: "Part Time",
+      timing: "Meio Período",
       badges: [
         {
           id: 1,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 3,
       companyImg: jobImage3,
-      jobDescription: "HTML Developer",
-      experience: "2-4 Yrs Exp.",
+      jobDescription: "Desenvolvedor HTML",
+      experience: "2-4 anos de experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       freeLance: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       badges: [
         {
           id: 1,
           badgeclassName: "bg-blue-subtle text-blue",
-          badgeName: "Internship"
-        }
-      ]
+          badgeName: "Estágio",
+        },
+      ],
     },
     {
       id: 4,
       companyImg: jobImage4,
-      jobDescription: "Product Sales Specialist",
-      experience: "5+ Yrs Exp.",
+      jobDescription: "Especialista em Vendas de Produtos",
+      experience: "5+ anos de experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       fullTime: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       badges: [
         {
           id: 1,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 5,
       companyImg: jobImage5,
-      jobDescription: "Product Designer",
-      experience: "0-5 Yrs Exp.",
-      companyName: "Creative Agency",
-      location: "California",
-      salary: "$250 - $800 / month",
+      jobDescription: "Designer de Produtos",
+      experience: "0-5 anos de experiência",
+      companyName: "Agência Criativa",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       internship: true,
-      timing: "Internship",
-      badges: []
+      timing: "Estágio",
+      badges: [],
     },
     {
       id: 6,
       companyImg: jobImage6,
-      jobDescription: "Project Manager",
-      experience: "0-2 Yrs Exp.",
+      jobDescription: "Gerente de Projetos",
+      experience: "0-2 anos de experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       fullTime: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
+          badgeName: "Urgente",
         },
         {
           id: 2,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
-    }
+          badgeName: "Privado",
+        },
+      ],
+    },
   ];
+
   return (
     <React.Fragment>
       <Row>
@@ -247,29 +248,28 @@ const JobListing = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <Modal isOpen={modal} toggle={openModal} centered tabIndex="-1">
+          <Modal isOpen={modal} toggle={openModal} centered>
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLabel">
-                Delete Jobs ?
+                Excluir Vaga?
               </h5>
               <button
                 type="button"
                 className="btn-close"
                 data-bs-dismiss="modal"
-                aria-label="Close"
+                aria-label="Fechar"
               ></button>
             </div>
             <ModalBody>
               <div>
                 <h6 className="text-danger">
-                  <i className="uil uil-exclamation-triangle"></i> Warning: Are
-                  you sure you want to delete job Post ?
+                  <i className="uil uil-exclamation-triangle"></i> Aviso: Tem
+                  certeza que deseja excluir esta vaga?
                 </h6>
                 <p className="text-muted">
-                  {" "}
-                  Your jobs post will be permenently removed and you won't be
-                  able to see them again, including the once you're shared with
-                  your friends.
+                  Sua vaga será permanentemente removida e você não poderá vê-la
+                  novamente, incluindo as que foram compartilhadas com seus
+                  amigos.
                 </p>
               </div>
             </ModalBody>
@@ -279,10 +279,10 @@ const JobListing = () => {
                 onClick={openModal}
                 className="btn btn-primary btn-sm"
               >
-                Cancel
+                Cancelar
               </button>
               <button type="button" className="btn btn-danger btn-sm">
-                Yes, delete
+                Sim, excluir
               </button>
             </div>
           </Modal>

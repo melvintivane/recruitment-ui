@@ -6,126 +6,64 @@ const Footer = () => {
   const footer = [
     {
       id: 1,
-      title: "Company",
+      title: "Empresa",
       menu: [
-        {
-          id: 1,
-          link: "/about",
-          subTitle: "About Us"
-        },
-        {
-          id: 2,
-          link: "/contact",
-          subTitle: "Contact Us"
-        },
-        {
-          id: 3,
-          link: "/services",
-          subTitle: "Services"
-        },
-        {
-          id: 4,
-          link: "/blog",
-          subTitle: "Blog"
-        },
-        {
-          id: 5,
-          link: "/team",
-          subTitle: "Team"
-        },
-        {
-          id: 6,
-          link: "/pricing",
-          subTitle: "Pricing"
-        }
-      ]
+        { id: 1, link: "/about", subTitle: "Sobre Nós" },
+        { id: 2, link: "/contact", subTitle: "Fale Conosco" },
+        { id: 3, link: "/services", subTitle: "Serviços" },
+        { id: 4, link: "/blog", subTitle: "Blog" },
+        { id: 5, link: "/team", subTitle: "Equipe" },
+        { id: 6, link: "/pricing", subTitle: "Preços" },
+      ],
     },
     {
       id: 2,
-      title: "For Jobs",
+      title: "Para Candidatos",
       menu: [
-        {
-          id: 1,
-          link: "/jobscategories",
-          subTitle: "Browser Categories"
-        },
-        {
-          id: 2,
-          link: "/joblist",
-          subTitle: "Browser Jobs"
-        },
-        {
-          id: 3,
-          link: "/jobdetails",
-          subTitle: "Job Details"
-        },
-        {
-          id: 4,
-          link: "/bookmarkjobs",
-          subTitle: "Bookmark Jobs"
-        }
-      ]
+        { id: 1, link: "/jobscategories", subTitle: "Categorias de Vagas" },
+        { id: 2, link: "/joblist", subTitle: "Listagem de Vagas" },
+        { id: 4, link: "/bookmarkjobs", subTitle: "Vagas Salvas" },
+      ],
     },
     {
       id: 3,
-      title: "For Candidates",
+      title: "Para Recrutadores",
       menu: [
-        {
-          id: 1,
-          link: "/candidatelist",
-          subTitle: "Candidate List"
-        },
-        {
-          id: 2,
-          link: "/candidategrid",
-          subTitle: "Candidate Grid"
-        },
-        {
-          id: 3,
-          link: "/candidatedetails",
-          subTitle: "Candidate Details"
-        }
-      ]
+        { id: 1, link: "/candidatelist", subTitle: "Lista de Candidatos" },
+        { id: 3, link: "/candidatedetails", subTitle: "Detalhes do Candidato" },
+      ],
     },
     {
       id: 4,
-      title: "Support",
+      title: "Suporte",
       menu: [
-        {
-          id: 1,
-          link: "/contact",
-          subTitle: "Help Center"
-        },
-        {
-          id: 2,
-          link: "/faqs",
-          subTitle: "FAQ'S"
-        },
+        { id: 1, link: "/contact", subTitle: "Central de Ajuda" },
+        { id: 2, link: "/faqs", subTitle: "Perguntas Frequentes" },
         {
           id: 3,
           link: "/privacyandpolicy",
-          subTitle: "Privacy Policy"
-        }
-      ]
-    }
+          subTitle: "Política de Privacidade",
+        },
+      ],
+    },
   ];
   const footerIcons = [
     {
       id: 1,
-      socialIcon: "uil uil-facebook-f"
+      socialIcon: "uil uil-facebook-f",
     },
     {
       id: 2,
-      socialIcon: "uil uil-linkedin-alt"
+      socialIcon: "uil uil-linkedin-alt",
     },
     {
       id: 3,
-      socialIcon: "uil uil-google"
+      socialIcon: "uil uil-google",
     },
     {
       id: 4,
-      socialIcon: "uil uil-twitter"
-    }
+      socialIcon: "uil uil-twitter",
+    },
   ];
   return (
     <React.Fragment>
@@ -136,10 +74,10 @@ const Footer = () => {
               <div className="footer-item mt-4 mt-lg-0 me-lg-5">
                 <h4 className="text-white mb-4">Hireway</h4>
                 <p className="text-white-50">
-                  It is a long established fact that a reader will be of a page
-                  reader will be of at its layout.
+                  É um fato estabelecido que um leitor se distrairá com o
+                  conteúdo de uma página ao observar seu layout.
                 </p>
-                <p className="text-white mt-3">Follow Us on:</p>
+                <p className="text-white mt-3">Siga-nos em:</p>
                 <ul className="footer-social-menu list-inline mb-0">
                   {footerIcons.map((footerIcondetails, key) => (
                     <li className="list-inline-item" key={key}>
@@ -159,7 +97,7 @@ const Footer = () => {
                     <ul className="list-unstyled footer-list mb-0" key={key}>
                       <li>
                         <Link to={menuInner.link}>
-                          <i className="mdi mdi-chevron-right"></i>{" "}
+                          <i className="mdi mdi-chevron-right ml-6"></i>{" "}
                           {menuInner.subTitle}
                         </Link>
                       </li>

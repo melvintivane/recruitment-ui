@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Form } from "reactstrap";
 
-const BlogCategory = () => {
+const CategoriaBlog = () => {
   const [isChecked, setIsChecked] = useState(true);
   const handleOnChange = () => {
     setIsChecked(!isChecked);
@@ -14,7 +14,7 @@ const BlogCategory = () => {
           <Input
             className="form-control"
             type="search"
-            placeholder="Search..."
+            placeholder="Pesquisar..."
           />
           <button
             className="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2"
@@ -26,7 +26,7 @@ const BlogCategory = () => {
       </aside>
       <div className="mt-4 pt-2">
         <div className="sd-title">
-          <h6 className="fs-16 mb-3">Categories</h6>
+          <h6 className="fs-16 mb-3">Categorias</h6>
         </div>
         <div className="my-3">
           <div className="form-check mb-2">
@@ -34,10 +34,10 @@ const BlogCategory = () => {
               className="form-check-input"
               type="checkbox"
               value=""
-              id="education"
+              id="educacao"
             />
-            <label className="form-check-label ms-2" htmlFor="education">
-              Education
+            <label className="form-check-label ms-2" htmlFor="educacao">
+              Educação
             </label>
           </div>
           <div className="form-check mb-2">
@@ -53,7 +53,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked1"
             >
-              Business
+              Negócios
             </label>
           </div>
           <div className="form-check mb-2">
@@ -67,7 +67,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked2"
             >
-              Information
+              Informação
             </label>
           </div>
           <div className="form-check mb-2">
@@ -81,7 +81,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked3"
             >
-              Interview
+              Entrevista
             </label>
           </div>
           <div className="form-check mb-2">
@@ -95,7 +95,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked4"
             >
-              Travel
+              Viagem
             </label>
           </div>
           <div className="form-check mb-2">
@@ -109,7 +109,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked5"
             >
-              Jobs
+              Empregos
             </label>
           </div>
           <div className="form-check mb-2">
@@ -123,7 +123,7 @@ const BlogCategory = () => {
               className="form-check-label ms-2"
               htmlFor="flexCheckChecked6"
             >
-              Fashion
+              Moda
             </label>
           </div>
         </div>
@@ -132,4 +132,4 @@ const BlogCategory = () => {
   );
 };
 
-export default BlogCategory;
+export default CategoriaBlog;

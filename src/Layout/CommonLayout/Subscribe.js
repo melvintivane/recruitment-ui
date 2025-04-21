@@ -12,9 +12,11 @@ const Subscribe = () => {
           <Row className="justify-content-between align-items-center">
             <Col lg={6}>
               <div className="text-center text-lg-start">
-                <h4 className="text-white">Get New Jobs Notification!</h4>
+                <h4 className="text-white">
+                  Receba notificações de novas vagas!
+                </h4>
                 <p className="text-white-50 mb-0">
-                  Subscribe & get all related jobs notification.
+                  Inscreva-se e receba notificações de vagas relacionadas.
                 </p>
               </div>
             </Col>
@@ -26,14 +28,14 @@ const Subscribe = () => {
                       type="text"
                       className="form-control"
                       id="subscribe"
-                      placeholder="Enter your email"
+                      placeholder="Digite seu e-mail"
                     />
                     <button
                       className="btn btn-primary"
                       type="button"
                       id="subscribebtn"
                     >
-                      Subscribe
+                      Inscrever-se
                     </button>
                   </div>
                 </form>

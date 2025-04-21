@@ -7,21 +7,20 @@ import {
   Input,
   Modal,
   ModalBody,
-  Label
+  Label,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-//Lightbox
+// Lightbox
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-
-//Import BlogImage
+// Imagens do Blog
 import blogImage1 from "../../../assets/images/blog/img-01.jpg";
 import blogImage3 from "../../../assets/images/blog/img-03.jpg";
 import blogImage12 from "../../../assets/images/blog/img-12.jpg";
 
-//Job Images
+// Imagens de Vagas de Trabalho
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
 import jobImage2 from "../../../assets/images/featured-job/img-02.png";
 import jobImage3 from "../../../assets/images/featured-job/img-03.png";
@@ -30,11 +29,11 @@ import jobImage4 from "../../../assets/images/featured-job/img-04.png";
 const images = [blogImage1, blogImage3, blogImage12];
 
 const RightSideContent = () => {
-  //Apply Now Model
+  // Modal de Inscrição
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
 
-  //Lightbox
+  // Lightbox
   const [photoIndex, setphotoIndex] = useState(0);
   const [isGallery, setisGallery] = useState(false);
 
@@ -42,54 +41,54 @@ const RightSideContent = () => {
     {
       id: 1,
       companyImg: jobImage1,
-      jobDescription: "HTML Developer",
-      experience: "0-2 Yrs Exp.",
+      jobDescription: "Desenvolvedor HTML",
+      experience: "0-2 Anos de Experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       fullTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: true,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
+          badgeName: "Urgente",
         },
         {
           id: 2,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 2,
       companyImg: jobImage2,
-      jobDescription: "Marketing Director",
-      experience: "2-4 Yrs Exp.",
+      jobDescription: "Diretor de Marketing",
+      experience: "2-4 Anos de Experiência",
       companyName: "Creative Agency",
-      location: "New York",
-      salary: "$250 - $800 / month",
+      location: "Nova York",
+      salary: "$250 - $800 / mês",
       partTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 3,
       companyImg: jobImage3,
-      jobDescription: "HTML Developer",
-      experience: "2-4 Yrs Exp.",
+      jobDescription: "Desenvolvedor HTML",
+      experience: "2-4 Anos de Experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       freeLance: true,
       timing: "Freelance",
       addclassNameBookmark: true,
@@ -97,18 +96,18 @@ const RightSideContent = () => {
         {
           id: 1,
           badgeclassName: "bg-blue-subtle text-blue",
-          badgeName: "Internship"
-        }
-      ]
+          badgeName: "Estágio",
+        },
+      ],
     },
     {
       id: 4,
       companyImg: jobImage4,
-      jobDescription: "Java Developer",
-      experience: "0-2 Yrs Exp.",
+      jobDescription: "Desenvolvedor Java",
+      experience: "0-2 Anos de Experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$450 - $800 / month",
+      location: "Califórnia",
+      salary: "$450 - $800 / mês",
       freeLance: true,
       timing: "Freelance",
       addclassNameBookmark: false,
@@ -116,51 +115,51 @@ const RightSideContent = () => {
         {
           id: 1,
           badgeclassName: "bg-blue-subtle text-blue",
-          badgeName: "Internship"
-        }
-      ]
-    }
+          badgeName: "Estágio",
+        },
+      ],
+    },
   ];
+
   return (
     <React.Fragment>
-       {isGallery ? (
+      {isGallery ? (
         <Lightbox
-        open={isGallery}
-        close={() => setisGallery(false)}
-        index={photoIndex}
-        slides={images.map((image) => ({ src: image }))}
-      />
+          open={isGallery}
+          close={() => setisGallery(false)}
+          index={photoIndex}
+          slides={images.map((image) => ({ src: image }))}
+        />
       ) : null}
       <Col lg={8}>
         <Card className="ms-lg-4 mt-4 mt-lg-0">
           <CardBody className="p-4">
             <div className="mb-5">
-              <h6 className="fs-17 fw-medium mb-4">About Company</h6>
+              <h6 className="fs-17 fw-medium mb-4">Sobre a Empresa</h6>
               <p className="text-muted">
-                {" "}
-                Objectively pursue diverse catalysts for change for
-                interoperable meta-services. Distinctively re-engineer
-                revolutionary meta-services and premium architectures.
-                Intrinsically incubate intuitive opportunities and real-time
-                potentialities. Appropriately communicate one-to-one technology.
+                Objetivamente perseguir diversos catalisadores para mudança para
+                serviços meta-interoperáveis. Reengenheirar distintamente
+                serviços meta-revolucionários e arquiteturas premium. Incubar
+                intuitivamente oportunidades e potencialidades em tempo real.
+                Comunicar adequadamente a tecnologia de forma personalizada.
               </p>
 
               <p className="text-muted">
-                Intrinsically incubate intuitive opportunities and real-time
-                potentialities Appropriately communicate one-to-one technology.
+                Incubar intuitivamente oportunidades e potencialidades em tempo
+                real. Comunicar adequadamente a tecnologia de forma
+                personalizada.
               </p>
 
               <p className="text-muted">
-                {" "}
-                Exercitation photo booth stumptown tote bag Banksy, elit small
-                batch freegan sed. Craft beer elit seitan exercitation, photo
-                booth et 8-bit kale chips proident chillwave deep v laborum.
-                Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami
-                readymade swag.
+                Exercício de estúdio fotográfico, bolsa de lona stumptown
+                Banksy, elit pequeno lote freegan sed. Cerveja artesanal elit
+                seitan exercício, estúdio fotográfico e chips kale 8-bit
+                proident chillwave deep v. Aliquip veniam delectus, Marfa
+                eiusmod Pinterest em do umami readymade swag.
               </p>
             </div>
             <div className="candidate-portfolio mb-5">
-              <h6 className="fs-17 fw-medium mb-4">Gallery</h6>
+              <h6 className="fs-17 fw-medium mb-4">Galeria</h6>
               <Row className="g-3">
                 <Col lg={6}>
                   <Link to="#" className="image-popup">
@@ -205,7 +204,7 @@ const RightSideContent = () => {
             </div>
 
             <div>
-              <h6 className="fs-17 fw-medium mb-4">Current Opening</h6>
+              <h6 className="fs-17 fw-medium mb-4">Vagas Abertas</h6>
 
               {jobVacancyPost.map((jobVacancyPostDetails, key) => (
                 <div
@@ -298,17 +297,17 @@ const RightSideContent = () => {
                         <div>
                           <ul className="list-inline mb-0">
                             <li className="list-inline-item">
-                              <i className="uil uil-tag"></i> Keywords :
+                              <i className="uil uil-tag"></i> Palavras-chave :
                             </li>
                             <li className="list-inline-item">
                               <Link to="#" className="primary-link text-muted">
-                                Ui designer
+                                Designer de UI
                               </Link>
                               ,
                             </li>
                             <li className="list-inline-item">
                               <Link to="#" className="primary-link text-muted">
-                                developer
+                                Desenvolvedor
                               </Link>
                             </li>
                           </ul>
@@ -322,7 +321,7 @@ const RightSideContent = () => {
                             onClick={openModal}
                             className="primary-link"
                           >
-                            Apply Now{" "}
+                            Inscreva-se{" "}
                             <i className="mdi mdi-chevron-double-right"></i>
                           </Link>
                         </div>
@@ -337,73 +336,77 @@ const RightSideContent = () => {
                 tabIndex="-1"
                 aria-labelledby="applyNow"
                 aria-hidden="true"
+                isOpen={modal}
+                toggle={openModal}
               >
-                <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-dialog modal-lg">
                   <Modal isOpen={modal} toggle={openModal} centered>
+                    <div className="modal-header">
+                      <h5 className="modal-title" id="applyNow">
+                        Inscreva-se na vaga
+                      </h5>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        onClick={openModal}
+                        aria-label="Close"
+                      ></button>
+                    </div>
                     <ModalBody className="modal-body p-5">
-                      <div className="text-center mb-4">
-                        <h5 className="modal-title" id="staticBackdropLabel">
-                          Apply For This Job
-                        </h5>
-                      </div>
-                      <div className="position-absolute end-0 top-0 p-3">
-                        <button
-                          type="button"
-                          onClick={openModal}
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="mb-3">
-                        <Label for="nameControlInput" className="form-label">
-                          Name
-                        </Label>
-                        <Input
-                          type="text"
-                          className="form-control"
-                          id="nameControlInput"
-                          placeholder="Enter your name"
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <Label for="emailControlInput2" className="form-label">
-                          Email Address
-                        </Label>
-                        <Input
-                          type="email"
-                          className="form-control"
-                          id="emailControlInput2"
-                          placeholder="Enter your email"
-                        />
-                      </div>
-                      <div className="mb-3">
-                        <Label
-                          for="messageControlTextarea"
-                          className="form-label"
-                        >
-                          Message
-                        </Label>
-                        <textarea
-                          className="form-control"
-                          id="messageControlTextarea"
-                          rows="4"
-                          placeholder="Enter your message"
-                        ></textarea>
-                      </div>
-                      <div className="mb-4">
-                        <Label className="form-label" for="inputGroupFile01">
-                          Resume Upload
-                        </Label>
-                        <Input
-                          type="file"
-                          className="form-control"
-                          id="inputGroupFile01"
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-primary w-100">
-                        Send Application
-                      </button>
+                      <form>
+                        <div className="mb-3">
+                          <Label for="nameControlInput">Nome</Label>
+                          <Input
+                            type="text"
+                            className="form-control"
+                            id="nameControlInput"
+                            placeholder="Seu nome"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <Label for="emailControlInput2">E-mail</Label>
+                          <Input
+                            type="email"
+                            className="form-control"
+                            id="emailControlInput2"
+                            placeholder="Digite seu e-mail"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <Label for="phoneNumber">Telefone</Label>
+                          <Input
+                            type="text"
+                            className="form-control"
+                            id="phoneNumber"
+                            placeholder="Digite seu número"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <Label for="formFile" className="form-label">
+                            Enviar CV
+                          </Label>
+                          <Input
+                            className="form-control"
+                            type="file"
+                            id="formFile"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <Label for="messageControlTextarea">Mensagem</Label>
+                          <Input
+                            as="textarea"
+                            className="form-control"
+                            id="messageControlTextarea"
+                            rows="4"
+                            placeholder="Digite sua mensagem"
+                          />
+                        </div>
+                        <div className="text-end">
+                          <button type="submit" className="btn btn-primary">
+                            Enviar Inscrição
+                          </button>
+                        </div>
+                      </form>
                     </ModalBody>
                   </Modal>
                 </div>

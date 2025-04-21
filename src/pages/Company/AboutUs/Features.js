@@ -7,48 +7,48 @@ const Features = () => {
     {
       id: 1,
       featureIcon: "uim-object-ungroup",
-      featureName: "Manage Job Ads"
+      featureName: "Gerenciar Anúncios de Vagas",
     },
     {
       id: 2,
       featureIcon: "uim-telegram-alt",
-      featureName: "Create CV"
+      featureName: "Criar CV",
     },
     {
       id: 3,
       featureIcon: "uim-lock-access",
-      featureName: "Privacy Policy"
+      featureName: "Política de Privacidade",
     },
     {
       id: 4,
       featureIcon: "uim-user-md",
-      featureName: "Recruiter Profiles"
+      featureName: "Perfis de Recrutadores",
     },
     {
       id: 5,
       featureIcon: "uim-airplay",
-      featureName: "Display Jobs"
+      featureName: "Exibir Vagas",
     },
     {
       id: 6,
       featureIcon: "uim-rocket",
-      featureName: "For Agencies"
+      featureName: "Para Agências",
     },
     {
       id: 7,
       featureIcon: "uim-history",
-      featureName: "Quick Support"
+      featureName: "Suporte Rápido",
     },
     {
       id: 8,
       featureIcon: "uim-bookmark",
-      featureName: "Bookmark Jobs"
+      featureName: "Favoritar Vagas",
     },
     {
       id: 9,
       featureIcon: "uim-graph-bar",
-      featureName: "Real-time Analytics"
-    }
+      featureName: "Análise em Tempo Real",
+    },
   ];
   return (
     <React.Fragment>
@@ -57,10 +57,11 @@ const Features = () => {
           <Row className="justify-content-center">
             <Col lg={7}>
               <div className="section-title text-center mb-5">
-                <h3 className="title mb-4">Key Features</h3>
+                <h3 className="title mb-4">Principais Funcionalidades</h3>
                 <p className="para-desc text-muted mx-auto">
-                  Start working with Hireway that can provide everything you need
-                  to generate awareness, drive traffic, connect.
+                  Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                  você precisa para gerar reconhecimento, atrair tráfego e
+                  conectar.
                 </p>
               </div>
             </Col>

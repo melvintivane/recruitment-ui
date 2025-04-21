@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 import JobFilters from "../CandidateList/JobFilters";
 import CandidateGridDetails from "./CandidateGridDetails";
 import Section from "./Section";
-import Pagination from "../../Jobs/JobList2/Pagination";
+import Pagination from "../../../components/Pagination";
 
 const CandidateGrid = () => {
   document.title =

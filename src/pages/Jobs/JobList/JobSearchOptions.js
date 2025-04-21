@@ -18,7 +18,7 @@ const JobSearchOptions = () => {
                   type="search"
                   className="form-control filter-input-box"
                   id="exampleFormControlInput1"
-                  placeholder="Job, company... "
+                  placeholder="Emprego, etc... "
                   style={{ marginTop: "-10px" }}
                 />
               </div>
@@ -37,7 +37,7 @@ const JobSearchOptions = () => {
             </Col>
             <Col lg={3} md={6}>
               <Link to="#" className="btn btn-primary w-100">
-                <i className="uil uil-filter"></i> Fliter
+                <i className="uil uil-filter"></i> Filtrar
               </Link>
             </Col>
           </Row>

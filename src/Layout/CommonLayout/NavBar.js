@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  Col,
-  Row,
   Container,
   Collapse,
   NavbarToggler,
@@ -9,18 +7,15 @@ import {
   NavLink,
   Dropdown,
   DropdownToggle,
-  DropdownMenu
+  DropdownMenu,
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
 import classname from "classnames";
-import withRouter from "../../components/withRouter"
-import StyleSwitcher from "../CommonLayout/StyleSwitcher";
+import withRouter from "../../components/withRouter";
 
-import darkLogo from "../../assets/images/logo-dark.png";
-import lightLogo from "../../assets/images/logo-light.png";
-import whiteLogo from "../../assets/images/favicon.png";
-import logo from "../../assets/images/logo.png"
+import darkLogo from "../../assets/images/dark-logo.png";
+import lightLogo from "../../assets/images/light-logo.png";
 import userImage2 from "../../assets/images/user/img-02.jpg";
 import jobImage4 from "../../assets/images/featured-job/img-04.png";
 import userImage1 from "../../assets/images/user/img-01.jpg";
@@ -31,10 +26,7 @@ const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  // const [home, setHome] = useState(false);
   const [company, setCompany] = useState(false);
-  // const [pages, setPages] = useState(false);
-  const [blog, setBlog] = useState(false);
 
   //Notification Dropdown
   const [notification, setNotification] = useState(false);
@@ -76,8 +68,8 @@ const NavBar = (props) => {
     if (matchingMenuItem) {
       activateParentDropdown(matchingMenuItem);
     }
-  },[props.router.location.pathname]);
-  
+  }, [props.router.location.pathname]);
+
   const removeActivation = (items) => {
     for (var i = 0; i < items.length; ++i) {
       var item = items[i];
@@ -128,11 +120,12 @@ const NavBar = (props) => {
         id="navigation"
       >
         <Container fluid className="custom-container">
-          <Link className="navbar-brand text-dark fw-bold mx-auto d-flex align-items-center gap-2" to="/">
-            {/* <img src={darkLogo} height="22" alt="" className="logo-dark" />
-            <img src={lightLogo} height="22" alt="" className="logo-light" />*/}
-            <img src={logo} height="22" alt="" className="logo-dark" />
-            <img src={whiteLogo} height="22" alt="" className="logo-light" /> 
+          <Link
+            className="navbar-brand text-dark fw-bold mx-auto d-flex align-items-center gap-2"
+            to="/"
+          >
+            <img src={lightLogo} height="22" alt="" className="logo-dark" />
+            <img src={darkLogo} height="22" alt="" className="logo-light" />
             Hireway
           </Link>
           <div>
@@ -152,7 +145,7 @@ const NavBar = (props) => {
             <ul className="navbar-nav mx-auto navbar-center">
               <NavItem>
                 <Link className="nav-link" to="/">
-                  Home
+                  Início
                 </Link>
               </NavItem>
               <NavItem>
@@ -165,6 +158,16 @@ const NavBar = (props) => {
                   Empresas
                 </Link>
               </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/contact">
+                  Contacto
+                </Link>
+              </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/blog">
+                  Blog
+                </Link>
+              </NavItem>
               <NavItem className="dropdown dropdown-hover">
                 <NavLink
                   to="/#"
@@ -172,96 +175,48 @@ const NavBar = (props) => {
                   role="button"
                   onClick={() => setCompany(!company)}
                 >
-                  Company <div className="arrow-down"></div>
+                  Sobre Nós <div className="arrow-down"></div>
                 </NavLink>
                 <ul
-                  className={classname("dropdown-menu dropdown-menu-center", {
-                    show: company
-                  })}
+                  className={classname(
+                    "dropdown-menu dropdown-menu-sm dropdown-menu-center",
+                    {
+                      show: company,
+                    }
+                  )}
                   aria-labelledby="jobsdropdown"
                 >
                   <li>
                     <Link className="dropdown-item" to="/aboutus">
-                      About Us
+                      Sobre Nós
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/services">
-                      Services
+                      Serviços
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/team">
-                      Team
+                      Equipe
                     </Link>
                   </li>
                   <li>
                     <Link className="dropdown-item" to="/pricing">
-                      Pricing
+                      Preços
                     </Link>
                   </li>
-                  <Link className="dropdown-item" to="/privacyandpolicy">
-                    Priacy & Policy
-                  </Link>
+                  <li>
+                    <Link className="dropdown-item" to="/privacyandpolicy">
+                      Privacidade & Política
+                    </Link>
+                  </li>
                   <li>
                     <Link className="dropdown-item" to="/faqs">
-                      Faqs
+                      Perguntas Frequentes
                     </Link>
                   </li>
                 </ul>
-              </NavItem>
-              <NavItem className="dropdown dropdown-hover">
-                <NavLink
-                  to="/#"
-                  id="productdropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  onClick={() => setBlog(!blog)}
-                >
-                  Blog <div className="arrow-down"></div>
-                </NavLink>
-                <ul
-                  className={classname("dropdown-menu dropdown-menu-center", {
-                    show: blog
-                  })}
-                  aria-labelledby="productdropdown"
-                >
-                  <li>
-                    <Link className="dropdown-item" to="/blog">
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/bloggrid">
-                      Blog Grid
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/blogmodern">
-                      Blog Modern
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/blogmasonary">
-                      Blog Masonry
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/blogdetails">
-                      Blog details
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/blogauther">
-                      Blog Author
-                    </Link>
-                  </li>
-                </ul>
-              </NavItem>
-              <NavItem>
-                <Link className="nav-link" to="/contact">
-                  Contact
-                </Link>
               </NavItem>
             </ul>
           </Collapse>
@@ -283,14 +238,14 @@ const NavBar = (props) => {
                 <div className="count position-absolute">3</div>
               </DropdownToggle>
               <DropdownMenu
-                className="dropdown-menu-sm dropdown-menu-end p-0"
+                className="dropdown-menu-md dropdown-menu-end p-0"
                 aria-labelledby="notification"
                 end
               >
                 <div className="notification-header border-bottom bg-light">
-                  <h6 className="mb-1"> Notification </h6>
+                  <h6 className="mb-1">Notificações</h6>
                   <p className="text-muted fs-13 mb-0">
-                    You have 4 unread Notification
+                    Você tem 4 notificações não lidas
                   </p>
                 </div>
                 <div className="notification-wrapper dropdown-scroll">
@@ -306,11 +261,11 @@ const NavBar = (props) => {
                       </div>
                       <div className="flex-grow-1">
                         <h6 className="mt-0 mb-1 fs-14">
-                          22 verified registrations
+                          22 registros verificados
                         </h6>
                         <p className="mb-0 fs-12 text-muted">
                           <i className="mdi mdi-clock-outline"></i>{" "}
-                          <span>3 min ago</span>
+                          <span>3 min atrás</span>
                         </p>
                       </div>
                     </div>
@@ -325,10 +280,10 @@ const NavBar = (props) => {
                         />
                       </div>
                       <div className="flex-grow-1">
-                        <h6 className="mt-0 mb-1 fs-14">James Lemire</h6>
+                        <h6 className="mt-0 mb-1 fs-14">Jeremias Lemire</h6>
                         <p className="text-muted fs-12 mb-0">
                           <i className="mdi mdi-clock-outline"></i>{" "}
-                          <span>15 min ago</span>
+                          <span>15 min atrás</span>
                         </p>
                       </div>
                     </div>
@@ -344,11 +299,11 @@ const NavBar = (props) => {
                       </div>
                       <div className="flex-grow-1">
                         <h6 className="mt-0 mb-1 fs-14">
-                          Applications has been approved
+                          Candidaturas aprovadas
                         </h6>
                         <p className="text-muted mb-0 fs-12">
                           <i className="mdi mdi-clock-outline"></i>{" "}
-                          <span>45 min ago</span>
+                          <span>45 min atrás</span>
                         </p>
                       </div>
                     </div>
@@ -363,10 +318,10 @@ const NavBar = (props) => {
                         />
                       </div>
                       <div className="flex-grow-1">
-                        <h6 className="mt-0 mb-1 fs-14">Kevin Stewart</h6>
+                        <h6 className="mt-0 mb-1 fs-14">Vanessa Tivane</h6>
                         <p className="text-muted mb-0 fs-12">
                           <i className="mdi mdi-clock-outline"></i>{" "}
-                          <span>1 hour ago</span>
+                          <span>1 hora atrás</span>
                         </p>
                       </div>
                     </div>
@@ -381,10 +336,10 @@ const NavBar = (props) => {
                         />
                       </div>
                       <div className="flex-grow-1">
-                        <h6 className="mt-0 mb-1 fs-15">Creative Agency</h6>
+                        <h6 className="mt-0 mb-1 fs-15">Agência Criativa</h6>
                         <p className="text-muted mb-0 fs-12">
                           <i className="mdi mdi-clock-outline"></i>{" "}
-                          <span>2 hour ago</span>
+                          <span>2 horas atrás</span>
                         </p>
                       </div>
                     </div>
@@ -393,7 +348,7 @@ const NavBar = (props) => {
                 <div className="notification-footer border-top text-center">
                   <Link className="primary-link fs-13" to="#">
                     <i className="mdi mdi-arrow-right-circle me-1"></i>{" "}
-                    <span>View More..</span>
+                    <span>Ver Mais..</span>
                   </Link>
                 </div>
               </DropdownMenu>
@@ -420,7 +375,7 @@ const NavBar = (props) => {
                   className="rounded-circle me-1"
                 />{" "}
                 <span className="d-none d-md-inline-block fw-medium">
-                  Hi, Jansh
+                  Olá, Jassmin!
                 </span>
               </DropdownToggle>
               <DropdownMenu
@@ -430,28 +385,27 @@ const NavBar = (props) => {
               >
                 <li>
                   <Link className="dropdown-item" to="/managejobs">
-                    Manage Jobs
+                    Gerenciar Vagas
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/bookmarkjobs">
-                    Bookmarks Jobs
+                    Vagas Salvas
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/myprofile">
-                    My Profile
+                    Meu Perfil
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/signout">
-                    Logout
+                    Sair
                   </Link>
                 </li>
               </DropdownMenu>
             </Dropdown>
           </ul>
-          {/* <StyleSwitcher /> */}
         </Container>
       </nav>
     </React.Fragment>

@@ -8,8 +8,8 @@ const PricingPage = () => {
     {
       id: 1,
       pricingIcon: "uim-telegram-alt",
-      pricingName: "Starter",
-      pricingPrice: "$35.99",
+      pricingName: "Inicial",
+      pricingPrice: "35,99 USD",
       pricingsuccessclass: "btn-soft-primary",
       pricingDetails: [
         {
@@ -17,50 +17,50 @@ const PricingPage = () => {
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Unlimited file recovery"
+          pricingInnerText: "Recuperação de arquivos ilimitada",
         },
         {
           id: 2,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Professional reports"
+          pricingInnerText: "Relatórios profissionais",
         },
         {
           id: 3,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Sell on marketplaces"
+          pricingInnerText: "Venda em marketplaces",
         },
         {
           id: 4,
           pricingInnerClassName: "pricing-item text-decoration-line-through",
           pricingInnerIcon:
             "mdi mdi-close-thick bg-muted-subtle text-muted me-2",
-          pricingInnerText: "Unlimited Builds"
+          pricingInnerText: "Compilações ilimitadas",
         },
         {
           id: 5,
           pricingInnerClassName: "pricing-item text-decoration-line-through",
           pricingInnerIcon:
             "mdi mdi-close-thick bg-muted-subtle text-muted me-2",
-          pricingInnerText: "Job displayed for 30 days"
+          pricingInnerText: "Vaga exibida por 30 dias",
         },
         {
           id: 6,
           pricingInnerClassName: "pricing-item text-decoration-line-through",
           pricingInnerIcon:
             "mdi mdi-close-thick bg-muted-subtle text-muted me-2",
-          pricingInnerText: "Premium Support 24/7"
-        }
-      ]
+          pricingInnerText: "Suporte Premium 24/7",
+        },
+      ],
     },
     {
       id: 2,
       pricingIcon: "uim-rocket",
-      pricingName: "Professional",
-      pricingPrice: "$49.99",
+      pricingName: "Profissional",
+      pricingPrice: "49,99 USD",
       pricingsuccessclass: "btn-primary",
       pricingDetails: [
         {
@@ -68,50 +68,50 @@ const PricingPage = () => {
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Unlimited file recovery"
+          pricingInnerText: "Recuperação de arquivos ilimitada",
         },
         {
           id: 2,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Professional reports"
+          pricingInnerText: "Relatórios profissionais",
         },
         {
           id: 3,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Sell on marketplaces"
+          pricingInnerText: "Venda em marketplaces",
         },
         {
           id: 4,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Unlimited Builds"
+          pricingInnerText: "Compilações ilimitadas",
         },
         {
           id: 5,
           pricingInnerClassName: "pricing-item text-decoration-line-through",
           pricingInnerIcon:
             "mdi mdi-close-thick bg-muted-subtle text-muted me-2",
-          pricingInnerText: "Job displayed for 30 days"
+          pricingInnerText: "Vaga exibida por 30 dias",
         },
         {
           id: 6,
           pricingInnerClassName: "pricing-item text-decoration-line-through",
           pricingInnerIcon:
             "mdi mdi-close-thick bg-muted-subtle text-muted me-2",
-          pricingInnerText: "Premium Support 24/7"
-        }
-      ]
+          pricingInnerText: "Suporte Premium 24/7",
+        },
+      ],
     },
     {
       id: 3,
       pricingIcon: "uim-bag",
-      pricingName: "Enterprice",
-      pricingPrice: "$59.99",
+      pricingName: "Empresarial",
+      pricingPrice: "59,99 USD",
       pricingsuccessclass: "btn-soft-primary",
       pricingDetails: [
         {
@@ -119,46 +119,47 @@ const PricingPage = () => {
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Unlimited file recovery"
+          pricingInnerText: "Recuperação de arquivos ilimitada",
         },
         {
           id: 2,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Professional reports"
+          pricingInnerText: "Relatórios profissionais",
         },
         {
           id: 3,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Sell on marketplaces"
+          pricingInnerText: "Venda em marketplaces",
         },
         {
           id: 4,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Unlimited Builds"
+          pricingInnerText: "Compilações ilimitadas",
         },
         {
           id: 5,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Job displayed for 30 days"
+          pricingInnerText: "Vaga exibida por 30 dias",
         },
         {
           id: 6,
           pricingInnerClassName: "pricing-item",
           pricingInnerIcon:
             "mdi mdi-check-bold bg-success-subtle text-success me-2",
-          pricingInnerText: "Premium Support 24/7"
-        }
-      ]
-    }
+          pricingInnerText: "Suporte Premium 24/7",
+        },
+      ],
+    },
   ];
+
   return (
     <React.Fragment>
       <section className="section">
@@ -166,13 +167,13 @@ const PricingPage = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="text-center">
-                <span className="badge warning-bg-subtle  fs-15 mb-2">
-                  Choose Your Plan
+                <span className="badge warning-bg-subtle fs-15 mb-2">
+                  Escolha o Seu Plano
                 </span>
-                <h3>Save up to 15%</h3>
+                <h3>Economize até 15%</h3>
                 <p className="text-muted">
-                  The faster, most seamless CI & development you'll find
-                  anywhere.
+                  A integração contínua e o desenvolvimento mais rápidos e
+                  simples que você encontrará.
                 </p>
               </div>
             </Col>
@@ -223,7 +224,7 @@ const PricingPage = () => {
                         to="#"
                         className={`btn ${pricingpageDetails.pricingsuccessclass} rounded-pill`}
                       >
-                        Purchase Now <i className="uil uil-arrow-right"></i>
+                        Comprar Agora <i className="uil uil-arrow-right"></i>
                       </Link>
                     </div>
                   </CardBody>
@@ -238,21 +239,23 @@ const PricingPage = () => {
           <Row className="justify-content-center">
             <div className="section-title text-center">
               <h3 className="title mb-4 pb-2">
-                See everything about your employee at one place.
+                Veja tudo sobre seu funcionário em um só lugar.
               </h3>
               <p className="para-desc text-muted mx-auto">
-                Start working with Hireway that can provide everything you need to
-                generate awareness, drive traffic, connect.
+                Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                você precisa para gerar conscientização, direcionar tráfego e
+                conectar.
               </p>
               <div className="mt-4">
                 <Link to="/contact" className="btn btn-primary btn-hover mt-2">
-                  <i className="uil uil-phone me-1"></i> Contact
+                  <i className="uil uil-phone me-1"></i> Contato
                 </Link>
                 <Link
                   to="/faqs"
                   className="btn btn-outline-primary btn-hover ms-sm-1 mt-2"
                 >
-                  <i className="uil uil-file-question me-1"></i> Faq's
+                  <i className="uil uil-file-question me-1"></i> Perguntas
+                  Frequentes
                 </Link>
               </div>
             </div>

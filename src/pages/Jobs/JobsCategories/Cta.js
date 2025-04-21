@@ -10,21 +10,21 @@ const Cta = () => {
           <Row className="justify-content-center">
             <div className="section-title text-center">
               <h3 className="title mb-4 pb-2">
-                See everything about your employee at one place.
+                Encontre novos funcionários.
               </h3>
               <p className="para-desc text-muted mx-auto">
-                Start working with Hireway that can provide everything you need to
-                generate awareness, drive traffic, connect.
+                Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                precisa para gerar notoriedade, atrair tráfego e conectar-se.
               </p>
               <div className="mt-4">
                 <Link to="#" className="btn btn-primary btn-hover mt-2">
-                  <i className="uil uil-rocket"></i> Get Started Now
+                  <i className="uil uil-rocket"></i> Começar Agora
                 </Link>
                 <Link
                   to="#"
                   className="btn btn-outline-primary btn-hover ms-sm-1 mt-2"
                 >
-                  <i className="uil uil-capsule"></i> Free Trial
+                  <i className="uil uil-capsule"></i> Teste Gratuito
                 </Link>
               </div>
             </div>

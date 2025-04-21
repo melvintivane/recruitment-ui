@@ -1,5 +1,5 @@
 {
-  "name": "Hireway-react",
+  "name": "hireway-react",
   "version": "1.3.0",
   "private": true,
   "dependencies": {
@@ -8,6 +8,7 @@
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "bootstrap": "^5.3.3",
+    "caniuse-lite": "^1.0.30001715",
     "nouislider-react": "^3.4.2",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",

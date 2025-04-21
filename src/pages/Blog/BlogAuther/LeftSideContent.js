@@ -29,7 +29,7 @@ const images = [
   blogImages6,
   blogImages7,
   blogImages8,
-  blogImages10
+  blogImages10,
 ];
 
 const LeftSideContent = () => {
@@ -45,17 +45,17 @@ const LeftSideContent = () => {
     <React.Fragment>
       {isGallery ? (
         <Lightbox
-        open={isGallery}
-        close={() => setisGallery(false)}
-        index={photoIndex}
-        slides={images.map((image) => ({ src: image }))}
-      />
+          open={isGallery}
+          close={() => setisGallery(false)}
+          index={photoIndex}
+          slides={images.map((image) => ({ src: image }))}
+        />
       ) : null}
       <Col lg={4}>
         <Card className="blog-author-sidebar  border-0 bg-light">
           <CardBody className="card-bod p-4">
             <div className="mb-5">
-              <h5 className="blog-title mb-4">About Me</h5>
+              <h5 className="blog-title mb-4">Sobre Mim</h5>
               <div className="text-center">
                 <img
                   src={UserImage3}
@@ -64,14 +64,15 @@ const LeftSideContent = () => {
                 />
                 <h6 className="fs-17">Gabriel Palmer</h6>
                 <p className="text-muted">
-                  Start working with Hireway that can provide you need drive
-                  everything to generate awareness, traffic, connect.
+                  Comece a trabalhar com a Hireway, que pode fornecer o suporte
+                  necessário para gerar conscientização, tráfego e criar
+                  conexões.
                 </p>
               </div>
             </div>
 
             <div className="mb-5">
-              <h5 className="blog-title mb-4">Follow & Connect</h5>
+              <h5 className="blog-title mb-4">Siga-me & Conecte-se</h5>
               <ul className="widget-social-menu text-center list-inline mb-0">
                 <li className="list-inline-item">
                   <Link to="#">
@@ -102,7 +103,7 @@ const LeftSideContent = () => {
             </div>
 
             <div className="mb-5">
-              <h5 className="blog-title mb-4">Follow @ Instagram</h5>
+              <h5 className="blog-title mb-4">Siga-me @ Instagram</h5>
               <Row className="g-3">
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
@@ -225,7 +226,7 @@ const LeftSideContent = () => {
             </div>
 
             <div>
-              <h6 className="blog-title mb-4">Categories</h6>
+              <h6 className="blog-title mb-4">Categorias</h6>
               <div className="mt-3">
                 <div className="form-check mb-2">
                   <Input

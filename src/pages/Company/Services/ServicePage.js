@@ -8,68 +8,68 @@ const ServicePage = () => {
     {
       id: 1,
       serviceIcon: "uim-object-ungroup",
-      // serviceIcon: "uim:object-ungroup",
-      serviceName: "Manage Job Ads",
+      serviceName: "Gerenciar Anúncios de Emprego",
       serviceText:
-        "We quickly learn to fear and thus automatically avoid potentially stressful situations of all kinds."
+        "Aprendemos rapidamente a temer e, assim, evitamos automaticamente situações potencialmente estressantes de todos os tipos.",
     },
     {
       id: 2,
       serviceIcon: "uim-telegram-alt",
-      serviceName: "Temp Search",
+      serviceName: "Pesquisa Temporária",
       serviceText:
-        "It seems that only fragments of the original text remain in the Lorem Ipsum texts used fragments today."
+        "Parece que apenas fragmentos do texto original permanecem nos textos Lorem Ipsum usados hoje.",
     },
     {
       id: 3,
       serviceIcon: "uim-airplay",
-      serviceName: "Display Jobs",
+      serviceName: "Exibir Vagas",
       serviceText:
-        "Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology."
+        "Incubar oportunidades intuitivas e potencialidades em tempo real. Comunicar de forma apropriada a tecnologia de maneira individualizada.",
     },
     {
       id: 4,
       serviceIcon: "uim-rocket",
-      serviceName: "For Agencies",
+      serviceName: "Para Agências",
       serviceText:
-        "At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called."
+        "Na falta de conselhos, minha irmã não sabia. Ela disse que não sabia, viu onde estava e pode ter entendido.",
     },
     {
       id: 5,
       serviceIcon: "uim-history",
-      serviceName: "Quick Support",
+      serviceName: "Suporte Rápido",
       serviceText:
-        "Designers have a lot of tools to make a story more intersting. You can align your image to the leftcenter with a caption."
+        "Designers têm muitas ferramentas para tornar uma história mais interessante. Você pode alinhar sua imagem à esquerda ou ao centro com uma legenda.",
     },
     {
       id: 6,
       serviceIcon: "uim-bookmark",
-      serviceName: "Bookmark Jobs",
+      serviceName: "Favoritar Vagas",
       serviceText:
-        "Becomes an interactive story that can engage users. Designers have a lot of tools to make a story more intersting."
+        "Transforma-se em uma história interativa que pode engajar os usuários. Designers têm muitas ferramentas para tornar uma história mais interessante.",
     },
     {
       id: 7,
       serviceIcon: "uim-layers-alt",
-      serviceName: "Creative Design",
+      serviceName: "Design Criativo",
       serviceText:
-        "A business consulting agency is involved in the planning, implementation, and education of businesses. We work directly."
+        "Uma agência de consultoria empresarial está envolvida no planejamento, implementação e educação de empresas. Trabalhamos diretamente.",
     },
     {
       id: 8,
       serviceIcon: "uim-anchor",
-      serviceName: "Stratagy & Research",
+      serviceName: "Estratégia & Pesquisa",
       serviceText:
-        "The most important aspect of beauty was, therefore, an inherent part of an object, rather than something."
+        "O aspecto mais importante da beleza era, portanto, uma parte inerente de um objeto, e não algo externo.",
     },
     {
       id: 9,
       serviceIcon: "uim-graph-bar",
-      serviceName: "Real-time Analytics",
+      serviceName: "Análise em Tempo Real",
       serviceText:
-        "This response is important for our ability to learn from mistakes, but it alsogives rise to self-criticism."
-    }
+        "Essa resposta é importante para nossa capacidade de aprender com os erros, mas também dá origem à autocrítica.",
+    },
   ];
+
   return (
     <React.Fragment>
       <section className="section">
@@ -78,12 +78,12 @@ const ServicePage = () => {
             <Col lg={6}>
               <div className="section-title text-center">
                 <h3 className="title mb-3">
-                  Providing our trusted{" "}
-                  <span className="text-warning">Services</span>
+                  Fornecendo nossos{" "}
+                  <span className="text-warning">Serviços</span>
                 </h3>
                 <p className="text-muted">
-                  It is a long established fact that a reader will be of a page
-                  when established fact looking at its layout.
+                  É um fato amplamente estabelecido que um leitor ficará em uma
+                  página quando olhar para o seu layout.
                 </p>
               </div>
             </Col>
@@ -107,7 +107,7 @@ const ServicePage = () => {
                     </div>
                     <div className="learn-more">
                       <Link to="#" className="form-text text-primary">
-                        Learn More <i className="uil uil-angle-right-b"></i>
+                        Saiba Mais <i className="uil uil-angle-right-b"></i>
                       </Link>
                     </div>
                   </CardBody>

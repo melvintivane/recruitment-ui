@@ -12,11 +12,12 @@ import {
   ModalBody,
   Form,
   FormGroup,
-  Label
+  Label,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //import images
+import flagMz from "../../assets/images/flags/mz.jpeg";
 import flagUs from "../../assets/images/flags/us.jpg";
 import flagSp from "../../assets/images/flags/spain.jpg";
 import flagGr from "../../assets/images/flags/germany.jpg";
@@ -27,24 +28,24 @@ const TopBar = () => {
   const iconTobar = [
     {
       id: 1,
-      classname: "uil uil-whatsapp"
+      classname: "uil uil-whatsapp",
     },
     {
       id: 2,
-      classname: "uil uil-facebook-messenger-alt"
+      classname: "uil uil-facebook-messenger-alt",
     },
     {
       id: 3,
-      classname: "uil uil-instagram"
+      classname: "uil uil-instagram",
     },
     {
       id: 4,
-      classname: "uil uil-envelope"
+      classname: "uil uil-envelope",
     },
     {
       id: 5,
-      classname: "uil uil-twitter-alt"
-    }
+      classname: "uil uil-linkedin",
+    },
   ];
   //Language Dropdown
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -58,7 +59,7 @@ const TopBar = () => {
 
   return (
     <React.Fragment>
-      <div className="top-bar" style={{ zIndex: 1030 }}>
+      <div className="top-bar" style={{ zIndex: 1040 }}>
         <Container fluid className="custom-container">
           <Row className="g-0 align-items-center">
             <Col md={7}>
@@ -66,9 +67,9 @@ const TopBar = () => {
                 <li className="list-inline-item">
                   <p className="fs-13 mb-0">
                     {" "}
-                    <i className="mdi mdi-map-marker"></i> Your Location:{" "}
+                    <i className="mdi mdi-map-marker"></i> Sua Localização:{" "}
                     <Link to="#" className="text-dark">
-                      New Caledonia
+                      Marracuene
                     </Link>
                   </p>
                 </li>
@@ -95,7 +96,7 @@ const TopBar = () => {
                     className="text-dark fw-medium fs-13"
                   >
                     <i className="uil uil-lock"></i>
-                    Sign Up
+                    {" Cadastrar"}
                   </span>
                   <Modal
                     isOpen={modal}
@@ -114,10 +115,10 @@ const TopBar = () => {
                       <div className="auth-content">
                         <div className="w-100">
                           <div className="text-center mb-4">
-                            <h5>Sign Up</h5>
+                            <h5>Cadastro</h5>
                             <p className="text-muted">
-                              Sign Up and get access to all the features of
-                              Hireway
+                              Cadastre-se e tenha acesso a todas as
+                              funcionalidades do Hireway
                             </p>
                           </div>
                           <Form action="#" className="auth-form">
@@ -126,13 +127,13 @@ const TopBar = () => {
                                 htmlFor="usernameInput"
                                 className="form-label"
                               >
-                                Username
+                                Nome de Usuário
                               </Label>
                               <Input
                                 type="text"
                                 className="form-control"
                                 id="usernameInput"
-                                placeholder="Enter your username"
+                                placeholder="Digite seu nome de usuário"
                               />
                             </FormGroup>
                             <FormGroup className="mb-3">
@@ -146,7 +147,7 @@ const TopBar = () => {
                                 type="email"
                                 className="form-control"
                                 id="emailInput"
-                                placeholder="Enter your email"
+                                placeholder="Digite seu email"
                               />
                             </FormGroup>
                             <FormGroup className="mb-3">
@@ -154,13 +155,13 @@ const TopBar = () => {
                                 htmlFor="passwordInput"
                                 className="form-label"
                               >
-                                Password
+                                Palavra-passe
                               </label>
                               <Input
                                 type="password"
                                 className="form-control"
                                 id="passwordInput"
-                                placeholder="Password"
+                                placeholder="Didite sua palavra-passe"
                               />
                             </FormGroup>
                             <FormGroup className="mb-4">
@@ -174,12 +175,12 @@ const TopBar = () => {
                                   className="form-check-label"
                                   htmlFor="flexCheckDefault"
                                 >
-                                  I agree to the{" "}
+                                  Concordo com os{" "}
                                   <Link
                                     to="/"
                                     className="text-primary form-text text-decoration-underline"
                                   >
-                                    Terms and conditions
+                                    Termos e Condições
                                   </Link>
                                 </Label>
                               </div>
@@ -189,19 +190,18 @@ const TopBar = () => {
                                 type="submit"
                                 className="btn btn-primary w-100"
                               >
-                                Sign Up
+                                Cadastrar
                               </button>
                             </div>
                           </Form>
                           <div className="mt-3 text-center">
                             <p className="mb-0">
-                              Already a member ?{" "}
+                              Já tem uma conta?{" "}
                               <Link
                                 to="/signin"
                                 className="form-text text-primary text-decoration-underline"
                               >
-                                {" "}
-                                Sign-in{" "}
+                                Entrar
                               </Link>
                             </p>
                           </div>
@@ -217,7 +217,7 @@ const TopBar = () => {
                     className="d-inline-block language-switch"
                   >
                     <DropdownToggle tag="button" type="button" className="btn">
-                      <img src={flagUs} alt="" height="16" />
+                      <img src={flagMz} alt="" height="16" />
                     </DropdownToggle>
 
                     <DropdownMenu className="dropdown-menu-end" end>

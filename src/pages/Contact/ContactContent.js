@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { Col, Container, Row, Input, Label } from "reactstrap";
 
-//Import Images
+//Importar imagens
 import contactImage from "../../assets/images/contact.png";
 
 const ContactContent = () => {
@@ -13,10 +13,11 @@ const ContactContent = () => {
           <Row className="align-items-center mt-5">
             <Col lg={6}>
               <div className="section-title mt-4 mt-lg-0">
-                <h3 className="title">Get in touch</h3>
+                <h3 className="title">Entre em contato</h3>
                 <p className="text-muted">
-                  Start working with Hireway that can provide everything you need
-                  to generate awareness, drive traffic, connect.
+                  Comece a trabalhar com a Hireway que pode fornecer tudo o que
+                  você precisa para gerar visibilidade, aumentar o tráfego e
+                  conectar.
                 </p>
                 <Form
                   method="post"
@@ -29,52 +30,52 @@ const ContactContent = () => {
                     <Col lg={12}>
                       <div className="mb-3">
                         <Label htmlFor="nameInput" className="form-label">
-                          Name
+                          Nome
                         </Label>
                         <Input
                           type="text"
                           name="name"
                           id="name"
                           className="form-control"
-                          placeholder="Enter your name"
+                          placeholder="Digite seu nome"
                         />
                       </div>
                     </Col>
                     <Col md={6}>
                       <div className="mb-3">
                         <Label htmlFor="emailInput" className="form-label">
-                          Email
+                          E-mail
                         </Label>
                         <Input
                           type="email"
                           className="form-control"
-                          id="emaiol"
+                          id="email"
                           name="email"
-                          placeholder="Enter your email"
+                          placeholder="Digite seu e-mail"
                         />
                       </div>
                     </Col>
                     <Col md={6}>
                       <div className="mb-3">
                         <Label htmlFor="subjectInput" className="form-label">
-                          Subject
+                          Assunto
                         </Label>
                         <Input
                           type="text"
                           className="form-control"
                           name="subject"
-                          placeholder="Enter your subject"
+                          placeholder="Digite o assunto"
                         />
                       </div>
                     </Col>
                     <Col lg={12}>
                       <div className="mb-3">
-                        <Label htmlFor="meassageInput" className="form-label">
-                          Your Message
+                        <Label htmlFor="messageInput" className="form-label">
+                          Sua Mensagem
                         </Label>
                         <textarea
                           className="form-control"
-                          placeholder="Enter your message"
+                          placeholder="Digite sua mensagem"
                           name="comments"
                           rows="3"
                         ></textarea>
@@ -88,8 +89,7 @@ const ContactContent = () => {
                       name="submit"
                       className="btn btn-primary"
                     >
-                      {" "}
-                      Send Message <i className="uil uil-message ms-1"></i>
+                      Enviar Mensagem <i className="uil uil-message ms-1"></i>
                     </button>
                   </div>
                 </Form>
@@ -106,7 +106,7 @@ const ContactContent = () => {
                   </div>
                   <div className="flex-grow-1 ms-2">
                     <p className="mb-0">
-                      2453 Clinton StreetLittle Rock, California, USA
+                      Avenida Julius Nyerere, Maputo, Moçambique
                     </p>
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const ContactContent = () => {
                     <i className="uil uil-envelope"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">contactus@Hireway.com</p>
+                    <p className="mb-0">contactus@hireway.com</p>
                   </div>
                 </div>
                 <div className="d-flex text-muted align-items-center mt-2">
@@ -123,7 +123,7 @@ const ContactContent = () => {
                     <i className="uil uil-phone-alt"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">(+245) 223 1245</p>
+                    <p className="mb-0">(+258) 84 207 4393</p>
                   </div>
                 </div>
               </div>

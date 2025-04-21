@@ -1,9 +1,5 @@
 import React from "react";
 
-// import Layout1 from "../pages/Home/Layout1/Layout1";
-// import Layout2 from "../pages/Home/Layout2/Layout2";
-// import Layout3 from "../pages/Home/Layout3/Layout3";
-
 //Company Section
 import AboutUs from "../pages/Company/AboutUs/AboutUs";
 import Services from "../pages/Company/Services/Services";
@@ -14,9 +10,6 @@ import Faqs from "../pages/Company/Faqs/Faqs";
 
 //Jobs Section
 import JobList from "../pages/Jobs/JobList/JobList";
-import JobList2 from "../pages/Jobs/JobList2/JobList2";
-import JobGrid from "../pages/Jobs/JobGrid/JobGrid";
-import JobGrid2 from "../pages/Jobs/JobGrid2/JobGrid2";
 import JobDetails from "../pages/Jobs/JobDetails/JobDetails";
 import JobsCategories from "../pages/Jobs/JobsCategories/JobsCategories";
 
@@ -29,9 +22,6 @@ import CompanyDetails from "../pages/CandidateAndCompany/CompanyDetails/CompanyD
 
 //Blog Section
 import Blog from "../pages/Blog/Blog/Blog";
-import BlogGrid from "../pages/Blog/BlogGrid/BlogGrid";
-import BlogModern from "../pages/Blog/BlogModern/BlogModern";
-import BlogMasonary from "../pages/Blog/BlogMasonary/BlogMasonary";
 import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 import BlogAuther from "../pages/Blog/BlogAuther/BlogAuther";
 
@@ -55,8 +45,6 @@ import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 
 //Home Section
 const Layout1 = React.lazy(() => import('../pages/Home/Layout1/Layout1'));
-// const Layout2 = React.lazy(() => import('../pages/Home/Layout2/Layout2'));
-// const Layout3 = React.lazy(() => import('../pages/Home/Layout3/Layout3'));
 
 const userRoutes = [
   //profile Section(User Profile)
@@ -74,9 +62,6 @@ const userRoutes = [
   // Blog Section
   { path: "/blogauther", component: <BlogAuther /> },
   { path: "/blogdetails", component: <BlogDetails /> },
-  { path: "/blogmodern", component: <BlogModern /> },
-  { path: "/blogmasonary", component: <BlogMasonary /> },
-  { path: "/bloggrid", component: <BlogGrid /> },
   { path: "/blog", component: <Blog /> },
 
   //Candidate and Company Section
@@ -89,9 +74,6 @@ const userRoutes = [
   //Jobs Section
   { path: "/jobscategories", component: <JobsCategories /> },
   { path: "/jobdetails", component: <JobDetails /> },
-  { path: "/jobgrid2", component: <JobGrid2 /> },
-  { path: "/jobgrid", component: <JobGrid /> },
-  { path: "/joblist2", component: <JobList2 /> },
   { path: "/joblist", component: <JobList /> },
 
   //Company Section
@@ -103,8 +85,6 @@ const userRoutes = [
   { path: "/aboutus", component: <AboutUs /> },
 
   //Home Section
-  // { path: "/layout3", component: <Layout3 /> },
-  // { path: "/layout2", component: <Layout1 /> },
   { path: "/", component: <Layout1 /> }
 ];
 

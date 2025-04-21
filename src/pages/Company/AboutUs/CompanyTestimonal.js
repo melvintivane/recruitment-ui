@@ -7,7 +7,7 @@ import {
   Nav,
   NavLink,
   TabContent,
-  TabPane
+  TabPane,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
@@ -31,25 +31,28 @@ const CompanyTestimonal = () => {
           <Row className="align-items-center">
             <Col lg={5}>
               <div className="section-title mb-5 mb-lg-0">
-                <h4 className="title mb-4">Company Testimonial</h4>
+                <h4 className="title mb-4">Depoimento da Empresa</h4>
                 <p className="text-muted">
-                  Our task must be to free ourselves by widening our circle of
-                  compassion to embrace all living creatures Integer varius
-                  lacus non magna tempor congue natuasre the whole its beauty
-                  you vestibulum egestas them feel.
+                  Nossa tarefa deve ser nos libertarmos, ampliando nosso círculo
+                  de compaixão para abraçar todas as criaturas vivas. Integer
+                  varius lacus non magna tempor congue natuasre, toda a sua
+                  beleza você vestibulum egestas faz-los sentir.
                 </p>
                 <ul className="list-unstyled about-list text-muted mt-4">
-                  <li>Digital Marketing Solutions for Tomorrow.</li>
-                  <li>Our Talented & Experienced Marketing Agency.</li>
-                  <li>Create your own skin to match your brand.</li>
+                  <li>Soluções de Marketing Digital para o Futuro.</li>
+                  <li>Nosso Talento & Agência de Marketing Experiente.</li>
                   <li>
-                    It is said that song composers of the past used texts.
+                    Crie sua própria identidade para combinar com sua marca.
+                  </li>
+                  <li>
+                    Diz-se que os compositores de canções do passado usavam
+                    textos.
                   </li>
                 </ul>
                 <div className="d-flex align-items-center justify-content-between mt-4">
                   <div>
                     <Link to="/" className="btn btn-outline-primary">
-                      Learn More <i className="uil uil-angle-right-b ms-1"></i>
+                      Saiba Mais <i className="uil uil-angle-right-b ms-1"></i>
                     </Link>
                   </div>
                   <ul className="list-inline about-social-menu mb-0">

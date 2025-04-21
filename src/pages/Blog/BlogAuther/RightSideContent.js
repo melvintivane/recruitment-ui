@@ -11,41 +11,42 @@ const RightSideContent = () => {
   const blogContent = [
     {
       id: 1,
-      badgeName: "Business",
-      blogTitle: "Smartest Applications for Business ?",
-      blogDate: "Sep 06, 2021",
+      badgeName: "Negócios",
+      blogTitle: "Quais são as aplicações mais inteligentes para os negócios?",
+      blogDate: "06 de setembro de 2021",
       blogImage: blogimage12,
       blogContent:
-        "Whether article spirits new her covered hastily sitting her. Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called."
+        "Seja o artigo espírito dela coberto apressadamente sentada. Livros engraçados nem filho adiciona. A idade da galinha teve a noite, acreditava, mas prosseguir fingir senhora. Nos conselhos perdidos, minha irmã não. Ela falou e o presunto disse que a senhora sabia.",
     },
     {
       id: 2,
-      badgeName: "Fashion",
-      blogTitle: "How to get creative in your work ?",
-      blogDate: "Aug 24, 2021",
+      badgeName: "Moda",
+      blogTitle: "Como ser criativo no seu trabalho?",
+      blogDate: "24 de agosto de 2021",
       blogImage: blogimage11,
       blogContent:
-        "Whether article spirits new her covered hastily sitting her. Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called."
+        "Seja o artigo espírito dela coberto apressadamente sentada. Livros engraçados nem filho adiciona. A idade da galinha teve a noite, acreditava, mas prosseguir fingir senhora. Nos conselhos perdidos, minha irmã não. Ela falou e o presunto disse que a senhora sabia.",
     },
     {
       id: 3,
       badgeName: "Design",
-      blogTitle: "How apps is changing the IT world",
-      blogDate: "Aug 17, 2021",
+      blogTitle: "Como os aplicativos estão mudando o mundo da TI",
+      blogDate: "17 de agosto de 2021",
       blogImage: blogimage13,
       blogContent:
-        "Whether article spirits new her covered hastily sitting her. Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called."
+        "Seja o artigo espírito dela coberto apressadamente sentada. Livros engraçados nem filho adiciona. A idade da galinha teve a noite, acreditava, mas prosseguir fingir senhora. Nos conselhos perdidos, minha irmã não. Ela falou e o presunto disse que a senhora sabia.",
     },
     {
       id: 4,
-      badgeName: "Fashion",
-      blogTitle: "How to get creative in your work ?",
-      blogDate: "July 22, 2020",
+      badgeName: "Moda",
+      blogTitle: "Como ser criativo no seu trabalho?",
+      blogDate: "22 de julho de 2020",
       blogImage: blogimage14,
       blogContent:
-        "Whether article spirits new her covered hastily sitting her. Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. At missed advice my it no sister. Miss told ham dull knew see she spot near can. Spirit her entire her called."
-    }
+        "Seja o artigo espírito dela coberto apressadamente sentada. Livros engraçados nem filho adiciona. A idade da galinha teve a noite, acreditava, mas prosseguir fingir senhora. Nos conselhos perdidos, minha irmã não. Ela falou e o presunto disse que a senhora sabia.",
+    },
   ];
+
   return (
     <React.Fragment>
       <Col lg={8}>
@@ -76,12 +77,12 @@ const RightSideContent = () => {
                 {blogContentDetails.blogContent}
               </p>
               <Link to="/blogdetails" className="text-primary">
-                Read More <i className="uil uil-angle-right-b"></i>
+                Leia mais <i className="uil uil-angle-right-b"></i>
               </Link>
             </div>
           ))}
 
-          <nav aria-label="Page navigation example" className="mt-5">
+          <nav aria-label="Navegação de página" className="mt-5">
             <ul className="pagination job-pagination mb-0 justify-content-center">
               <li className="page-item disabled">
                 <Link className="page-link" to="#" tabIndex="-1">

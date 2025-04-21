@@ -1,7 +1,7 @@
 import React from "react";
 
-import lightLogo from "../../assets/images/logo-light.png";
-import darkLogo from "../../assets/images/logo-dark.png";
+import lightLogo from "../../assets/images/light-logo.png";
+import darkLogo from "../../assets/images/dark-logo.png";
 
 import signInImage from "../../assets/images/auth/sign-in.png";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
@@ -22,17 +22,23 @@ const SignOut = () => {
                       <Row>
                         <Col lg={6} className="text-center">
                           <CardBody className="p-4">
-                            <Link to="/">
+                            <Link
+                              className="text-dark fw-bold fs-3 mx-auto d-flex align-items-center justify-content-center gap-2"
+                              to="/"
+                            >
                               <img
                                 src={lightLogo}
                                 alt=""
-                                className="logo-light"
+                                height="30"
+                                className="logo-dark"
                               />
                               <img
                                 src={darkLogo}
                                 alt=""
-                                className="logo-dark"
+                                height="30"
+                                className="logo-light"
                               />
+                              Hireway
                             </Link>
                             <div className="mt-5">
                               <img
@@ -47,26 +53,25 @@ const SignOut = () => {
                           <div className="auth-content card-body p-5 text-white">
                             <div className="w-100">
                               <div className="text-center mb-4">
-                                <h5>You are Logged Out</h5>
+                                <h5>Você Saiu da Conta</h5>
                                 <p className="text-white-70">
-                                  Thank you for using Hireway
+                                  Obrigado por utilizar o Hireway
                                 </p>
                               </div>
                               <Link
                                 to="/signin"
                                 className="btn btn-white btn-hover w-100"
                               >
-                                Sign In
+                                Entrar
                               </Link>
                               <div className="mt-3 text-center">
                                 <p className="mb-0">
-                                  Don't have an account ?{" "}
+                                  Ainda não tem uma conta?{" "}
                                   <Link
                                     to="/signup"
                                     className="fw-medium text-white text-decoration-underline"
                                   >
-                                    {" "}
-                                    Sign Up{" "}
+                                    Cadastrar-se
                                   </Link>
                                 </p>
                               </div>

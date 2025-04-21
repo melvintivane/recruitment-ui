@@ -17,7 +17,7 @@ const LeftSideContent = () => {
                 alt=""
                 className="avatar-lg img-thumbnail rounded-circle mb-4"
               />
-              <h5 className="mb-0">Jennifer Dickens</h5>
+              <h5 className="mb-0">Jassmin Tivane</h5>
               <p className="text-muted">Developer</p>
               <ul className="list-inline d-flex justify-content-center align-items-center ">
                 <li className="list-inline-item text-warning fs-19">
@@ -62,7 +62,7 @@ const LeftSideContent = () => {
             </div>
 
             <div className="mt-4 border-bottom pb-4">
-              <h5 className="fs-17 fw-bold mb-3">Documents</h5>
+              <h5 className="fs-17 fw-bold mb-3">Documentos</h5>
               <ul className="profile-document list-unstyled mb-0">
                 <li>
                   <div className="profile-document-list d-flex align-items-center mt-4 ">
@@ -70,7 +70,7 @@ const LeftSideContent = () => {
                       <i className="uil uil-file"></i>
                     </div>
                     <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Resume.pdf</h6>
+                      <h6 className="fs-16 mb-0">Jassmin_CV.pdf</h6>
                       <p className="text-muted mb-0">1.25 MB</p>
                     </div>
                     <div className="ms-auto">
@@ -86,7 +86,7 @@ const LeftSideContent = () => {
                       <i className="uil uil-file"></i>
                     </div>
                     <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Cover-letter.pdf</h6>
+                      <h6 className="fs-16 mb-0">Carta.pdf</h6>
                       <p className="text-muted mb-0">1.25 MB</p>
                     </div>
                     <div className="ms-auto">
@@ -104,7 +104,7 @@ const LeftSideContent = () => {
             </div>
 
             <div className="mt-4">
-              <h5 className="fs-17 fw-bold mb-3">Contacts</h5>
+              <h5 className="fs-17 fw-bold mb-3">Contatos</h5>
               <div className="profile-contact">
                 <ul className="list-unstyled mb-0">
                   <li>
@@ -119,17 +119,17 @@ const LeftSideContent = () => {
                   </li>
                   <li>
                     <div className="d-flex">
-                      <label>Phone Number</label>
+                      <label>Telefone</label>
                       <div>
-                        <p className="text-muted mb-0">+2 345 678 0000</p>
+                        <p className="text-muted mb-0">+258 87 123 0808</p>
                       </div>
                     </div>
                   </li>
                   <li>
                     <div className="d-flex">
-                      <label>Location</label>
+                      <label>Localização</label>
                       <div>
-                        <p className="text-muted mb-0">New Caledonia</p>
+                        <p className="text-muted mb-0">Marracuene</p>
                       </div>
                     </div>
                   </li>

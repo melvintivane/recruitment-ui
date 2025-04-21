@@ -7,7 +7,7 @@ const Selected = () => {
       <Row className="align-items-center">
         <Col lg={8}>
           <div className="mb-4 mb-lg-0">
-            <h6 className="mb-0"> My Job Listings </h6>
+            <h6 className="mb-0"> Minhas Vagas Publicadas </h6>
           </div>
         </Col>
         <Col lg={4}>
@@ -20,12 +20,12 @@ const Selected = () => {
                     data-trigger
                     name="choices-single-filter-orderby"
                     id="choices-single-filter-orderby"
-                    aria-label="Default select example"
+                    aria-label="Exemplo de seleção padrão"
                   >
-                    <option value="df">Default</option>
-                    <option value="ne">Newest</option>
-                    <option value="od">Oldest</option>
-                    <option value="rd">Random</option>
+                    <option value="df">Padrão</option>
+                    <option value="ne">Mais Recentes</option>
+                    <option value="od">Mais Antigas</option>
+                    <option value="rd">Aleatório</option>
                   </select>
                 </div>
               </Col>
@@ -36,13 +36,13 @@ const Selected = () => {
                     data-trigger
                     name="choices-candidate-page"
                     id="choices-candidate-page"
-                    aria-label="Default select example"
+                    aria-label="Exemplo de seleção padrão"
                   >
-                    <option value="df">All</option>
-                    <option value="ne">Last 2 Month</option>
-                    <option value="ne">Last 6 Month</option>
-                    <option value="ne">Last 12 Month</option>
-                    <option value="ne">Last 2 Year</option>
+                    <option value="df">Todas</option>
+                    <option value="2m">Últimos 2 Meses</option>
+                    <option value="6m">Últimos 6 Meses</option>
+                    <option value="12m">Últimos 12 Meses</option>
+                    <option value="2y">Últimos 2 Anos</option>
                   </select>
                 </div>
               </Col>

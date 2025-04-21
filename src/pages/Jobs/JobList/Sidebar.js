@@ -9,22 +9,17 @@ const Sidebar = () => {
   const [toggleFourth, setToggleFourth] = useState(true);
   const [toggleFifth, setToggleFifth] = useState(true);
   const [value, setValue] = React.useState(50);
-  //CheckBox
   const [isChecked, setIsChecked] = useState(true);
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
-
+  const handleOnChange = () => setIsChecked(!isChecked);
   const [isDateChecked, setIsDateChecked] = useState(true);
-  const handleDateOnChange = () => {
-    setIsDateChecked(!isDateChecked);
-  };
+  const handleDateOnChange = () => setIsDateChecked(!isDateChecked);
 
   return (
     <React.Fragment>
       <Col lg={3}>
         <div className="side-bar mt-5 mt-lg-0">
           <div className="accordion" id="accordionExample">
+            {/* Localização */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="locationOne">
                 <Button
@@ -34,9 +29,8 @@ const Sidebar = () => {
                     setToggleFirst(!toggleFirst);
                   }}
                   role="button"
-                  id="collapseExample"
                 >
-                  Location
+                  Localização
                 </Button>
               </h2>
               <Collapse isOpen={toggleFirst}>
@@ -47,7 +41,7 @@ const Sidebar = () => {
                         <Input
                           className="form-control"
                           type="search"
-                          placeholder="Search..."
+                          placeholder="Pesquisar..."
                         />
                         <button
                           className="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2"
@@ -59,11 +53,7 @@ const Sidebar = () => {
                     </div>
                     <div className="area-range slidecontainer">
                       <div className="form-label mb-4">
-                        Area Range: {value}.00 miles
-                        <span
-                          className="example-val mt-2"
-                          id="slider1-span"
-                        ></span>
+                        Distância: {value}.00 km
                       </div>
                       <input
                         type="range"
@@ -81,6 +71,7 @@ const Sidebar = () => {
               </Collapse>
             </div>
 
+            {/* Experiência de Trabalho */}
             <div className="accordion-item mt-4">
               <h2 className="accordion-header" id="experienceOne">
                 <Button
@@ -90,9 +81,8 @@ const Sidebar = () => {
                     setToggleSecond(!toggleSecond);
                   }}
                   role="button"
-                  id="collapseExample"
                 >
-                  Work experience
+                  Experiência de trabalho
                 </Button>
               </h2>
               <Collapse isOpen={toggleSecond}>
@@ -102,58 +92,54 @@ const Sidebar = () => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
-                        id="flexCheckChecked1"
+                        id="check1"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked1"
+                        htmlFor="check1"
                       >
-                        No experience
+                        Sem experiência
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
-                        id="flexCheckChecked2"
+                        id="check2"
                         checked={isChecked}
                         onChange={handleOnChange}
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked2"
+                        htmlFor="check2"
                       >
-                        0-3 years
+                        0-3 anos
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
-                        id="flexCheckChecked3"
+                        id="check3"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked3"
+                        htmlFor="check3"
                       >
-                        3-6 years
+                        3-6 anos
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
-                        id="flexCheckChecked4"
+                        id="check4"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked4"
+                        htmlFor="check4"
                       >
-                        More than 6 years
+                        Mais de 6 anos
                       </label>
                     </div>
                   </div>
@@ -161,6 +147,7 @@ const Sidebar = () => {
               </Collapse>
             </div>
 
+            {/* Tipo de Emprego */}
             <div className="accordion-item mt-3">
               <h2 className="accordion-header" id="jobType">
                 <Button
@@ -170,9 +157,8 @@ const Sidebar = () => {
                     setToggleThird(!toggleThird);
                   }}
                   role="button"
-                  id="collapseExample"
                 >
-                  Type of employment
+                  Tipo de emprego
                 </Button>
               </h2>
               <Collapse isOpen={toggleThird}>
@@ -182,57 +168,57 @@ const Sidebar = () => {
                       <Input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault6"
+                        name="emprego"
+                        id="freelance"
                         defaultChecked
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexRadioDefault6"
+                        htmlFor="freelance"
                       >
-                        Freelance
+                        Freelancer
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault2"
+                        name="emprego"
+                        id="fulltime"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexRadioDefault2"
+                        htmlFor="fulltime"
                       >
-                        Full Time
+                        Tempo integral
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault3"
+                        name="emprego"
+                        id="internship"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexRadioDefault3"
+                        htmlFor="internship"
                       >
-                        Internship
+                        Estágio
                       </label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="radio"
-                        name="flexRadioDefault"
-                        id="flexRadioDefault4"
+                        name="emprego"
+                        id="parttime"
                       />
                       <label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexRadioDefault4"
+                        htmlFor="parttime"
                       >
-                        Part Time
+                        Meio período
                       </label>
                     </div>
                   </div>
@@ -240,6 +226,7 @@ const Sidebar = () => {
               </Collapse>
             </div>
 
+            {/* Data de Publicação */}
             <div className="accordion-item mt-3">
               <h2 className="accordion-header" id="datePosted">
                 <Button
@@ -249,9 +236,8 @@ const Sidebar = () => {
                     setToggleFourth(!toggleFourth);
                   }}
                   role="button"
-                  id="collapseExample"
                 >
-                  Date Posted
+                  Data de publicação
                 </Button>
               </h2>
               <Collapse isOpen={toggleFourth}>
@@ -261,91 +247,80 @@ const Sidebar = () => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        id="checkAll"
-                        value=""
+                        id="allDates"
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="checkAll"
+                        htmlFor="allDates"
                       >
-                        All
+                        Todas
                       </Label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="datePosted"
-                        value="last"
-                        id="flexCheckChecked5"
+                        id="lastHour"
                         checked={isDateChecked}
                         onChange={handleDateOnChange}
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked5"
+                        htmlFor="lastHour"
                       >
-                        Last Hour
+                        Última hora
                       </Label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="datePosted"
-                        value="last"
-                        id="flexCheckChecked6"
+                        id="last24"
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked6"
+                        htmlFor="last24"
                       >
-                        Last 24 hours
+                        Últimas 24 horas
                       </Label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="datePosted"
-                        value="last"
-                        id="flexCheckChecked7"
+                        id="last7"
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked7"
+                        htmlFor="last7"
                       >
-                        Last 7 days
+                        Últimos 7 dias
                       </Label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="datePosted"
-                        value="last"
-                        id="flexCheckChecked8"
+                        id="last14"
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked8"
+                        htmlFor="last14"
                       >
-                        Last 14 days
+                        Últimos 14 dias
                       </Label>
                     </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="datePosted"
-                        value="last"
-                        id="flexCheckChecked9"
+                        id="last30"
                       />
                       <Label
                         className="form-check-label ms-2 text-muted"
-                        htmlFor="flexCheckChecked9"
+                        htmlFor="last30"
                       >
-                        Last 30 days
+                        Últimos 30 dias
                       </Label>
                     </div>
                   </div>
@@ -353,6 +328,7 @@ const Sidebar = () => {
               </Collapse>
             </div>
 
+            {/* Nuvem de Tags */}
             <div className="accordion-item mt-3">
               <h2 className="accordion-header" id="tagCloud">
                 <Button
@@ -362,9 +338,8 @@ const Sidebar = () => {
                     setToggleFifth(!toggleFifth);
                   }}
                   role="button"
-                  id="collapseExample"
                 >
-                  Tags Cloud
+                  Nuvem de tags
                 </Button>
               </h2>
               <Collapse isOpen={toggleFifth}>
@@ -377,10 +352,10 @@ const Sidebar = () => {
                       marketing
                     </Link>
                     <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      business
+                      negócios
                     </Link>
                     <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      developer
+                      programador
                     </Link>
                   </div>
                 </div>

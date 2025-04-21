@@ -7,7 +7,7 @@ import {
   NavItem,
   NavLink,
   TabContent,
-  TabPane
+  TabPane,
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -31,10 +31,10 @@ const JobList = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="section-title text-center mb-4 pb-2">
-                <h4 className="title">New & Random Jobs</h4>
+                <h4 className="title">Vagas Novas e Aleatórias</h4>
                 <p className="text-muted mb-1">
-                  Post a job to tell us about your project. We'll quickly match
-                  you with the right freelancers.
+                  Publique uma vaga para nos contar sobre seu projeto. Iremos
+                  conectá-lo rapidamente com os candidatos certos.
                 </p>
               </div>
             </Col>
@@ -57,7 +57,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    Recent Jobs
+                    Recentes
                   </NavLink>
                 </NavItem>
 
@@ -71,7 +71,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    Featured Jobs
+                    Em Destaque
                   </NavLink>
                 </NavItem>
                 <NavItem role="presentation">

@@ -2,12 +2,12 @@ import React from "react";
 import { Container, Col, Row } from "reactstrap";
 import Section from "../BlogDetails/Section";
 import BlogTitle from "../BlogDetails/BlogTitle";
-import BlogCategory from "../BlogGrid/BlogCategory";
-import PopularPost from "../BlogGrid/PopularPost";
-import TextWidget from "../BlogGrid/TextWidget";
-import Archives from "../BlogGrid/Archives";
-import Tags from "../BlogGrid/Tags";
-import SocialConnect from "../BlogGrid/SocialConnect";
+import BlogCategory from "../../../components/BlogCategory";
+import PopularPost from "../../../components/PopularPost";
+// import TextWidget from "../../../components/TextWidget";
+// import Archives from "../../../components/Archives";
+import Tags from "../../../components/Tags";
+import SocialConnect from "../../../components/SocialConnect";
 import BlogSwiper from "../BlogDetails/BlogSwiper";
 import BlogColumn from "../BlogDetails/BlogColumn";
 import BlogComments from "../BlogDetails/BlogComments";
@@ -37,8 +37,8 @@ const BlogDetails = () => {
               <div className="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
                 <BlogCategory />
                 <PopularPost />
-                <TextWidget />
-                <Archives />
+                {/* <TextWidget />
+                <Archives /> */}
                 <Tags />
                 <SocialConnect />
               </div>

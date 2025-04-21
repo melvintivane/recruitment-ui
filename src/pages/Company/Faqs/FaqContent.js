@@ -8,7 +8,7 @@ import {
   NavItem,
   NavLink,
   TabContent,
-  TabPane
+  TabPane,
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ import AccordianContentLeft from "./AccordianContentLeft";
 import AccordianContentRight from "./AccordianContentRight";
 
 const FaqContent = () => {
-  //Tab Change
+  // Troca de Aba
   const [activeTab, setActiveTab] = useState("1");
   const TabChange = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -43,7 +43,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    General
+                    Geral
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -55,7 +55,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Buying
+                    Compras
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -67,7 +67,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Payment
+                    Pagamento
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -78,7 +78,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Support
+                    Suporte
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -172,10 +172,10 @@ const FaqContent = () => {
             <Col lg={12}>
               <div className="text-center mt-5">
                 <Link to="/contact" className="btn btn-primary btn-hover mt-2">
-                  <i className="uil uil-phone"></i> Contact Us
+                  <i className="uil uil-phone"></i> Contate-nos
                 </Link>
                 <Link to="#" className="btn btn-warning btn-hover mt-2 ms-md-2">
-                  <i className="uil uil-envelope"></i> Email Now
+                  <i className="uil uil-envelope"></i> Enviar E-mail
                 </Link>
               </div>
             </Col>

@@ -7,83 +7,84 @@ import jobImage1 from "../../../assets/images/featured-job/img-01.png";
 import jobImage2 from "../../../assets/images/featured-job/img-02.png";
 import jobImage3 from "../../../assets/images/featured-job/img-03.png";
 import jobImage4 from "../../../assets/images/featured-job/img-04.png";
+import JobApplicationModal from "../../../components/JobApplicationModal";
 
 const FeaturedJobs = () => {
-  //Apply Now Model
-  const [modal, setModal] = useState(false);
-  const openModal = () => setModal(!modal);
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(!modalOpen);
+
   const featuredJobs = [
     {
       id: 1,
       companyImg: jobImage1,
-      jobDescription: "Web Developer",
+      jobDescription: "Desenvolvedor Web",
       companyName: "Web Technology pvt.Ltd",
       location: "Oakridge Lane ssRichardson",
       salary: "1000-1200/m",
       fullTime: true,
-      timing: "Full Time",
-      catogary: "Featured Jobs",
+      timing: "Tempo Integral",
+      catogary: "Vagas em Destaque",
       addclassNameBookmark: true,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
+          badgeName: "Privado",
         },
         {
           id: 2,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
-        }
+          badgeName: "Urgente",
+        },
       ],
-      experience: "1 - 2 years",
-      Notes: "languages only differ in their grammar."
+      experience: "1 - 2 anos",
+      Notes: "As línguas só diferem em sua gramática.",
     },
     {
       id: 2,
       companyImg: jobImage2,
-      jobDescription: "Business Associate",
+      jobDescription: "Associado de Negócios",
       companyName: "Pixel Technology pvt.Ltd",
       location: "Dodge City, Louisiana",
       salary: "800-1800/m",
       partTime: true,
-      timing: "Part Time",
-      catogary: "Featured Jobs",
+      timing: "Meio Período",
+      catogary: "Vagas em Destaque",
       addclassNameBookmark: false,
       badges: [],
-      experience: "0 - 1 years",
-      Notes: "languages only differ in their grammar."
+      experience: "0 - 1 ano",
+      Notes: "As línguas só diferem em sua gramática.",
     },
     {
       id: 3,
       companyImg: jobImage3,
-      jobDescription: "Digital Marketing Manager",
+      jobDescription: "Gerente de Marketing Digital",
       companyName: "Hireway Technology Pvt.Ltd",
       location: "Phoenix, Arizona",
       salary: "1500-2400/m",
       freelancer: true,
       timing: "Freelancer",
-      catogary: "Featured Jobs",
+      catogary: "Vagas em Destaque",
       addclassNameBookmark: true,
       badges: [],
-      experience: "4+ years",
-      Notes: null
+      experience: "4+ anos",
+      Notes: null,
     },
     {
       id: 4,
       companyImg: jobImage4,
-      jobDescription: "Product Director",
+      jobDescription: "Diretor de Produto",
       companyName: "Creative Agency",
-      location: "Escondido, California",
+      location: "Escondido, Califórnia",
       salary: "1500-2400/m",
       fullTime: true,
-      timing: "Full Time",
-      catogary: "Featured Jobs",
+      timing: "Tempo Integral",
+      catogary: "Vagas em Destaque",
       addclassNameBookmark: false,
       badges: [],
-      experience: "2 - 4 years",
-      Notes: null
-    }
+      experience: "2 - 4 anos",
+      Notes: null,
+    },
   ];
 
   return (
@@ -181,7 +182,7 @@ const FeaturedJobs = () => {
               <Col md={4}>
                 <div>
                   <p className="text-muted mb-0">
-                    <span className="text-dark">Experience :</span>{" "}
+                    <span className="text-dark">Experiência: </span>{" "}
                     {featuredJobdetails.experience}
                   </p>
                 </div>
@@ -192,7 +193,7 @@ const FeaturedJobs = () => {
                 <div>
                   <p className="text-muted mb-0">
                     <span className="text-dark">
-                      {featuredJobdetails.Notes === null ? "" : "Notes :"}
+                      {featuredJobdetails.Notes === null ? "" : "Notas: "}
                     </span>
                     {featuredJobdetails.Notes}{" "}
                   </p>
@@ -203,11 +204,11 @@ const FeaturedJobs = () => {
                 <div className="text-start text-md-end">
                   <Link
                     to="#applyNow"
-                    onClick={openModal}
+                    onClick={toggleModal}
                     data-bs-toggle="modal"
                     className="primary-link"
                   >
-                    Apply Now <i className="mdi mdi-chevron-double-right"></i>
+                    Inscreva-se <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -217,7 +218,7 @@ const FeaturedJobs = () => {
       ))}
       <div className="text-center mt-4 pt-2">
         <Link to="/joblist" className="btn btn-primary">
-          View More <i className="uil uil-arrow-right"></i>
+          Ver Mais <i className="uil uil-arrow-right"></i>
         </Link>
       </div>
       <div
@@ -228,70 +229,7 @@ const FeaturedJobs = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <Modal isOpen={modal} toggle={openModal} centered>
-            <ModalBody className="modal-body p-5">
-              <div className="text-center mb-4">
-                <h5 className="modal-title" id="staticBackdropLabel">
-                  Apply For This Job
-                </h5>
-              </div>
-              <div className="position-absolute end-0 top-0 p-3">
-                <button
-                  type="button"
-                  onClick={openModal}
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="mb-3">
-                <Label for="nameControlInput" className="form-label">
-                  Name
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="nameControlInput"
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="emailControlInput2" className="form-label">
-                  Email Address
-                </Label>
-                <Input
-                  type="email"
-                  className="form-control"
-                  id="emailControlInput2"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="messageControlTextarea" className="form-label">
-                  Message
-                </Label>
-                <textarea
-                  className="form-control"
-                  id="messageControlTextarea"
-                  rows="4"
-                  placeholder="Enter your message"
-                ></textarea>
-              </div>
-              <div className="mb-4">
-                <Label className="form-label" for="inputGroupFile01">
-                  Resume Upload
-                </Label>
-                <Input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
-                />
-              </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Send Application
-              </button>
-            </ModalBody>
-          </Modal>
+          <JobApplicationModal isOpen={modalOpen} toggle={toggleModal} />
         </div>
       </div>
     </React.Fragment>

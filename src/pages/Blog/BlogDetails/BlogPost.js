@@ -3,12 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 //swiper css
-import 'swiper/css';
-import 'swiper/css/virtual';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
+import "swiper/css";
+import "swiper/css/virtual";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
-//Import Blog images
+//Importar imagens de blog
 import blogImage4 from "../../../assets/images/blog/img-04.jpg";
 import blogImage5 from "../../../assets/images/blog/img-05.jpg";
 import blogImage6 from "../../../assets/images/blog/img-06.jpg";
@@ -20,30 +20,30 @@ const BlogPost = () => {
     {
       id: 1,
       blogPostImage: blogImage4,
-      blogTitle: "Manage white space in responsive layouts ?",
+      blogTitle: "Gerenciando o espaço em branco em layouts responsivos?",
       blogAuther: "Rebecca Swartz",
-      blogDate: "5 mins ago"
+      blogDate: "5 minutos atrás",
     },
     {
       id: 2,
       blogPostImage: blogImage5,
-      blogTitle: "A day in the of a professional fashion designer",
+      blogTitle: "Um dia na vida de um designer de moda profissional",
       blogAuther: "Rebecca Swartz",
-      blogDate: "5 mins ago"
+      blogDate: "5 minutos atrás",
     },
     {
       id: 3,
       blogPostImage: blogImage6,
-      blogTitle: "Manage white space in responsive layouts ?",
+      blogTitle: "Gerenciando o espaço em branco em layouts responsivos?",
       blogAuther: "Rebecca Swartz",
-      blogDate: "5 mins ago"
-    }
+      blogDate: "5 minutos atrás",
+    },
   ];
 
   return (
     <React.Fragment>
       <div className="mt-5">
-        <h5 className="border-bottom pb-3"> Related Blog Posts</h5>
+        <h5 className="border-bottom pb-3">Postagens Relacionadas</h5>
         <Swiper
           loop={true}
           slidesPerView={2}

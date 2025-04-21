@@ -6,7 +6,7 @@ import {
   Nav,
   NavLink,
   TabContent,
-  TabPane
+  TabPane,
 } from "reactstrap";
 import classnames from "classnames";
 
@@ -28,10 +28,10 @@ const HowItWorks = () => {
           <Row className="align-items-center">
             <Col lg={6}>
               <div className="section-title me-5">
-                <h3 className="title">How It Work</h3>
+                <h3 className="title">Como Funciona?</h3>
                 <p className="text-muted">
-                  Post a job to tell us about your project. We'll quickly match
-                  you with the right freelancers.
+                  Publique um trabalho para nos contar sobre o seu projeto. Nós
+                  o conectaremos rapidamente com os candidatos certos.
                 </p>
                 <Nav className="process-menu  flex-column nav-pills">
                   <NavLink
@@ -45,10 +45,11 @@ const HowItWorks = () => {
                     <div className="d-flex">
                       <div className="number flex-shrink-0">1</div>
                       <div className="flex-grow-1 text-start ms-3">
-                        <h5 className="fs-18">Register an account</h5>
+                        <h5 className="fs-18">Registre uma conta</h5>
                         <p className="text-muted mb-0">
-                          Due to its widespread use as filler text for layouts,
-                          non-readability is of great importance.
+                          Devido ao seu uso generalizado como texto de
+                          preenchimento em layouts, a legibilidade é de grande
+                          importância.
                         </p>
                       </div>
                     </div>
@@ -65,11 +66,10 @@ const HowItWorks = () => {
                     <div className="d-flex">
                       <div className="number flex-shrink-0">2</div>
                       <div className="flex-grow-1 text-start ms-3">
-                        <h5 className="fs-18">Find your job</h5>
+                        <h5 className="fs-18">Encontre seu trabalho</h5>
                         <p className="text-muted mb-0">
-                          There are many variations of passages of
-                          avaibookmark-label, but the majority alteration in
-                          some form.
+                          Existem muitas variações de passagens disponíveis, mas
+                          a maioria sofreu alguma alteração.
                         </p>
                       </div>
                     </div>
@@ -86,10 +86,10 @@ const HowItWorks = () => {
                     <div className=" d-flex">
                       <div className="number flex-shrink-0">3</div>
                       <div className="flex-grow-1 text-start ms-3">
-                        <h5 className="fs-18">Apply for job</h5>
+                        <h5 className="fs-18">Candidate-se ao trabalho</h5>
                         <p className="text-muted mb-0">
-                          It is a long established fact that a reader will be
-                          distracted by the readable content of a page.
+                          É um fato conhecido que um leitor será distraído pelo
+                          conteúdo legível de uma página.
                         </p>
                       </div>
                     </div>

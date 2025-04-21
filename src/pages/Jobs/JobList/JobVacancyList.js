@@ -20,138 +20,139 @@ const JobVacancyList = () => {
     {
       id: 1,
       companyImg: jobImage1,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: " Escondido,California",
-      jobPostTime: "3 min ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 3 minutos",
       fullTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: false,
       badges: [],
-      experience: "2 - 3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 2,
       companyImg: jobImage2,
-      jobDescription: "Digital Marketing Manager",
+      jobDescription: "Gerente de Marketing Digital",
       companyName: "Hireway Technology Pvt.Ltd",
       location: "Phoenix, Arizona",
-      jobPostTime: "15 min ago",
+      jobPostTime: "Há 15 minutos",
       fullTime: true,
-      timing: "Full Time",
-      catogary: "Recent Jobs",
+      timing: "Tempo Integral",
+      catogary: "Vagas Recentes",
       addclassNameBookmark: true,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
+          badgeName: "Urgente",
         },
         {
           id: 2,
           badgeclassName: "bg-primary-subtle text-primary",
-          badgeName: "Freelance"
-        }
+          badgeName: "Freelancer",
+        },
       ],
-      experience: "4+ years"
+      experience: "4+ anos",
     },
     {
       id: 3,
       companyImg: jobImage3,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: " Escondido,California",
-      jobPostTime: "37 min ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 37 minutos",
       fullTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: false,
       badges: [],
-      experience: "2 - 3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 4,
       companyImg: jobImage4,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: " Escondido,California",
-      jobPostTime: "50 min ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 50 minutos",
       freeLance: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       addclassNameBookmark: false,
       badges: [],
-      experience: "2 - 3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 5,
       companyImg: jobImage5,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: " Escondido,California",
-      jobPostTime: "1 month ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 1 mês",
       partTime: true,
-      timing: "Part Time",
+      timing: "Meio Período",
       addclassNameBookmark: true,
       badges: [],
-      experience: "2 - 3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 6,
       companyImg: jobImage6,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: "Escondido, California",
-      jobPostTime: "2 month ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 2 meses",
       freeLance: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
-        }
+          badgeName: "Urgente",
+        },
       ],
-      experience: "2-3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 7,
       companyImg: jobImage7,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: "Escondido, California",
-      jobPostTime: "2 month ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 2 meses",
       partTime: true,
-      timing: "Part Time",
+      timing: "Meio Período",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
-        }
+          badgeName: "Urgente",
+        },
       ],
-      experience: "2-3 years"
+      experience: "2 - 3 anos",
     },
     {
       id: 8,
       companyImg: jobImage3,
-      jobDescription: "Product Director",
-      companyName: "Creative Agency",
-      location: "Escondido, California",
-      jobPostTime: "3 month ago",
+      jobDescription: "Diretor de Produto",
+      companyName: "Agência Criativa",
+      location: "Escondido, Califórnia",
+      jobPostTime: "Há 3 meses",
       internship: true,
-      timing: "Internship",
+      timing: "Estágio",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Private"
-        }
+          badgeName: "Privado",
+        },
       ],
-      experience: "2-3 years"
-    }
+      experience: "2 - 3 anos",
+    },
   ];
+
   return (
     <React.Fragment>
       <div>
@@ -255,7 +256,7 @@ const JobVacancyList = () => {
                 <Col md={4}>
                   <div>
                     <p className="text-muted mb-0">
-                      <span className="text-dark">Experience :</span>
+                      <span className="text-dark">Experiência: </span>
                       {jobVacancyListDetails.experience}
                     </p>
                   </div>
@@ -267,7 +268,8 @@ const JobVacancyList = () => {
                       onClick={openModal}
                       className="primary-link"
                     >
-                      Apply Now <i className="mdi mdi-chevron-double-right"></i>
+                      Inscreva-se{" "}
+                      <i className="mdi mdi-chevron-double-right"></i>
                     </Link>
                   </div>
                 </Col>
@@ -287,7 +289,7 @@ const JobVacancyList = () => {
               <ModalBody className="modal-body p-5">
                 <div className="text-center mb-4">
                   <h5 className="modal-title" id="staticBackdropLabel">
-                    Apply For This Job
+                    Aplicar Para Esta Vaga
                   </h5>
                 </div>
                 <div className="position-absolute end-0 top-0 p-3">
@@ -296,45 +298,45 @@ const JobVacancyList = () => {
                     onClick={openModal}
                     className="btn-close"
                     data-bs-dismiss="modal"
-                    aria-label="Close"
+                    aria-label="Fechar"
                   ></button>
                 </div>
                 <div className="mb-3">
                   <Label for="nameControlInput" className="form-label">
-                    Name
+                    Nome
                   </Label>
                   <Input
                     type="text"
                     className="form-control"
                     id="nameControlInput"
-                    placeholder="Enter your name"
+                    placeholder="Digite seu nome"
                   />
                 </div>
                 <div className="mb-3">
                   <Label for="emailControlInput2" className="form-label">
-                    Email Address
+                    Endereço de E-mail
                   </Label>
                   <Input
                     type="email"
                     className="form-control"
                     id="emailControlInput2"
-                    placeholder="Enter your email"
+                    placeholder="Digite seu e-mail"
                   />
                 </div>
                 <div className="mb-3">
                   <Label for="messageControlTextarea" className="form-label">
-                    Message
+                    Mensagem
                   </Label>
                   <textarea
                     className="form-control"
                     id="messageControlTextarea"
                     rows="4"
-                    placeholder="Enter your message"
+                    placeholder="Digite sua mensagem"
                   ></textarea>
                 </div>
                 <div className="mb-4">
                   <Label className="form-label" for="inputGroupFile01">
-                    Resume Upload
+                    Enviar Currículo
                   </Label>
                   <Input
                     type="file"
@@ -343,7 +345,7 @@ const JobVacancyList = () => {
                   />
                 </div>
                 <button type="submit" className="btn btn-primary w-100">
-                  Send Application
+                  Enviar Inscrição
                 </button>
               </ModalBody>
             </Modal>

@@ -8,7 +8,7 @@ const JobSearch = () => {
         type="search"
         id="job-title"
         className="form-control filter-input-box"
-        placeholder="Job, Company name..."
+        placeholder="Emprego, nome da empresa..."
       />
     </React.Fragment>
   );

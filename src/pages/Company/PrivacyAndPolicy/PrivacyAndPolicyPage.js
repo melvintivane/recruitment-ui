@@ -6,72 +6,73 @@ const PrivacyAndPolicyPage = () => {
   const privacyandpolicyPage = [
     {
       id: 1,
-      policyTitle: "Use for Hireway",
+      policyTitle: "Uso do Hireway",
       policyRules: [
         {
           id: 1,
           policyInnerRule:
-            " At Hireway, accessible at Website.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Hireway and how we use If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at",
-            bold:" Hirewaytechnologypvt.ltd.com"
+            " No Hireway, acessível em Website.com, uma de nossas principais prioridades é a privacidade dos nossos visitantes. Este documento de Política de Privacidade contém os tipos de informações que são coletadas e registradas pelo Hireway e como as utilizamos. Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade, não hesite em nos contatar por e-mail em",
+          bold: " Hirewaytechnologypvt.ltd.com"
         },
         {
           id: 2,
           policyInnerRule:
-            " If you have additional questions or require more information about our Privacy Policy."
+            " Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade."
         },
         {
           id: 3,
           policyInnerRule:
-            " This privacy policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Hireway. This policy is not applicable to any information collected offline or via channels other than this website."
+            " Esta política de privacidade se aplica apenas às nossas atividades online e é válida para os visitantes do nosso site em relação às informações que eles compartilharam e/ou coletaram no Hireway. Esta política não se aplica a nenhuma informação coletada offline ou por canais que não sejam este site."
         },
         {
           id: 4,
           policyInnerRule:
-            " Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity to our website with regards to the information that they shared and/or collect in Hireway. This policy is not applicable to any information collected offline or via channels other than this website."
+            " Outra parte da nossa prioridade é adicionar proteção para crianças ao usar a internet. Incentivamos os pais e responsáveis a observar, participar e/ou monitorar e orientar a atividade online de seus filhos. Esta política é válida apenas para as informações coletadas através do nosso site e não se aplica a dados coletados offline ou por outros canais."
         }
       ]
     },
     {
       id: 2,
-      policyTitle: "We use your information to :",
+      policyTitle: "Usamos suas informações para:",
       policyRules: [
         {
           id: 1,
-          policyInnerRule: "  Digital Marketing Solutions for Tomorrow"
+          policyInnerRule: "  Soluções de Marketing Digital para o Amanhã"
         },
         {
           id: 2,
-          policyInnerRule: " Our Talented & Experienced Marketing Agency"
+          policyInnerRule: " Nossa Agência de Marketing Talentosa e Experiente"
         },
         {
           id: 3,
           policyInnerRule:
-            " It is said that song composers of the past used texts."
+            " Diz-se que compositores do passado usavam textos como base."
         },
         {
           id: 4,
-          policyInnerRule: " Create your own skin to match your brand"
+          policyInnerRule: " Crie seu próprio estilo para combinar com sua marca"
         }
       ]
     },
     {
       id: 3,
-      policyTitle: "Privacy and copyright protection",
+      policyTitle: "Privacidade e proteção de direitos autorais",
       policyRules: [
         {
           id: 1,
           policyInnerRule:
-            '  There is now an <b className=text-danger>"abundance</b> of readable dummy texts. These are usually used when a text is required purely to fill a space. These alternatives to the classic Lorem Ipsum texts are often amusing and tell short, funny or nonsensical stories.',
-            bold1:"abudance"
+            '  Atualmente há uma <b className=text-danger>"abundância</b> de textos fictícios legíveis. Eles geralmente são usados quando um texto é necessário apenas para preencher espaço. Essas alternativas ao clássico Lorem Ipsum são muitas vezes engraçadas e contam histórias curtas, divertidas ou sem sentido.',
+          bold1: "abudance"
         },
         {
           id: 2,
           policyInnerRule:
-            " It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text."
+            " Parece que apenas fragmentos do texto original permanecem nos textos Lorem Ipsum utilizados atualmente. Pode-se especular que, ao longo do tempo, certas letras foram adicionadas ou removidas em várias posições no texto."
         }
       ]
     }
   ];
+  
   return (
     <React.Fragment>
       <section className="section">
@@ -91,7 +92,7 @@ const PrivacyAndPolicyPage = () => {
             ))}
             <div className="text-end">
               <Link to="#" className="btn btn-primary">
-                <i className="uil uil-print"></i> Print
+                <i className="uil uil-print"></i> Imprimir
               </Link>
             </div>
           </Row>

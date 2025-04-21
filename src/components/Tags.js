@@ -5,38 +5,38 @@ const Tags = () => {
   const tags = [
     {
       id: 1,
-      tagName: "Fashion"
+      tagName: "Moda",
     },
     {
       id: 2,
-      tagName: "Jobs"
+      tagName: "Empregos",
     },
     {
       id: 3,
-      tagName: "Business"
+      tagName: "Negócios",
     },
     {
       id: 4,
-      tagName: "Corporate"
+      tagName: "Corporativo",
     },
     {
       id: 5,
-      tagName: "E-commerce"
+      tagName: "E-commerce",
     },
     {
       id: 6,
-      tagName: "Agency"
+      tagName: "Agência",
     },
     {
       id: 7,
-      tagName: "Responsive"
-    }
+      tagName: "Responsivo",
+    },
   ];
   return (
     <React.Fragment>
       <div className="mt-4 pt-2">
         <div className="sd-title">
-          <h6 className="fs-16 mb-3">Latest Tags</h6>
+          <h6 className="fs-16 mb-3">Últimas Tags</h6>
         </div>
         <div className="tagcloud mt-3 d-flex flex-wrap align-items-start gap-1 ">
           {tags.map((tagsDetails, key) => (

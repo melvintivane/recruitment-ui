@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Collapse } from "reactstrap";
 
 const AccordianContentRight = () => {
-  //Collapse Tab
+  // Collapse Tab
 
   const [isCollapseFourth, setIsCollapseFourth] = useState(true);
   const toggleFourth = () => setIsCollapseFourth(!isCollapseFourth);
@@ -12,6 +12,7 @@ const AccordianContentRight = () => {
 
   const [isCollapseSixth, setIsCollapseSixth] = useState(false);
   const toggleSixth = () => setIsCollapseSixth(!isCollapseSixth);
+
   return (
     <React.Fragment>
       <div className="accordion-item mt-4 border-0">
@@ -21,15 +22,15 @@ const AccordianContentRight = () => {
             onClick={toggleFourth}
             type="button"
           >
-            Where To Place A FAQ Page
+            Onde colocar uma página de FAQ?
           </button>
         </h2>
         <Collapse isOpen={isCollapseFourth} id="general-four">
           <div className="accordion-body">
-            Just as the name suggests, a FAQ page is all about simple questions
-            and answers. Gather common questions your customers have asked from
-            your support team and include them in the FAQ, Use categories to
-            organize questions related to specific topics.
+            Como o próprio nome sugere, uma página de FAQ é toda sobre perguntas
+            e respostas simples. Reúna perguntas comuns que seus clientes tenham
+            feito à sua equipe de suporte e inclua-as na FAQ. Use categorias
+            para organizar perguntas relacionadas a tópicos específicos.
           </div>
         </Collapse>
       </div>
@@ -41,14 +42,14 @@ const AccordianContentRight = () => {
             onClick={toggleFifth}
             type="button"
           >
-            Why do we use it ?
+            Por que usamos isso?
           </button>
         </h2>
         <Collapse isOpen={isCollapseFifth} id="general-five">
           <div className="accordion-body">
-            It will be as simple as Occidental; in fact, it will be Occidental.
-            To an English person, it will seem like simplified English, as a
-            skeptical Cambridge friend of mine told me what Occidental.
+            Será tão simples quanto o Occidental; na verdade, será o Occidental.
+            Para um falante de inglês, parecerá um inglês simplificado, como um
+            amigo cético de Cambridge me disse sobre o que é o Occidental.
           </div>
         </Collapse>
       </div>
@@ -60,15 +61,15 @@ const AccordianContentRight = () => {
             onClick={toggleSixth}
             type="button"
           >
-            Where can I get some ?
+            Onde posso encontrar?
           </button>
         </h2>
         <Collapse isOpen={isCollapseSixth} id="general-six">
           <div className="accordion-body">
-            To an English person, it will seem like simplified English, as a
-            skeptical Cambridge friend of mine told me what Occidental is. The
-            European languages are members of the same family. Their separate
-            existence is a myth.
+            Para um falante de inglês, parecerá um inglês simplificado, como um
+            amigo cético de Cambridge me disse sobre o que é o Occidental. As
+            línguas europeias são membros da mesma família. Sua existência
+            separada é um mito.
           </div>
         </Collapse>
       </div>

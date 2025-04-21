@@ -2,8 +2,8 @@ import React from "react";
 import { Card, CardBody, Col, Container, Input, Row } from "reactstrap";
 
 //Import Image
-import lightLogo from "../../assets/images/logo-light.png";
-import darkLogo from "../../assets/images/logo-dark.png";
+import lightLogo from "../../assets/images/light-logo.png";
+import darkLogo from "../../assets/images/dark-logo.png";
 
 import signInImage from "../../assets/images/auth/sign-in.png";
 import { Form } from "react-bootstrap";
@@ -24,17 +24,23 @@ const SignIn = () => {
                       <Row className="g-0">
                         <Col lg={6} className="text-center">
                           <CardBody className="p-4">
-                            <Link to="/">
+                            <Link
+                              className="text-dark fw-bold fs-3 mx-auto d-flex align-items-center justify-content-center gap-2"
+                              to="/"
+                            >
                               <img
                                 src={lightLogo}
                                 alt=""
-                                className="logo-light"
+                                height="30"
+                                className="logo-dark"
                               />
                               <img
                                 src={darkLogo}
                                 alt=""
-                                className="logo-dark"
+                                height="30"
+                                className="logo-light"
                               />
+                              Hireway
                             </Link>
                             <div className="mt-5">
                               <img
@@ -49,9 +55,9 @@ const SignIn = () => {
                           <CardBody className="auth-content p-5 h-100 text-white">
                             <div className="w-100">
                               <div className="text-center mb-4">
-                                <h5>Welcome Back !</h5>
+                                <h5>Bem-vindo de Volta!</h5>
                                 <p className="text-white-70">
-                                  Sign in to continue to Hireway.
+                                  Faça login para continuar na Hireway.
                                 </p>
                               </div>
                               <Form action="/" className="auth-form">
@@ -60,13 +66,13 @@ const SignIn = () => {
                                     htmlFor="usernameInput"
                                     className="form-label"
                                   >
-                                    Username
+                                    Nome de Usuário
                                   </label>
                                   <Input
                                     type="text"
                                     className="form-control"
                                     id="usernameInput"
-                                    placeholder="Enter your username"
+                                    placeholder="Digite seu nome de usuário"
                                     required
                                   />
                                 </div>
@@ -75,13 +81,13 @@ const SignIn = () => {
                                     htmlFor="passwordInput"
                                     className="form-label"
                                   >
-                                    Password
+                                    Senha
                                   </label>
                                   <Input
                                     type="password"
                                     className="form-control"
                                     id="passwordInput"
-                                    placeholder="Enter your password"
+                                    placeholder="Digite sua senha"
                                     required
                                   />
                                 </div>
@@ -96,13 +102,13 @@ const SignIn = () => {
                                       to="/resetpassword"
                                       className="float-end text-white"
                                     >
-                                      Forgot Password?
+                                      Esqueceu a Senha?
                                     </Link>
                                     <label
                                       className="form-check-label"
                                       htmlFor="flexCheckDefault"
                                     >
-                                      Remember me
+                                      Lembrar-me
                                     </label>
                                   </div>
                                 </div>
@@ -111,19 +117,18 @@ const SignIn = () => {
                                     type="submit"
                                     className="btn btn-white btn-hover w-100"
                                   >
-                                    Sign In
+                                    Entrar
                                   </button>
                                 </div>
                               </Form>
                               <div className="mt-4 text-center">
                                 <p className="mb-0">
-                                  Don't have an account ?{" "}
+                                  Não tem uma conta?{" "}
                                   <Link
                                     to="/signup"
                                     className="fw-medium text-white text-decoration-underline"
                                   >
-                                    {" "}
-                                    Sign Up{" "}
+                                    Cadastre-se
                                   </Link>
                                 </p>
                               </div>

@@ -4,13 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 //swiper css
+import "swiper/css";
+import "swiper/css/virtual";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
-import 'swiper/css';
-import 'swiper/css/virtual';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
-
-//Images import
+//Importação de imagens
 import MailChimp from "../../assets/images/logo/mailchimp.svg";
 import WordPress from "../../assets/images/logo/wordpress.svg";
 import Instagram from "../../assets/images/logo/Instagram.svg";
@@ -21,26 +20,26 @@ const Testimonal = () => {
       id: 1,
       image: MailChimp,
       content:
-        "Very well thought out and articulate communication.Clear milestones, deadlines and fast work. Patience. Infinite patience. No shortcuts. Even if the client is being careless.",
+        "Comunicação muito bem pensada e articulada. Marcos claros, prazos definidos e trabalho rápido. Paciência. Paciência infinita. Nada de atalhos. Mesmo que o cliente esteja sendo descuidado.",
       name: "Jeffrey Montgomery",
-      occupation: "Product Manager"
+      occupation: "Gerente de Produto",
     },
     {
       id: 2,
       image: WordPress,
       content:
-        "Very well thought out and articulate communication.Clear milestones, deadlines and fast work. Patience. Infinite patience. No shortcuts. Even if the client is being careless.",
+        "Comunicação muito bem pensada e articulada. Marcos claros, prazos definidos e trabalho rápido. Paciência. Paciência infinita. Nada de atalhos. Mesmo que o cliente esteja sendo descuidado.",
       name: "Rebecca Swartz",
-      occupation: "Creative Designer"
+      occupation: "Designer Criativa",
     },
     {
       id: 3,
       image: Instagram,
       content:
-        "Very well thought out and articulate communication.Clear milestones, deadlines and fast work. Patience. Infinite patience. No shortcuts. Even if the client is being careless.",
+        "Comunicação muito bem pensada e articulada. Marcos claros, prazos definidos e trabalho rápido. Paciência. Paciência infinita. Nada de atalhos. Mesmo que o cliente esteja sendo descuidado.",
       name: "Charles Dickens",
-      occupation: "Store Assistant"
-    }
+      occupation: "Assistente de Loja",
+    },
   ];
 
   return (
@@ -50,10 +49,10 @@ const Testimonal = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="section-title text-center mb-4 pb-2">
-                <h3 className="title mb-3">Happy Candidates</h3>
+                <h3 className="title mb-3">Candidatos Satisfeitos</h3>
                 <p className="text-muted">
-                  Post a job to tell us about your project. We'll quickly match
-                  you with the right freelancers.
+                  Publique uma vaga e nos conte sobre o seu projeto. Nós o
+                  conectaremos rapidamente com os candidatos certos.
                 </p>
               </div>
             </Col>

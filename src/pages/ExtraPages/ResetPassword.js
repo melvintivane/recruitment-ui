@@ -1,8 +1,8 @@
 import React from "react";
 
 //Import Image
-import lightLogo from "../../assets/images/logo-light.png";
-import darkLogo from "../../assets/images/logo-dark.png";
+import lightLogo from "../../assets/images/light-logo.png";
+import darkLogo from "../../assets/images/dark-logo.png";
 
 import resetPasswordImage from "../../assets/images/auth/reset-password.png";
 import { Card, CardBody, Col, Container, Input, Row } from "reactstrap";
@@ -10,8 +10,7 @@ import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const ResetPassword = () => {
-  document.title =
-    "Reset Password | Hireway - Job Listing | Mobitel";
+  document.title = "Reset Password | Hireway - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -25,17 +24,23 @@ const ResetPassword = () => {
                       <Row className="g-0">
                         <Col lg={6} className="text-center">
                           <CardBody className="p-4">
-                            <Link to="/">
+                            <Link
+                              className="text-dark fw-bold fs-3 mx-auto d-flex align-items-center justify-content-center gap-2"
+                              to="/"
+                            >
                               <img
                                 src={lightLogo}
                                 alt=""
-                                className="logo-light"
+                                height="30"
+                                className="logo-dark"
                               />
                               <img
                                 src={darkLogo}
                                 alt=""
-                                className="logo-dark"
+                                height="30"
+                                className="logo-light"
                               />
+                              Hireway
                             </Link>
                             <div className="mt-5">
                               <img
@@ -49,9 +54,9 @@ const ResetPassword = () => {
                         <Col lg={6}>
                           <CardBody className="auth-content p-5 h-100 text-white">
                             <div className="text-center mb-4">
-                              <h5>Reset Password</h5>
+                              <h5>Redefinir Senha</h5>
                               <p className="text-white-50">
-                                Reset your password with Hireway.
+                                Redefina sua senha com a Hireway.
                               </p>
                             </div>
                             <Form className="auth-form text-white">
@@ -59,19 +64,18 @@ const ResetPassword = () => {
                                 className="alert alert-warning text-center mb-4"
                                 role="alert"
                               >
-                                {" "}
-                                Enter your Email and instructions will be sent
-                                to you!{" "}
+                                Insira seu email e as instruções serão enviadas
+                                para você!
                               </div>
                               <div className="mb-4">
                                 <label className="form-label" htmlFor="email">
-                                  Username/Email
+                                  Nome de Usuário/Email
                                 </label>
                                 <Input
                                   type="email"
                                   className="form-control"
                                   id="email"
-                                  placeholder="Enter username or email"
+                                  placeholder="Digite o nome de usuário ou email"
                                 />
                               </div>
                               <div className="mt-3">
@@ -79,19 +83,18 @@ const ResetPassword = () => {
                                   type="submit"
                                   className="btn btn-white w-100"
                                 >
-                                  Send Request
+                                  Enviar Solicitação
                                 </button>
                               </div>
                             </Form>
                             <div className="mt-5 text-center text-white-50">
                               <p>
-                                Remembered It ?{" "}
+                                Lembrou a senha?{" "}
                                 <Link
                                   to="/signin"
                                   className="fw-medium text-white text-decoration-underline"
                                 >
-                                  {" "}
-                                  Go to Login{" "}
+                                  Ir para o Login
                                 </Link>
                               </p>
                             </div>

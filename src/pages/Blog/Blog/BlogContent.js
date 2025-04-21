@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row } from "reactstrap";
 
-//User Images
+// Imagens dos usuários
 import userImage1 from "../../../assets/images/user/img-01.jpg";
 import userImage2 from "../../../assets/images/user/img-02.jpg";
 import userImage3 from "../../../assets/images/user/img-03.jpg";
 
-//Blog Images
+// Imagens do blog
 import blogImage4 from "../../../assets/images/blog/img-04.jpg";
 import blogImage5 from "../../../assets/images/blog/img-05.jpg";
 import blogImage6 from "../../../assets/images/blog/img-06.jpg";
@@ -24,26 +24,27 @@ const BlogContent = () => {
         {
           id: 1,
           blogImage: blogImage6,
-          blogTitle: "Fashion",
-          blogDate: "July 29, 2021",
-          blogHeading: "A day in the of a professional fashion designer",
+          blogTitle: "Moda",
+          blogDate: "29 de Julho, 2021",
+          blogHeading: "Um dia na vida de um designer de moda profissional",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage2,
           blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Fashion Designer",
+          BlogAutherPosition: "Designer de Moda",
         },
         {
           id: 2,
           blogImage: blogImage5,
-          blogTitle: "Business",
-          blogDate: "July 25, 2021",
-          blogHeading: "Stack designer Olivia Murphy offers freelancing advice",
+          blogTitle: "Negócios",
+          blogDate: "25 de Julho, 2021",
+          blogHeading:
+            "Designer de stack Olivia Murphy oferece conselhos sobre freelancing",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage3,
           blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Product Leader",
+          BlogAutherPosition: "Líder de Produto",
         },
       ],
     },
@@ -53,26 +54,27 @@ const BlogContent = () => {
         {
           id: 1,
           blogImage: blogImage7,
-          blogTitle: "Business",
-          blogDate: "July 25, 2021",
-          blogHeading: "Manage white space in responsive layouts ?",
+          blogTitle: "Negócios",
+          blogDate: "25 de Julho, 2021",
+          blogHeading:
+            "Como gerenciar o espaço em branco em layouts responsivos?",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage2,
           blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Product Leader",
+          BlogAutherPosition: "Líder de Produto",
         },
         {
           id: 2,
           blogImage: blogImage8,
-          blogTitle: "Development",
-          blogDate: "July 29, 2021",
-          blogHeading: "How to get creative in your work ?",
+          blogTitle: "Desenvolvimento",
+          blogDate: "29 de Julho, 2021",
+          blogHeading: "Como ser criativo no seu trabalho?",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage3,
           blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Fashion Designer",
+          BlogAutherPosition: "Designer de Moda",
         },
       ],
     },
@@ -82,30 +84,32 @@ const BlogContent = () => {
         {
           id: 1,
           blogImage: blogImage9,
-          blogTitle: "Business",
-          blogDate: "July 25, 2021",
-          blogHeading: "What planning process needs ?",
+          blogTitle: "Negócios",
+          blogDate: "25 de Julho, 2021",
+          blogHeading: "O que o processo de planejamento precisa?",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage3,
           blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Product Leader",
+          BlogAutherPosition: "Líder de Produto",
         },
         {
           id: 2,
           blogImage: blogImage10,
-          blogTitle: "Development",
-          blogDate: "July 29, 2021",
-          blogHeading: "How to become a best sale marketer in a year!",
+          blogTitle: "Desenvolvimento",
+          blogDate: "29 de Julho, 2021",
+          blogHeading:
+            "Como se tornar o melhor vendedor de marketing em um ano!",
           blogText:
-            "Objectively pursue diverse catalysts for change for interoperable meta-services. Distinctively re-engineer revolutionary meta-services and premium architectures. Intrinsically incubate intuitive opportunities and real-time potentialities. Appropriately communicate one-to-one technology.",
+            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
           blogAutherImage: userImage3,
           blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Fashion Designer",
+          BlogAutherPosition: "Designer de Moda",
         },
       ],
     },
   ];
+
   return (
     <React.Fragment>
       <section className="section">
@@ -113,7 +117,7 @@ const BlogContent = () => {
           <Row className="align-items-center">
             <Col lg={12}>
               <div className="mb-4">
-                <h4>Latest & Trending Blog Post</h4>
+                <h4>Últimos & Posts de Blog em Alta</h4>
               </div>
             </Col>
             <Col lg={7}>
@@ -131,20 +135,21 @@ const BlogContent = () => {
               <article className="post position-relative">
                 <div className="post ms-lg-4">
                   <p className="text-muted mb-2">
-                    <b>Product</b> - Aug 01, 2021
+                    <b>Produto</b> - 01 de Agosto, 2021
                   </p>
                   <h5 className="mb-3">
                     <Link to="/blogdetails" className="primary-link">
-                      Do traditional landing pages work for Saas startups?
+                      As páginas de aterrissagem tradicionais funcionam para
+                      startups de Saas?
                     </Link>
                   </h5>
                   <p className="text-muted">
-                    Objectively pursue diverse catalysts for change for
-                    interoperable meta-services. Distinctively re-engineer
-                    revolutionary meta-services and premium architectures.
-                    Intrinsically incubate intuitive opportunities and real-time
-                    potentialities. Appropriately communicate one-to-one
-                    technology.
+                    Busque diversos catalisadores para mudanças em
+                    metas interoperáveis. Reprojetar de forma distinta
+                    meta-serviços revolucionários e arquiteturas premium.
+                    Incubar de forma intrínseca oportunidades intuitivas e
+                    potencialidades em tempo real. Comunicar adequadamente a
+                    tecnologia um a um.
                   </p>
                   <div className="d-flex align-items-center mt-4">
                     <div className="flex-shrink-0">
@@ -158,7 +163,7 @@ const BlogContent = () => {
                       <Link to="/blogauther" className="primary-link">
                         <h6 className="fs-16 mb-0">James Lemire </h6>
                       </Link>
-                      <p className="text-muted mb-0">Product Manager</p>
+                      <p className="text-muted mb-0">Gerente de Produto</p>
                     </div>
                   </div>
                 </div>
@@ -168,7 +173,7 @@ const BlogContent = () => {
 
           <Col lg={12} className="mt-5">
             <div>
-              <h4>All Blog Post</h4>
+              <h4>Todos os Posts de Blog</h4>
             </div>
           </Col>
           {blogContentText.map((blogContentDetails, key) => (
@@ -177,7 +182,7 @@ const BlogContent = () => {
                 <Col lg={6} key={key}>
                   <article className="post position-relative mt-4" key={key}>
                     <div className="post-preview overflow-hidden mb-3 rounded-3">
-                      <Link to="blog-details">
+                      <Link to="/blogdetails">
                         <img
                           src={blogContentInner.blogImage}
                           alt=""
@@ -222,7 +227,7 @@ const BlogContent = () => {
 
           <Row>
             <Col lg={12} className="mt-5">
-              <nav aria-label="Page navigation example">
+              <nav aria-label="Exemplo de navegação de página">
                 <ul className="pagination job-pagination mb-0 justify-content-center">
                   <li className="page-item disabled">
                     <Link className="page-link" to="#" tabIndex="-1">

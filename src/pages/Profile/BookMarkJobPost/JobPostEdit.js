@@ -10,7 +10,7 @@ const JobPostEdit = () => {
           <Row>
             <Col lg={12}>
               <div className="bg-primary-subtle text-primary p-3">
-                <h5 className="mb-0 fs-17">Post a New Job!</h5>
+                <h5 className="mb-0 fs-17">Publicar uma Nova Vaga!</h5>
               </div>
             </Col>
           </Row>
@@ -20,52 +20,52 @@ const JobPostEdit = () => {
                 <Col lg={12}>
                   <div className="mb-4">
                     <Label htmlFor="jobtitle" className="form-label">
-                      Job Title
+                      Título da Vaga
                     </Label>
                     <Input
                       type="text"
                       className="form-control"
                       id="jobtitle"
-                      placeholder="Title"
+                      placeholder="Título"
                     />
                   </div>
                 </Col>
                 <Col lg={12}>
                   <div className="mb-4">
                     <Label htmlFor="jobdescription" className="form-label">
-                      Job Description
+                      Descrição da Vaga
                     </Label>
                     <textarea
                       className="form-control"
                       id="jobdescription"
                       rows="3"
-                      placeholder="Enter Job Description"
+                      placeholder="Digite a descrição da vaga"
                     ></textarea>
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="email" className="form-label">
-                      Email Address
+                      Endereço de Email
                     </Label>
                     <Input
                       type="email"
                       className="form-control"
                       id="email"
-                      placeholder="Email Address"
+                      placeholder="Email"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <Label htmlFor="phoneNumber" className="form-label">
-                      Phone Number
+                      Número de Telefone
                     </Label>
                     <Input
                       type="number"
                       className="form-control"
                       id="phoneNumber"
-                      placeholder="Phone Number"
+                      placeholder="Telefone"
                     />
                   </div>
                 </Col>
@@ -75,91 +75,90 @@ const JobPostEdit = () => {
                       htmlFor="choices-single-categories"
                       className="form-label"
                     >
-                      Categories
+                      Categorias
                     </label>
                     <select
                       className="form-select"
-                      data-trigger=""
                       name="choices-single-categories"
                       id="choices-single-categories"
-                      aria-label="Default select example"
+                      aria-label="Selecione uma categoria"
                     >
-                      <option value="ne">Digital & Creative</option>
-                      <option value="df">Retail</option>
-                      <option value="od">Management</option>
-                      <option value="rd">Human Resources</option>
+                      <option value="ne">Digital e Criativo</option>
+                      <option value="df">Varejo</option>
+                      <option value="od">Gestão</option>
+                      <option value="rd">Recursos Humanos</option>
                     </select>
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <label htmlFor="jobtype" className="form-label">
-                      Job Type
+                      Tipo de Vaga
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="jobtype"
-                      placeholder="Job type"
+                      placeholder="Tipo de vaga"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <label htmlFor="designation" className="form-label">
-                      Designation
+                      Cargo
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="designation"
-                      placeholder="Designation"
+                      placeholder="Cargo"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <label htmlFor="salary" className="form-label">
-                      Salary($)
+                      Salário ($)
                     </label>
                     <Input
                       type="number"
                       className="form-control"
                       id="salary"
-                      placeholder="Salary"
+                      placeholder="Salário"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <label htmlFor="qualification" className="form-label">
-                      Qualification
+                      Qualificação
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="qualification"
-                      placeholder="Qualification"
+                      placeholder="Qualificação"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-4">
                     <label htmlFor="skills" className="form-label">
-                      Job Skills{" "}
+                      Competências
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="skills"
-                      placeholder="Job skills"
+                      placeholder="Competências necessárias"
                     />
                   </div>
                 </Col>
                 <Col lg={12}>
                   <div className="mb-4">
                     <label htmlFor="lastdate" className="form-label">
-                      Application Deadline Date
+                      Data Limite de Candidatura
                     </label>
                     <Input type="date" className="form-control" id="lastdate" />
                   </div>
@@ -170,55 +169,54 @@ const JobPostEdit = () => {
                       htmlFor="choices-single-location"
                       className="form-label"
                     >
-                      Country
+                      País
                     </label>
                     <select
                       className="form-select"
-                      data-trigger
                       name="choices-single-location"
                       id="choices-single-location"
-                      aria-label="Default select example"
+                      aria-label="Selecione o país"
                     >
                       <option value="ME">Montenegro</option>
                       <option value="MS">Montserrat</option>
-                      <option value="MA">Morocco</option>
-                      <option value="MZ">Mozambique</option>
+                      <option value="MA">Marrocos</option>
+                      <option value="MZ">Moçambique</option>
                     </select>
                   </div>
                 </Col>
                 <Col lg={3}>
                   <div className="mb-4">
                     <label htmlFor="city" className="form-label">
-                      City
+                      Cidade
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="city"
-                      placeholder="City"
+                      placeholder="Cidade"
                     />
                   </div>
                 </Col>
                 <Col lg={3}>
                   <div className="mb-4">
                     <label htmlFor="zipcode" className="form-label">
-                      Zipcode
+                      Código Postal
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="zipcode"
-                      placeholder="Zipcode"
+                      placeholder="Código Postal"
                     />
                   </div>
                 </Col>
                 <Col lg={12}>
                   <div className="d-flex flex-wrap align-items-start gap-1 justify-content-end">
                     <Link to="#" className="btn btn-success">
-                      Back
+                      Voltar
                     </Link>
                     <Link to="#" className="btn btn-primary">
-                      Post Now <i className="mdi mdi-send"></i>
+                      Publicar Agora <i className="mdi mdi-send"></i>
                     </Link>
                   </div>
                 </Col>

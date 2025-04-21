@@ -24,34 +24,35 @@ const RightSideContent = () => {
     <React.Fragment>
       {isGallery ? (
         <Lightbox
-        open={isGallery}
-        close={() => setisGallery(false)}
-        index={photoIndex}
-        slides={images.map((image) => ({ src: image }))}
-      />
+          open={isGallery}
+          close={() => setisGallery(false)}
+          index={photoIndex}
+          slides={images.map((image) => ({ src: image }))}
+        />
       ) : null}
       <Col lg={8}>
         <Card className="candidate-details ms-lg-4 mt-4 mt-lg-0">
           <CardBody className="p-4 candidate-personal-detail">
             <div>
-              <h6 className="fs-17 fw-semibold mb-3">About Me</h6>
+              <h6 className="fs-17 fw-semibold mb-3">Sobre Mim</h6>
               <p className="text-muted mb-2">
-                Very well thought out and articulate communication. Clear
-                milestones, deadlines and fast work. Patience. Infinite
-                patience. No shortcuts. Even if the client is being careless.
-                Some quick example text to build on the card title and bulk the
-                card's content Moltin gives you platform.
+                Comunicação muito bem pensada e articulada. Marcos claros,
+                prazos e trabalho rápido. Paciência. Paciência infinita. Sem
+                atalhos. Mesmo que o cliente esteja sendo descuidado. Alguns
+                exemplos rápidos de texto para construir o título do cartão e
+                aumentar o conteúdo do cartão. Moltin oferece a plataforma.
               </p>
               <p className="text-muted mb-0">
-                As a highly skilled and successfull product development and
-                design specialist with more than 4 Years of My experience lies
-                in successfully conceptualizing, designing, and modifying
-                consumer products specific to interior design and home
-                furnishings.
+                Como um especialista altamente qualificado e bem-sucedido em
+                desenvolvimento de produtos e design, com mais de 4 anos de
+                experiência, meu foco está em conceituar, projetar e modificar
+                com sucesso produtos de consumo específicos para design de
+                interiores e móveis para o lar.
               </p>
             </div>
+
             <div className="candidate-education-details mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Education</h6>
+              <h6 className="fs-17 fw-bold mb-0">Educação</h6>
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
@@ -59,19 +60,20 @@ const RightSideContent = () => {
                 </div>
                 <div className="ms-4">
                   <h6 className="fs-16 mb-1">
-                    BCA - Bachelor of Computer Applications
+                    BCA - Bacharelado em Aplicações de Computador
                   </h6>
                   <p className="mb-2 text-muted">
-                    International University - (2004 - 2010)
+                    Universidade Internacional - (2004 - 2010)
                   </p>
                   <p className="text-muted">
-                    There are many variations of passages of available, but the
-                    majority alteration in some form. As a highly skilled and
-                    successfull product development and design specialist with
-                    more than 4 Years of My experience.
+                    Existem muitas variações de passagens disponíveis, mas a
+                    maioria altera alguma forma. Como um especialista altamente
+                    qualificado e bem-sucedido em desenvolvimento de produtos e
+                    design, com mais de 4 anos de experiência.
                   </p>
                 </div>
               </div>
+
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
@@ -79,40 +81,41 @@ const RightSideContent = () => {
                 </div>
                 <div className="ms-4">
                   <h6 className="fs-16 mb-1">
-                    MCA - Master of Computer Application
+                    MCA - Mestrado em Aplicações de Computador
                   </h6>
                   <p className="mb-2 text-muted">
-                    International University - (2010 - 2012)
+                    Universidade Internacional - (2010 - 2012)
                   </p>
                   <p className="text-muted">
-                    There are many variations of passages of available, but the
-                    majority alteration in some form. As a highly skilled and
-                    successfull product development and design specialist with
-                    more than 4 Years of My experience.
+                    Existem muitas variações de passagens disponíveis, mas a
+                    maioria altera alguma forma. Como um especialista altamente
+                    qualificado e bem-sucedido em desenvolvimento de produtos e
+                    design, com mais de 4 anos de experiência.
                   </p>
                 </div>
               </div>
+
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
                   D{" "}
                 </div>
                 <div className="ms-4">
-                  <h6 className="fs-16 mb-1">Design Communication Visual</h6>
+                  <h6 className="fs-16 mb-1">Comunicação Visual em Design</h6>
                   <p className="text-muted mb-2">
-                    International University - (2012-2015)
+                    Universidade Internacional - (2012-2015)
                   </p>
                   <p className="text-muted">
-                    There are many variations of passages of available, but the
-                    majority alteration in some form. As a highly skilled and
-                    successfull product development and design specialist with
-                    more than 4 Years of My experience.
+                    Existem muitas variações de passagens disponíveis, mas a
+                    maioria altera alguma forma. Como um especialista altamente
+                    qualificado e bem-sucedido em desenvolvimento de produtos e
+                    design, com mais de 4 anos de experiência.
                   </p>
                 </div>
               </div>
             </div>
             <div className="candidate-education-details mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Experience</h6>
+              <h6 className="fs-17 fw-bold mb-0">Experiência</h6>
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
@@ -120,40 +123,41 @@ const RightSideContent = () => {
                 </div>
                 <div className="ms-4">
                   <h6 className="fs-16 mb-1">
-                    Web Design & Development Team Leader
+                    Líder de Equipe de Design e Desenvolvimento Web
                   </h6>
                   <p className="mb-2 text-muted">
-                    Creative Agency - (2013 - 2016)
+                    Agência Criativa - (2013 - 2016)
                   </p>
                   <p className="text-muted">
-                    There are many variations of passages of available, but the
-                    majority alteration in some form. As a highly skilled and
-                    successfull product development and design specialist with
-                    more than 4 Years of My experience.
+                    Existem muitas variações de passagens disponíveis, mas a
+                    maioria altera alguma forma. Como um especialista altamente
+                    qualificado e bem-sucedido em desenvolvimento de produtos e
+                    design, com mais de 4 anos de experiência.
                   </p>
                 </div>
               </div>
+
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
                   P{" "}
                 </div>
                 <div className="ms-4">
-                  <h6 className="fs-16 mb-1">Project Manager</h6>
+                  <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
                   <p className="mb-2 text-muted">
-                    Hireway Technology Pvt.Ltd - (Pressent)
+                    Hireway Technology Pvt.Ltd - (Presente)
                   </p>
                   <p className="text-muted mb-0">
-                    There are many variations of passages of available, but the
-                    majority alteration in some form. As a highly skilled and
-                    successfull product development and design specialist with
-                    more than 4 Years of My experience.
+                    Existem muitas variações de passagens disponíveis, mas a
+                    maioria altera alguma forma. Como um especialista altamente
+                    qualificado e bem-sucedido em desenvolvimento de produtos e
+                    design, com mais de 4 anos de experiência.
                   </p>
                 </div>
               </div>
             </div>
             <div className="candidate-portfolio mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Projects</h6>
+              <h6 className="fs-17 fw-bold mb-0">Projecos</h6>
               <Row>
                 <Col lg={4} className="mt-4">
                   <div className="candidate-portfolio-box card border-0">
@@ -214,7 +218,7 @@ const RightSideContent = () => {
                 <div className="flex-grow-1 ms-sm-3">
                   <div>
                     <p className="text-muted float-end fs-14 mb-2">
-                      Jun 23, 2021
+                      23 de jun, 2021
                     </p>
                     <h6 className="mt-sm-0 mt-3 mb-1">Michelle Durant</h6>
                     <div className="text-warning review-rating mb-2">
@@ -225,9 +229,9 @@ const RightSideContent = () => {
                       <i className="mdi mdi-star-half-full"></i>
                     </div>
                     <p className="text-muted fst-italic">
-                      " There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form, by injected humour "
+                      " Existem muitas variações de passagens de Lorem Ipsum
+                      disponíveis, mas a maioria sofreu alterações de alguma
+                      forma, por humor injetado "
                     </p>
                   </div>
                 </div>
@@ -243,7 +247,7 @@ const RightSideContent = () => {
                 <div className="flex-grow-1 ms-sm-3">
                   <div>
                     <p className="text-muted float-end fs-14 mb-2">
-                      Jun 25, 2021
+                      25 de jun, 2021
                     </p>
                     <h6 className="mt-sm-0 mt-3 mb-1">Jeffrey Montgomery</h6>
                     <div className="text-warning review-rating mb-2">
@@ -254,74 +258,78 @@ const RightSideContent = () => {
                       <i className="mdi mdi-star-outline"></i>
                     </div>
                     <p className="text-muted fst-italic">
-                      " There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form, by injected humour "
+                      " Existem muitas variações de passagens de Lorem Ipsum
+                      disponíveis, mas a maioria sofreu alterações de alguma
+                      forma, por humor injetado "
                     </p>
                   </div>
                 </div>
               </div>
             </div>
             <form action="#" className="mt-4 pt-3">
-              <h6 className="fs-17 fw-semibold mb-2">Add a review</h6>
-              <p className="text-muted mb-3">Your Rating for this listing</p>
+              <h6 className="fs-17 fw-semibold mb-2">
+                Adicionar uma avaliação
+              </h6>
+              <p className="text-muted mb-3">
+                Sua avaliação para esta listagem
+              </p>
               <Row>
                 <Col lg={12}>
                   <div className="mb-3">
                     <label htmlFor="inputname" className="form-label">
-                      Your Name
+                      Seu Nome
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="inputname"
-                      placeholder="Enter your name"
+                      placeholder="Digite seu nome"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-3">
                     <label htmlFor="inputemail" className="form-label">
-                      Email
+                      E-mail
                     </label>
                     <Input
                       type="email"
                       className="form-control"
                       id="inputemail"
-                      placeholder="Enter your email"
+                      placeholder="Digite seu e-mail"
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-3">
                     <label htmlFor="inputsubject" className="form-label">
-                      Subject
+                      Assunto
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="inputsubject"
-                      placeholder="Subject"
+                      placeholder="Assunto"
                     />
                   </div>
                 </Col>
                 <Col lg={12}>
                   <div className="mb-3">
                     <label htmlFor="inputcoment" className="form-label">
-                      Review
+                      Avaliação
                     </label>
                     <textarea
                       className="form-control"
                       id="inputcoment"
                       rows="3"
-                      placeholder="Add your review"
+                      placeholder="Adicione sua avaliação"
                     ></textarea>
                   </div>
                 </Col>
               </Row>
               <div className="text-end">
                 <button type="submit" className="btn btn-primary btn-hover">
-                  Submit Review <i className="uil uil-angle-right-b"></i>
+                  Enviar Avaliação <i className="uil uil-angle-right-b"></i>
                 </button>
               </div>
             </form>

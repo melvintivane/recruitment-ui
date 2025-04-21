@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
-//Import Images
+//Importar Imagens
 import AboutImage from "../../../assets/images/about/img-01.jpg";
 
 const About = () => {
@@ -13,40 +13,43 @@ const About = () => {
           <Row className="align-items-center g-0">
             <Col lg={6}>
               <div className="section-title me-lg-5">
-                <h6 className="sub-title">About Us</h6>
+                <h6 className="sub-title">Sobre Nós</h6>
                 <h2 className="title mb-4">
-                  Why <span className="text-warning fw-bold">35,000+</span>{" "}
-                  People Trust On Hireway?
+                  Por que <span className="text-warning fw-bold">35.000+</span>{" "}
+                  Pessoas Confiam na Hireway?
                 </h2>
                 <p className="text-muted">
-                  Start working with Hireway that can provide everything you need
-                  to generate awareness, drive traffic, connect. Dummy text is
-                  text that is used in the publishing industry or by web
-                  designers to occupy the space which will later be filled with
-                  'real' content.
+                  Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                  você precisa para gerar reconhecimento, atrair tráfego e
+                  conectar. Texto fictício é um texto usado na indústria de
+                  publicação ou por designers de sites para ocupar o espaço que
+                  será posteriormente preenchido com conteúdo 'real'.
                 </p>
 
                 <Row className="mt-4 pt-2">
                   <Col md={6}>
                     <ul className="list-unstyled about-list text-muted mb-0 mb-md-3">
-                      <li> Digital Marketing Solutions</li>
-                      <li> Our Talented & Experienced Marketing Agency</li>
-                      <li> Creative Design</li>
-                      <li> New jobs Innovation</li>
+                      <li> Soluções de Marketing Digital</li>
+                      <li>
+                        {" "}
+                        Nossa Agência de Marketing Talented & Experienced
+                      </li>
+                      <li> Design Criativo</li>
+                      <li> Inovação de Novos Empregos</li>
                     </ul>
                   </Col>
                   <Col md={6}>
                     <ul className="list-unstyled about-list text-muted">
-                      <li> Create Resume</li>
-                      <li> 5000+ Comnpanies</li>
-                      <li> Our Blog</li>
-                      <li> and more...</li>
+                      <li> Criar Currículo</li>
+                      <li> 5000+ Empresas</li>
+                      <li> Nosso Blog</li>
+                      <li> e mais...</li>
                     </ul>
                   </Col>
                 </Row>
                 <div className="mt-3">
                   <Link to="#" className="btn btn-primary btn-hover">
-                    Learn More{" "}
+                    Saiba Mais{" "}
                     <i className="uil uil-angle-right-b align-middle"></i>
                   </Link>
                 </div>

@@ -1,81 +1,82 @@
 import React, { useState } from "react";
-import { Col, Row, Modal, ModalBody, Input, Label } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //Job Images
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
 import jobImage2 from "../../../assets/images/featured-job/img-02.png";
 import jobImage3 from "../../../assets/images/featured-job/img-03.png";
+import JobApplicationModal from "../../../components/JobApplicationModal";
 
 const JobVacancyPost = () => {
-  //Apply Now Model
-  const [modal, setModal] = useState(false);
-  const openModal = () => setModal(!modal);
+  const [modalOpen, setModalOpen] = useState(false);
+  const toggleModal = () => setModalOpen(!modalOpen);
 
   const jobVacancyPost = [
     {
       id: 1,
       companyImg: jobImage1,
-      jobDescription: "HTML Developer",
-      experience: "0-2 Yrs Exp.",
+      jobDescription: "Desenvolvedor HTML",
+      experience: "0-2 anos de experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       fullTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: true,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgent"
+          badgeName: "Urgente",
         },
         {
           id: 2,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 2,
       companyImg: jobImage2,
-      jobDescription: "Marketing Director",
-      experience: "2-4 Yrs Exp.",
+      jobDescription: "Diretor de Marketing",
+      experience: "2-4 anos de experiência",
       companyName: "Creative Agency",
-      location: "New York",
-      salary: "$250 - $800 / month",
+      location: "Nova Iorque",
+      salary: "$250 - $800 / mês",
       partTime: true,
-      timing: "Full Time",
+      timing: "Tempo Integral",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Private"
-        }
-      ]
+          badgeName: "Privado",
+        },
+      ],
     },
     {
       id: 3,
       companyImg: jobImage3,
-      jobDescription: "HTML Developer",
-      experience: "2-4 Yrs Exp.",
+      jobDescription: "Desenvolvedor HTML",
+      experience: "2-4 anos de experiência",
       companyName: "Hireway Technology Pvt.Ltd",
-      location: "California",
-      salary: "$250 - $800 / month",
+      location: "Califórnia",
+      salary: "$250 - $800 / mês",
       freeLance: true,
-      timing: "Freelance",
+      timing: "Freelancer",
       addclassNameBookmark: false,
       badges: [
         {
           id: 1,
           badgeclassName: "bg-blue-subtle text-blue",
-          badgeName: "Internship"
-        }
-      ]
-    }
+          badgeName: "Estágio",
+        },
+      ],
+    },
   ];
+
   return (
     <React.Fragment>
       {jobVacancyPost.map((jobVacancyPostDetails, key) => (
@@ -169,7 +170,7 @@ const JobVacancyPost = () => {
                 <div>
                   <ul className="list-inline mb-0">
                     <li className="list-inline-item">
-                      <i className="uil uil-tag"></i> Keywords :
+                      <i className="uil uil-tag"></i> Palavras Chave:
                     </li>
                     <li className="list-inline-item">
                       <Link to="#" className="primary-link text-muted">
@@ -190,10 +191,10 @@ const JobVacancyPost = () => {
                 <div className="text-md-end">
                   <Link
                     to="#applyNow"
-                    onClick={openModal}
+                    onClick={toggleModal}
                     className="primary-link"
                   >
-                    Apply Now <i className="mdi mdi-chevron-double-right"></i>
+                    Inscreva-se <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -204,7 +205,7 @@ const JobVacancyPost = () => {
 
       <div className="text-center mt-4">
         <Link to="/joblist" className="primary-link form-text">
-          View More <i className="mdi mdi-arrow-right"></i>
+          Ver Mais <i className="mdi mdi-arrow-right"></i>
         </Link>
       </div>
 
@@ -216,70 +217,7 @@ const JobVacancyPost = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
-          <Modal isOpen={modal} toggle={openModal} centered>
-            <ModalBody className="modal-body p-5">
-              <div className="text-center mb-4">
-                <h5 className="modal-title" id="staticBackdropLabel">
-                  Apply For This Job
-                </h5>
-              </div>
-              <div className="position-absolute end-0 top-0 p-3">
-                <button
-                  type="button"
-                  onClick={openModal}
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="mb-3">
-                <Label for="nameControlInput" className="form-label">
-                  Name
-                </Label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  id="nameControlInput"
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="emailControlInput2" className="form-label">
-                  Email Address
-                </Label>
-                <Input
-                  type="email"
-                  className="form-control"
-                  id="emailControlInput2"
-                  placeholder="Enter your email"
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="messageControlTextarea" className="form-label">
-                  Message
-                </Label>
-                <textarea
-                  className="form-control"
-                  id="messageControlTextarea"
-                  rows="4"
-                  placeholder="Enter your message"
-                ></textarea>
-              </div>
-              <div className="mb-4">
-                <Label className="form-label" for="inputGroupFile01">
-                  Resume Upload
-                </Label>
-                <Input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
-                />
-              </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Send Application
-              </button>
-            </ModalBody>
-          </Modal>
+          <JobApplicationModal isOpen={modalOpen} toggle={toggleModal} />
         </div>
       </div>
     </React.Fragment>

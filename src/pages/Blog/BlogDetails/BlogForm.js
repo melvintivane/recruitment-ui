@@ -6,19 +6,19 @@ const BlogForm = () => {
   return (
     <React.Fragment>
       <Form action="#" className="contact-form mt-5">
-        <h5 className="border-bottom pb-3">Leave a Message</h5>
+        <h5 className="border-bottom pb-3">Deixe uma Mensagem</h5>
         <Row className="mt-4">
           <Col lg={6}>
             <div className="position-relative mb-3">
               <label htmlFor="name" className="form-label">
-                Name
+                Nome
               </label>
               <Input
                 name="name"
                 id="name"
                 type="text"
                 className="form-control"
-                placeholder="Enter your name*"
+                placeholder="Digite seu nome*"
                 required=""
               />
             </div>
@@ -26,14 +26,14 @@ const BlogForm = () => {
           <Col lg={6}>
             <div className="position-relative mb-3">
               <label htmlFor="email" className="form-label">
-                Email address
+                Endereço de e-mail
               </label>
               <Input
                 name="email"
                 id="email"
                 type="email"
                 className="form-control"
-                placeholder="Enter your email*"
+                placeholder="Digite seu e-mail*"
                 required=""
               />
             </div>
@@ -41,28 +41,28 @@ const BlogForm = () => {
           <Col lg={12}>
             <div className="position-relative mb-3">
               <label htmlFor="subject" className="form-label">
-                Subject
+                Assunto
               </label>
               <Input
                 name="subject"
                 id="subject"
                 type="text"
                 className="form-control"
-                placeholder="Subject"
+                placeholder="Assunto"
               />
             </div>
           </Col>
           <Col lg={12}>
             <div className="position-relative mb-3">
               <label htmlFor="comments" className="form-label">
-                Meassage
+                Mensagem
               </label>
               <textarea
                 name="comments"
                 id="comments"
                 rows="4"
                 className="form-control"
-                placeholder="Enter your message"
+                placeholder="Digite sua mensagem"
               ></textarea>
             </div>
           </Col>
@@ -75,7 +75,7 @@ const BlogForm = () => {
               id="submit"
               className="btn btn-primary btn-hover"
             >
-              Send Meassage <i className="uil uil-message ms-1"></i>
+              Enviar Mensagem <i className="uil uil-message ms-1"></i>
             </button>
           </Col>
         </Row>

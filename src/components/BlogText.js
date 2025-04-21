@@ -128,7 +128,7 @@ const BlogText = () => {
                 </Link>
                 <p className="text-muted">{blogTextDetails.blogContent}</p>
                 <div>
-                  <Link to="/blog-details" className="form-text text-primary">
+                  <Link to="/blogdetails" className="form-text text-primary">
                     Read More <i className="uil uil-angle-right-b"></i>
                   </Link>
                 </div>

@@ -11,7 +11,7 @@ import {
   Form,
   NavItem,
   CardBody,
-  Label
+  Label,
 } from "reactstrap";
 
 import classnames from "classnames";
@@ -44,7 +44,7 @@ const RightSideContent = () => {
                 }}
                 type="button"
               >
-                Overview
+                Visão geral
               </NavLink>
             </NavItem>
             <NavItem role="presentation">
@@ -56,7 +56,7 @@ const RightSideContent = () => {
                 }}
                 type="button"
               >
-                Settings
+                Configurações
               </NavLink>
             </NavItem>
           </Nav>
@@ -65,41 +65,42 @@ const RightSideContent = () => {
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
                 <div>
-                  <h5 className="fs-18 fw-bold">About</h5>
+                  <h5 className="fs-18 fw-bold">Sobre Mim</h5>
                   <p className="text-muted mt-4">
-                    Developer with over 5 years' experience working in both the
-                    public and private sectors. Diplomatic, personable, and
-                    adept at managing sensitive situations. Highly organized,
-                    self-motivated, and proficient with computers. Looking to
-                    boost students’ satisfactions scores for{" "}
-                    <b>International University</b>. Bachelor's degree in
-                    communications.
+                    Desenvolvedor com mais de 5 anos de experiência trabalhando
+                    nos setores público e privado. Diplomático, sociável e
+                    habilidoso em lidar com situações sensíveis. Altamente
+                    organizado, autodidata e proficiente com computadores.
+                    Buscando aumentar as pontuações de satisfação dos alunos da{" "}
+                    <b>Universidade Internacional</b>. Bacharelado em
+                    comunicação.
                   </p>
                   <p className="text-muted">
-                    It describes the candidate's relevant experience, skills,
-                    and achievements. The purpose of this career summary is to
-                    explain your qualifications for the job in 3-5 sentences and
-                    convince the manager to read the whole resume document.
+                    Descreve a experiência relevante, habilidades e conquistas
+                    do candidato. O objetivo deste resumo de carreira é explicar
+                    suas qualificações para o trabalho em 3-5 frases e convencer
+                    o gerente a ler o documento completo do currículo.
                   </p>
                 </div>
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Education</h6>
+                  <h6 className="fs-18 fw-bold mb-0">Educação</h6>
                   <div className="candidate-education-content mt-4 d-flex">
                     <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                       B
                     </div>
                     <div className="ms-4">
                       <h6 className="fs-16 mb-1">
-                        BCA - Bachelor of Computer Applications
+                        BCA - Bacharelado em Aplicações de Computador
                       </h6>
                       <p className="mb-2 text-muted">
-                        International University - (2004 - 2010)
+                        Universidade Internacional - (2004 - 2010)
                       </p>
                       <p className="text-muted">
-                        There are many variations of passages of available, but
-                        the majority alteration in some form. As a highly
-                        skilled and successfull product development and design
-                        specialist with more than 4 Years of My experience.
+                        Existem muitas variações de trechos disponíveis, mas a
+                        maioria das alterações em algum formato. Como um
+                        especialista altamente qualificado e bem-sucedido em
+                        desenvolvimento de produtos e design com mais de 4 anos
+                        de experiência.
                       </p>
                     </div>
                   </div>
@@ -109,16 +110,17 @@ const RightSideContent = () => {
                     </div>
                     <div className="ms-4">
                       <h6 className="fs-16 mb-1">
-                        MCA - Master of Computer Application
+                        MCA - Mestrado em Aplicações de Computador
                       </h6>
                       <p className="mb-2 text-muted">
-                        International University - (2010 - 2012)
+                        Universidade Internacional - (2010 - 2012)
                       </p>
                       <p className="text-muted">
-                        There are many variations of passages of available, but
-                        the majority alteration in some form. As a highly
-                        skilled and successfull product development and design
-                        specialist with more than 4 Years of My experience.
+                        Existem muitas variações de trechos disponíveis, mas a
+                        maioria das alterações em algum formato. Como um
+                        especialista altamente qualificado e bem-sucedido em
+                        desenvolvimento de produtos e design com mais de 4 anos
+                        de experiência.
                       </p>
                     </div>
                   </div>
@@ -128,22 +130,23 @@ const RightSideContent = () => {
                     </div>
                     <div className="ms-4">
                       <h6 className="fs-16 mb-1">
-                        Design Communication Visual
+                        Design de Comunicação Visual
                       </h6>
                       <p className="text-muted mb-2">
-                        International University - (2012-2015)
+                        Universidade Internacional - (2012-2015)
                       </p>
                       <p className="text-muted">
-                        There are many variations of passages of available, but
-                        the majority alteration in some form. As a highly
-                        skilled and successfull product development and design
-                        specialist with more than 4 Years of My experience.
+                        Existem muitas variações de trechos disponíveis, mas a
+                        maioria das alterações em algum formato. Como um
+                        especialista altamente qualificado e bem-sucedido em
+                        desenvolvimento de produtos e design com mais de 4 anos
+                        de experiência.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Experiences</h6>
+                  <h6 className="fs-18 fw-bold mb-0">Experiência</h6>
                   <div className="candidate-education-content mt-4 d-flex">
                     <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                       {" "}
@@ -151,16 +154,17 @@ const RightSideContent = () => {
                     </div>
                     <div className="ms-4">
                       <h6 className="fs-16 mb-1">
-                        Web Design & Development Team Leader
+                        Líder de Equipe de Design e Desenvolvimento Web
                       </h6>
                       <p className="mb-2 text-muted">
-                        Creative Agency - (2013 - 2016)
+                        Agência Criativa - (2013 - 2016)
                       </p>
                       <p className="text-muted">
-                        There are many variations of passages of available, but
-                        the majority alteration in some form. As a highly
-                        skilled and successfull product development and design
-                        specialist with more than 4 Years of My experience.
+                        Existem muitas variações de trechos disponíveis, mas a
+                        maioria das alterações em algum formato. Como um
+                        especialista altamente qualificado e bem-sucedido em
+                        desenvolvimento de produtos e design com mais de 4 anos
+                        de experiência.
                       </p>
                     </div>
                   </div>
@@ -170,31 +174,32 @@ const RightSideContent = () => {
                       P{" "}
                     </div>
                     <div className="ms-4">
-                      <h6 className="fs-16 mb-1">Project Manager</h6>
+                      <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
                       <p className="mb-2 text-muted">
-                        Hireway Technology Pvt.Ltd - (Pressent)
+                        Hireway Technology Pvt.Ltd - (Presente)
                       </p>
                       <p className="text-muted mb-0">
-                        There are many variations of passages of available, but
-                        the majority alteration in some form. As a highly
-                        skilled and successfull product development and design
-                        specialist with more than 4 Years of My experience.
+                        Existem muitas variações de trechos disponíveis, mas a
+                        maioria das alterações em algum formato. Como um
+                        especialista altamente qualificado e bem-sucedido em
+                        desenvolvimento de produtos e design com mais de 4 anos
+                        de experiência.
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4">
-                  <h5 className="fs-18 fw-bold">Skills</h5>
+                  <h5 className="fs-18 fw-bold">Habilidades</h5>
                 </div>
                 <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
                   <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Cloud Management
+                    Gerenciamento de Nuvem
                   </span>
                   <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Responsive Design
+                    Design Responsivo
                   </span>
                   <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Network Architecture
+                    Arquitetura de Rede
                   </span>
                   <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
                     PHP
@@ -203,28 +208,28 @@ const RightSideContent = () => {
                     Bootstrap
                   </span>
                   <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    UI & UX Designer
+                    Designer UI & UX
                   </span>
                 </div>
                 <div className="mt-4">
-                  <h5 className="fs-18 fw-bold">Spoken languages</h5>
+                  <h5 className="fs-18 fw-bold">Idiomas falados</h5>
                 </div>
                 <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
                   <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    English
+                    Inglês
                   </span>
                   <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    German
+                    Alemão
                   </span>
                   <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    French
+                    Francês
                   </span>
                 </div>
               </TabPane>
               <TabPane tabId="2">
                 <Form action="#">
                   <div>
-                    <h5 className="fs-17 fw-semibold mb-3 mb-0">My Account</h5>
+                    <h5 className="fs-17 fw-semibold mb-3 mb-0">Minha Conta</h5>
                     <div className="text-center">
                       <div className="mb-4 profile-user">
                         <img
@@ -252,7 +257,7 @@ const RightSideContent = () => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <label htmlFor="firstName" className="form-label">
-                            First Name
+                            Nome
                           </label>
                           <Input
                             type="text"
@@ -264,7 +269,7 @@ const RightSideContent = () => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <Label htmlFor="lastName" className="form-label">
-                            Last Name
+                            Apelido
                           </Label>
                           <Input
                             type="text"
@@ -273,26 +278,25 @@ const RightSideContent = () => {
                           />
                         </div>
                       </Col>
-
                       <Col lg={6}>
                         <div className="mb-3">
                           <label
                             htmlFor="choices-single-categories"
                             className="form-label"
                           >
-                            Account Type
+                            Tipo de Conta
                           </label>
                           <select
                             className="form-select"
                             data-trigger
                             name="choices-single-categories"
                             id="choices-single-categories"
-                            aria-label="Default select example"
+                            aria-label="Exemplo de seleção padrão"
                           >
-                            <option value="4">Accounting</option>
-                            <option value="1">IT & Software</option>
+                            <option value="4">Contabilidade</option>
+                            <option value="1">TI & Software</option>
                             <option value="3">Marketing</option>
-                            <option value="5">Banking</option>
+                            <option value="5">Bancário</option>
                           </select>
                         </div>
                       </Col>
@@ -312,7 +316,7 @@ const RightSideContent = () => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Profile</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">Perfil</h5>
                     <Row>
                       <Col lg={12}>
                         <div className="mb-3">
@@ -320,16 +324,17 @@ const RightSideContent = () => {
                             htmlFor="exampleFormControlTextarea1"
                             className="form-label"
                           >
-                            Introduce Yourself
+                            Apresente-se
                           </Label>
                           <textarea className="form-control" rows="5">
-                            Developer with over 5 years' experience working in
-                            both the public and private sectors. Diplomatic,
-                            personable, and adept at managing sensitive
-                            situations. Highly organized, self-motivated, and
-                            proficient with computers. Looking to boost
-                            students’ satisfactions scores for International
-                            University. Bachelor's degree in communications.
+                            Desenvolvedor com mais de 5 anos de experiência
+                            trabalhando tanto no setor público quanto no
+                            privado. Diplomático, sociável e habilidoso na
+                            gestão de situações sensíveis. Altamente organizado,
+                            automotivado e proficiente em informática. Buscando
+                            aumentar as pontuações de satisfação dos alunos da
+                            Universidade Internacional. Graduação em
+                            Comunicação.
                           </textarea>
                         </div>
                       </Col>
@@ -337,7 +342,7 @@ const RightSideContent = () => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <Label htmlFor="languages" className="form-label">
-                            Languages
+                            Linguas
                           </Label>
                           <Input
                             type="text"
@@ -353,7 +358,7 @@ const RightSideContent = () => {
                             htmlFor="choices-single-location"
                             className="form-label"
                           >
-                            Location
+                            Localização
                           </label>
                           <select
                             className="form-select"
@@ -372,7 +377,7 @@ const RightSideContent = () => {
                       <Col lg={12}>
                         <div className="mb-3">
                           <Label htmlFor="attachmentscv" className="form-label">
-                            Attachments CV
+                            Anexar CV
                           </Label>
                           <Input
                             className="form-control"
@@ -385,7 +390,7 @@ const RightSideContent = () => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Social Media</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">Redes Sociais</h5>
                     <Row>
                       <Col lg={6}>
                         <div className="mb-3">
@@ -447,7 +452,7 @@ const RightSideContent = () => {
 
                   <div className="mt-4">
                     <h5 className="fs-17 fw-semibold mb-3 mb-3">
-                      Change Password
+                      Alterar Senha
                     </h5>
                     <Row>
                       <Col lg={12}>
@@ -456,12 +461,12 @@ const RightSideContent = () => {
                             htmlFor="current-password-input"
                             className="form-label"
                           >
-                            Current password
+                            Senha atual
                           </Label>
                           <Input
                             type="password"
                             className="form-control"
-                            placeholder="Enter Current password"
+                            placeholder="Digite a senha atual"
                             id="current-password-input"
                           />
                         </div>
@@ -473,12 +478,12 @@ const RightSideContent = () => {
                             htmlFor="new-password-input"
                             className="form-label"
                           >
-                            New password
+                            Nova senha
                           </Label>
                           <Input
                             type="password"
                             className="form-control"
-                            placeholder="Enter new password"
+                            placeholder="Digite a nova senha"
                             id="new-password-input"
                           />
                         </div>
@@ -490,12 +495,12 @@ const RightSideContent = () => {
                             htmlFor="confirm-password-input"
                             className="form-label"
                           >
-                            Confirm Password
+                            Confirmar senha
                           </Label>
                           <Input
                             type="password"
                             className="form-control"
-                            placeholder="Confirm Password"
+                            placeholder="Confirme a nova senha"
                             id="confirm-password-input"
                           />
                         </div>
@@ -512,7 +517,7 @@ const RightSideContent = () => {
                             className="form-check-label"
                             htmlFor="verification"
                           >
-                            Enable Two-Step Verification via email
+                            Ativar verificação em duas etapas por e-mail
                           </Label>
                         </div>
                       </Col>
@@ -520,7 +525,7 @@ const RightSideContent = () => {
                   </div>
                   <div className="mt-4 text-end">
                     <Link to="#" className="btn btn-primary">
-                      Update
+                      Atualizar
                     </Link>
                   </div>
                 </Form>

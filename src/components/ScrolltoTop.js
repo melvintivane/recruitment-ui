@@ -13,6 +13,8 @@ const ScrolltoTop = () => {
       document.documentElement.scrollTop > 20
     ) {
       mybutton.style.display = "block";
+      console.log(document.body.scrollTop);
+      console.log(document.documentElement.scrollTop);      
     } else {
       mybutton.style.display = "none";
     }
