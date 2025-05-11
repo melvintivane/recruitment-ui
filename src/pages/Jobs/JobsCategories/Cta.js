@@ -13,7 +13,7 @@ const Cta = () => {
                 Encontre novos funcionários.
               </h3>
               <p className="para-desc text-muted mx-auto">
-                Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                Comece a trabalhar com a Recruitment, que pode fornecer tudo o que
                 precisa para gerar notoriedade, atrair tráfego e conectar-se.
               </p>
               <div className="mt-4">

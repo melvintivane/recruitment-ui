@@ -7,7 +7,7 @@ import Popular from "./Popular";
 import Sidebar from "./Sidebar";
 
 const JobList = () => {
-  document.title = "Job List | Hireway - Job Listing | Mobitel";
+  document.title = "Job List | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

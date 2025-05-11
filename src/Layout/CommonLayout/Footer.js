@@ -72,7 +72,7 @@ const Footer = () => {
           <Row>
             <Col lg={4}>
               <div className="footer-item mt-4 mt-lg-0 me-lg-5">
-                <h4 className="text-white mb-4">Hireway</h4>
+                <h4 className="text-white mb-4">Recruitment</h4>
                 <p className="text-white-50">
                   É um fato estabelecido que um leitor se distrairá com o
                   conteúdo de uma página ao observar seu layout.
@@ -114,14 +114,14 @@ const Footer = () => {
           <Row>
             <Col lg={12}>
               <p className="text-white-50 text-center mb-0">
-                {new Date().getFullYear()} &copy; Hireway - Job Listing Page
-                Template by{" "}
+                {new Date().getFullYear()} &copy; Recruitment - Job Listing Page
+                by{" "}
                 <Link
                   to="//Mobitel.in/"
                   target="_blank"
                   className="text-reset text-decoration-underline"
                 >
-                  Mobitel
+                  MyMobi Solutions
                 </Link>
               </p>
             </Col>

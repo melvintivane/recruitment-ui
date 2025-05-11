@@ -18,7 +18,7 @@ const CompanyDetails = () => {
     {
       id: 1,
       jobImg: jobImage1,
-      compnayName: "Hireway Consulting",
+      compnayName: "Recruitment Consulting",
       location: "New York",
       numberOfVacancy: 52,
       label: true,

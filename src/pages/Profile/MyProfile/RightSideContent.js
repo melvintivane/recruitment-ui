@@ -171,12 +171,12 @@ const RightSideContent = () => {
                   <div className="candidate-education-content mt-4 d-flex">
                     <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                       {" "}
-                      P{" "}
+                      G{" "}
                     </div>
                     <div className="ms-4">
                       <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
                       <p className="mb-2 text-muted">
-                        Hireway Technology Pvt.Ltd - (Presente)
+                        Recruitment Technology Pvt.Ltd - (Presente)
                       </p>
                       <p className="text-muted mb-0">
                         Existem muitas variações de trechos disponíveis, mas a

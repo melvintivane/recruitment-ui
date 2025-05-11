@@ -145,7 +145,7 @@ const RightSideContent = () => {
                 <div className="ms-4">
                   <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
                   <p className="mb-2 text-muted">
-                    Hireway Technology Pvt.Ltd - (Presente)
+                    Recruitment Technology Pvt.Ltd - (Presente)
                   </p>
                   <p className="text-muted mb-0">
                     Existem muitas variações de passagens disponíveis, mas a

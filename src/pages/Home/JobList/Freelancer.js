@@ -48,7 +48,7 @@ const Freelancer = () => {
       id: 3,
       companyImg: jobImage3,
       jobDescription: "Gerente de Marketing Digital",
-      companyName: "Hireway Technology Pvt.Ltd",
+      companyName: "Recruitment Technology Pvt.Ltd",
       location: "Phoenix, Arizona",
       salary: "1500-2400/m",
       freelancer: true,

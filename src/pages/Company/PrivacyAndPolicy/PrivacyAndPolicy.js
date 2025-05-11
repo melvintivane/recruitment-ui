@@ -4,7 +4,7 @@ import PrivacyAndPolicyPage from "../../Company/PrivacyAndPolicy/PrivacyAndPolic
 
 const PrivacyAndPolicy = () => {
   document.title =
-    "Privacy & Policy | Hireway - Job Listing | Mobitel";
+    "Privacy & Policy | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

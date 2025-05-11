@@ -34,7 +34,7 @@ const ComingSoon = () => {
       );
     }
   };
-  document.title = "Coming Soon | Hireway - Job Listing | Mobitel";
+  document.title = "Coming Soon | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -55,7 +55,7 @@ const ComingSoon = () => {
                       </div>
                       <h1>We're Launching Soon..!!</h1>
                       <p className="text-muted mb-4 pb-3">
-                        Start working with Hireway that can provide everything you
+                        Start working with Recruitment that can provide everything you
                         need to generate awareness, drive traffic, connect.
                       </p>
                       <div id="countdown" className="d-flex">

@@ -3,7 +3,7 @@ import Section from "../../Company/Faqs/Section";
 import FaqContent from "../../Company/Faqs/FaqContent";
 
 const Faqs = () => {
-  document.title = "FAQs | Hireway - Job Listing | Mobitel";
+  document.title = "FAQs | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

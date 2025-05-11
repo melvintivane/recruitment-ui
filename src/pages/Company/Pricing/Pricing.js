@@ -4,7 +4,7 @@ import PricingPage from "../../Company/Pricing/PricingPage";
 import Cta from "../../Company/Pricing/Cta";
 
 const Pricing = () => {
-  document.title = "Pricing | Hireway - Job Listing | Mobitel";
+  document.title = "Pricing | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

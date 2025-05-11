@@ -10,7 +10,7 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
-  document.title = "Sign In | Hireway - Job Listing | Mobitel";
+  document.title = "Sign In | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -40,7 +40,7 @@ const SignIn = () => {
                                 height="30"
                                 className="logo-light"
                               />
-                              Hireway
+                              Recruitment
                             </Link>
                             <div className="mt-5">
                               <img
@@ -57,7 +57,7 @@ const SignIn = () => {
                               <div className="text-center mb-4">
                                 <h5>Bem-vindo de Volta!</h5>
                                 <p className="text-white-70">
-                                  Faça login para continuar na Hireway.
+                                  Faça login para continuar na Recruitment.
                                 </p>
                               </div>
                               <Form action="/" className="auth-form">

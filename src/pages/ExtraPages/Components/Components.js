@@ -20,7 +20,7 @@ import Grid from "./Grid";
 import Video from "./Video";
 
 const Components = () => {
-  document.title = "Components | Hireway - Job Listing | Mobitel";
+  document.title = "Components | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

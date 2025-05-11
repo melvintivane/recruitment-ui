@@ -16,10 +16,10 @@ const About = () => {
                 <h6 className="sub-title">Sobre Nós</h6>
                 <h2 className="title mb-4">
                   Por que <span className="text-warning fw-bold">35.000+</span>{" "}
-                  Pessoas Confiam na Hireway?
+                  Pessoas Confiam na Recruitment?
                 </h2>
                 <p className="text-muted">
-                  Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                  Comece a trabalhar com a Recruitment, que pode fornecer tudo o que
                   você precisa para gerar reconhecimento, atrair tráfego e
                   conectar. Texto fictício é um texto usado na indústria de
                   publicação ou por designers de sites para ocupar o espaço que

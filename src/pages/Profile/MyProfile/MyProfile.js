@@ -5,7 +5,7 @@ import RightSideContent from "./RightSideContent";
 import Section from "./Section";
 
 const MyProfile = () => {
-  document.title = "My Profile | Hireway - Job Listing | Mobitel";
+  document.title = "My Profile | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <Section />

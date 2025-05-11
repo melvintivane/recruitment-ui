@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Modal, ModalBody, Input, Label } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //jobImages
@@ -59,7 +59,7 @@ const FeaturedJobs = () => {
       id: 3,
       companyImg: jobImage3,
       jobDescription: "Gerente de Marketing Digital",
-      companyName: "Hireway Technology Pvt.Ltd",
+      companyName: "Recruitment Technology Pvt.Ltd",
       location: "Phoenix, Arizona",
       salary: "1500-2400/m",
       freelancer: true,

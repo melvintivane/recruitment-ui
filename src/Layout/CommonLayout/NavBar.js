@@ -124,9 +124,9 @@ const NavBar = (props) => {
             className="navbar-brand text-dark fw-bold mx-auto d-flex align-items-center gap-2"
             to="/"
           >
-            <img src={lightLogo} height="22" alt="" className="logo-dark" />
-            <img src={darkLogo} height="22" alt="" className="logo-light" />
-            Hireway
+            <img src={lightLogo} height="30" alt="" className="logo-dark" />
+            <img src={darkLogo} height="30" alt="" className="logo-light" />
+            Recruitment.
           </Link>
           <div>
             <NavbarToggler
@@ -189,21 +189,6 @@ const NavBar = (props) => {
                   <li>
                     <Link className="dropdown-item" to="/aboutus">
                       Sobre Nós
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/services">
-                      Serviços
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/team">
-                      Equipe
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/pricing">
-                      Preços
                     </Link>
                   </li>
                   <li>
@@ -395,7 +380,7 @@ const NavBar = (props) => {
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/myprofile">
-                    Meu Perfil
+                    Meu CV
                   </Link>
                 </li>
                 <li>

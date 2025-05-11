@@ -9,7 +9,7 @@ import signUpImage from "../../assets/images/auth/sign-up.png";
 import { Form } from "react-bootstrap";
 
 const SignUp = () => {
-  document.title = "Sign Up | Hireway - Job Listing | Mobitel";
+  document.title = "Sign Up | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -39,7 +39,7 @@ const SignUp = () => {
                                 height="30"
                                 className="logo-light"
                               />
-                              Hireway
+                              Recruitment
                             </Link>
                             <div className="mt-5">
                               <img
@@ -57,7 +57,7 @@ const SignUp = () => {
                                 <h5>Vamos Começar</h5>
                                 <p className="text-white-70">
                                   Cadastre-se e tenha acesso a todos os recursos
-                                  do Hireway
+                                  do Recruitment
                                 </p>
                               </div>
                               <Form action="/" className="auth-form">

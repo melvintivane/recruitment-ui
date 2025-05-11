@@ -242,7 +242,7 @@ const PricingPage = () => {
                 Veja tudo sobre seu funcionário em um só lugar.
               </h3>
               <p className="para-desc text-muted mx-auto">
-                Comece a trabalhar com a Hireway, que pode fornecer tudo o que
+                Comece a trabalhar com a Recruitment, que pode fornecer tudo o que
                 você precisa para gerar conscientização, direcionar tráfego e
                 conectar.
               </p>

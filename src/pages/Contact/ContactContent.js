@@ -13,9 +13,9 @@ const ContactContent = () => {
           <Row className="align-items-center mt-5">
             <Col lg={6}>
               <div className="section-title mt-4 mt-lg-0">
-                <h3 className="title">Entre em contato</h3>
+                <h3 className="title">Entre em contacto</h3>
                 <p className="text-muted">
-                  Comece a trabalhar com a Hireway que pode fornecer tudo o que
+                  Comece a trabalhar com a Recruitment que pode fornecer tudo o que
                   você precisa para gerar visibilidade, aumentar o tráfego e
                   conectar.
                 </p>
@@ -41,6 +41,19 @@ const ContactContent = () => {
                         />
                       </div>
                     </Col>
+                    <Col lg={12}>
+                      <div className="mb-3">
+                        <Label htmlFor="subjectInput" className="form-label">
+                          Assunto
+                        </Label>
+                        <Input
+                          type="text"
+                          className="form-control"
+                          name="subject"
+                          placeholder="Digite o assunto"
+                        />
+                      </div>
+                    </Col>
                     <Col md={6}>
                       <div className="mb-3">
                         <Label htmlFor="emailInput" className="form-label">
@@ -58,7 +71,7 @@ const ContactContent = () => {
                     <Col md={6}>
                       <div className="mb-3">
                         <Label htmlFor="subjectInput" className="form-label">
-                          Assunto
+                          Contacto
                         </Label>
                         <Input
                           type="text"
@@ -115,7 +128,7 @@ const ContactContent = () => {
                     <i className="uil uil-envelope"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">contactus@hireway.com</p>
+                    <p className="mb-0">contactus@Recruitment.com</p>
                   </div>
                 </div>
                 <div className="d-flex text-muted align-items-center mt-2">

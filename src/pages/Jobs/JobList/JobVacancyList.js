@@ -34,7 +34,7 @@ const JobVacancyList = () => {
       id: 2,
       companyImg: jobImage2,
       jobDescription: "Gerente de Marketing Digital",
-      companyName: "Hireway Technology Pvt.Ltd",
+      companyName: "Recruitment Technology Pvt.Ltd",
       location: "Phoenix, Arizona",
       jobPostTime: "Há 15 minutos",
       fullTime: true,

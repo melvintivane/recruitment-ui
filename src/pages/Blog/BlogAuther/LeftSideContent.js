@@ -64,7 +64,7 @@ const LeftSideContent = () => {
                 />
                 <h6 className="fs-17">Gabriel Palmer</h6>
                 <p className="text-muted">
-                  Comece a trabalhar com a Hireway, que pode fornecer o suporte
+                  Comece a trabalhar com a Recruitment, que pode fornecer o suporte
                   necessário para gerar conscientização, tráfego e criar
                   conexões.
                 </p>

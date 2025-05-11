@@ -2,9 +2,6 @@ import React from "react";
 
 //Company Section
 import AboutUs from "../pages/Company/AboutUs/AboutUs";
-import Services from "../pages/Company/Services/Services";
-import Team from "../pages/Company/Team/Team";
-import Pricing from "../pages/Company/Pricing/Pricing";
 import PrivacyAndPolicy from "../pages/Company/PrivacyAndPolicy/PrivacyAndPolicy";
 import Faqs from "../pages/Company/Faqs/Faqs";
 
@@ -44,7 +41,7 @@ import BookMarkJobs from "../pages/Profile/BookMarkJobs/BookMarkJobs";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 
 //Home Section
-const Layout1 = React.lazy(() => import('../pages/Home/Layout1/Layout1'));
+const Layout1 = React.lazy(() => import("../pages/Home/Layout1/Layout1"));
 
 const userRoutes = [
   //profile Section(User Profile)
@@ -79,13 +76,10 @@ const userRoutes = [
   //Company Section
   { path: "/faqs", component: <Faqs /> },
   { path: "/privacyandpolicy", component: <PrivacyAndPolicy /> },
-  { path: "/pricing", component: <Pricing /> },
-  { path: "/team", component: <Team /> },
-  { path: "/services", component: <Services /> },
   { path: "/aboutus", component: <AboutUs /> },
 
   //Home Section
-  { path: "/", component: <Layout1 /> }
+  { path: "/", component: <Layout1 /> },
 ];
 
 const authRoutes = [
@@ -94,6 +88,6 @@ const authRoutes = [
   { path: "/resetpassword", component: <ResetPassword /> },
   { path: "/signout", component: <SignOut /> },
   { path: "/signup", component: <SignUp /> },
-  { path: "/signin", component: <SignIn /> }
+  { path: "/signin", component: <SignIn /> },
 ];
 export { userRoutes, authRoutes };

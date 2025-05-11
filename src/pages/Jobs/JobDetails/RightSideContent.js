@@ -112,7 +112,7 @@ const RightSideContent = () => {
               <img src={jobImages2} alt="" className="img-fluid rounded-3" />
 
               <div className="mt-4">
-                <h6 className="fs-17 mb-1">Hireway Technology Pvt.Ltd</h6>
+                <h6 className="fs-17 mb-1">Recruitment Technology Pvt.Ltd</h6>
                 <p className="text-muted">Desde julho de 2017</p>
               </div>
             </div>
@@ -143,7 +143,7 @@ const RightSideContent = () => {
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Website</h6>
                     <p className="text-muted fs-14 text-break mb-0">
-                      www.hirewaytechnology.com
+                      www.Recruitmenttechnology.com
                     </p>
                   </div>
                 </div>

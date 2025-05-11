@@ -10,7 +10,7 @@ import Tags from "../../Blog/BlogGrid/Tags";
 import SocialConnect from "../../Blog/BlogGrid/SocialConnect";
 
 const BlogGrid = () => {
-  document.title = "Blog Grid | Hireway - Job Listing | Mobitel";
+  document.title = "Blog Grid | Recruitment - Job Listing | Mobitel";
 
   return (
     <React.Fragment>

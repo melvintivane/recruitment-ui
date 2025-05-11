@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const ResetPassword = () => {
-  document.title = "Reset Password | Hireway - Job Listing | Mobitel";
+  document.title = "Reset Password | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -40,7 +40,7 @@ const ResetPassword = () => {
                                 height="30"
                                 className="logo-light"
                               />
-                              Hireway
+                              Recruitment
                             </Link>
                             <div className="mt-5">
                               <img
@@ -56,7 +56,7 @@ const ResetPassword = () => {
                             <div className="text-center mb-4">
                               <h5>Redefinir Senha</h5>
                               <p className="text-white-50">
-                                Redefina sua senha com a Hireway.
+                                Redefina sua senha com a Recruitment.
                               </p>
                             </div>
                             <Form className="auth-form text-white">

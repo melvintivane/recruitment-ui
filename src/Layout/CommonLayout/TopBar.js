@@ -118,7 +118,7 @@ const TopBar = () => {
                             <h5>Cadastro</h5>
                             <p className="text-muted">
                               Cadastre-se e tenha acesso a todas as
-                              funcionalidades do Hireway
+                              funcionalidades do Recruitment
                             </p>
                           </div>
                           <Form action="#" className="auth-form">

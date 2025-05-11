@@ -6,13 +6,13 @@ const PrivacyAndPolicyPage = () => {
   const privacyandpolicyPage = [
     {
       id: 1,
-      policyTitle: "Uso do Hireway",
+      policyTitle: "Uso do Recruitment",
       policyRules: [
         {
           id: 1,
           policyInnerRule:
-            " No Hireway, acessível em Website.com, uma de nossas principais prioridades é a privacidade dos nossos visitantes. Este documento de Política de Privacidade contém os tipos de informações que são coletadas e registradas pelo Hireway e como as utilizamos. Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade, não hesite em nos contatar por e-mail em",
-          bold: " Hirewaytechnologypvt.ltd.com"
+            " No Recruitment, acessível em Website.com, uma de nossas principais prioridades é a privacidade dos nossos visitantes. Este documento de Política de Privacidade contém os tipos de informações que são coletadas e registradas pelo Recruitment e como as utilizamos. Se você tiver dúvidas adicionais ou precisar de mais informações sobre nossa Política de Privacidade, não hesite em nos contatar por e-mail em",
+          bold: " Recruitmenttechnologypvt.ltd.com"
         },
         {
           id: 2,
@@ -22,7 +22,7 @@ const PrivacyAndPolicyPage = () => {
         {
           id: 3,
           policyInnerRule:
-            " Esta política de privacidade se aplica apenas às nossas atividades online e é válida para os visitantes do nosso site em relação às informações que eles compartilharam e/ou coletaram no Hireway. Esta política não se aplica a nenhuma informação coletada offline ou por canais que não sejam este site."
+            " Esta política de privacidade se aplica apenas às nossas atividades online e é válida para os visitantes do nosso site em relação às informações que eles compartilharam e/ou coletaram no Recruitment. Esta política não se aplica a nenhuma informação coletada offline ou por canais que não sejam este site."
         },
         {
           id: 4,

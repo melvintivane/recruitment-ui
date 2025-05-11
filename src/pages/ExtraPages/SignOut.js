@@ -8,7 +8,7 @@ import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const SignOut = () => {
-  document.title = "Sign Out | Hireway - Job Listing | Mobitel";
+  document.title = "Sign Out | Recruitment - Job Listing | Mobitel";
   return (
     <React.Fragment>
       <div>
@@ -38,7 +38,7 @@ const SignOut = () => {
                                 height="30"
                                 className="logo-light"
                               />
-                              Hireway
+                              Recruitment
                             </Link>
                             <div className="mt-5">
                               <img
@@ -55,7 +55,7 @@ const SignOut = () => {
                               <div className="text-center mb-4">
                                 <h5>Você Saiu da Conta</h5>
                                 <p className="text-white-70">
-                                  Obrigado por utilizar o Hireway
+                                  Obrigado por utilizar o Recruitment
                                 </p>
                               </div>
                               <Link
