@@ -1,170 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Col, Input, Label, Row, Modal, ModalBody } from "reactstrap";
+import { getAllVacancies } from "../../../services/vacancyService";
+import { Col, Input, Label, Row, Modal, ModalBody, PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
 //Images Import
-import jobImage1 from "../../../assets/images/featured-job/img-01.png";
-import jobImage2 from "../../../assets/images/featured-job/img-02.png";
-import jobImage3 from "../../../assets/images/featured-job/img-03.png";
-import jobImage4 from "../../../assets/images/featured-job/img-04.png";
-import jobImage5 from "../../../assets/images/featured-job/img-05.png";
-import jobImage6 from "../../../assets/images/featured-job/img-06.png";
-import jobImage7 from "../../../assets/images/featured-job/img-07.png";
+import jobImage1 from "../../../assets/images/light-logo.png";
 
 const JobVacancyList = () => {
-  //Apply Now Model
   const [modal, setModal] = useState(false);
+  const [vacancies, setVacancies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+    totalPages: 0,
+    totalElements: 0
+  });
+
+  useEffect(() => {
+    const fetchVacancies = async () => {
+      try {
+        setLoading(true);
+        const data = await getAllVacancies(pagination.page, pagination.size);
+        console.log("Fetched vacancies:", data);
+        
+        setVacancies(data.content);
+        setPagination(prev => ({
+          ...prev,
+          totalPages: data.totalPages,
+          totalElements: data.totalElements
+        }));
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch vacancies");
+        setLoading(false);
+        console.error("Error fetching vacancies:", err);
+      }
+    };
+
+    fetchVacancies();
+  }, [pagination.page, pagination.size]);
+
   const openModal = () => setModal(!modal);
 
-  const jobVacancyList = [
-    {
-      id: 1,
-      companyImg: jobImage1,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 3 minutos",
-      fullTime: true,
-      timing: "Tempo Integral",
-      addclassNameBookmark: false,
-      badges: [],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 2,
-      companyImg: jobImage2,
-      jobDescription: "Gerente de Marketing Digital",
-      companyName: "Recruitment Technology Pvt.Ltd",
-      location: "Phoenix, Arizona",
-      jobPostTime: "Há 15 minutos",
-      fullTime: true,
-      timing: "Tempo Integral",
-      catogary: "Vagas Recentes",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-        {
-          id: 2,
-          badgeclassName: "bg-primary-subtle text-primary",
-          badgeName: "Freelancer",
-        },
-      ],
-      experience: "4+ anos",
-    },
-    {
-      id: 3,
-      companyImg: jobImage3,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 37 minutos",
-      fullTime: true,
-      timing: "Tempo Integral",
-      addclassNameBookmark: false,
-      badges: [],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 4,
-      companyImg: jobImage4,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 50 minutos",
-      freeLance: true,
-      timing: "Freelancer",
-      addclassNameBookmark: false,
-      badges: [],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 5,
-      companyImg: jobImage5,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 1 mês",
-      partTime: true,
-      timing: "Meio Período",
-      addclassNameBookmark: true,
-      badges: [],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 6,
-      companyImg: jobImage6,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 2 meses",
-      freeLance: true,
-      timing: "Freelancer",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-      ],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 7,
-      companyImg: jobImage7,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 2 meses",
-      partTime: true,
-      timing: "Meio Período",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-      ],
-      experience: "2 - 3 anos",
-    },
-    {
-      id: 8,
-      companyImg: jobImage3,
-      jobDescription: "Diretor de Produto",
-      companyName: "Agência Criativa",
-      location: "Escondido, Califórnia",
-      jobPostTime: "Há 3 meses",
-      internship: true,
-      timing: "Estágio",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Privado",
-        },
-      ],
-      experience: "2 - 3 anos",
-    },
-  ];
+  const handlePageChange = (newPage) => {
+    if (newPage >= 0 && newPage < pagination.totalPages) {
+      setPagination(prev => ({ ...prev, page: newPage }));
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setPagination(prev => ({ ...prev, size: newSize, page: 0 }));
+  };
+
+  if (loading) {
+    return <div>Loading vacancies...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">{error}</div>;
+  }
 
   return (
     <React.Fragment>
       <div>
-        {jobVacancyList.map((jobVacancyListDetails, key) => (
-          <div
-            key={key}
-            className={
-              jobVacancyListDetails.addclassNameBookmark === true
-                ? "job-box bookmark-post card mt-4"
-                : "job-box card mt-5"
-            }
-          >
+        {vacancies?.map((vacancy, key) => (
+          <div key={key} className="job-box card mt-4">
             <div className="bookmark-label text-center">
               <Link to="#" className="align-middle text-white">
                 <i className="mdi mdi-star"></i>
@@ -174,10 +77,10 @@ const JobVacancyList = () => {
               <Row className="align-items-center">
                 <Col md={2}>
                   <div className="text-center mb-4 mb-md-0">
-                    <Link to="/companydetails">
+                    <Link to={`/companydetails/${vacancy.company.id}`}>
                       <img
-                        src={jobVacancyListDetails.companyImg}
-                        alt=""
+                        src={jobImage1} // Você pode usar vacancy.company.picture se existir
+                        alt={vacancy.company.name}
                         className="img-fluid rounded-3"
                       />
                     </Link>
@@ -187,12 +90,12 @@ const JobVacancyList = () => {
                 <Col md={3}>
                   <div className="mb-2 mb-md-0">
                     <h5 className="fs-18 mb-0">
-                      <Link to="/jobdetails" className="text-dark">
-                        {jobVacancyListDetails.jobDescription}
+                      <Link to={`/jobdetails/${vacancy.id}`} className="text-dark">
+                        {vacancy.title}
                       </Link>
                     </h5>
                     <p className="text-muted fs-14 mb-0">
-                      {jobVacancyListDetails.companyName}
+                      {vacancy.company.name}
                     </p>
                   </div>
                 </Col>
@@ -203,7 +106,7 @@ const JobVacancyList = () => {
                       <i className="mdi mdi-map-marker text-primary me-1"></i>
                     </div>
                     <p className="text-muted mb-0">
-                      {jobVacancyListDetails.location}
+                      {`${vacancy.city.name}, ${vacancy.city.state.name}`}
                     </p>
                   </div>
                 </Col>
@@ -214,8 +117,7 @@ const JobVacancyList = () => {
                       <i className="uil uil-clock-three text-primary me-1"></i>
                     </div>
                     <p className="text-muted mb-0">
-                      {" "}
-                      {jobVacancyListDetails.jobPostTime}
+                      {new Date(vacancy.createdAt).toLocaleDateString()}
                     </p>
                   </div>
                 </Col>
@@ -224,28 +126,23 @@ const JobVacancyList = () => {
                   <div>
                     <span
                       className={
-                        jobVacancyListDetails.fullTime === true
+                        vacancy.type === "FULL_TIME"
                           ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
-                          : jobVacancyListDetails.partTime === true
+                          : vacancy.type === "PART_TIME"
                           ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
-                          : jobVacancyListDetails.freeLance === true
+                          : vacancy.type === "CONTRACT"
                           ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
-                          : jobVacancyListDetails.internship === true
-                          ? "badge bg-info-subtle text-info mt-1"
-                          : ""
+                          : "badge bg-info-subtle text-info mt-1"
                       }
                     >
-                      {jobVacancyListDetails.timing}
+                      {vacancy.type === "FULL_TIME" ? "Tempo Integral" : 
+                       vacancy.type === "PART_TIME" ? "Meio Período" : 
+                       vacancy.type === "CONTRACT" ? "Contrato" : "Estágio"}
                     </span>
-                    {(jobVacancyListDetails.badges || []).map(
-                      (badgeInner, key) => (
-                        <span
-                          className={`badge ${badgeInner.badgeclassName} fs-13 mt-1`}
-                          key={key}
-                        >
-                          {badgeInner.badgeName}
-                        </span>
-                      )
+                    {vacancy.status === "ACTIVE" && (
+                      <span className="badge bg-warning-subtle text-warning fs-13 mt-1">
+                        Ativo
+                      </span>
                     )}
                   </div>
                 </Col>
@@ -257,7 +154,7 @@ const JobVacancyList = () => {
                   <div>
                     <p className="text-muted mb-0">
                       <span className="text-dark">Experiência: </span>
-                      {jobVacancyListDetails.experience}
+                      {vacancy.yearsOfExperience} anos
                     </p>
                   </div>
                 </Col>
@@ -277,6 +174,65 @@ const JobVacancyList = () => {
             </div>
           </div>
         ))}
+
+
+        {/* Adicione a paginação no final */}
+        <div className="d-flex justify-content-between align-items-center mt-4">
+          <div className="text-muted">
+            Mostrando <span className="fw-bold">{vacancies.length}</span> de{' '}
+            <span className="fw-bold">{pagination.totalElements}</span> vagas
+            <select
+              className="form-select form-select-sm ms-2 d-inline-block w-auto"
+              value={pagination.size}
+              onChange={handlePageSizeChange}
+            >
+              {[5, 10, 20, 50].map(size => (
+                <option key={size} value={size}>{size} por página</option>
+              ))}
+            </select>
+          </div>
+
+          <nav aria-label="Page navigation">
+            <Pagination className="mb-0">
+              <PaginationItem disabled={pagination.page === 0}>
+                <PaginationLink
+                  previous
+                  onClick={() => handlePageChange(pagination.page - 1)}
+                />
+              </PaginationItem>
+              
+              {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
+                let pageNum;
+                if (pagination.totalPages <= 5) {
+                  pageNum = i;
+                } else if (pagination.page <= 2) {
+                  pageNum = i;
+                } else if (pagination.page >= pagination.totalPages - 3) {
+                  pageNum = pagination.totalPages - 5 + i;
+                } else {
+                  pageNum = pagination.page - 2 + i;
+                }
+
+                return (
+                  <PaginationItem key={pageNum} active={pageNum === pagination.page}>
+                    <PaginationLink onClick={() => handlePageChange(pageNum)}>
+                      {pageNum + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              })}
+
+              <PaginationItem disabled={pagination.page === pagination.totalPages - 1}>
+                <PaginationLink
+                  next
+                  onClick={() => handlePageChange(pagination.page + 1)}
+                />
+              </PaginationItem>
+            </Pagination>
+          </nav>
+          </div>
+
+        {/* Modal de Inscrição (mantido igual) */}
         <div
           className="modal fade"
           id="applyNow"
