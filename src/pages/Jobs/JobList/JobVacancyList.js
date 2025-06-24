@@ -106,7 +106,7 @@ const JobVacancyList = () => {
                       <i className="mdi mdi-map-marker text-primary me-1"></i>
                     </div>
                     <p className="text-muted mb-0">
-                      {`${vacancy.city.name}, ${vacancy.city.state.name}`}
+                      {`${vacancy.city}, ${vacancy.state}`}
                     </p>
                   </div>
                 </Col>
