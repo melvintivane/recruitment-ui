@@ -29,9 +29,9 @@ const BlogContent = () => {
           blogHeading: "Um dia na vida de um designer de moda profissional",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage2,
-          blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Designer de Moda",
+          blogAuthorImage: userImage2,
+          blogAuthorName: "Rebecca Swartz",
+          BlogAuthorPosition: "Designer de Moda",
         },
         {
           id: 2,
@@ -42,9 +42,9 @@ const BlogContent = () => {
             "Designer de stack Olivia Murphy oferece conselhos sobre freelancing",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage3,
-          blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Líder de Produto",
+          blogAuthorImage: userImage3,
+          blogAuthorName: "Olivia Murphy",
+          BlogAuthorPosition: "Líder de Produto",
         },
       ],
     },
@@ -60,9 +60,9 @@ const BlogContent = () => {
             "Como gerenciar o espaço em branco em layouts responsivos?",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage2,
-          blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Líder de Produto",
+          blogAuthorImage: userImage2,
+          blogAuthorName: "Olivia Murphy",
+          BlogAuthorPosition: "Líder de Produto",
         },
         {
           id: 2,
@@ -72,9 +72,9 @@ const BlogContent = () => {
           blogHeading: "Como ser criativo no seu trabalho?",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage3,
-          blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Designer de Moda",
+          blogAuthorImage: userImage3,
+          blogAuthorName: "Rebecca Swartz",
+          BlogAuthorPosition: "Designer de Moda",
         },
       ],
     },
@@ -89,9 +89,9 @@ const BlogContent = () => {
           blogHeading: "O que o processo de planejamento precisa?",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage3,
-          blogAutherName: "Olivia Murphy",
-          BlogAutherPosition: "Líder de Produto",
+          blogAuthorImage: userImage3,
+          blogAuthorName: "Olivia Murphy",
+          BlogAuthorPosition: "Líder de Produto",
         },
         {
           id: 2,
@@ -102,9 +102,9 @@ const BlogContent = () => {
             "Como se tornar o melhor vendedor de marketing em um ano!",
           blogText:
             "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAutherImage: userImage3,
-          blogAutherName: "Rebecca Swartz",
-          BlogAutherPosition: "Designer de Moda",
+          blogAuthorImage: userImage3,
+          blogAuthorName: "Rebecca Swartz",
+          BlogAuthorPosition: "Designer de Moda",
         },
       ],
     },
@@ -203,7 +203,7 @@ const BlogContent = () => {
                     <div className="d-flex align-items-center mt-4">
                       <div className="flex-shrink-0">
                         <img
-                          src={blogContentInner.blogAutherImage}
+                          src={blogContentInner.blogAuthorImage}
                           alt=""
                           className="avatar-sm rounded-circle"
                         />
@@ -211,11 +211,11 @@ const BlogContent = () => {
                       <div className="flex-grow-1 ms-3">
                         <Link to="/blogauther" className="primary-link">
                           <h6 className="fs-16 mb-0">
-                            {blogContentInner.blogAutherName}
+                            {blogContentInner.blogAuthorName}
                           </h6>
                         </Link>
                         <p className="text-muted mb-0">
-                          {blogContentInner.BlogAutherPosition}
+                          {blogContentInner.BlogAuthorPosition}
                         </p>
                       </div>
                     </div>

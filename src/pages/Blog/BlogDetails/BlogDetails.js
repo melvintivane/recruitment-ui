@@ -4,8 +4,8 @@ import Section from "../BlogDetails/Section";
 import BlogTitle from "../BlogDetails/BlogTitle";
 import BlogCategory from "../../../components/BlogCategory";
 import PopularPost from "../../../components/PopularPost";
-// import TextWidget from "../../../components/TextWidget";
-// import Archives from "../../../components/Archives";
+import TextWidget from "../../../components/TextWidget";
+import Archives from "../../../components/Archives";
 import Tags from "../../../components/Tags";
 import SocialConnect from "../../../components/SocialConnect";
 import BlogSwiper from "../BlogDetails/BlogSwiper";
@@ -37,8 +37,8 @@ const BlogDetails = () => {
               <div className="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
                 <BlogCategory />
                 <PopularPost />
-                {/* <TextWidget />
-                <Archives /> */}
+                <TextWidget />
+                <Archives />
                 <Tags />
                 <SocialConnect />
               </div>
