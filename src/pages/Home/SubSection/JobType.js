@@ -1,33 +1,26 @@
 import React from "react";
 import Select from "react-select";
-const JobType = () => {
-  const options = [
-    { label: "Contabilidade", value: "1" },
-    { label: "TI & Software", value: "2" },
-    { label: "Marketing", value: "3" },
-    { label: "Bancos", value: "4" },
-  ];
+
+const JobType = ({ options, value, onChange }) => {
   const colourStyles = {
     control: (styles) => ({
       ...styles,
-      border: 0,
+       border: 0,
       boxShadow: "none",
-      padding: "12px 0 12px 40px",
-      margin: "-16px -6px 0 -52px",
+      padding: "12px 0 12px 35px",
+      margin: "-16px 0 0 -45px",
       borderRadius: "0",
+      outline: "none",
     }),
   };
+
   return (
     <React.Fragment>
       <Select
         options={options}
+        className="choices selectForm__inner "
+        defaultValue={{ label: "Afeganistão", value: 0 }}
         styles={colourStyles}
-        className="selectForm__inner"
-        data-trigger
-        defaultValue={{ label: "Contabilidade", value: 0 }}
-        name="choices-single-categories"
-        id="choices-single-categories"
-        aria-label="Default select example"
       />
     </React.Fragment>
   );

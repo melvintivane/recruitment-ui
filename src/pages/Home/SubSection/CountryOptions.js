@@ -1,7 +1,7 @@
-import React from "react";
 import Select from "react-select";
-const CountryOptions = () => {
-  const options = [
+
+const CountryOptions = ({ value, onChange }) => {
+  const countries = [
     { value: "0", label: "Afeganistão" },
     { value: "1", label: "Ilhas Åland" },
     { value: "2", label: "Albânia" },
@@ -259,15 +259,29 @@ const CountryOptions = () => {
     }),
   };
 
+  const handleChange = (selectedOption) => {
+    // Agora recebe o objeto completo e pode acessar value e label
+    onChange({
+      value: selectedOption.value,
+      label: selectedOption.label,
+    });
+  };
+
+  // Find the currently selected option
+  const selectedOption = countries.find((option) => option.value === value?.value) || countries[0];
+
   return (
-    <React.Fragment>
+    <>
       <Select
-        options={options}
-        className="choices selectForm__inner "
-        defaultValue={{ label: "Afeganistão", value: 0 }}
+        options={countries}
+        className="choices selectForm__inner"
+        value={selectedOption}
+        onChange={handleChange}
         styles={colourStyles}
+        isSearchable={true}
+        placeholder="Selecione um país..."
       />
-    </React.Fragment>
+    </>
   );
 };
 

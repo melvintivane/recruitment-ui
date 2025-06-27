@@ -212,6 +212,7 @@ const NavBar = (props) => {
                 end
               >
                 {/* Notification dropdown content remains the same */}
+                <div>Mello Teste</div>
               </DropdownMenu>
             </Dropdown>
 
@@ -246,6 +247,7 @@ const NavBar = (props) => {
                 end
               >
                 {/* User dropdown content remains the same */}
+                <div>Mellos</div>
               </DropdownMenu>
             </Dropdown>
           </ul>

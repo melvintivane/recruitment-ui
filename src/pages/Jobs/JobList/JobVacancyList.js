@@ -2,22 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getAllVacancies } from "../../../services/vacancyService";
-import {
-  Col,
-  Input,
-  Label,
-  Row,
-  Modal,
-  ModalBody,
-  PaginationItem,
-  PaginationLink,
-  Pagination,
-} from "reactstrap";
+import { Col, Input, Label, Row, Modal, ModalBody, PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
 //Images Import
 import jobImage1 from "../../../assets/images/light-logo.png";
 
-const JobVacancyList = () => {
+const JobVacancyList = ({ filters }) => {
   const [modal, setModal] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [formData, setFormData] = useState({
@@ -31,13 +21,17 @@ const JobVacancyList = () => {
     size: 10,
   });
 
-  // const queryClient = useQueryClient();
-
   // Fetch vacancies query
   const { data, isLoading, error } = useQuery({
-    queryKey: ["vacancies", pagination.page, pagination.size],
-    queryFn: () => getAllVacancies(pagination.page, pagination.size),
-    keepPreviousData: true,
+    queryKey: ["vacancies", pagination.page, pagination.size, filters],
+    queryFn: () => getAllVacancies({
+      page: pagination.page,
+      size: pagination.size,
+      search: filters.searchQuery,
+      location: filters.location,
+      category: filters.jobCategory
+    }),
+    keepPreviousData: true
   });
 
   // Apply for job mutation
