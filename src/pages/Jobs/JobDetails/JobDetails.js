@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import JobDetailsDescription from "./JobDetailsDescription";
 import JobVacancyPost from "./JobVacancyPost";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
+import { getVacancyById } from "../../../services/vacancyService";
 
 const JobDetails = () => {
   document.title = "Job Details | Recruitment - Job Listing | Mobitel";
+  const { id } = useParams(); // Get the ID from URL params
+  const [job, setJob] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchJobDetails = async () => {
+      try {
+        setLoading(true);
+        const response = await getVacancyById(id);
+        setJob(response);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobDetails();
+  }, [id]);
+
+  if (loading) {
+    return <div className="text-center py-5">Loading job details...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center py-5 text-danger">Error: {error}</div>;
+  }
+
+  if (!job) {
+    return <div className="text-center py-5">Job not found</div>;
+  }
+
   return (
     <React.Fragment>
       <Section />
@@ -14,7 +49,7 @@ const JobDetails = () => {
         <Container>
           <Row>
             <Col lg={8}>
-              <JobDetailsDescription />
+              <JobDetailsDescription job={job} />
               <JobVacancyPost />
             </Col>
             <Col lg={4} className="mt-4 mt-lg-0">

@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllVacancies } from "../../../services/vacancyService";
-import { Col, Input, Label, Row, Modal, ModalBody, PaginationItem, PaginationLink, Pagination } from "reactstrap";
+import {
+  Col,
+  Input,
+  Label,
+  Row,
+  Modal,
+  ModalBody,
+  PaginationItem,
+  PaginationLink,
+  Pagination,
+} from "reactstrap";
 
 //Images Import
 import jobImage1 from "../../../assets/images/light-logo.png";
@@ -15,7 +25,7 @@ const JobVacancyList = () => {
     page: 0,
     size: 10,
     totalPages: 0,
-    totalElements: 0
+    totalElements: 0,
   });
 
   useEffect(() => {
@@ -23,13 +33,12 @@ const JobVacancyList = () => {
       try {
         setLoading(true);
         const data = await getAllVacancies(pagination.page, pagination.size);
-        console.log("Fetched vacancies:", data);
-        
+
         setVacancies(data.content);
-        setPagination(prev => ({
+        setPagination((prev) => ({
           ...prev,
           totalPages: data.totalPages,
-          totalElements: data.totalElements
+          totalElements: data.totalElements,
         }));
         setLoading(false);
       } catch (err) {
@@ -46,13 +55,13 @@ const JobVacancyList = () => {
 
   const handlePageChange = (newPage) => {
     if (newPage >= 0 && newPage < pagination.totalPages) {
-      setPagination(prev => ({ ...prev, page: newPage }));
+      setPagination((prev) => ({ ...prev, page: newPage }));
     }
   };
 
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
-    setPagination(prev => ({ ...prev, size: newSize, page: 0 }));
+    setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
   };
 
   if (loading) {
@@ -90,7 +99,10 @@ const JobVacancyList = () => {
                 <Col md={3}>
                   <div className="mb-2 mb-md-0">
                     <h5 className="fs-18 mb-0">
-                      <Link to={`/jobdetails/${vacancy.id}`} className="text-dark">
+                      <Link
+                        to={`/jobdetails/${vacancy.id}`}
+                        className="text-dark"
+                      >
                         {vacancy.title}
                       </Link>
                     </h5>
@@ -105,9 +117,13 @@ const JobVacancyList = () => {
                     <div className="flex-shrink-0">
                       <i className="mdi mdi-map-marker text-primary me-1"></i>
                     </div>
-                    <p className="text-muted mb-0">
-                      {`${vacancy.city}, ${vacancy.state}`}
-                    </p>
+                    {(vacancy.city || vacancy.state || vacancy.country) && (
+                      <p className="text-muted mb-0">
+                        {[vacancy.city, vacancy.state, vacancy.country]
+                          .filter(Boolean)
+                          .join(", ")}
+                      </p>
+                    )}
                   </div>
                 </Col>
 
@@ -135,9 +151,13 @@ const JobVacancyList = () => {
                           : "badge bg-info-subtle text-info mt-1"
                       }
                     >
-                      {vacancy.type === "FULL_TIME" ? "Tempo Integral" : 
-                       vacancy.type === "PART_TIME" ? "Meio Período" : 
-                       vacancy.type === "CONTRACT" ? "Contrato" : "Estágio"}
+                      {vacancy.type === "FULL_TIME"
+                        ? "Tempo Integral"
+                        : vacancy.type === "PART_TIME"
+                        ? "Meio Período"
+                        : vacancy.type === "CONTRACT"
+                        ? "Contrato"
+                        : "Estágio"}
                     </span>
                     {vacancy.status === "ACTIVE" && (
                       <span className="badge bg-warning-subtle text-warning fs-13 mt-1">
@@ -175,19 +195,20 @@ const JobVacancyList = () => {
           </div>
         ))}
 
-
         {/* Adicione a paginação no final */}
         <div className="d-flex justify-content-between align-items-center mt-4">
           <div className="text-muted">
-            Mostrando <span className="fw-bold">{vacancies.length}</span> de{' '}
+            Mostrando <span className="fw-bold">{vacancies.length}</span> de{" "}
             <span className="fw-bold">{pagination.totalElements}</span> vagas
             <select
               className="form-select form-select-sm ms-2 d-inline-block w-auto"
               value={pagination.size}
               onChange={handlePageSizeChange}
             >
-              {[5, 10, 20, 50].map(size => (
-                <option key={size} value={size}>{size} por página</option>
+              {[5, 10, 20, 50].map((size) => (
+                <option key={size} value={size}>
+                  {size} por página
+                </option>
               ))}
             </select>
           </div>
@@ -200,29 +221,37 @@ const JobVacancyList = () => {
                   onClick={() => handlePageChange(pagination.page - 1)}
                 />
               </PaginationItem>
-              
-              {Array.from({ length: Math.min(5, pagination.totalPages) }, (_, i) => {
-                let pageNum;
-                if (pagination.totalPages <= 5) {
-                  pageNum = i;
-                } else if (pagination.page <= 2) {
-                  pageNum = i;
-                } else if (pagination.page >= pagination.totalPages - 3) {
-                  pageNum = pagination.totalPages - 5 + i;
-                } else {
-                  pageNum = pagination.page - 2 + i;
+
+              {Array.from(
+                { length: Math.min(5, pagination.totalPages) },
+                (_, i) => {
+                  let pageNum;
+                  if (pagination.totalPages <= 5) {
+                    pageNum = i;
+                  } else if (pagination.page <= 2) {
+                    pageNum = i;
+                  } else if (pagination.page >= pagination.totalPages - 3) {
+                    pageNum = pagination.totalPages - 5 + i;
+                  } else {
+                    pageNum = pagination.page - 2 + i;
+                  }
+
+                  return (
+                    <PaginationItem
+                      key={pageNum}
+                      active={pageNum === pagination.page}
+                    >
+                      <PaginationLink onClick={() => handlePageChange(pageNum)}>
+                        {pageNum + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
                 }
+              )}
 
-                return (
-                  <PaginationItem key={pageNum} active={pageNum === pagination.page}>
-                    <PaginationLink onClick={() => handlePageChange(pageNum)}>
-                      {pageNum + 1}
-                    </PaginationLink>
-                  </PaginationItem>
-                );
-              })}
-
-              <PaginationItem disabled={pagination.page === pagination.totalPages - 1}>
+              <PaginationItem
+                disabled={pagination.page === pagination.totalPages - 1}
+              >
                 <PaginationLink
                   next
                   onClick={() => handlePageChange(pagination.page + 1)}
@@ -230,7 +259,7 @@ const JobVacancyList = () => {
               </PaginationItem>
             </Pagination>
           </nav>
-          </div>
+        </div>
 
         {/* Modal de Inscrição (mantido igual) */}
         <div

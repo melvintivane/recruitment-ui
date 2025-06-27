@@ -1,12 +1,31 @@
 import React from "react";
 import { Card, CardBody, Col, Row } from "reactstrap";
-
-//Import Images
-import JobDetailImage from "../../../assets/images/job-detail.jpg";
-import JobImage10 from "../../../assets/images/featured-job/img-10.png";
 import { Link } from "react-router-dom";
 
-const JobDetailsDescription = () => {
+// Import Images (you might want to update these with actual company images)
+import JobDetailImage from "../../../assets/images/job-detail.jpg";
+import JobImage10 from "../../../assets/images/featured-job/img-10.png";
+import {
+  translateCareerLevel,
+  translateJobType,
+} from "../../../utils/jobTranslations";
+
+const JobDetailsDescription = ({ job }) => {
+  if (!job) return null;
+
+  const {
+    title,
+    description,
+    type,
+    yearsOfExperience,
+    careerLevel,
+    minSalary,
+    maxSalary,
+    requiredSkills = [],
+    company,
+    degreeRequired,
+  } = job;
+
   return (
     <React.Fragment>
       <Card className="job-detail overflow-hidden">
@@ -24,13 +43,14 @@ const JobDetailsDescription = () => {
           <div>
             <Row>
               <Col md={8}>
-                <h5 className="mb-1">Designer de Produto / Designer de UI</h5>
+                <h5 className="mb-1">{title}</h5>
                 <ul className="list-inline text-muted mb-0">
                   <li className="list-inline-item">
-                    <i className="mdi mdi-account"></i> 8 Vagas
+                    <i className="mdi mdi-account"></i>{" "}
+                    {company?.numberOfEmployees || "N/A"} Employees
                   </li>
                   <li className="list-inline-item text-warning review-rating">
-                    <span className="badge bg-warning">4.8</span>{" "}
+                    <span className="badge bg-warning">4.5</span>{" "}
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star align-middle"></i>
@@ -65,25 +85,31 @@ const JobDetailsDescription = () => {
               <Col lg={3}>
                 <div className="border rounded-start p-3">
                   <p className="text-muted mb-0 fs-13">Experiência</p>
-                  <p className="fw-medium fs-15 mb-0">Mínimo 1 Ano</p>
+                  <p className="fw-medium fs-15 mb-0">
+                    {yearsOfExperience || "N/A"} Ano(s)
+                  </p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
                   <p className="text-muted fs-13 mb-0">Tipo de Emprego</p>
-                  <p className="fw-medium mb-0">Tempo Integral</p>
+                  <p className="fw-medium mb-0">{translateJobType(type)}</p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
                   <p className="text-muted fs-13 mb-0">Posição</p>
-                  <p className="fw-medium mb-0">Pleno</p>
+                  <p className="fw-medium mb-0">
+                    {translateCareerLevel(careerLevel)}
+                  </p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border rounded-end p-3">
                   <p className="text-muted fs-13 mb-0">Salário Oferecido</p>
-                  <p className="fw-medium mb-0">$55000 / Mês</p>
+                  <p className="fw-medium mb-0">
+                    ${minSalary || "N/A"} - ${maxSalary || "N/A"} / Mês
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -93,15 +119,7 @@ const JobDetailsDescription = () => {
             <h5 className="mb-3">Descrição da Vaga</h5>
             <div className="job-detail-desc">
               <p className="text-muted mb-0">
-                Como Designer de Produto, você trabalhará dentro de uma Entrega
-                de Produto Equipe fundida com talentos em UX, engenharia,
-                produto e dados. Você ajudará a equipe a projetar belas
-                interfaces que resolvem desafios de negócio para os nossos
-                clientes. Trabalhamos com uma série de Bancos de nível 1 na
-                criação de aplicações baseadas na Web para AML, KYC e Fluxos de
-                trabalho de gerenciamento da Lista de Sanções. Este papel é
-                ideal se você está à procura de seguir a sua carreira na FinTech
-                ou Big Data arenas.
+                {description || "Nenhuma descrição fornecida."}
               </p>
             </div>
           </div>
@@ -109,55 +127,43 @@ const JobDetailsDescription = () => {
           <div className="mt-4">
             <h5 className="mb-3">Responsabilidades</h5>
             <div className="job-detail-desc mt-2">
-              <p className="text-muted">
-                Como Designer de Produto, você trabalhará dentro de uma Entrega
-                de Produto Equipe fundida com talentos em UX, engenharia,
-                produto e dados.
-              </p>
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 <li>
-                  <i className="uil uil-circle"></i> Ter bom conhecimento de
-                  atividades comerciais.
+                  <i className="uil uil-circle"></i> Desenvolver e manter
+                  aplicações web completas
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Construir aplicações web de
-                  próxima geração com foco no lado do cliente.
+                  <i className="uil uil-circle"></i> Trabalhar com APIs REST e
+                  bancos de dados
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Trabalhar em vários
-                  projetos ao mesmo tempo e cumprir prazos.
+                  <i className="uil uil-circle"></i> Colaborar com equipes
+                  multidisciplinares
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Já ter se formado ou estar
-                  cursando.
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Revisar o trabalho de
-                  designers anteriores para manter a estética da marca.
+                  <i className="uil uil-circle"></i> Implementar soluções
+                  escaláveis e de alta qualidade
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Qualificações </h5>
+            <h5 className="mb-3">Qualificações</h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 <li>
-                  <i className="uil uil-circle"></i> B.C.A / M.C.A concluído em
-                  universidade nacional.
+                  <i className="uil uil-circle"></i>{" "}
+                  {degreeRequired || "Graduação em área relacionada"}
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> 3 ou mais anos de
-                  experiência profissional em design.
+                  <i className="uil uil-circle"></i>{" "}
+                  {yearsOfExperience || "N/A"} ou mais anos de experiência
+                  profissional
                 </li>
                 <li>
-                  <i className="uil uil-circle"></i> Já se formou ou está
-                  estudando atualmente.
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Grau avançado ou
-                  experiência equivalente em design gráfico e web.
+                  <i className="uil uil-circle"></i> Conhecimento em
+                  metodologias ágeis
                 </li>
               </ul>
             </div>
@@ -167,34 +173,12 @@ const JobDetailsDescription = () => {
             <h5 className="mb-3">Habilidades e Experiência</h5>
             <div className="job-details-desc">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
-                <li>
-                  <i className="uil uil-circle"></i> Compreensão dos principais
-                  princípios de design.
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Proficiência em HTML, CSS,
-                  Bootstrap.
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Wordpress: 1 ano
-                  (Requerido)
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Experiência em design e
-                  desenvolvimento de sites responsivos.
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Web design: 1 ano
-                  (Preferencial)
-                </li>
+                {requiredSkills.map((skill) => (
+                  <li key={skill.id}>
+                    <i className="uil uil-circle"></i> {skill.name}
+                  </li>
+                ))}
               </ul>
-              <div className="mt-4 d-flex flex-wrap align-items-start gap-1">
-                <span className="badge bg-primary">PHP</span>
-                <span className="badge bg-primary">JS</span>
-                <span className="badge bg-primary">Marketing</span>
-                <span className="badge bg-primary">REACT</span>
-                <span className="badge bg-primary">PHOTOSHOP</span>
-              </div>
             </div>
           </div>
 
@@ -207,13 +191,13 @@ const JobDetailsDescription = () => {
                 </Link>
               </li>
               <li className="list-inline-item mt-1">
-                <Link to="#" className="btn btn-danger btn-hover">
-                  <i className="uil uil-google"></i> Google+
+                <Link to="#" className="btn btn-primary btn-hover">
+                  <i className="uil uil-whatsapp"></i> WhatsApp
                 </Link>
               </li>
               <li className="list-inline-item mt-1">
                 <Link to="#" className="btn btn-success btn-hover">
-                  <i className="uil uil-linkedin-alt"></i> linkedin
+                  <i className="uil uil-linkedin-alt"></i> LinkedIn
                 </Link>
               </li>
             </ul>

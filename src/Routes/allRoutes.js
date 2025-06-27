@@ -62,7 +62,7 @@ const userRoutes = [
   { path: "/blog", component: <Blog /> },
 
   //Candidate and Company Section
-  { path: "/companydetails", component: <CompanyDetails /> },
+  { path: "/companydetails/:id", component: <CompanyDetails /> },
   { path: "/companylist", component: <CompanyList /> },
   { path: "/candidatedetails", component: <CandidateDetails /> },
   { path: "/candidategrid", component: <CandidateGrid /> },
@@ -70,7 +70,7 @@ const userRoutes = [
 
   //Jobs Section
   { path: "/jobscategories", component: <JobsCategories /> },
-  { path: "/jobdetails", component: <JobDetails /> },
+  { path: "/jobdetails/:id", component: <JobDetails /> },
   { path: "/joblist", component: <JobList /> },
 
   //Company Section
