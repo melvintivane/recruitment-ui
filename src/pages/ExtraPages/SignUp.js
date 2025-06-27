@@ -9,7 +9,7 @@ import signUpImage from "../../assets/images/auth/sign-up.png";
 import { Form } from "react-bootstrap";
 
 const SignUp = () => {
-  document.title = "Sign Up | Recruitment - Job Listing | Mobitel";
+  document.title = "Sign Up | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <div>

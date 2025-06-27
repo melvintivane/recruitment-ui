@@ -117,7 +117,7 @@ const Footer = () => {
                 {new Date().getFullYear()} &copy; Recruitment - Job Listing Page
                 by{" "}
                 <Link
-                  to="//Mobitel.in/"
+                  to="//MobiSolutions.in/"
                   target="_blank"
                   className="text-reset text-decoration-underline"
                 >

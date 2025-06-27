@@ -8,6 +8,7 @@ import JobImage10 from "../../../assets/images/featured-job/img-10.png";
 import {
   translateCareerLevel,
   translateJobType,
+  translateSector,
 } from "../../../utils/jobTranslations";
 
 const JobDetailsDescription = ({ job }) => {
@@ -19,11 +20,11 @@ const JobDetailsDescription = ({ job }) => {
     type,
     yearsOfExperience,
     careerLevel,
-    minSalary,
-    maxSalary,
-    requiredSkills = [],
-    company,
-    degreeRequired,
+    sector,
+    responsibilities = [],
+    qualifications = [],
+    skills = [],
+    applicationCount,
   } = job;
 
   return (
@@ -47,34 +48,16 @@ const JobDetailsDescription = ({ job }) => {
                 <ul className="list-inline text-muted mb-0">
                   <li className="list-inline-item">
                     <i className="mdi mdi-account"></i>{" "}
-                    {company?.numberOfEmployees || "N/A"} Employees
+                    {applicationCount || "0"} Candidaturas
                   </li>
-                  <li className="list-inline-item text-warning review-rating">
+                  {/* <li className="list-inline-item text-warning review-rating">
                     <span className="badge bg-warning">4.5</span>{" "}
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star align-middle"></i>
                     <i className="mdi mdi-star-half-full align-middle"></i>
-                  </li>
-                </ul>
-              </Col>
-              <Col lg={4}>
-                <ul className="list-inline mb-0 text-lg-end mt-3 mt-lg-0">
-                  <li className="list-inline-item">
-                    <div className="favorite-icon">
-                      <Link to="#">
-                        <i className="uil uil-heart-alt"></i>
-                      </Link>
-                    </div>
-                  </li>
-                  <li className="list-inline-item">
-                    <div className="favorite-icon">
-                      <Link to="#">
-                        <i className="uil uil-setting"></i>
-                      </Link>
-                    </div>
-                  </li>
+                  </li> */}
                 </ul>
               </Col>
             </Row>
@@ -106,9 +89,9 @@ const JobDetailsDescription = ({ job }) => {
               </Col>
               <Col lg={3}>
                 <div className="border rounded-end p-3">
-                  <p className="text-muted fs-13 mb-0">Salário Oferecido</p>
+                  <p className="text-muted fs-13 mb-0">Sector</p>
                   <p className="fw-medium mb-0">
-                    ${minSalary || "N/A"} - ${maxSalary || "N/A"} / Mês
+                    {translateSector(sector)}
                   </p>
                 </div>
               </Col>
@@ -128,22 +111,11 @@ const JobDetailsDescription = ({ job }) => {
             <h5 className="mb-3">Responsabilidades</h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
-                <li>
-                  <i className="uil uil-circle"></i> Desenvolver e manter
-                  aplicações web completas
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Trabalhar com APIs REST e
-                  bancos de dados
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Colaborar com equipes
-                  multidisciplinares
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Implementar soluções
-                  escaláveis e de alta qualidade
-                </li>
+                {responsibilities.map((responsibility) => (
+                  <li key={responsibility.id}>
+                    <i className="uil uil-circle"></i> {responsibility.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -152,19 +124,11 @@ const JobDetailsDescription = ({ job }) => {
             <h5 className="mb-3">Qualificações</h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
-                <li>
-                  <i className="uil uil-circle"></i>{" "}
-                  {degreeRequired || "Graduação em área relacionada"}
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i>{" "}
-                  {yearsOfExperience || "N/A"} ou mais anos de experiência
-                  profissional
-                </li>
-                <li>
-                  <i className="uil uil-circle"></i> Conhecimento em
-                  metodologias ágeis
-                </li>
+                {qualifications.map((qualification) => (
+                  <li key={qualification.id}>
+                    <i className="uil uil-circle"></i> {qualification.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -173,7 +137,7 @@ const JobDetailsDescription = ({ job }) => {
             <h5 className="mb-3">Habilidades e Experiência</h5>
             <div className="job-details-desc">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
-                {requiredSkills.map((skill) => (
+                {skills.map((skill) => (
                   <li key={skill.id}>
                     <i className="uil uil-circle"></i> {skill.name}
                   </li>

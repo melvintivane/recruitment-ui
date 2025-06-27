@@ -8,7 +8,7 @@ import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const SignOut = () => {
-  document.title = "Sign Out | Recruitment - Job Listing | Mobitel";
+  document.title = "Sign Out | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <div>

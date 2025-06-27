@@ -5,7 +5,7 @@ import Section from "./Section";
 
 const JobsCategories = () => {
   document.title =
-    "Job Categories | Recruitment - Job Listing | Mobitel";
+    "Job Categories | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

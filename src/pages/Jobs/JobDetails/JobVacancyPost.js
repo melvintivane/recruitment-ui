@@ -1,100 +1,87 @@
-import React, { useState } from "react";
-import { Col, Row } from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { Col, Row, Spinner } from "reactstrap";
 import { Link } from "react-router-dom";
-
-//Job Images
-import jobImage1 from "../../../assets/images/featured-job/img-01.png";
-import jobImage2 from "../../../assets/images/featured-job/img-02.png";
-import jobImage3 from "../../../assets/images/featured-job/img-03.png";
 import JobApplicationModal from "../../../components/JobApplicationModal";
 
-const JobVacancyPost = () => {
+import jobImage1 from "../../../assets/images/featured-job/img-01.png";
+import { getSimilarVacancies } from "../../../services/vacancyService";
+import { translateJobType } from "../../../utils/jobTranslations";
+
+export const formatSalary = (min, max) => {
+  if (min >= 1000 || max >= 1000) {
+    return `$${(min / 1000).toFixed(0)}k - $${(max / 1000).toFixed(0)}k / year`;
+  }
+  return `$${min} - $${max} / month`;
+};
+
+const JobVacancyPost = ({ jobId }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const [similarJobs, setSimilarJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const toggleModal = () => setModalOpen(!modalOpen);
 
-  const jobVacancyPost = [
-    {
-      id: 1,
-      companyImg: jobImage1,
-      jobDescription: "Desenvolvedor HTML",
-      experience: "0-2 anos de experiência",
-      companyName: "Recruitment Technology Pvt.Ltd",
-      location: "Califórnia",
-      salary: "$250 - $800 / mês",
-      fullTime: true,
-      timing: "Tempo Integral",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-        {
-          id: 2,
-          badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Privado",
-        },
-      ],
-    },
-    {
-      id: 2,
-      companyImg: jobImage2,
-      jobDescription: "Diretor de Marketing",
-      experience: "2-4 anos de experiência",
-      companyName: "Creative Agency",
-      location: "Nova Iorque",
-      salary: "$250 - $800 / mês",
-      partTime: true,
-      timing: "Tempo Integral",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Privado",
-        },
-      ],
-    },
-    {
-      id: 3,
-      companyImg: jobImage3,
-      jobDescription: "Desenvolvedor HTML",
-      experience: "2-4 anos de experiência",
-      companyName: "Recruitment Technology Pvt.Ltd",
-      location: "Califórnia",
-      salary: "$250 - $800 / mês",
-      freeLance: true,
-      timing: "Freelancer",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-blue-subtle text-blue",
-          badgeName: "Estágio",
-        },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const fetchSimilarJobs = async () => {
+      try {
+        setLoading(true);
+        const response = await getSimilarVacancies(jobId);
+        setSimilarJobs(response.content);
+      } catch (err) {
+        setError(err.message || "Failed to load similar jobs");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (jobId) {
+      fetchSimilarJobs();
+    }
+  }, [jobId]);
+
+  if (loading) {
+    return (
+      <div className="text-center py-4">
+        <Spinner color="primary" />
+        <p className="mt-2">Loading similar jobs...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-4 text-danger">
+        <i className="uil uil-exclamation-triangle fs-4"></i>
+        <p className="mt-2">{error}</p>
+      </div>
+    );
+  }
+
+  if (similarJobs.length === 0) {
+    return (
+      <div className="text-center py-4">
+        <p>Nenhuma vaga semelhante encontrada</p>
+        <Link to="/joblist" className="btn btn-soft-primary mt-2">
+          Ver todas as vagas
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <React.Fragment>
-      {jobVacancyPost.map((jobVacancyPostDetails, key) => (
-        <div
-          key={key}
-          className={
-            jobVacancyPostDetails.addclassNameBookmark === true
-              ? "job-box bookmark-post card mt-4"
-              : "job-box card mt-4"
-          }
-        >
+      <h5 className="fs-18 my-3">Vagas Similares</h5>
+
+      {similarJobs.map((job, key) => (
+        <div key={key} className="job-box card mt-4">
           <div className="p-4">
             <Row>
               <Col lg={1}>
-                <Link to="/companydetails">
+                <Link to={`/company/${job.company.slug}`}>
                   <img
-                    src={jobVacancyPostDetails.companyImg}
-                    alt=""
+                    src={job.company.logo || jobImage1}
+                    alt={job.company.name}
                     className="img-fluid rounded-3"
                   />
                 </Link>
@@ -102,57 +89,50 @@ const JobVacancyPost = () => {
               <Col lg={10}>
                 <div className="mt-3 mt-lg-0">
                   <h5 className="fs-17 mb-1">
-                    <Link to="/jobdetails" className="text-dark">
-                      {jobVacancyPostDetails.jobDescription}
+                    <Link to={`/jobdetails/${job.id}`} className="text-dark">
+                      {job.title}
                     </Link>{" "}
                     <small className="text-muted fw-normal">
-                      ({jobVacancyPostDetails.experience})
+                      ({job.yearsOfExperience || 0}-
+                      {job.yearsOfExperience ? job.yearsOfExperience + 2 : 2}{" "}
+                      anos de Experiência)
                     </small>
                   </h5>
                   <ul className="list-inline mb-0">
                     <li className="list-inline-item">
                       <p className="text-muted fs-14 mb-0">
-                        {jobVacancyPostDetails.companyName}
+                        {job.company.name}
                       </p>
                     </li>
                     <li className="list-inline-item">
                       <p className="text-muted fs-14 mb-0">
                         <i className="mdi mdi-map-marker"></i>
-                        {jobVacancyPostDetails.location}
+                        {job.city || job.country || "Remote"}
                       </p>
                     </li>
                     <li className="list-inline-item">
                       <p className="text-muted fs-14 mb-0">
                         <i className="uil uil-wallet"></i>{" "}
-                        {jobVacancyPostDetails.salary}
+                        {job.minSalary && job.maxSalary
+                          ? formatSalary(job.minSalary, job.maxSalary)
+                          : "Salary negotiable"}
                       </p>
                     </li>
                   </ul>
                   <div className="mt-2">
                     <span
-                      className={
-                        jobVacancyPostDetails.fullTime === true
-                          ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
-                          : jobVacancyPostDetails.partTime === true
-                          ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
-                          : jobVacancyPostDetails.freeLance === true
-                          ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
-                          : jobVacancyPostDetails.internship === true
-                          ? "badge bg-info-subtle text-info mt-1"
-                          : ""
-                      }
+                      className={`badge bg-${
+                        job.remoteAllowed ? "success" : "primary"
+                      }-subtle text-${
+                        job.remoteAllowed ? "success" : "primary"
+                      } fs-13 mt-1 mx-1`}
                     >
-                      {jobVacancyPostDetails.timing}
+                      {translateJobType(job.type)}
                     </span>
-                    {(jobVacancyPostDetails.badges || []).map(
-                      (badgeInner, key) => (
-                        <span
-                          className={`badge ${badgeInner.badgeclassName} fs-13 mt-1`}
-                          key={key}
-                        >
-                          {badgeInner.badgeName}
-                        </span>
-                      )
+                    {job.jobCategory && (
+                      <span className="badge bg-info-subtle text-info fs-13 mt-1">
+                        {job.jobCategory.name}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -166,35 +146,11 @@ const JobVacancyPost = () => {
           </div>
           <div className="p-3 bg-light">
             <div className="row justify-content-between">
-              <Col md={8}>
-                <div>
-                  <ul className="list-inline mb-0">
-                    <li className="list-inline-item">
-                      <i className="uil uil-tag"></i> Palavras Chave:
-                    </li>
-                    <li className="list-inline-item">
-                      <Link to="#" className="primary-link text-muted">
-                        Ui designer
-                      </Link>
-                      ,
-                    </li>
-                    <li className="list-inline-item">
-                      <Link to="#" className="primary-link text-muted">
-                        developer
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </Col>
-
               <Col md={3}>
                 <div className="text-md-end">
-                  <Link
-                    to="#applyNow"
-                    onClick={toggleModal}
-                    className="primary-link"
-                  >
-                    Inscreva-se <i className="mdi mdi-chevron-double-right"></i>
+                  <Link to={`/jobdetails/${job.id}`} className="primary-link">
+                    Ver Detalhes{" "}
+                    <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -205,21 +161,11 @@ const JobVacancyPost = () => {
 
       <div className="text-center mt-4">
         <Link to="/joblist" className="primary-link form-text">
-          Ver Mais <i className="mdi mdi-arrow-right"></i>
+          Ver Todas As Vagas <i className="mdi mdi-arrow-right"></i>
         </Link>
       </div>
 
-      <div
-        className="modal fade"
-        id="applyNow"
-        tabIndex="-1"
-        aria-labelledby="applyNow"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <JobApplicationModal isOpen={modalOpen} toggle={toggleModal} />
-        </div>
-      </div>
+      <JobApplicationModal isOpen={modalOpen} toggle={toggleModal} />
     </React.Fragment>
   );
 };

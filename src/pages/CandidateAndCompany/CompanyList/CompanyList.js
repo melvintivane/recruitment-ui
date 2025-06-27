@@ -4,7 +4,7 @@ import CompanyDetails from "./CompanyDetails";
 import Section from "./Section";
 
 const CompanyList = () => {
-  document.title = "Company List | Recruitment - Job Listing | Mobitel";
+  document.title = "Company List | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

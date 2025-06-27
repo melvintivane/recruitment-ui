@@ -7,7 +7,7 @@ import Pagination from "../../../components/Pagination";
 
 const CandidateList = () => {
   document.title =
-    "Candidate List | Recruitment - Job Listing | Mobitel";
+    "Candidate List | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

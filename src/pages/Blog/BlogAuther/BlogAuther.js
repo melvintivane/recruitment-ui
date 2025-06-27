@@ -5,7 +5,7 @@ import LeftSideContent from "../../Blog/BlogAuther/LeftSideContent";
 import RightSideContent from "../../Blog/BlogAuther/RightSideContent";
 
 const BlogAuther = () => {
-  document.title = "Blog Auther | Recruitment - Job Listing | Mobitel";
+  document.title = "Blog Auther | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

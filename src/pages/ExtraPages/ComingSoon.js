@@ -34,7 +34,7 @@ const ComingSoon = () => {
       );
     }
   };
-  document.title = "Coming Soon | Recruitment - Job Listing | Mobitel";
+  document.title = "Coming Soon | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <div>

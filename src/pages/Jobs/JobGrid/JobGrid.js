@@ -8,7 +8,7 @@ import Selected from "./Selected";
 import Pagination from "../JobList2/Pagination";
 
 const JobGrid = () => {
-  document.title = "Job Grid | Recruitment - Job Listing | Mobitel";
+  document.title = "Job Grid | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

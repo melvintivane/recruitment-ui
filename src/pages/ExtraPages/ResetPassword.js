@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
 const ResetPassword = () => {
-  document.title = "Reset Password | Recruitment - Job Listing | Mobitel";
+  document.title = "Reset Password | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <div>

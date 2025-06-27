@@ -3,7 +3,7 @@ import Section from "../Services/Section";
 import ServicePage from "../Services/ServicePage";
 
 const Services = () => {
-  document.title = "Services | Recruitment - Job Listing | Mobitel";
+  document.title = "Services | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

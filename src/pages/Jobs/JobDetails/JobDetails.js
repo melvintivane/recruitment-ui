@@ -5,12 +5,13 @@ import JobDetailsDescription from "./JobDetailsDescription";
 import JobVacancyPost from "./JobVacancyPost";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
-import { getVacancyById } from "../../../services/vacancyService";
+import { getSimilarVacancies, getVacancyById } from "../../../services/vacancyService";
 
 const JobDetails = () => {
-  document.title = "Job Details | Recruitment - Job Listing | Mobitel";
-  const { id } = useParams(); // Get the ID from URL params
+  document.title = "Job Details | Recruitment - Job Listing | MobiSolutions";
+  const { id } = useParams();
   const [job, setJob] = useState({});
+  const [similarJobs, setSimilarJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,6 +20,10 @@ const JobDetails = () => {
       try {
         setLoading(true);
         const response = await getVacancyById(id);
+        const similarJobs = await getSimilarVacancies(id);
+
+        console.log(similarJobs.content);
+        
         setJob(response);
       } catch (err) {
         setError(err.message);
@@ -50,10 +55,10 @@ const JobDetails = () => {
           <Row>
             <Col lg={8}>
               <JobDetailsDescription job={job} />
-              <JobVacancyPost />
+              <JobVacancyPost jobId={job.id} />
             </Col>
             <Col lg={4} className="mt-4 mt-lg-0">
-              <RightSideContent />
+              <RightSideContent job={job} />
             </Col>
           </Row>
         </Container>

@@ -3,7 +3,7 @@ import Section from "../Contact/Section";
 import ContactContent from "../Contact/ContactContent";
 
 const Contact = () => {
-  document.title = "Contact | Recruitment - Job Listing | Mobitel";
+  document.title = "Contact | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

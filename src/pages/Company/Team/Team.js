@@ -3,7 +3,7 @@ import Section from "../Team/Section";
 import TeamPage from "../Team/TeamPage";
 
 const Team = () => {
-  document.title = "Team | Recruitment - Job Listing | Mobitel";
+  document.title = "Team | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />

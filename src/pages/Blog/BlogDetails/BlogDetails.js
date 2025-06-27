@@ -15,7 +15,7 @@ import BlogForm from "../BlogDetails/BlogForm";
 import BlogPost from "../BlogDetails/BlogPost";
 
 const BlogDetails = () => {
-  document.title = "Blog Details | Recruitment - Job Listing | Mobitel";
+  document.title = "Blog Details | Recruitment - Job Listing | MobiSolutions";
 
   return (
     <React.Fragment>

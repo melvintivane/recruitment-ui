@@ -7,7 +7,7 @@ import Cta from "../../../pages/Company/AboutUs/Cta";
 import CompanyTestimonal from "../../../pages/Company/AboutUs/CompanyTestimonal";
 
 const AboutUs = () => {
-  document.title = "About Us | Recruitment - Job Listing | Mobitel";
+  document.title = "About Us | Recruitment - Job Listing | MobiSolutions";
   return (
     <React.Fragment>
       <Section />
