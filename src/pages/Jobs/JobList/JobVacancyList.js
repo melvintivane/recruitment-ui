@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import { getAllVacancies } from "../../../services/vacancyService";
 import {
   Col,
@@ -18,43 +19,55 @@ import jobImage1 from "../../../assets/images/light-logo.png";
 
 const JobVacancyList = () => {
   const [modal, setModal] = useState(false);
-  const [vacancies, setVacancies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    resume: null,
+  });
   const [pagination, setPagination] = useState({
     page: 0,
     size: 10,
-    totalPages: 0,
-    totalElements: 0,
   });
 
-  useEffect(() => {
-    const fetchVacancies = async () => {
-      try {
-        setLoading(true);
-        const data = await getAllVacancies(pagination.page, pagination.size);
+  // const queryClient = useQueryClient();
 
-        setVacancies(data.content);
-        setPagination((prev) => ({
-          ...prev,
-          totalPages: data.totalPages,
-          totalElements: data.totalElements,
-        }));
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch vacancies");
-        setLoading(false);
-        console.error("Error fetching vacancies:", err);
-      }
-    };
+  // Fetch vacancies query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["vacancies", pagination.page, pagination.size],
+    queryFn: () => getAllVacancies(pagination.page, pagination.size),
+    keepPreviousData: true,
+  });
 
-    fetchVacancies();
-  }, [pagination.page, pagination.size]);
+  // Apply for job mutation
+  // const applyMutation = useMutation({
+  //   mutationFn: (applicationData) =>
+  //     applyForJob(selectedJob.id, applicationData),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(["vacancies"]);
+  //     setModal(false);
+  //     setFormData({
+  //       name: "",
+  //       email: "",
+  //       message: "",
+  //       resume: null,
+  //     });
+  //     // Show success notification
+  //     alert("Application submitted successfully!");
+  //   },
+  //   onError: (error) => {
+  //     alert(`Error submitting application: ${error.message}`);
+  //   },
+  // });
 
-  const openModal = () => setModal(!modal);
+  const openModal = (vacancy) => {
+    setSelectedJob(vacancy);
+    setModal(true);
+  };
 
   const handlePageChange = (newPage) => {
-    if (newPage >= 0 && newPage < pagination.totalPages) {
+    if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
       setPagination((prev) => ({ ...prev, page: newPage }));
     }
   };
@@ -64,18 +77,39 @@ const JobVacancyList = () => {
     setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
   };
 
-  if (loading) {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({ ...prev, resume: e.target.files[0] }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("email", formData.email);
+    formDataToSend.append("message", formData.message);
+    if (formData.resume) {
+      formDataToSend.append("resume", formData.resume);
+    }
+    // applyMutation.mutate(formDataToSend);
+  };
+
+  if (isLoading) {
     return <div>Loading vacancies...</div>;
   }
 
   if (error) {
-    return <div className="text-danger">{error}</div>;
+    return <div className="text-danger">Error: {error.message}</div>;
   }
 
   return (
-    <React.Fragment>
+    <>
       <div>
-        {vacancies?.map((vacancy, key) => (
+        {data?.content?.map((vacancy, key) => (
           <div key={key} className="job-box card mt-4">
             <div className="bookmark-label text-center">
               <Link to="#" className="align-middle text-white">
@@ -88,7 +122,7 @@ const JobVacancyList = () => {
                   <div className="text-center mb-4 mb-md-0">
                     <Link to={`/companydetails/${vacancy.company.id}`}>
                       <img
-                        src={jobImage1} // Você pode usar vacancy.company.picture se existir
+                        src={vacancy.company.logo || jobImage1}
                         alt={vacancy.company.name}
                         className="img-fluid rounded-3"
                       />
@@ -182,7 +216,7 @@ const JobVacancyList = () => {
                   <div>
                     <Link
                       to="#applyNow"
-                      onClick={openModal}
+                      onClick={() => openModal(vacancy)}
                       className="primary-link"
                     >
                       Inscreva-se{" "}
@@ -195,11 +229,12 @@ const JobVacancyList = () => {
           </div>
         ))}
 
-        {/* Adicione a paginação no final */}
+        {/* Pagination */}
         <div className="d-flex justify-content-between align-items-center mt-4">
           <div className="text-muted">
-            Mostrando <span className="fw-bold">{vacancies.length}</span> de{" "}
-            <span className="fw-bold">{pagination.totalElements}</span> vagas
+            Mostrando{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span> de{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span> vagas
             <select
               className="form-select form-select-sm ms-2 d-inline-block w-auto"
               value={pagination.size}
@@ -223,15 +258,15 @@ const JobVacancyList = () => {
               </PaginationItem>
 
               {Array.from(
-                { length: Math.min(5, pagination.totalPages) },
+                { length: Math.min(5, data?.totalPages || 0) },
                 (_, i) => {
                   let pageNum;
-                  if (pagination.totalPages <= 5) {
+                  if ((data?.totalPages || 0) <= 5) {
                     pageNum = i;
                   } else if (pagination.page <= 2) {
                     pageNum = i;
-                  } else if (pagination.page >= pagination.totalPages - 3) {
-                    pageNum = pagination.totalPages - 5 + i;
+                  } else if (pagination.page >= (data?.totalPages || 0) - 3) {
+                    pageNum = (data?.totalPages || 0) - 5 + i;
                   } else {
                     pageNum = pagination.page - 2 + i;
                   }
@@ -250,7 +285,7 @@ const JobVacancyList = () => {
               )}
 
               <PaginationItem
-                disabled={pagination.page === pagination.totalPages - 1}
+                disabled={pagination.page === (data?.totalPages || 0) - 1}
               >
                 <PaginationLink
                   next
@@ -261,83 +296,94 @@ const JobVacancyList = () => {
           </nav>
         </div>
 
-        {/* Modal de Inscrição (mantido igual) */}
-        <div
-          className="modal fade"
-          id="applyNow"
-          tabIndex="-1"
-          aria-labelledby="applyNow"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <Modal isOpen={modal} toggle={openModal} centered>
-              <ModalBody className="modal-body p-5">
-                <div className="text-center mb-4">
-                  <h5 className="modal-title" id="staticBackdropLabel">
-                    Aplicar Para Esta Vaga
-                  </h5>
-                </div>
-                <div className="position-absolute end-0 top-0 p-3">
-                  <button
-                    type="button"
-                    onClick={openModal}
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Fechar"
-                  ></button>
-                </div>
-                <div className="mb-3">
-                  <Label for="nameControlInput" className="form-label">
-                    Nome
-                  </Label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    id="nameControlInput"
-                    placeholder="Digite seu nome"
-                  />
-                </div>
-                <div className="mb-3">
-                  <Label for="emailControlInput2" className="form-label">
-                    Endereço de E-mail
-                  </Label>
-                  <Input
-                    type="email"
-                    className="form-control"
-                    id="emailControlInput2"
-                    placeholder="Digite seu e-mail"
-                  />
-                </div>
-                <div className="mb-3">
-                  <Label for="messageControlTextarea" className="form-label">
-                    Mensagem
-                  </Label>
-                  <textarea
-                    className="form-control"
-                    id="messageControlTextarea"
-                    rows="4"
-                    placeholder="Digite sua mensagem"
-                  ></textarea>
-                </div>
-                <div className="mb-4">
-                  <Label className="form-label" for="inputGroupFile01">
-                    Enviar Currículo
-                  </Label>
-                  <Input
-                    type="file"
-                    className="form-control"
-                    id="inputGroupFile01"
-                  />
-                </div>
-                <button type="submit" className="btn btn-primary w-100">
-                  Enviar Inscrição
-                </button>
-              </ModalBody>
-            </Modal>
-          </div>
-        </div>
+        {/* Application Modal */}
+        <Modal isOpen={modal} toggle={() => setModal(false)} centered>
+          <ModalBody className="modal-body p-5">
+            <div className="text-center mb-4">
+              <h5 className="modal-title" id="staticBackdropLabel">
+                Aplicar Para: {selectedJob?.title}
+              </h5>
+            </div>
+            <div className="position-absolute end-0 top-0 p-3">
+              <button
+                type="button"
+                onClick={() => setModal(false)}
+                className="btn-close"
+                aria-label="Fechar"
+              ></button>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <Label for="name" className="form-label">
+                  Nome
+                </Label>
+                <Input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  id="name"
+                  placeholder="Digite seu nome"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <Label for="email" className="form-label">
+                  Endereço de E-mail
+                </Label>
+                <Input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="form-control"
+                  id="email"
+                  placeholder="Digite seu e-mail"
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <Label for="message" className="form-label">
+                  Mensagem
+                </Label>
+                <textarea
+                  className="form-control"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  id="message"
+                  rows="4"
+                  placeholder="Digite sua mensagem"
+                  required
+                ></textarea>
+              </div>
+              <div className="mb-4">
+                <Label className="form-label" for="resume">
+                  Enviar Currículo
+                </Label>
+                <Input
+                  type="file"
+                  name="resume"
+                  onChange={handleFileChange}
+                  className="form-control"
+                  id="resume"
+                  accept=".pdf,.doc,.docx"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary w-100"
+                // disabled={applyMutation.isLoading}
+              >
+                {/* {applyMutation.isLoading ? "Enviando..." : "Enviar Inscrição"} */}
+              </button>
+            </form>
+          </ModalBody>
+        </Modal>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
