@@ -20,9 +20,6 @@ const Section = () => {
                       <li className="breadcrumb-item">
                         <Link to="/">Ínicio</Link>
                       </li>
-                      <li className="breadcrumb-item">
-                        <Link to="#">Páginas</Link>
-                      </li>
                       <li
                         className="breadcrumb-item active"
                         aria-current="page"

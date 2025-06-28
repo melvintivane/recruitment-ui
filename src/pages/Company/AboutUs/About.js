@@ -16,7 +16,7 @@ const About = () => {
                 <h6 className="sub-title">Sobre Nós</h6>
                 <h2 className="title mb-4">
                   Por que <span className="text-warning fw-bold">35.000+</span>{" "}
-                  Pessoas Confiam na Recruitment?
+                  Pessoas Confiam na EP Recruitment?
                 </h2>
                 <p className="text-muted">
                   Comece a trabalhar com a Recruitment, que pode fornecer tudo o que

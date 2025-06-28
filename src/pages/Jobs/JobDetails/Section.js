@@ -21,7 +21,7 @@ const Section = () => {
                         <Link to="/">Ínicio</Link>
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to="#">Páginas</Link>
+                        <Link to="/joblist">Listagem de Vagas</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"

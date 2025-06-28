@@ -2,30 +2,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getAllVacancies } from "../../../services/vacancyService";
-import {
-  Col,
-  Input,
-  Label,
-  Row,
-  Modal,
-  ModalBody,
-  PaginationItem,
-  PaginationLink,
-  Pagination,
-} from "reactstrap";
+import { Col, Row, PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
 //Images Import
 import jobImage1 from "../../../assets/images/light-logo.png";
 
 const JobVacancyList = ({ filters }) => {
-  const [modal, setModal] = useState(false);
-  const [selectedJob, setSelectedJob] = useState(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    resume: null,
-  });
   const [pagination, setPagination] = useState({
     page: 0,
     size: 10,
@@ -45,32 +27,6 @@ const JobVacancyList = ({ filters }) => {
     keepPreviousData: true,
   });
 
-  // Apply for job mutation
-  // const applyMutation = useMutation({
-  //   mutationFn: (applicationData) =>
-  //     applyForJob(selectedJob.id, applicationData),
-  //   onSuccess: () => {
-  //     queryClient.invalidateQueries(["vacancies"]);
-  //     setModal(false);
-  //     setFormData({
-  //       name: "",
-  //       email: "",
-  //       message: "",
-  //       resume: null,
-  //     });
-  //     // Show success notification
-  //     alert("Application submitted successfully!");
-  //   },
-  //   onError: (error) => {
-  //     alert(`Error submitting application: ${error.message}`);
-  //   },
-  // });
-
-  const openModal = (vacancy) => {
-    setSelectedJob(vacancy);
-    setModal(true);
-  };
-
   const handlePageChange = (newPage) => {
     if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
       setPagination((prev) => ({ ...prev, page: newPage }));
@@ -80,27 +36,6 @@ const JobVacancyList = ({ filters }) => {
   const handlePageSizeChange = (e) => {
     const newSize = parseInt(e.target.value);
     setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, resume: e.target.files[0] }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formDataToSend = new FormData();
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("email", formData.email);
-    formDataToSend.append("message", formData.message);
-    if (formData.resume) {
-      formDataToSend.append("resume", formData.resume);
-    }
-    // applyMutation.mutate(formDataToSend);
   };
 
   if (isLoading) {
@@ -232,8 +167,7 @@ const JobVacancyList = ({ filters }) => {
                 <Col lg={2} md={3}>
                   <div>
                     <Link
-                      to="#applyNow"
-                      onClick={() => openModal(vacancy)}
+                      to={`/jobdetails/${vacancy.id}`}
                       className="primary-link"
                     >
                       Inscreva-se{" "}
@@ -312,93 +246,6 @@ const JobVacancyList = ({ filters }) => {
             </Pagination>
           </nav>
         </div>
-
-        {/* Application Modal */}
-        <Modal isOpen={modal} toggle={() => setModal(false)} centered>
-          <ModalBody className="modal-body p-5">
-            <div className="text-center mb-4">
-              <h5 className="modal-title" id="staticBackdropLabel">
-                Aplicar Para: {selectedJob?.title}
-              </h5>
-            </div>
-            <div className="position-absolute end-0 top-0 p-3">
-              <button
-                type="button"
-                onClick={() => setModal(false)}
-                className="btn-close"
-                aria-label="Fechar"
-              ></button>
-            </div>
-            <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <Label for="name" className="form-label">
-                  Nome
-                </Label>
-                <Input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="form-control"
-                  id="name"
-                  placeholder="Digite seu nome"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="email" className="form-label">
-                  Endereço de E-mail
-                </Label>
-                <Input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="form-control"
-                  id="email"
-                  placeholder="Digite seu e-mail"
-                  required
-                />
-              </div>
-              <div className="mb-3">
-                <Label for="message" className="form-label">
-                  Mensagem
-                </Label>
-                <textarea
-                  className="form-control"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  id="message"
-                  rows="4"
-                  placeholder="Digite sua mensagem"
-                  required
-                ></textarea>
-              </div>
-              <div className="mb-4">
-                <Label className="form-label" for="resume">
-                  Enviar Currículo
-                </Label>
-                <Input
-                  type="file"
-                  name="resume"
-                  onChange={handleFileChange}
-                  className="form-control"
-                  id="resume"
-                  accept=".pdf,.doc,.docx"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn btn-primary w-100"
-                // disabled={applyMutation.isLoading}
-              >
-                {/* {applyMutation.isLoading ? "Enviando..." : "Enviar Inscrição"} */}
-              </button>
-            </form>
-          </ModalBody>
-        </Modal>
       </div>
     </>
   );

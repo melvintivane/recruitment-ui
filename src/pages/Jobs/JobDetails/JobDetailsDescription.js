@@ -12,7 +12,7 @@ import {
 } from "../../../utils/jobTranslations";
 
 const JobDetailsDescription = ({ job }) => {
-  if (!job) return null;
+  if (!job) return <div className="text-center py-5">Vaga não encontrada</div>;
 
   const {
     title,
@@ -50,14 +50,6 @@ const JobDetailsDescription = ({ job }) => {
                     <i className="mdi mdi-account"></i>{" "}
                     {applicationCount || "0"} Candidaturas
                   </li>
-                  {/* <li className="list-inline-item text-warning review-rating">
-                    <span className="badge bg-warning">4.5</span>{" "}
-                    <i className="mdi mdi-star align-middle"></i>
-                    <i className="mdi mdi-star align-middle"></i>
-                    <i className="mdi mdi-star align-middle"></i>
-                    <i className="mdi mdi-star align-middle"></i>
-                    <i className="mdi mdi-star-half-full align-middle"></i>
-                  </li> */}
                 </ul>
               </Col>
             </Row>
@@ -90,9 +82,7 @@ const JobDetailsDescription = ({ job }) => {
               <Col lg={3}>
                 <div className="border rounded-end p-3">
                   <p className="text-muted fs-13 mb-0">Sector</p>
-                  <p className="fw-medium mb-0">
-                    {translateSector(sector)}
-                  </p>
+                  <p className="fw-medium mb-0">{translateSector(sector)}</p>
                 </div>
               </Col>
             </Row>

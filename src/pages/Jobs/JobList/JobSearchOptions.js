@@ -2,25 +2,14 @@ import { Col, Form } from "react-bootstrap";
 import { Input, Row } from "reactstrap";
 import CountryOptions from "../../Home/SubSection/CountryOptions";
 import JobType from "../../Home/SubSection/JobType";
-import { getJobCategories } from "../../../services/vacancyService";
-import { useQuery } from "react-query";
 
-const JobSearchOptions = ({ filters, onFilterChange, onSearch }) => {
-  const {
-    data: categoriesData,
-    isLoading,
-    // error,
-  } = useQuery({
-    queryKey: ["jobCategories"],
-    queryFn: getJobCategories,
-    select: (data) =>
-      data.content.map((category) => ({
-        value: category.id,
-        label: category.name,
-      })),
-    staleTime: 60 * 60 * 1000, // 1 hora de cache
-  });
-
+const JobSearchOptions = ({ 
+  filters, 
+  onFilterChange, 
+  onSearch,
+  categoriesData = [],
+  isLoading = false 
+}) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     onFilterChange(name, value);
@@ -44,7 +33,7 @@ const JobSearchOptions = ({ filters, onFilterChange, onSearch }) => {
                 value={filters.searchQuery}
                 onChange={handleInputChange}
                 className="form-control filter-input-box"
-                placeholder="Emprego, etc..."
+                placeholder="Título, descrição, etc..."
                 style={{ marginTop: "-10px" }}
               />
             </div>
@@ -63,7 +52,7 @@ const JobSearchOptions = ({ filters, onFilterChange, onSearch }) => {
               <i className="uil uil-clipboard-notes"></i>
               <JobType
                 loading={isLoading}
-                options={categoriesData || []} // Fallback para array vazio
+                options={categoriesData}
                 value={filters.jobCategoryId}
                 onChange={(value) => onFilterChange("jobCategoryId", value)}
               />

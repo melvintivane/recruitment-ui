@@ -5,17 +5,30 @@ import JobSearchOptions from "./JobSearchOptions";
 import JobVacancyList from "./JobVacancyList";
 import Popular from "./Popular";
 import Sidebar from "./Sidebar";
+import { useQuery } from "react-query";
+import { getJobCategories } from "../../../services/vacancyService";
 
 const JobList = () => {
-  document.title = "Job List | Recruitment - Job Listing | MobiSolutions";
+  document.title = "Listagem de Vagas";
 
   const initialFilters = {
-    searchQuery: '',
-    location: '',
-    jobCategoryId: 0
+    searchQuery: "",
+    location: "",
+    jobCategoryId: 0,
   };
 
-const [filters, setFilters] = useState(initialFilters);
+  const [filters, setFilters] = useState(initialFilters);
+
+  const { data: categoriesData, isLoading } = useQuery({
+    queryKey: ["jobCategories"],
+    queryFn: getJobCategories,
+    select: (data) =>
+      data.content.map((category) => ({
+        value: category.id,
+        label: category.name,
+      })),
+    staleTime: 60 * 60 * 1000, // 1 hora de cache
+  });
 
   const handleFilterChange = (name, value) => {
     setFilters((prev) => ({
@@ -68,6 +81,8 @@ const [filters, setFilters] = useState(initialFilters);
                   filters={filters}
                   onFilterChange={handleFilterChange}
                   onSearch={handleSearch}
+                  categoriesData={categoriesData || []}
+                  isLoading={isLoading}
                 />
                 <Popular populars={populars} />
                 <JobVacancyList

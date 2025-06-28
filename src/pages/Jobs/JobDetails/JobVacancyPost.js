@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Col, Row, Spinner } from "reactstrap";
+import React, { useState } from "react";
+import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import JobApplicationModal from "../../../components/JobApplicationModal";
-
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
 import { getSimilarVacancies } from "../../../services/vacancyService";
 import { translateJobType } from "../../../utils/jobTranslations";
@@ -16,44 +16,58 @@ export const formatSalary = (min, max) => {
 
 const JobVacancyPost = ({ jobId }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [similarJobs, setSimilarJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const toggleModal = () => setModalOpen(!modalOpen);
 
-  useEffect(() => {
-    const fetchSimilarJobs = async () => {
-      try {
-        setLoading(true);
-        const response = await getSimilarVacancies(jobId);
-        setSimilarJobs(response.content);
-      } catch (err) {
-        setError(err.message || "Failed to load similar jobs");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const {
+    data: similarJobs = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["similarJobs", jobId],
+    queryFn: () => getSimilarVacancies(jobId),
+    select: (data) => data.content,
+    enabled: !!jobId, // Only fetch when jobId is available
+    staleTime: 5 * 60 * 1000, // 5 minutes cache
+  });
 
-    if (jobId) {
-      fetchSimilarJobs();
-    }
-  }, [jobId]);
+  // Apply for job mutation
+  // const applyMutation = useMutation({
+  //   mutationFn: (applicationData) =>
+  //     applyForJob(selectedJob.id, applicationData),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(["vacancies"]);
+  //     setModal(false);
+  //     setFormData({
+  //       name: "",
+  //       email: "",
+  //       message: "",
+  //       resume: null,
+  //     });
+  //     // Show success notification
+  //     alert("Application submitted successfully!");
+  //   },
+  //   onError: (error) => {
+  //     alert(`Error submitting application: ${error.message}`);
+  //   },
+  // });
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="text-center py-4">
-        <Spinner color="primary" />
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
         <p className="mt-2">Loading similar jobs...</p>
       </div>
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="text-center py-4 text-danger">
         <i className="uil uil-exclamation-triangle fs-4"></i>
-        <p className="mt-2">{error}</p>
+        <p className="mt-2">{error.message || "Failed to load similar jobs"}</p>
       </div>
     );
   }
@@ -61,9 +75,9 @@ const JobVacancyPost = ({ jobId }) => {
   if (similarJobs.length === 0) {
     return (
       <div className="text-center py-4">
-        <p>Nenhuma vaga semelhante encontrada</p>
+        <p>No similar jobs found</p>
         <Link to="/joblist" className="btn btn-soft-primary mt-2">
-          Ver todas as vagas
+          View all jobs
         </Link>
       </div>
     );
@@ -71,7 +85,7 @@ const JobVacancyPost = ({ jobId }) => {
 
   return (
     <React.Fragment>
-      <h5 className="fs-18 my-3">Vagas Similares</h5>
+      <h5 className="fs-18 my-3">Similar Vacancies</h5>
 
       {similarJobs.map((job, key) => (
         <div key={key} className="job-box card mt-4">
@@ -95,7 +109,7 @@ const JobVacancyPost = ({ jobId }) => {
                     <small className="text-muted fw-normal">
                       ({job.yearsOfExperience || 0}-
                       {job.yearsOfExperience ? job.yearsOfExperience + 2 : 2}{" "}
-                      anos de Experiência)
+                      years experience)
                     </small>
                   </h5>
                   <ul className="list-inline mb-0">
@@ -149,7 +163,7 @@ const JobVacancyPost = ({ jobId }) => {
               <Col md={3}>
                 <div className="text-md-end">
                   <Link to={`/jobdetails/${job.id}`} className="primary-link">
-                    Ver Detalhes{" "}
+                    View Details{" "}
                     <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
@@ -161,7 +175,7 @@ const JobVacancyPost = ({ jobId }) => {
 
       <div className="text-center mt-4">
         <Link to="/joblist" className="primary-link form-text">
-          Ver Todas As Vagas <i className="mdi mdi-arrow-right"></i>
+          View All Jobs <i className="mdi mdi-arrow-right"></i>
         </Link>
       </div>
 
