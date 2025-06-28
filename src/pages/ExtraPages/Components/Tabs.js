@@ -45,7 +45,7 @@ const Tabs = () => {
                   }}
                   type="button"
                 >
-                  <span>Home</span>
+                  <span>Ínicio</span>
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -142,7 +142,7 @@ const Tabs = () => {
                   }}
                   type="button"
                 >
-                  <span>Home</span>
+                  <span>Ínicio</span>
                 </NavLink>
               </NavItem>
               <NavItem className="waves-effect waves-light">

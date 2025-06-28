@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Collapse, NavbarToggler, NavItem, NavLink, Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
+import {
+  Container,
+  Collapse,
+  NavbarToggler,
+  NavItem,
+  NavLink,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 import classname from "classnames";
 import withRouter from "../../components/withRouter";
@@ -13,7 +22,9 @@ const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const [layoutMode, setLayoutMode] = useState(localStorage.getItem("layoutMode") || "light");
+  const [layoutMode, setLayoutMode] = useState(
+    localStorage.getItem("layoutMode") || "light"
+  );
   const [company, setCompany] = useState(false);
   const [notification, setNotification] = useState(false);
   const [userProfile, setUserProfile] = useState(false);
@@ -81,7 +92,9 @@ const NavBar = (props) => {
   return (
     <React.Fragment>
       <nav
-        className={"navbar navbar-expand-lg fixed-top nav-sticky p-0 " + navClass}
+        className={
+          "navbar navbar-expand-lg fixed-top nav-sticky p-0 " + navClass
+        }
         id="navigation"
       >
         <Container fluid className="custom-container">
@@ -212,7 +225,7 @@ const NavBar = (props) => {
                 end
               >
                 {/* Notification dropdown content remains the same */}
-                <div>Mello Teste</div>
+                <div>Teste</div>
               </DropdownMenu>
             </Dropdown>
 
@@ -242,12 +255,34 @@ const NavBar = (props) => {
                 </span>
               </DropdownToggle>
               <DropdownMenu
-                className="dropdown-menu-end"
-                aria-labelledby="userdropdown"
+                className="dropdown-menu-md dropdown-menu-end p-0"
+                aria-labelledby="notification"
                 end
               >
-                {/* User dropdown content remains the same */}
-                <div>Mellos</div>
+                <div className="p-3">
+                  <div className="row align-items-center">
+                    <div className="col">
+                      <h6 className="m-0"> Navegação Rápida </h6>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  className="px-2"
+                  style={{ maxHeight: "300px", overflowY: "auto" }}
+                >
+                  <Link to="/myprofile" className="dropdown-item">
+                    <i className="mdi mdi-account-outline me-2"></i> Meu Perfil
+                  </Link>
+                  <Link to="/bookmarkjobs" className="dropdown-item">
+                    <i className="mdi mdi-bookmark-multiple-outline me-2"></i>{" "}
+                    Vagas Favoritas
+                  </Link>
+                  <Link to="/managejobs" className="dropdown-item">
+                    <i className="mdi mdi-briefcase-outline me-2"></i>
+                    Minhas Candidaturas
+                  </Link>
+                </div>
               </DropdownMenu>
             </Dropdown>
           </ul>

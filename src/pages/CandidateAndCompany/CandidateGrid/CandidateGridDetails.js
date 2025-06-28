@@ -275,7 +275,7 @@ const CandidateGridDetails = () => {
                       to="/candidatedetails"
                       className="btn btn-soft-primary btn-hover w-100 mt-2"
                     >
-                      <i className="mdi mdi-eye"></i> View Profile
+                      <i className="mdi mdi-eye"></i> Ver Perfil
                     </Link>
                   </div>
                 </CardBody>

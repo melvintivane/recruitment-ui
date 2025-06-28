@@ -10,7 +10,7 @@ const Section = () => {
           <Row className="justify-content-center">
             <Col md={6}>
               <div className="text-center text-white">
-                <h3 className="mb-4">Job Details</h3>
+                <h3 className="mb-4">Detalhes da Vaga</h3>
                 <div className="page-next">
                   <nav
                     className="d-inline-block"
@@ -18,17 +18,17 @@ const Section = () => {
                   >
                     <ol className="breadcrumb justify-content-center">
                       <li className="breadcrumb-item">
-                        <Link to="/">Home</Link>
+                        <Link to="/">Ínicio</Link>
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to="#">Pages</Link>
+                        <Link to="#">Páginas</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"
                         aria-current="page"
                       >
                         {" "}
-                        Job Details{" "}
+                        Detalhes da Vaga{" "}
                       </li>
                     </ol>
                   </nav>

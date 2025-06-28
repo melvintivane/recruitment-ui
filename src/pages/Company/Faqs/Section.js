@@ -18,10 +18,10 @@ const Section = () => {
                   >
                     <ol className="breadcrumb justify-content-center">
                       <li className="breadcrumb-item">
-                        <Link to="/">Home</Link>
+                        <Link to="/">Ínicio</Link>
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to="#">Company</Link>
+                        <Link to="#">Empresa</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"
