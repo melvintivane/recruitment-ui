@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Container,
   Collapse,
@@ -16,15 +16,14 @@ import { Icon } from "@iconify/react";
 
 import darkLogo from "../../assets/images/dark-logo.png";
 import lightLogo from "../../assets/images/light-logo.png";
-import profileImage from "../../assets/images/profile.jpg";
+import profileImage from "../../assets/images/user/user.png";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-  const [layoutMode, setLayoutMode] = useState(
-    localStorage.getItem("layoutMode") || "light"
-  );
   const [company, setCompany] = useState(false);
   const [notification, setNotification] = useState(false);
   const [userProfile, setUserProfile] = useState(false);
@@ -77,17 +76,6 @@ const NavBar = (props) => {
       parent = parent.parentElement;
     }
   }
-
-  useEffect(() => {
-    document.body.setAttribute("data-bs-theme", layoutMode);
-  }, [layoutMode]);
-
-  const toggleMode = () => {
-    const newMode = layoutMode === "dark" ? "light" : "dark";
-    document.body.setAttribute("data-bs-theme", newMode);
-    setLayoutMode(newMode);
-    localStorage.setItem("layoutMode", newMode);
-  };
 
   return (
     <React.Fragment>
@@ -185,12 +173,9 @@ const NavBar = (props) => {
           </Collapse>
 
           <ul className="header-menu list-inline d-flex align-items-center mb-0">
-            <li
-              className="list-inline-item border rounded-circle p-2 d-flex align-items-center justify-content-center"
-              style={{ width: "40px", height: "40px" }}
-            >
-              <Link id="mode" onClick={toggleMode} className="d-inline-block">
-                {layoutMode === "dark" ? (
+            <li className="list-inline-item">
+              <Link id="mode" onClick={toggleTheme} className="d-inline-block">
+                {theme === "dark" ? (
                   <Icon
                     icon="material-symbols:sunny-rounded"
                     className="text-warning fs-5"

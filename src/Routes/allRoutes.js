@@ -88,6 +88,6 @@ const authRoutes = [
   { path: "/signout", component: <SignOut /> },
   { path: "/signup", component: <SignUp /> },
   { path: "/signin", component: <SignIn /> },
-  { path: "*", component: <Error404 /> }
+  { path: "/error404", component: <Error404 /> },
 ];
 export { userRoutes, authRoutes };

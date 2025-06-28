@@ -1,13 +1,5 @@
-import React from "react";
-// import StyleSwitcher from "./CommonLayout/StyleSwitcher";
-
 const AuthLayout = ({ children }) => {
-  return (
-    <React.Fragment>
-      {children}
-      {/* <StyleSwitcher /> */}
-    </React.Fragment>
-  );
+  return <div className="auth-layout">{children}</div>;
 };
 
 export default AuthLayout;

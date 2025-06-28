@@ -1,13 +1,14 @@
-import React from "react";
 import Routes from "./Routes/index";
+import { ThemeProvider } from "./context/ThemeContext";
 
 //import Custom Style scss
 import "./assets/scss/themes.scss";
+
 function App() {
   return (
-    <React.Fragment>
+    <ThemeProvider>
       <Routes />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
 

@@ -10,7 +10,7 @@ import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
-  document.title = "Sign In | Recruitment - Job Listing | MobiSolutions";
+  document.title = "Sign In";
   return (
     <React.Fragment>
       <div>
