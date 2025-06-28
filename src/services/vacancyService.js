@@ -6,9 +6,9 @@ export const getAllVacancies = async ({ page, size, search, location, category }
   params.append("page", page);
   params.append("size", size);
 
-  if (search) params.append("search", search);
+  if (search) params.append("searchQuery", search);
   if (location) params.append("location", location);
-  if (category) params.append("category", category);
+  if (category) params.append("jobCategoryId", category);
 
   if (!API_ENDPOINTS?.VACANCIES) {
     throw new Error("Endpoint de vagas não configurado");
@@ -27,24 +27,34 @@ export const getAllVacancies = async ({ page, size, search, location, category }
 };
 
 export const getSimilarVacancies = async (id) => {
-  try {
-    if (!API_ENDPOINTS?.VACANCIES) {
-      throw new Error("Endpoint de vagas não configurado");
-    }
-
-    const response = await fetch(`${API_ENDPOINTS.VACANCIES}/similar/${id}`);
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || "Erro ao buscar vagas");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Erro no serviço de vagas:", error);
-    throw error;
+  if (!API_ENDPOINTS?.VACANCIES) {
+    throw new Error("Endpoint de vagas não configurado");
   }
+
+  const response = await fetch(`${API_ENDPOINTS.VACANCIES}/similar/${id}`);
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Erro ao buscar vagas");
+  }
+
+  return await response.json();
 };
+
+export const getJobCategories = async () => {
+  if (!API_ENDPOINTS?.VACANCIES) {
+    throw new Error("Endpoint de vagas não configurado");
+  }
+
+  const response = await fetch(`${API_ENDPOINTS.VACANCIES}/categories`);
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Erro ao buscar categorias");
+  }
+
+  return await response.json();
+}
 
 export const getVacancyById = async (vacancyId) => {
   const response = await fetch(`${API_ENDPOINTS.VACANCIES}/${vacancyId}`);

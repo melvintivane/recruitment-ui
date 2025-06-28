@@ -5,13 +5,12 @@ import JobDetailsDescription from "./JobDetailsDescription";
 import JobVacancyPost from "./JobVacancyPost";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
-import { getSimilarVacancies, getVacancyById } from "../../../services/vacancyService";
+import { getVacancyById } from "../../../services/vacancyService";
 
 const JobDetails = () => {
   document.title = "Job Details | Recruitment - Job Listing | MobiSolutions";
   const { id } = useParams();
   const [job, setJob] = useState({});
-  const [similarJobs, setSimilarJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -20,9 +19,6 @@ const JobDetails = () => {
       try {
         setLoading(true);
         const response = await getVacancyById(id);
-        const similarJobs = await getSimilarVacancies(id);
-
-        console.log(similarJobs.content);
         
         setJob(response);
       } catch (err) {

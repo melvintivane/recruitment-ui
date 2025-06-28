@@ -2,7 +2,17 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getAllVacancies } from "../../../services/vacancyService";
-import { Col, Input, Label, Row, Modal, ModalBody, PaginationItem, PaginationLink, Pagination } from "reactstrap";
+import {
+  Col,
+  Input,
+  Label,
+  Row,
+  Modal,
+  ModalBody,
+  PaginationItem,
+  PaginationLink,
+  Pagination,
+} from "reactstrap";
 
 //Images Import
 import jobImage1 from "../../../assets/images/light-logo.png";
@@ -24,14 +34,15 @@ const JobVacancyList = ({ filters }) => {
   // Fetch vacancies query
   const { data, isLoading, error } = useQuery({
     queryKey: ["vacancies", pagination.page, pagination.size, filters],
-    queryFn: () => getAllVacancies({
-      page: pagination.page,
-      size: pagination.size,
-      search: filters.searchQuery,
-      location: filters.location,
-      category: filters.jobCategory
-    }),
-    keepPreviousData: true
+    queryFn: () =>
+      getAllVacancies({
+        page: pagination.page,
+        size: pagination.size,
+        search: filters.searchQuery,
+        location: filters.location,
+        category: filters.jobCategoryId,
+      }),
+    keepPreviousData: true,
   });
 
   // Apply for job mutation
@@ -187,11 +198,23 @@ const JobVacancyList = ({ filters }) => {
                         ? "Contrato"
                         : "Estágio"}
                     </span>
-                    {vacancy.status === "ACTIVE" && (
-                      <span className="badge bg-warning-subtle text-warning fs-13 mt-1">
-                        Ativo
+                    {
+                      <span
+                        className={
+                          vacancy.status === "ACTIVE"
+                            ? "badge bg-success-subtle text-success fs-13 mt-1"
+                            : vacancy.status === "CLOSED"
+                            ? "badge bg-danger-subtle text-danger fs-13 mt-1"
+                            : "badge bg-warning-subtle text-warning fs-13 mt-1"
+                        }
+                      >
+                        {vacancy.status === "ACTIVE"
+                          ? "Activa"
+                          : vacancy.status === "CLOSED"
+                          ? "Fechada"
+                          : "Pendente"}
                       </span>
-                    )}
+                    }
                   </div>
                 </Col>
               </Row>

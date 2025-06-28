@@ -2,14 +2,24 @@ import { Col, Form } from "react-bootstrap";
 import { Input, Row } from "reactstrap";
 import CountryOptions from "../../Home/SubSection/CountryOptions";
 import JobType from "../../Home/SubSection/JobType";
+import { getJobCategories } from "../../../services/vacancyService";
+import { useQuery } from "react-query";
 
 const JobSearchOptions = ({ filters, onFilterChange, onSearch }) => {
-  const jobCategories = [
-    { label: "Contabilidade", value: "1" },
-    { label: "TI & Software", value: "2" },
-    { label: "Marketing", value: "3" },
-    { label: "Bancos", value: "4" },
-  ];
+  const {
+    data: categoriesData,
+    isLoading,
+    // error,
+  } = useQuery({
+    queryKey: ["jobCategories"],
+    queryFn: getJobCategories,
+    select: (data) =>
+      data.content.map((category) => ({
+        value: category.id,
+        label: category.name,
+      })),
+    staleTime: 60 * 60 * 1000, // 1 hora de cache
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -42,19 +52,20 @@ const JobSearchOptions = ({ filters, onFilterChange, onSearch }) => {
           <Col lg={3} md={6}>
             <div className="filler-job-form">
               <i className="uil uil-location-point"></i>
-              <CountryOptions 
+              <CountryOptions
                 value={filters.location}
-                onChange={(value) => onFilterChange('location', value)}
+                onChange={(value) => onFilterChange("location", value)}
               />
             </div>
           </Col>
           <Col lg={3} md={6}>
             <div className="filler-job-form">
               <i className="uil uil-clipboard-notes"></i>
-              <JobType 
-                options={jobCategories}
-                value={filters.jobCategory}
-                onChange={(value) => onFilterChange('jobCategory', value)}
+              <JobType
+                loading={isLoading}
+                options={categoriesData || []} // Fallback para array vazio
+                value={filters.jobCategoryId}
+                onChange={(value) => onFilterChange("jobCategoryId", value)}
               />
             </div>
           </Col>

@@ -81,7 +81,7 @@ const NavBar = (props) => {
   return (
     <React.Fragment>
       <nav
-        className={"navbar navbar-expand-lg fixed-top sticky p-0 " + navClass}
+        className={"navbar navbar-expand-lg fixed-top nav-sticky p-0 " + navClass}
         id="navigation"
       >
         <Container fluid className="custom-container">
