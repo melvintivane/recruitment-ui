@@ -91,9 +91,12 @@ const JobDetailsDescription = ({ job }) => {
           <div className="mt-4">
             <h5 className="mb-3">Descrição da Vaga</h5>
             <div className="job-detail-desc">
-              <p className="text-muted mb-0">
-                {description || "Nenhuma descrição fornecida."}
-              </p>
+              <p
+                className="text-muted mb-0"
+                dangerouslySetInnerHTML={{
+                  __html: description || "Nenhuma descrição fornecida.",
+                }}
+              />
             </div>
           </div>
 
