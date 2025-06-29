@@ -173,17 +173,20 @@ const NavBar = (props) => {
           </Collapse>
 
           <ul className="header-menu list-inline d-flex align-items-center mb-0">
-            <li className="list-inline-item">
+            <li
+              className="list-inline-item border rounded-circle p-2 d-flex align-items-center justify-content-center"
+              style={{ width: "40px", height: "40px" }}
+            >
               <Link id="mode" onClick={toggleTheme} className="d-inline-block">
                 {theme === "dark" ? (
                   <Icon
                     icon="material-symbols:sunny-rounded"
-                    className="text-warning fs-5"
+                    className="text-light fs-22"
                   />
                 ) : (
                   <Icon
                     icon="material-symbols:dark-mode-rounded"
-                    className="text-secondary fs-5"
+                    className="text-dark fs-22"
                   />
                 )}
               </Link>
