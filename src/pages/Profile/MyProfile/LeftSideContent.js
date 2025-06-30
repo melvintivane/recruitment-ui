@@ -19,15 +19,6 @@ const LeftSideContent = () => {
               />
               <h5 className="mb-0">Jassmin Tivane</h5>
               <p className="text-muted">Developer</p>
-              <ul className="list-inline d-flex justify-content-center align-items-center ">
-                <li className="list-inline-item text-warning fs-19">
-                  <i className="mdi mdi-star"></i>
-                  <i className="mdi mdi-star"></i>
-                  <i className="mdi mdi-star"></i>
-                  <i className="mdi mdi-star"></i>
-                  <i className="mdi mdi-star-half-full"></i>
-                </li>
-              </ul>
               <ul className="candidate-detail-social-menu list-inline mb-0">
                 <li className="list-inline-item">
                   <Link

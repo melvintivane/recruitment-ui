@@ -175,10 +175,10 @@ const LeftSideContent = () => {
               <li>
                 <div className="d-flex align-items-center mt-4">
                   <div className="icon bg-primary-subtle text-primary flex-shrink-0">
-                    <i className="uil uil-skype-alt"></i>
+                    <i className="uil uil-linkedin-alt"></i>
                   </div>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-1">Skype</h6>
+                    <h6 className="fs-14 mb-1">LinkedIn</h6>
                     <p className="text-muted mb-0">@gabrielpalmer</p>
                   </div>
                 </div>
