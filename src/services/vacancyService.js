@@ -1,4 +1,3 @@
-// services/vacancyService.js
 import { API_ENDPOINTS } from "../config/api";
 
 export const getAllVacancies = async ({ page, size, search, location, category }) => {

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Container, Card, Col, Input, Row, CardBody } from "reactstrap";
+import { Container, Card, Col, Input, Row, CardBody, Toast } from "reactstrap";
 import lightLogo from "../../assets/images/light-logo.png";
 import darkLogo from "../../assets/images/dark-logo.png";
 import signUpImage from "../../assets/images/auth/sign-up.png";
 import { Form } from "react-bootstrap";
+import { signUp } from "../../services/authService";
 
 const SignUp = () => {
   document.title = "Registro";
@@ -12,14 +13,7 @@ const SignUp = () => {
     firstName: "",
     lastName: "",
     email: "",
-    picture: "",
-    gender: "",
-    password: "",
-    country: "Mozambique",
-    phone: "",
-    birthDate: "",
-    address: "",
-    yearsOfExperience: 0,
+    password: ""
   });
 
   const handleChange = (e) => {
@@ -33,17 +27,9 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Erro no registro");
-      }
+      const response = await signUp(formData);
+      Toast.success("Cadastro realizado com sucesso!");
+      console.log("Usuário cadastrado:", response);
 
       // Redirecionar ou mostrar mensagem de sucesso
     } catch (error) {
@@ -94,10 +80,7 @@ const SignUp = () => {
                         <CardBody className="auth-content p-5 text-white">
                           <div className="w-100">
                             <div className="text-center mb-4">
-                              <h5 className="text-white-70">
-                                Cadastre-se e tenha acesso a todos os recursos
-                                do EP Recruitment.
-                              </h5>
+                              <h5 className="text-white-70 text-uppercase">Cadastre-se!</h5>
                             </div>
                             <Form onSubmit={handleSubmit} className="auth-form">
                               <Row>

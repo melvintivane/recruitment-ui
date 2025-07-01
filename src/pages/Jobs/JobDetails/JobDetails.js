@@ -25,14 +25,37 @@ const JobDetails = () => {
   });
 
   if (isLoading) {
-    return <div className="text-center py-5">Loading job details...</div>;
+    return (
+      <section className="section">
+        <Section />
+        <Container>
+          <div className="text-center py-5">
+            <div
+              className="spinner-grow text-primary"
+              style={{ width: "3rem", height: "3rem" }}
+              role="status"
+            >
+              <span className="visually-hidden">Carregando...</span>
+            </div>
+            <p className="mt-3">Carregando detalhes da vaga...</p>
+          </div>
+        </Container>
+      </section>
+    );
   }
 
   if (isError) {
     return (
-      <div className="text-center py-5 text-danger">
-        Error: {error.message || "Failed to fetch job details"}
-      </div>
+      <>
+        <Section />
+        <section className="section">
+          <Container>
+            <div className="text-center py-5 text-danger">
+              Error: {error.message || "Failed to fetch job details"}
+            </div>
+          </Container>
+        </section>
+      </>
     );
   }
 
