@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Container, Card, Col, Input, Row, CardBody, Toast } from "reactstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Card, Col, Input, Row, CardBody } from "reactstrap";
 import lightLogo from "../../assets/images/light-logo.png";
 import darkLogo from "../../assets/images/dark-logo.png";
 import signUpImage from "../../assets/images/auth/sign-up.png";
 import { Form } from "react-bootstrap";
 import { signUp } from "../../services/authService";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   document.title = "Registro";
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,12 +30,20 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const response = await signUp(formData);
-      Toast.success("Cadastro realizado com sucesso!");
-      console.log("Usuário cadastrado:", response);
 
-      // Redirecionar ou mostrar mensagem de sucesso
+      const { accessToken, fullName, email, candidateId, expiresIn } = await response;
+
+      // Armazenar apenas o token string
+      localStorage.setItem("authToken", accessToken);
+      localStorage.setItem("userName", fullName);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("candidateId", candidateId);
+      localStorage.setItem("expiresIn", expiresIn);
+
+      toast.success("Cadastro realizado com sucesso!");
+      navigate("/myprofile");
     } catch (error) {
-      console.error("Erro:", error);
+      toast.error(error.message || "Erro ao cadastrar");
     }
   };
 

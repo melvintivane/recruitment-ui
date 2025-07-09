@@ -56,7 +56,7 @@ const RightSideContent = () => {
                 }}
                 type="button"
               >
-                Configurações
+                Editar Perfil
               </NavLink>
             </NavItem>
           </Nav>

@@ -7,7 +7,6 @@ import darkLogo from "../../assets/images/dark-logo.png";
 import signInImage from "../../assets/images/auth/sign-in.png";
 import { toast } from "react-toastify";
 import { login } from "../../services/authService";
-import { jwtDecode } from "jwt-decode";
 
 const SignIn = () => {
   document.title = "Login - Recruitment";
@@ -32,7 +31,7 @@ const SignIn = () => {
     setIsLoading(true);
 
     try {
-      const response = await login(formData);
+      const response = await login(formData);      
 
       const { accessToken, fullName, email, candidateId, expiresIn } = await response;
 

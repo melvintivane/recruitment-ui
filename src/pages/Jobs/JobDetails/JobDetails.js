@@ -20,8 +20,8 @@ const JobDetails = () => {
   } = useQuery({
     queryKey: ["jobDetails", id],
     queryFn: () => getVacancyById(id),
-    staleTime: 60 * 1000, // 1 minuto de cache
-    retry: 1, // Número de tentativas em caso de erro
+    staleTime: 60 * 1000,
+    retry: 1,
   });
 
   if (isLoading) {

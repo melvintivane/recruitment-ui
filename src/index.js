@@ -9,13 +9,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { ReactQueryProvider } from "./providers/QueryClientProvider";
+import { AuthProvider } from "./context/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ReactQueryProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ReactQueryProvider>
     </BrowserRouter>
   </>
