@@ -8,8 +8,7 @@ export const applyToVacancy = async (vacancyId, formData) => {
   
   const response = await fetch(`${API_ENDPOINTS.JOB_APPLICATIONS}/${vacancyId}/apply`, {
     method: "POST",
-    body: formData, // Não definir Content-Type manualmente para FormData
-    // O navegador irá definir automaticamente com o boundary correto
+    body: formData,
   });
 
   if (!response.ok) {
