@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const JobType = ({ loading, options, value, onChange }) => {
   const colourStyles = {
@@ -21,9 +22,11 @@ const JobType = ({ loading, options, value, onChange }) => {
     onChange(selectedOption ? selectedOption.value : 0);
   };
 
+  const {language} = useLanguage();
+
   return (
     <Select
-      placeholder="Selecione a categoria..."
+      placeholder={language === 'pt' ? "Selecione a categoria..." : "Select category..."}
       options={options}
       className="choices selectForm__inner"
       value={selectedOption}

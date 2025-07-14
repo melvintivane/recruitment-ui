@@ -1,6 +1,8 @@
 import Select from "react-select";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CountryOptions = ({ value, onChange }) => {
+  const {language} = useLanguage();
   const countries = [
     { value: "0", label: "Afghanistan" },
     { value: "1", label: "Åland Islands" },
@@ -278,7 +280,7 @@ const CountryOptions = ({ value, onChange }) => {
   return (
     <>
       <Select
-        placeholder="Selecione um país..."
+        placeholder={language === 'pt'? "Selecione um país..." : "Select country..."}
         options={countries}
         className="choices selectForm__inner"
         value={selectedOption}

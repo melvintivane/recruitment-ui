@@ -1,48 +1,93 @@
 import React from "react";
-import { Col, Row, Container } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
 
 //Importação de imagens do Blog
 import BlogImage1 from "../../assets/images/blog/img-01.jpg";
 import BlogImage2 from "../../assets/images/blog/img-02.jpg";
 import BlogImage3 from "../../assets/images/blog/img-03.jpg";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Blog = () => {
-  const blog = [
-    {
-      id: 1,
-      image: BlogImage1,
-      userName: "Dirio Walls",
-      date: "01 Julho, 2021",
-      likesCount: "33",
-      commnetCount: "08",
-      blogTitle: "Como os aplicativos estão mudando o mundo da TI?",
-      blogContent:
-        "O texto final ainda não está disponível. Textos fictícios têm sido usados por diagramadores há séculos."
+  const { language } = useLanguage();
+  const translatedBlogs = {
+    pt: {
+      blog: [
+        {
+          id: 1,
+          image: BlogImage1,
+          userName: "Dirio Walls",
+          date: "01 Julho, 2021",
+          likesCount: "33",
+          commnetCount: "08",
+          blogTitle: "Como os aplicativos estão mudando o mundo da TI?",
+          blogContent:
+            "O texto final ainda não está disponível. Textos fictícios têm sido usados por diagramadores há séculos."
+        },
+        {
+          id: 2,
+          image: BlogImage2,
+          userName: "Brandon Carney",
+          date: "25 Junho, 2021",
+          likesCount: 44,
+          commnetCount: 25,
+          blogTitle: "Os aplicativos mais inteligentes para negócios?",
+          blogContent:
+            "O texto final ainda não está disponível. Textos fictícios têm sido usados por diagramadores há séculos."
+        },
+        {
+          id: 3,
+          image: BlogImage3,
+          userName: "William Mooneyhan",
+          date: "16 Março, 2021",
+          likesCount: 68,
+          commnetCount: 20,
+          blogTitle: "Como desenhar seus apps do seu jeito?",
+          blogContent:
+            "Uma desvantagem do Lorem Ipsum é que, em latim, certas letras aparecem com mais frequência do que outras."
+        }
+      ]
     },
-    {
-      id: 2,
-      image: BlogImage2,
-      userName: "Brandon Carney",
-      date: "25 Junho, 2021",
-      likesCount: 44,
-      commnetCount: 25,
-      blogTitle: "Os aplicativos mais inteligentes para negócios?",
-      blogContent:
-        "O texto final ainda não está disponível. Textos fictícios têm sido usados por diagramadores há séculos."
-    },
-    {
-      id: 3,
-      image: BlogImage3,
-      userName: "William Mooneyhan",
-      date: "16 Março, 2021",
-      likesCount: 68,
-      commnetCount: 20,
-      blogTitle: "Como desenhar seus apps do seu jeito?",
-      blogContent:
-        "Uma desvantagem do Lorem Ipsum é que, em latim, certas letras aparecem com mais frequência do que outras."
+    en: {
+      blog :[
+        {
+          id: 1,
+          image: BlogImage1,
+          userName: "Dirio Walls",
+          date: "01 July, 2021",
+          likesCount: "33",
+          commnetCount: "08",
+          blogTitle: "How Are Apps Changing the IT World?",
+          blogContent:
+            "The final text is not yet available. Placeholder texts have been used by typesetters for centuries.",
+        },
+        {
+          id: 2,
+          image: BlogImage2,
+          userName: "Brandon Carney",
+          date: "25 June, 2021",
+          likesCount: 44,
+          commnetCount: 25,
+          blogTitle: "The Smartest Apps for Business?",
+          blogContent:
+            "The final text is not yet available. Placeholder texts have been used by typesetters for centuries.",
+        },
+        {
+          id: 3,
+          image: BlogImage3,
+          userName: "William Mooneyhan",
+          date: "16 March, 2021",
+          likesCount: 68,
+          commnetCount: 20,
+          blogTitle: "How to Design Your Apps Your Own Way?",
+          blogContent:
+            "One disadvantage of Lorem Ipsum is that in Latin, certain letters appear more frequently than others.",
+        },
+      ]
     }
-  ];
+  };
+
+  const t = translatedBlogs[language] || translatedBlogs['pt']
 
   return (
     <React.Fragment>
@@ -51,15 +96,17 @@ const Blog = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="section-title text-center mb-5">
-                <h3 className="title mb-3">Dicas Rápidas de Carreira</h3>
+                <h3 className="title mb-3">{language === 'pt' ? "Dicas Rápidas de Carreira" : "Quick Career Tips"}</h3>
                 <p className="text-muted">
-                  Publique uma vaga e nos conte sobre o seu projeto. Vamos conectá-lo rapidamente com os freelancers ideais.
+                  <p className="text-muted">
+                    {language === 'pt' ? "Publique uma vaga para nos contar sobre seu projeto. Iremos conectá-lo rapidamente com os candidatos certos." : "Post a job to tell us about your project. We'll quickly connect you with the right candidates."}
+                  </p>
                 </p>
               </div>
             </Col>
           </Row>
           <Row>
-            {(blog || []).map((blogDetails, key) => (
+            {(t.blog || []).map((blogDetails, key) => (
               <Col lg={4} md={6} key={key}>
                 <div className="blog-box card p-2 mt-3">
                   <div className="blog-img position-relative overflow-hidden">
@@ -100,7 +147,7 @@ const Blog = () => {
                     </Link>
                     <p className="text-muted">{blogDetails.blogContent}</p>
                     <Link to="/blogdetails" className="form-text text-primary">
-                      Leia mais{" "}
+                      {language === 'pt' ? "Leia mais" : "Read more"}{" "}
                       <i className="mdi mdi-chevron-right align-middle"></i>
                     </Link>
                   </div>

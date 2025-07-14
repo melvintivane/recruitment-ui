@@ -1,11 +1,29 @@
 import React from "react";
-import { Col, Container, Row, Form } from "reactstrap";
 import { Link } from "react-router-dom";
-import JobSearch from "../SubSection/JobSearch";
+import { Col, Container, Form, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 import CountryOptions from "../SubSection/CountryOptions";
+import JobSearch from "../SubSection/JobSearch";
 import JobType from "../SubSection/JobType";
 
-const section = () => {
+const Section = () => {
+  const { language } = useLanguage();
+  const sectionText = {
+    pt: {
+      titleFirstWords: "Explore As Nossas",
+      titleSecondWords: "10.000+",
+      titleThirdWords: "Vagas Abertas",
+      paragraph: "Encontre empregos, crie currículos rastreáveis e valorize suas candidaturas."
+    },
+    en: {
+      titleFirstWords: "Explore Our",
+      titleSecondWords: "10,000+",
+      titleThirdWords: "Job Openings",
+      paragraph: "Find jobs, build trackable résumés, and enhance your applications."
+    }
+  }
+
+  const t = sectionText[language] || sectionText['pt']
   return (
     <React.Fragment>
       <section className="bg-home" id="home">
@@ -15,13 +33,12 @@ const section = () => {
             <Col lg={8}>
               <div className="text-center text-white mb-5">
                 <h1 className="display-5 fw-semibold mb-3">
-                  Explore As Nossas{" "}
-                  <span className="text-warning fw-bold">10,000+ </span>
-                  Abertas.
+                  {t.titleFirstWords}{" "}
+                  <span className="text-warning fw-bold">{t.titleSecondWords} </span>
+                  {t.titleThirdWords}
                 </h1>
                 <p className="fs-17">
-                  Encontre empregos, crie currículos rastreáveis e valorize suas
-                  candidaturas.
+                  {t.paragraph}
                 </p>
               </div>
             </Col>
@@ -54,7 +71,7 @@ const section = () => {
                       className="btn btn-primary submit-btn w-100 h-100"
                       type="submit"
                     >
-                      <i className="uil uil-search me-1"></i> Buscar Vaga
+                      <i className="uil uil-search me-1"></i> {language === 'pt' ? "Buscar Vaga" : "Search Vacancy"}
                     </button>
                   </div>
                 </Col>
@@ -67,19 +84,19 @@ const section = () => {
               <ul className="treding-keywords list-inline mb-0 text-white-50 mt-4 mt-lg-3 text-center">
                 <li className="list-inline-item text-white">
                   <i className="mdi mdi-tag-multiple-outline text-warning fs-18"></i>{" "}
-                  Palavras-chave em alta:
+                  {language === 'pt' ? "Palavras-chave em alta:" : "Trending Keywords:"}
                 </li>
                 <li className="list-inline-item">
                   <Link to="#">Design,</Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">Desenvolvimento,</Link>
+                  <Link to="#">{language === 'pt' ? "Desenvolvimento," : "Development,"}</Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">Gestor,</Link>
+                  <Link to="#">{language === 'pt' ? "Gestor," : "Manager,"}</Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">Sênior</Link>
+                  <Link to="#">{language === 'pt' ? "Sênior" : "Senior"}</Link>
                 </li>
               </ul>
             </Col>
@@ -116,4 +133,4 @@ const section = () => {
   );
 };
 
-export default section;
+export default Section;

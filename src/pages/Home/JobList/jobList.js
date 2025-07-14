@@ -1,17 +1,18 @@
+import classnames from "classnames";
 import React, { useState } from "react";
 import {
-  Container,
-  Row,
   Col,
+  Container,
   Nav,
   NavItem,
   NavLink,
+  Row,
   TabContent,
   TabPane,
 } from "reactstrap";
-import classnames from "classnames";
 
 //Components Imports
+import { useLanguage } from "../../../context/LanguageContext.js";
 import FeaturedJobs from "../JobList/FeaturedJobs";
 import Freelancer from "../JobList/Freelancer.js";
 import Fulltime from "../JobList/Fulltime.js";
@@ -19,6 +20,7 @@ import Parttime from "../JobList/Parttime.js";
 import RecentJobs from "./RecentJobs";
 
 const JobList = () => {
+  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
 
   const tabChange = (tab) => {
@@ -31,10 +33,10 @@ const JobList = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="section-title text-center mb-4 pb-2">
-                <h4 className="title">Vagas Novas e Aleatórias</h4>
+                <h4 className="title">{language === 'pt' ? "Vagas Novas e Aleatórias" : "New and Random Vacancies"}</h4>
                 <p className="text-muted mb-1">
-                  Publique uma vaga para nos contar sobre seu projeto. Iremos
-                  conectá-lo rapidamente com os candidatos certos.
+                  {language === 'pt' ? "Publique uma vaga para nos contar sobre seu projeto. Iremos conectá-lo rapidamente com os candidatos certos." : "Post a job to tell us about your project. We'll quickly connect you with the right candidates."}
+                  
                 </p>
               </div>
             </Col>
@@ -57,7 +59,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    Recentes
+                    {language === 'pt' ? "Recentes" : "Latest"}
                   </NavLink>
                 </NavItem>
 
@@ -71,7 +73,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    Em Destaque
+                    {language === 'pt' ? "Em Destaque" : "Featured"}
                   </NavLink>
                 </NavItem>
                 <NavItem role="presentation">
