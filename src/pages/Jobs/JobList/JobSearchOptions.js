@@ -1,5 +1,6 @@
 import { Col, Form } from "react-bootstrap";
 import { Input, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 import CountryOptions from "../../Home/SubSection/CountryOptions";
 import JobType from "../../Home/SubSection/JobType";
 
@@ -20,6 +21,8 @@ const JobSearchOptions = ({
     onSearch();
   };
 
+  const {language} = useLanguage();
+
   return (
     <div className="job-list-header">
       <Form onSubmit={handleSubmit}>
@@ -33,7 +36,7 @@ const JobSearchOptions = ({
                 value={filters.searchQuery}
                 onChange={handleInputChange}
                 className="form-control filter-input-box"
-                placeholder="Título, descrição, etc..."
+                placeholder={language === 'pt' ? "Título, descrição, etc..." : "Title, description, etc..."}
                 style={{ marginTop: "-10px" }}
               />
             </div>
@@ -60,7 +63,7 @@ const JobSearchOptions = ({
           </Col>
           <Col lg={3} md={6}>
             <button type="submit" className="btn btn-primary w-100">
-              <i className="uil uil-filter"></i> Filtrar
+              <i className="uil uil-filter"></i> {language === 'pt' ? "Filtrar" : "Filter"}
             </button>
           </Col>
         </Row>
