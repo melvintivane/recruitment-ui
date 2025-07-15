@@ -11,8 +11,10 @@ import userImage5 from "../../../assets/images/user/img-05.jpg";
 import userImage6 from "../../../assets/images/user/img-06.jpg";
 import userImage7 from "../../../assets/images/user/img-07.jpg";
 import userImage8 from "../../../assets/images/user/img-08.jpg";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CandidateDetails = () => {
+  const {language} = useLanguage();
   const candidateDetails = [
     {
       id: 1,
@@ -209,7 +211,7 @@ const CandidateDetails = () => {
       <Row className="align-items-center">
         <Col lg={8}>
           <div className="mb-3 mb-lg-0">
-            <h6 className="fs-16 mb-0"> Showing 1 – 8 of 11 results </h6>
+            <h6 className="fs-16 mb-0"> {language === 'pt' ? `Mostrando ${1} - ${8} de ${11} resultados` : `Showing ${1} – ${8} of ${11} results`}  </h6>
           </div>
         </Col>
 
@@ -225,10 +227,10 @@ const CandidateDetails = () => {
                     id="choices-single-filter-orderby"
                     aria-label="Default select example"
                   >
-                    <option value="df">Default</option>
-                    <option value="ne">Newest</option>
-                    <option value="od">Oldest</option>
-                    <option value="rd">Random</option>
+                    <option value="df">{language === 'pt' ? "Padrão" : "Default"}</option>
+                    <option value="ne">{language === 'pt' ? "Mais recentes" : "Newest"}</option>
+                    <option value="od">{language === 'pt' ? "Mais antigos" : "Oldest"}</option>
+                    <option value="rd">{language === 'pt' ? "Aleatório" : "Random"}</option>
                   </select>
                 </div>
               </Col>
@@ -241,9 +243,9 @@ const CandidateDetails = () => {
                     id="choices-candidate-page"
                     aria-label="Default select example"
                   >
-                    <option value="df">All</option>
-                    <option value="ne">8 per Page</option>
-                    <option value="ne">12 per Page</option>
+                    <option value="df">{language === 'pt' ? "Todos" : "All"}</option>
+                    <option value="ne">{language === 'pt' ? `${8} por página` : `${8} per page`}</option>
+                    <option value="ne">{language === 'pt' ? `${12} por página` : `${12} per page`}</option>
                   </select>
                 </div>
               </Col>

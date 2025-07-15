@@ -5,7 +5,10 @@ import { Card, CardBody, Col } from "reactstrap";
 // Importar imagem do usuário
 import userImage1 from "../../../assets/images/user/img-01.jpg";
 
+import { useLanguage } from "../../../context/LanguageContext";
+
 const LeftSideContent = () => {
+  const {language} = useLanguage()
   return (
     <React.Fragment>
       <Col lg={4}>
@@ -40,11 +43,11 @@ const LeftSideContent = () => {
           </CardBody>
 
           <CardBody className="candidate-profile-overview border-top p-4">
-            <h6 className="fs-17 fw-medium mb-3">Visão Geral do Perfil</h6>
+            <h6 className="fs-17 fw-medium mb-3">{language === 'pt' ? "Visão Geral do Perfil" : "Profile Overview"}</h6>
             <ul className="list-unstyled mb-0">
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Categorias</label>
+                  <label className="text-dark">{language === 'pt' ? "Categorias" : "Categories"}</label>
                   <div>
                     <p className="text-muted mb-0">Contabilidade / Finanças</p>
                   </div>
@@ -52,7 +55,7 @@ const LeftSideContent = () => {
               </li>
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Salário</label>
+                  <label className="text-dark">{language === 'pt' ? "Salário" : "Salary"}</label>
                   <div>
                     <p className="text-muted mb-0">$450 por hora</p>
                   </div>
@@ -60,7 +63,7 @@ const LeftSideContent = () => {
               </li>
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Idiomas</label>
+                  <label className="text-dark">{language === 'pt' ? "Idiomas" : "Languages"}</label>
                   <div>
                     <p className="text-muted mb-0">Inglês, Turco, Japonês</p>
                   </div>
@@ -68,7 +71,7 @@ const LeftSideContent = () => {
               </li>
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Experiência</label>
+                  <label className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}</label>
                   <div>
                     <p className="text-muted mb-0">3 Anos</p>
                   </div>
@@ -76,7 +79,7 @@ const LeftSideContent = () => {
               </li>
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Qualificação</label>
+                  <label className="text-dark">{language === 'pt' ? "Qualificação" : "Qualification"}</label>
                   <div>
                     <p className="text-muted mb-0">Diploma de Associate</p>
                   </div>
@@ -84,7 +87,7 @@ const LeftSideContent = () => {
               </li>
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">Visualizações</label>
+                  <label className="text-dark">{language === 'pt' ? "Visualizações" : "Views"}</label>
                   <div>
                     <p className="text-muted mb-0">2574</p>
                   </div>
@@ -93,10 +96,10 @@ const LeftSideContent = () => {
             </ul>
             <div className="mt-3">
               <Link to="#" className="btn btn-danger btn-hover w-100">
-                <i className="uil uil-phone"></i> Contate-me
+                <i className="uil uil-phone"></i> {language === 'pt' ? "Contacte-me" : "Contact me"}
               </Link>
               <Link to="#" className="btn btn-primary btn-hover w-100 mt-2">
-                <i className="uil uil-import"></i> Baixar CV
+                <i className="uil uil-import"></i> {language === 'pt'? "Baixar CV" : "Download CV"}
               </Link>
             </div>
             <ul className="list-inline d-flex justify-content-between align-items-center mb-0 mt-2">
@@ -117,7 +120,7 @@ const LeftSideContent = () => {
             </ul>
           </CardBody>
           <CardBody className="p-4 border-top">
-            <h6 className="fs-17 fw-medium mb-3">Habilidades Profissionais</h6>
+            <h6 className="fs-17 fw-medium mb-3">{language === 'pt' ? "Habilidades Profissionais" :"Professional Skills" }</h6>
             <div className="d-flex flex-wrap align-items-start gap-1">
               <span className="badge bg-success-subtle text-success fs-13 mt-1">
                 Design de Interface de Usuário
@@ -137,7 +140,7 @@ const LeftSideContent = () => {
             </div>
           </CardBody>
           <CardBody className="candidate-contact-details p-4 border-top">
-            <h6 className="fs-17 fw-medium mb-3">Detalhes de Contato</h6>
+            <h6 className="fs-17 fw-medium mb-3">{language === 'pt' ? "Detalhes de Contato" : "Contact Details"}</h6>
             <ul className="list-unstyled mb-0">
               <li>
                 <div className="d-flex align-items-center mt-4">
@@ -156,7 +159,7 @@ const LeftSideContent = () => {
                     <i className="uil uil-map-marker"></i>
                   </div>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-1">Endereço</h6>
+                    <h6 className="fs-14 mb-1">{language === 'pt' ? "Endereço" : "Address"}</h6>
                     <p className="text-muted mb-0">Matola, T3</p>
                   </div>
                 </div>
@@ -167,7 +170,7 @@ const LeftSideContent = () => {
                     <i className="uil uil-phone"></i>
                   </div>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-1">Telefone</h6>
+                    <h6 className="fs-14 mb-1">{language === 'pt' ? "Telefone" : "Telephone"}</h6>
                     <p className="text-muted mb-0">+258 84 207 4393</p>
                   </div>
                 </div>

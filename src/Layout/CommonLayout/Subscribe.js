@@ -30,7 +30,7 @@ const Subscribe = () => {
                       type="text"
                       className="form-control"
                       id="subscribe"
-                      placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your email"}
+                      placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"}
                     />
                     <button
                       className="btn btn-primary"

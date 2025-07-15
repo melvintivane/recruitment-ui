@@ -2,10 +2,12 @@ import React from "react";
 import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Col, Input, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 import CountryOptions from "../../Home/SubSection/CountryOptions";
 import JobType from "../../Home/SubSection/JobType";
 
 const JobFilters = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <Row className="justify-content-center">
@@ -20,7 +22,7 @@ const JobFilters = () => {
                       type="search"
                       className="form-control filter-input-box"
                       id="exampleFormControlInput1"
-                      placeholder="Job, company... "
+                      placeholder={language === 'pt' ? "Emprego, empresa... " : "Job, company... "}
                       style={{ marginTop: "-12px" }}
                     />
                   </div>
@@ -41,10 +43,10 @@ const JobFilters = () => {
                 <Col lg={3}>
                   <div>
                     <Link to="#" className="btn btn-primary">
-                      <i className="uil uil-filter"></i> Filter
+                      <i className="uil uil-filter"></i>{language === 'pt' ? "Filtro" : "Filter"}
                     </Link>
                     <Link to="#" className="btn btn-success ms-2">
-                      <i className="uil uil-cog"></i> Advance
+                      <i className="uil uil-cog"></i>{language === 'pt' ? "Avançar" : "Advance"} 
                     </Link>
                   </div>
                 </Col>

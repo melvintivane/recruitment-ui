@@ -264,7 +264,7 @@ const t = translations[language] || translations['pt']
             </button>
           </li>
           <div className="d-none d-md-block">
-            <LanguageSwitcher/>
+            <LanguageSwitcher margin={10}/>
           </div>
 
           {user && (

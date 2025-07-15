@@ -1,10 +1,10 @@
 import { useLanguage } from "../context/LanguageContext";
 
-const LanguageSwitcher = ({breakpoint,visibility}) => {
+const LanguageSwitcher = ({breakpoint,visibility,margin}) => {
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <div className={`form-check form-switch d-${breakpoint}-${visibility}`}>
+    <div className={`form-check form-switch pr-${margin} d-${breakpoint}-${visibility}`}>
       <input
         className="form-check-input"
         type="checkbox"

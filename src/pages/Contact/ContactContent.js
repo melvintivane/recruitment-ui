@@ -1,11 +1,13 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import { Col, Container, Row, Input, Label } from "reactstrap";
+import { Col, Container, Input, Label, Row } from "reactstrap";
+import { useLanguage } from "../../context/LanguageContext";
 
 //Importar imagens
 import contactImage from "../../assets/images/contact.png";
 
 const ContactContent = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="section">
@@ -13,11 +15,9 @@ const ContactContent = () => {
           <Row className="align-items-center mt-5">
             <Col lg={6}>
               <div className="section-title mt-4 mt-lg-0">
-                <h3 className="title">Entre em contacto</h3>
+                <h3 className="title">{language === 'pt' ? "Entre em contacto" : "Get in touch"}</h3>
                 <p className="text-muted">
-                  Comece a trabalhar com a Recruitment que pode fornecer tudo o que
-                  você precisa para gerar visibilidade, aumentar o tráfego e
-                  conectar.
+                  {language === 'pt' ? "Comece a trabalhar com a Recruitment que pode fornecer tudo o que você precisa para gerar visibilidade, aumentar o tráfego e conectar." : "Get started with Recruitment, which can provide everything you need to generate visibility, increase traffic, and connect."}
                 </p>
                 <Form
                   method="post"
@@ -30,27 +30,27 @@ const ContactContent = () => {
                     <Col lg={12}>
                       <div className="mb-3">
                         <Label htmlFor="nameInput" className="form-label">
-                          Nome
+                          {language === 'pt' ? "Nome" : "Name"}
                         </Label>
                         <Input
                           type="text"
                           name="name"
                           id="name"
                           className="form-control"
-                          placeholder="Digite seu nome"
+                          placeholder={language === 'pt' ? "Digite seu nome" : "Enter your name"}
                         />
                       </div>
                     </Col>
                     <Col lg={12}>
                       <div className="mb-3">
                         <Label htmlFor="subjectInput" className="form-label">
-                          Assunto
+                          {language === 'pt' ? "Assunto" : "Subject"}
                         </Label>
                         <Input
                           type="text"
                           className="form-control"
                           name="subject"
-                          placeholder="Digite o assunto"
+                          placeholder={language === 'pt' ? "Digite o assunto" : "Enter the subject"}
                         />
                       </div>
                     </Col>
@@ -64,31 +64,31 @@ const ContactContent = () => {
                           className="form-control"
                           id="email"
                           name="email"
-                          placeholder="Digite seu e-mail"
+                          placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"}
                         />
                       </div>
                     </Col>
                     <Col md={6}>
                       <div className="mb-3">
-                        <Label htmlFor="subjectInput" className="form-label">
-                          Contacto
+                        <Label htmlFor="contactInput" className="form-label">
+                          {language === 'pt' ? "Contacto" : "Contact"}
                         </Label>
                         <Input
                           type="text"
                           className="form-control"
-                          name="subject"
-                          placeholder="Digite o assunto"
+                          name="contact"
+                          placeholder={language === 'pt' ? "Digite o seu contacto" : "Enter  your contact"}
                         />
                       </div>
                     </Col>
                     <Col lg={12}>
                       <div className="mb-3">
                         <Label htmlFor="messageInput" className="form-label">
-                          Sua Mensagem
+                          {language === 'pt' ? "Sua Mensagem" : "Your Message"} 
                         </Label>
                         <textarea
                           className="form-control"
-                          placeholder="Digite sua mensagem"
+                          placeholder={language === 'pt' ?"Digite sua mensagem" : "Enter your message"}
                           name="comments"
                           rows="3"
                         ></textarea>
@@ -102,7 +102,7 @@ const ContactContent = () => {
                       name="submit"
                       className="btn btn-primary"
                     >
-                      Enviar Mensagem <i className="uil uil-message ms-1"></i>
+                      {language === 'pt' ? "Enviar Mensagem" : "Send Message"} <i className="uil uil-message ms-1"></i>
                     </button>
                   </div>
                 </Form>
