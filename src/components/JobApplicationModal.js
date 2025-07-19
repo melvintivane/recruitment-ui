@@ -20,7 +20,7 @@ const JobApplicationModal = ({ jobId, isOpen, toggle }) => {
       return;
     }
 
-    if (!user?.id) {
+    if (!user?.candidateId) {
       setError("Usuário não autenticado");
       return;
     }
@@ -31,22 +31,17 @@ const JobApplicationModal = ({ jobId, isOpen, toggle }) => {
     try {
       const formData = new FormData();
 
-      // Cria o objeto DTO que o backend espera
       const applicationDto = {
-        candidateId: user.id,
+        candidateId: user.candidateId,
         message: message,
-        // outros campos necessários podem ser adicionados aqui
       };
 
-      // Adiciona o DTO como JSON stringify
       formData.append(
         "dto",
         new Blob([JSON.stringify(applicationDto)], {
           type: "application/json",
         })
       );
-
-      // Adiciona o arquivo
       formData.append("cvFile", resumeFile);
 
       await applyToVacancy(jobId, formData);
@@ -59,10 +54,10 @@ const JobApplicationModal = ({ jobId, isOpen, toggle }) => {
         fileInputRef.current.value = "";
       }
 
-      // Opcional: mostrar mensagem de sucesso
       toast.success("Candidatura enviada com sucesso!");
     } catch (err) {
       setError(err.message || "Erro ao enviar candidatura");
+      toast.error(err.message || "Erro ao enviar candidatura");
     } finally {
       setIsSubmitting(false);
     }
@@ -82,7 +77,6 @@ const JobApplicationModal = ({ jobId, isOpen, toggle }) => {
         return;
       }
       if (file.size > 5 * 1024 * 1024) {
-        // 5MB
         setError("O arquivo é muito grande (máximo 5MB)");
         return;
       }

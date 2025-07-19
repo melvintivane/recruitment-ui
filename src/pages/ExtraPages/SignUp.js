@@ -7,6 +7,7 @@ import signUpImage from "../../assets/images/auth/sign-up.png";
 import { Form } from "react-bootstrap";
 import { signUp } from "../../services/authService";
 import { toast } from "react-toastify";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const SignUp = () => {
   document.title = "Registro";
@@ -15,8 +16,12 @@ const SignUp = () => {
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,16 +29,38 @@ const SignUp = () => {
       ...prev,
       [name]: value,
     }));
+
+    // Limpa o erro quando o usuário começa a digitar
+    if (name === "confirmPassword" || name === "password") {
+      setPasswordError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validação das senhas
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordError("As senhas não coincidem");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setPasswordError("A senha deve ter pelo menos 6 caracteres");
+      return;
+    }
+
     try {
-      const response = await signUp(formData);
+      const response = await signUp({
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+      });
 
-      const { accessToken, fullName, email, candidateId, expiresIn } = await response;
+      const { accessToken, fullName, email, candidateId, expiresIn } =
+        await response;
 
-      // Armazenar apenas o token string
       localStorage.setItem("authToken", accessToken);
       localStorage.setItem("userName", fullName);
       localStorage.setItem("userEmail", email);
@@ -45,6 +72,14 @@ const SignUp = () => {
     } catch (error) {
       toast.error(error.message || "Erro ao cadastrar");
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
 
   return (
@@ -90,7 +125,9 @@ const SignUp = () => {
                         <CardBody className="auth-content p-5 text-white">
                           <div className="w-100">
                             <div className="text-center mb-4">
-                              <h5 className="text-white-70 text-uppercase">Cadastre-se!</h5>
+                              <h5 className="text-white-70 text-uppercase">
+                                Cadastre-se!
+                              </h5>
                             </div>
                             <Form onSubmit={handleSubmit} className="auth-form">
                               <Row>
@@ -162,16 +199,76 @@ const SignUp = () => {
                                 >
                                   Senha
                                 </label>
-                                <Input
-                                  type="password"
-                                  className="form-control"
-                                  required
-                                  id="passwordInput"
-                                  name="password"
-                                  value={formData.password}
-                                  onChange={handleChange}
-                                  placeholder="Crie uma senha forte"
-                                />
+                                <div className="position-relative">
+                                  <Input
+                                    type={showPassword ? "text" : "password"}
+                                    className="form-control"
+                                    required
+                                    id="passwordInput"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    placeholder="Crie uma senha forte (mínimo 6 caracteres)"
+                                  />
+                                  <button
+                                    type="button"
+                                    className="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3"
+                                    onClick={togglePasswordVisibility}
+                                    style={{
+                                      color: "white",
+                                      textDecoration: "none",
+                                    }}
+                                  >
+                                    {showPassword ? (
+                                      <FiEyeOff size={18} />
+                                    ) : (
+                                      <FiEye size={18} />
+                                    )}
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div className="mb-3">
+                                <label
+                                  htmlFor="confirmPasswordInput"
+                                  className="form-label"
+                                >
+                                  Confirmar Senha
+                                </label>
+                                <div className="position-relative">
+                                  <Input
+                                    type={
+                                      showConfirmPassword ? "text" : "password"
+                                    }
+                                    className="form-control"
+                                    required
+                                    id="confirmPasswordInput"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    placeholder="Confirme sua senha"
+                                  />
+                                  <button
+                                    type="button"
+                                    className="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3"
+                                    onClick={toggleConfirmPasswordVisibility}
+                                    style={{
+                                      color: "white",
+                                      textDecoration: "none",
+                                    }}
+                                  >
+                                    {showConfirmPassword ? (
+                                      <FiEyeOff size={18} />
+                                    ) : (
+                                      <FiEye size={18} />
+                                    )}
+                                  </button>
+                                </div>
+                                {passwordError && (
+                                  <div className="text-danger mt-1">
+                                    {passwordError}
+                                  </div>
+                                )}
                               </div>
 
                               <div className="mb-4">
@@ -201,6 +298,7 @@ const SignUp = () => {
                                 <button
                                   type="submit"
                                   className="btn btn-white btn-hover w-100"
+                                  disabled={passwordError}
                                 >
                                   Cadastrar
                                 </button>

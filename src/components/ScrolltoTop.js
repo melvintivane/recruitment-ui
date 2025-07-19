@@ -1,33 +1,44 @@
-import React from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "reactstrap";
 
 const ScrolltoTop = () => {
-  window.onscroll = function () {
-    scrollFunction();
+  const buttonRef = useRef(null);
+
+  const scrollFunction = () => {
+    if (buttonRef.current) {
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        buttonRef.current.style.display = "block";
+      } else {
+        buttonRef.current.style.display = "none";
+      }
+    }
   };
 
-  function scrollFunction() {
-    const mybutton = document.getElementById("back-to-top");
-    if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
-    ) {
-      mybutton.style.display = "block";
-      console.log(document.body.scrollTop);
-      console.log(document.documentElement.scrollTop);      
-    } else {
-      mybutton.style.display = "none";
-    }
-  }
+  useEffect(() => {
+    window.addEventListener("scroll", scrollFunction);
+    return () => {
+      window.removeEventListener("scroll", scrollFunction);
+    };
+  }, []);
+
   const scrollTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
 
   return (
-    <Button id="back-to-top" className="p-0" onClick={scrollTop}>
+    <Button
+      id="back-to-top"
+      className="p-0"
+      onClick={scrollTop}
+      ref={buttonRef}
+      style={{ display: "none" }}
+    >
       <i className="mdi mdi-arrow-up"></i>
     </Button>
   );

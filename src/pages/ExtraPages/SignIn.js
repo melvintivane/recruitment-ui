@@ -7,6 +7,7 @@ import darkLogo from "../../assets/images/dark-logo.png";
 import signInImage from "../../assets/images/auth/sign-in.png";
 import { toast } from "react-toastify";
 import { login } from "../../services/authService";
+import { FiEye, FiEyeOff } from "react-icons/fi"; // Importando ícones de olho
 
 const SignIn = () => {
   document.title = "Login - Recruitment";
@@ -17,6 +18,7 @@ const SignIn = () => {
   });
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Estado para mostrar/esconder senha
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,9 +33,10 @@ const SignIn = () => {
     setIsLoading(true);
 
     try {
-      const response = await login(formData);      
+      const response = await login(formData);
 
-      const { accessToken, fullName, email, candidateId, expiresIn } = await response;
+      const { accessToken, fullName, email, candidateId, expiresIn } =
+        await response;
 
       // Armazenar apenas o token string
       localStorage.setItem("authToken", accessToken);
@@ -42,10 +45,6 @@ const SignIn = () => {
       localStorage.setItem("candidateId", candidateId);
       localStorage.setItem("expiresIn", expiresIn);
 
-      // Decodificar o token para obter outras informações (se necessário)
-      // const decodedToken = jwtDecode(accessToken);
-      // console.log(decodedToken.scope); // Roles do usuário
-
       toast.success("Login realizado com sucesso!");
       navigate("/");
     } catch (error) {
@@ -53,6 +52,10 @@ const SignIn = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -130,17 +133,34 @@ const SignIn = () => {
                               >
                                 Senha
                               </label>
-                              <Input
-                                type="password"
-                                className="form-control"
-                                id="passwordInput"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                placeholder="Digite sua senha"
-                                required
-                                minLength={6}
-                              />
+                              <div className="position-relative">
+                                <Input
+                                  type={showPassword ? "text" : "password"}
+                                  className="form-control"
+                                  id="passwordInput"
+                                  name="password"
+                                  value={formData.password}
+                                  onChange={handleChange}
+                                  placeholder="Digite sua senha"
+                                  required
+                                  minLength={6}
+                                />
+                                <button
+                                  type="button"
+                                  className="btn btn-link position-absolute end-0 top-50 translate-middle-y pe-3"
+                                  onClick={togglePasswordVisibility}
+                                  style={{
+                                    color: "white",
+                                    textDecoration: "none",
+                                  }}
+                                >
+                                  {showPassword ? (
+                                    <FiEyeOff size={18} />
+                                  ) : (
+                                    <FiEye size={18} />
+                                  )}
+                                </button>
+                              </div>
                             </div>
 
                             <div className="mb-4 d-flex justify-content-between align-items-center">

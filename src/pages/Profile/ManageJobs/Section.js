@@ -21,7 +21,7 @@ const Section = () => {
                         <Link to="/">Ínicio</Link>
                       </li>
                       <li className="breadcrumb-item">
-                        <Link to="#">Perfil</Link>
+                        <Link to="/myprofile">Perfil</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"

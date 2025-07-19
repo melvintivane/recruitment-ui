@@ -5,7 +5,11 @@ import { Card, CardBody, Col } from "reactstrap";
 //Import images
 import profileImage from "../../../assets/images/profile.jpg";
 
-const LeftSideContent = () => {
+const LeftSideContent = ({ data }) => {
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <React.Fragment>
       <Col lg={4}>
@@ -17,25 +21,24 @@ const LeftSideContent = () => {
                 alt=""
                 className="avatar-lg img-thumbnail rounded-circle mb-4"
               />
-              <h5 className="mb-0">Jassmin Tivane</h5>
-              <p className="text-muted">Developer</p>
+              <h5 className="mb-0">
+                {data.user.firstName} {data.user.lastName}
+              </h5>
+              <p className="text-muted">{data.desiredJobTitle}</p>
               <ul className="candidate-detail-social-menu list-inline mb-0">
                 <li className="list-inline-item">
                   <Link
-                    to="#"
-                    className="social-link rounded-3 btn-soft-primary"
+                    to={data.linkedin}
+                    className="social-link rounded-3 btn-soft-info"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <i className="uil uil-facebook-f"></i>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#" className="social-link rounded-3 btn-soft-info">
-                    <i className="uil uil-twitter-alt"></i>
+                    <i className="uil uil-linkedin"></i>
                   </Link>
                 </li>
                 <li className="list-inline-item">
                   <Link
-                    to="#"
+                    to={`https://wa.me/${data.phone}`}
                     className="social-link rounded-3 btn-soft-success"
                   >
                     <i className="uil uil-whatsapp"></i>
@@ -43,7 +46,7 @@ const LeftSideContent = () => {
                 </li>
                 <li className="list-inline-item">
                   <Link
-                    to="#"
+                    to={`tel:${data.phone}`}
                     className="social-link rounded-3 btn-soft-danger"
                   >
                     <i className="uil uil-phone-alt"></i>
@@ -61,7 +64,7 @@ const LeftSideContent = () => {
                       <i className="uil uil-file"></i>
                     </div>
                     <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Jassmin_CV.pdf</h6>
+                      <h6 className="fs-16 mb-0">Curriculo.pdf</h6>
                       <p className="text-muted mb-0">1.25 MB</p>
                     </div>
                     <div className="ms-auto">
@@ -103,7 +106,7 @@ const LeftSideContent = () => {
                       <label>Email</label>
                       <div>
                         <p className="text-muted text-break mb-0">
-                          jennifer@gmail.com
+                          {data.user.email}
                         </p>
                       </div>
                     </div>
@@ -112,7 +115,7 @@ const LeftSideContent = () => {
                     <div className="d-flex">
                       <label>Telefone</label>
                       <div>
-                        <p className="text-muted mb-0">+258 87 123 0808</p>
+                        <p className="text-muted mb-0">{data.phone}</p>
                       </div>
                     </div>
                   </li>
@@ -120,7 +123,9 @@ const LeftSideContent = () => {
                     <div className="d-flex">
                       <label>Localização</label>
                       <div>
-                        <p className="text-muted mb-0">Marracuene</p>
+                        <p className="text-muted mb-0">
+                          {data.city}, {data.state}, {data.country}
+                        </p>
                       </div>
                     </div>
                   </li>

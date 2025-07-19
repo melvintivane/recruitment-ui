@@ -2,7 +2,7 @@ export const translateJobType = (type) => {
   const translations = {
     FULL_TIME: "Tempo Integral",
     PART_TIME: "Meio Período",
-    FIXED_TERM: "Contrato Determinado",
+    FIXED_TERM: "Determinado",
     INTERNSHIP: "Estágio",
     FREELANCE: "Freelance",
   };

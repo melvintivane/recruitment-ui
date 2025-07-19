@@ -18,14 +18,24 @@ import classnames from "classnames";
 
 //Images Import
 import userImage2 from "../../../assets/images/user/img-02.jpg";
-import { Link } from "react-router-dom";
 
-const RightSideContent = () => {
+const RightSideContent = ({ data }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const tabChange = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "Presente";
+    const date = new Date(dateString);
+    return date.getFullYear();
+  };
+
   return (
     <React.Fragment>
       <Col lg={8}>
@@ -64,166 +74,140 @@ const RightSideContent = () => {
           <CardBody className="p-4">
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <div>
-                  <h5 className="fs-18 fw-bold">Sobre Mim</h5>
-                  <p className="text-muted mt-4">
-                    Desenvolvedor com mais de 5 anos de experiência trabalhando
-                    nos setores público e privado. Diplomático, sociável e
-                    habilidoso em lidar com situações sensíveis. Altamente
-                    organizado, autodidata e proficiente com computadores.
-                    Buscando aumentar as pontuações de satisfação dos alunos da{" "}
-                    <b>Universidade Internacional</b>. Bacharelado em
-                    comunicação.
-                  </p>
-                  <p className="text-muted">
-                    Descreve a experiência relevante, habilidades e conquistas
-                    do candidato. O objetivo deste resumo de carreira é explicar
-                    suas qualificações para o trabalho em 3-5 frases e convencer
-                    o gerente a ler o documento completo do currículo.
-                  </p>
-                </div>
+                {data.professinalSummary && (
+                  <div>
+                    <h5 className="fs-18 fw-bold">Sobre Mim</h5>
+                    <p className="text-muted mt-4">{data.professinalSummary}</p>
+                  </div>
+                )}
                 <div className="candidate-education-details mt-4">
                   <h6 className="fs-18 fw-bold mb-0">Educação</h6>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      B
+                  {data.educations?.map((education, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {education.course?.charAt(0).toUpperCase()}
+                      </div>
+
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">
+                          {education.course} - {education.institution}
+                        </h6>
+
+                        <p className="mb-2 text-muted">
+                          {education.location} •{" "}
+                          {formatDate(education.startDate)} -{" "}
+                          {formatDate(education.endDate)}
+                        </p>
+
+                        {education.description && (
+                          <p className="text-muted">{education.description}</p>
+                        )}
+
+                        {education.degree &&
+                          education.degree !== education.course && (
+                            <p className="text-muted small mt-1">
+                              <strong>Grau:</strong> {education.degree}
+                            </p>
+                          )}
+                      </div>
                     </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        BCA - Bacharelado em Aplicações de Computador
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Universidade Internacional - (2004 - 2010)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="candidate-education-content mt-3 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      M
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        MCA - Mestrado em Aplicações de Computador
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Universidade Internacional - (2010 - 2012)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="candidate-education-content mt-3 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      D
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        Design de Comunicação Visual
-                      </h6>
-                      <p className="text-muted mb-2">
-                        Universidade Internacional - (2012-2015)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Experiência</h6>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      {" "}
-                      W{" "}
+                  <h6 className="fs-18 fw-bold mb-0">
+                    Experiência Profissional
+                  </h6>
+                  {data.experiences?.map((experience, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {experience.position?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">{experience.position}</h6>
+                        <p className="mb-2 text-muted">
+                          {experience.company} • {experience.location} • (
+                          {new Date(experience.startDate).getFullYear()} -{" "}
+                          {experience.endDate
+                            ? new Date(experience.endDate).getFullYear()
+                            : "Atual"}
+                          )
+                        </p>
+                        {experience.duties && (
+                          <div className="text-muted">
+                            <h6 className="fs-14 mb-1">
+                              Principais atividades:
+                            </h6>
+                            <p className="mb-0">{experience.duties}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        Líder de Equipe de Design e Desenvolvimento Web
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Agência Criativa - (2013 - 2016)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
+                  ))}
+                </div>
+                <div className="candidate-education-details mt-4">
+                  <h6 className="fs-18 fw-bold mb-0">Cursos e Certificações</h6>
+                  {data.trainings?.map((training, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {training.course?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">{training.course}</h6>
+                        <p className="mb-2 text-muted">
+                          {training.institution} • {training.location} • (
+                          {new Date(training.startDate).toLocaleDateString(
+                            "pt-BR",
+                            { month: "short", year: "numeric" }
+                          )}{" "}
+                          -{" "}
+                          {training.endDate
+                            ? new Date(training.endDate).toLocaleDateString(
+                                "pt-BR",
+                                { month: "short", year: "numeric" }
+                              )
+                            : "Atual"}
+                          )
+                        </p>
+                        {training.description && (
+                          <p className="text-muted mb-0">
+                            <strong>Conteúdo:</strong> {training.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      {" "}
-                      G{" "}
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
-                      <p className="mb-2 text-muted">
-                        Recruitment Technology Pvt.Ltd - (Presente)
-                      </p>
-                      <p className="text-muted mb-0">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="mt-4">
                   <h5 className="fs-18 fw-bold">Habilidades</h5>
-                </div>
-                <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Gerenciamento de Nuvem
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Design Responsivo
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Arquitetura de Rede
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    PHP
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Bootstrap
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Designer UI & UX
-                  </span>
+                  <ul className="job-detail-list list-unstyled mb-0 text-muted">
+                    {data.skills?.map((skill, index) => (
+                      <li key={index}>
+                        <i className="uil uil-circle"></i> {skill.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="mt-4">
                   <h5 className="fs-18 fw-bold">Idiomas falados</h5>
                 </div>
                 <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Inglês
-                  </span>
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Alemão
-                  </span>
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Francês
-                  </span>
+                  {data.languages?.map((language, index) => (
+                    <span
+                      className="badge fs-13 bg-success-subtle text-success mt-2"
+                      key={index}
+                    >
+                      {language.name}
+                    </span>
+                  ))}
                 </div>
               </TabPane>
               <TabPane tabId="2">
@@ -263,41 +247,21 @@ const RightSideContent = () => {
                             type="text"
                             className="form-control"
                             id="firstName"
+                            defaultValue={data.firstName || ""}
                           />
                         </div>
                       </Col>
                       <Col lg={6}>
                         <div className="mb-3">
                           <Label htmlFor="lastName" className="form-label">
-                            Apelido
+                            Sobrenome
                           </Label>
                           <Input
                             type="text"
                             className="form-control"
                             id="lastName"
+                            defaultValue={data.lastName || ""}
                           />
-                        </div>
-                      </Col>
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <label
-                            htmlFor="choices-single-categories"
-                            className="form-label"
-                          >
-                            Tipo de Conta
-                          </label>
-                          <select
-                            className="form-select"
-                            data-trigger
-                            name="choices-single-categories"
-                            id="choices-single-categories"
-                            aria-label="Exemplo de seleção padrão"
-                          >
-                            <option value="4">Contabilidade</option>
-                            <option value="1">TI & Software</option>
-                            <option value="3">Marketing</option>
-                            <option value="5">Bancário</option>
-                          </select>
                         </div>
                       </Col>
                       <Col lg={6}>
@@ -306,9 +270,23 @@ const RightSideContent = () => {
                             Email
                           </Label>
                           <Input
-                            type="text"
+                            type="email"
                             className="form-control"
                             id="email"
+                            defaultValue={data.email || ""}
+                          />
+                        </div>
+                      </Col>
+                      <Col lg={6}>
+                        <div className="mb-3">
+                          <Label htmlFor="phone" className="form-label">
+                            Telefone
+                          </Label>
+                          <Input
+                            type="tel"
+                            className="form-control"
+                            id="phone"
+                            defaultValue={data.phone || ""}
                           />
                         </div>
                       </Col>
@@ -316,62 +294,24 @@ const RightSideContent = () => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Perfil</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">
+                      Perfil Profissional
+                    </h5>
                     <Row>
                       <Col lg={12}>
                         <div className="mb-3">
                           <Label
-                            htmlFor="exampleFormControlTextarea1"
+                            htmlFor="professionalSummary"
                             className="form-label"
                           >
-                            Apresente-se
+                            Resumo Profissional
                           </Label>
-                          <textarea className="form-control" rows="5">
-                            Desenvolvedor com mais de 5 anos de experiência
-                            trabalhando tanto no setor público quanto no
-                            privado. Diplomático, sociável e habilidoso na
-                            gestão de situações sensíveis. Altamente organizado,
-                            automotivado e proficiente em informática. Buscando
-                            aumentar as pontuações de satisfação dos alunos da
-                            Universidade Internacional. Graduação em
-                            Comunicação.
-                          </textarea>
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label htmlFor="languages" className="form-label">
-                            Linguas
-                          </Label>
-                          <Input
-                            type="text"
+                          <textarea
                             className="form-control"
-                            id="languages"
+                            rows="5"
+                            id="professionalSummary"
+                            defaultValue={data.professinalSummary || ""}
                           />
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <label
-                            htmlFor="choices-single-location"
-                            className="form-label"
-                          >
-                            Localização
-                          </label>
-                          <select
-                            className="form-select"
-                            data-trigger
-                            name="choices-single-location"
-                            id="choices-single-location"
-                            aria-label="Default select example"
-                          >
-                            <option value="ME">Montenegro</option>
-                            <option value="MS">Montserrat</option>
-                            <option value="MA">Morocco</option>
-                            <option value="MZ">Mozambique</option>
-                          </select>
                         </div>
                       </Col>
                       <Col lg={12}>
@@ -386,64 +326,17 @@ const RightSideContent = () => {
                           />
                         </div>
                       </Col>
-                    </Row>
-                  </div>
-
-                  <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Redes Sociais</h5>
-                    <Row>
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label htmlFor="facebook" className="form-label">
-                            Facebook
-                          </Label>
-                          <Input
-                            type="text"
-                            className="form-control"
-                            id="facebook"
-                            to="https://www.facebook.com"
-                          />
-                        </div>
-                      </Col>
 
                       <Col lg={6}>
                         <div className="mb-3">
-                          <Label htmlFor="twitter" className="form-label">
-                            Twitter
-                          </Label>
+                          <label htmlFor="location" className="form-label">
+                            Localização
+                          </label>
                           <Input
                             type="text"
                             className="form-control"
-                            id="twitter"
-                            to="https://www.twitter.com"
-                          />
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label htmlFor="linkedin" className="form-label">
-                            Linkedin
-                          </Label>
-                          <Input
-                            type="text"
-                            className="form-control"
-                            id="linkedin"
-                            to="https://www.linkedin.com"
-                          />
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label htmlFor="whatsapp" className="form-label">
-                            Whatsapp
-                          </Label>
-                          <Input
-                            type="text"
-                            className="form-control"
-                            id="whatsapp"
-                            to="https://www.whatsapp.com"
+                            id="location"
+                            defaultValue={data.location || ""}
                           />
                         </div>
                       </Col>
@@ -451,82 +344,231 @@ const RightSideContent = () => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3 mb-3">
-                      Alterar Senha
+                    <h5 className="fs-17 fw-semibold mb-3">Educação</h5>
+                    {data.educations?.map((education, index) => (
+                      <div key={index} className="mb-4 p-3 border rounded">
+                        <Row>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`education-course-${index}`}
+                                className="form-label"
+                              >
+                                Curso
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`education-course-${index}`}
+                                defaultValue={education.course || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`education-institution-${index}`}
+                                className="form-label"
+                              >
+                                Instituição
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`education-institution-${index}`}
+                                defaultValue={education.institution || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`education-startDate-${index}`}
+                                className="form-label"
+                              >
+                                Data de Início
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`education-startDate-${index}`}
+                                defaultValue={education.startDate || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`education-endDate-${index}`}
+                                className="form-label"
+                              >
+                                Data de Término
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`education-endDate-${index}`}
+                                defaultValue={education.endDate || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={12}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`education-description-${index}`}
+                                className="form-label"
+                              >
+                                Descrição
+                              </Label>
+                              <textarea
+                                className="form-control"
+                                id={`education-description-${index}`}
+                                defaultValue={education.description || ""}
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                    ))}
+                    <button type="button" className="btn btn-outline-primary">
+                      + Adicionar Educação
+                    </button>
+                  </div>
+
+                  <div className="mt-4">
+                    <h5 className="fs-17 fw-semibold mb-3">
+                      Experiência Profissional
                     </h5>
-                    <Row>
-                      <Col lg={12}>
-                        <div className="mb-3">
-                          <Label
-                            htmlFor="current-password-input"
-                            className="form-label"
-                          >
-                            Senha atual
-                          </Label>
-                          <Input
-                            type="password"
-                            className="form-control"
-                            placeholder="Digite a senha atual"
-                            id="current-password-input"
-                          />
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label
-                            htmlFor="new-password-input"
-                            className="form-label"
-                          >
-                            Nova senha
-                          </Label>
-                          <Input
-                            type="password"
-                            className="form-control"
-                            placeholder="Digite a nova senha"
-                            id="new-password-input"
-                          />
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label
-                            htmlFor="confirm-password-input"
-                            className="form-label"
-                          >
-                            Confirmar senha
-                          </Label>
-                          <Input
-                            type="password"
-                            className="form-control"
-                            placeholder="Confirme a nova senha"
-                            id="confirm-password-input"
-                          />
-                        </div>
-                      </Col>
-
-                      <Col lg={12}>
-                        <div className="form-check">
-                          <Input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="verification"
-                          />
-                          <Label
-                            className="form-check-label"
-                            htmlFor="verification"
-                          >
-                            Ativar verificação em duas etapas por e-mail
-                          </Label>
-                        </div>
-                      </Col>
-                    </Row>
+                    {data.experiences?.map((experience, index) => (
+                      <div key={index} className="mb-4 p-3 border rounded">
+                        <Row>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`experience-position-${index}`}
+                                className="form-label"
+                              >
+                                Cargo
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`experience-position-${index}`}
+                                defaultValue={experience.position || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`experience-company-${index}`}
+                                className="form-label"
+                              >
+                                Empresa
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`experience-company-${index}`}
+                                defaultValue={experience.company || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`experience-startDate-${index}`}
+                                className="form-label"
+                              >
+                                Data de Início
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`experience-startDate-${index}`}
+                                defaultValue={experience.startDate || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`experience-endDate-${index}`}
+                                className="form-label"
+                              >
+                                Data de Término
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`experience-endDate-${index}`}
+                                defaultValue={experience.endDate || ""}
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={12}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`experience-duties-${index}`}
+                                className="form-label"
+                              >
+                                Principais Atividades
+                              </Label>
+                              <textarea
+                                className="form-control"
+                                id={`experience-duties-${index}`}
+                                defaultValue={experience.duties || ""}
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                    ))}
+                    <button type="button" className="btn btn-outline-primary">
+                      + Adicionar Experiência
+                    </button>
                   </div>
+
+                  <div className="mt-4">
+                    <h5 className="fs-17 fw-semibold mb-3">Habilidades</h5>
+                    <div className="mb-3">
+                      <Label htmlFor="skills" className="form-label">
+                        Suas Habilidades (separadas por vírgula)
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="skills"
+                        defaultValue={
+                          data.skills?.map((skill) => skill.name).join(", ") ||
+                          ""
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className="mt-4">
+                    <h5 className="fs-17 fw-semibold mb-3">Idiomas</h5>
+                    <div className="mb-3">
+                      <Label htmlFor="languages" className="form-label">
+                        Idiomas que você fala (separados por vírgula)
+                      </Label>
+                      <Input
+                        type="text"
+                        className="form-control"
+                        id="languages"
+                        defaultValue={
+                          data.languages?.map((lang) => lang.name).join(", ") ||
+                          ""
+                        }
+                      />
+                    </div>
+                  </div>
+
                   <div className="mt-4 text-end">
-                    <Link to="#" className="btn btn-primary">
-                      Atualizar
-                    </Link>
+                    <button type="submit" className="btn btn-primary">
+                      Atualizar Perfil
+                    </button>
                   </div>
                 </Form>
               </TabPane>
