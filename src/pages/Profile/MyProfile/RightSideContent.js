@@ -20,12 +20,23 @@ import classnames from "classnames";
 import userImage2 from "../../../assets/images/user/img-02.jpg";
 import { Link } from "react-router-dom";
 
-const RightSideContent = () => {
+const RightSideContent = ({ data }) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const tabChange = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
+  const formatDate = (dateString) => {
+    if (!dateString) return "Presente";
+    const date = new Date(dateString);
+    return date.getFullYear();
+  };
+
   return (
     <React.Fragment>
       <Col lg={8}>
@@ -64,166 +75,140 @@ const RightSideContent = () => {
           <CardBody className="p-4">
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <div>
-                  <h5 className="fs-18 fw-bold">Sobre Mim</h5>
-                  <p className="text-muted mt-4">
-                    Desenvolvedor com mais de 5 anos de experiência trabalhando
-                    nos setores público e privado. Diplomático, sociável e
-                    habilidoso em lidar com situações sensíveis. Altamente
-                    organizado, autodidata e proficiente com computadores.
-                    Buscando aumentar as pontuações de satisfação dos alunos da{" "}
-                    <b>Universidade Internacional</b>. Bacharelado em
-                    comunicação.
-                  </p>
-                  <p className="text-muted">
-                    Descreve a experiência relevante, habilidades e conquistas
-                    do candidato. O objetivo deste resumo de carreira é explicar
-                    suas qualificações para o trabalho em 3-5 frases e convencer
-                    o gerente a ler o documento completo do currículo.
-                  </p>
-                </div>
+                {data.professinalSummary && (
+                  <div>
+                    <h5 className="fs-18 fw-bold">Sobre Mim</h5>
+                    <p className="text-muted mt-4">{data.professinalSummary}</p>
+                  </div>
+                )}
                 <div className="candidate-education-details mt-4">
                   <h6 className="fs-18 fw-bold mb-0">Educação</h6>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      B
+                  {data.educations?.map((education, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {education.course?.charAt(0).toUpperCase()}
+                      </div>
+
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">
+                          {education.course} - {education.institution}
+                        </h6>
+
+                        <p className="mb-2 text-muted">
+                          {education.location} •{" "}
+                          {formatDate(education.startDate)} -{" "}
+                          {formatDate(education.endDate)}
+                        </p>
+
+                        {education.description && (
+                          <p className="text-muted">{education.description}</p>
+                        )}
+
+                        {education.degree &&
+                          education.degree !== education.course && (
+                            <p className="text-muted small mt-1">
+                              <strong>Grau:</strong> {education.degree}
+                            </p>
+                          )}
+                      </div>
                     </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        BCA - Bacharelado em Aplicações de Computador
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Universidade Internacional - (2004 - 2010)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="candidate-education-content mt-3 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      M
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        MCA - Mestrado em Aplicações de Computador
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Universidade Internacional - (2010 - 2012)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="candidate-education-content mt-3 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      D
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        Design de Comunicação Visual
-                      </h6>
-                      <p className="text-muted mb-2">
-                        Universidade Internacional - (2012-2015)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Experiência</h6>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      {" "}
-                      W{" "}
+                  <h6 className="fs-18 fw-bold mb-0">
+                    Experiência Profissional
+                  </h6>
+                  {data.experiences?.map((experience, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {experience.position?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">{experience.position}</h6>
+                        <p className="mb-2 text-muted">
+                          {experience.company} • {experience.location} • (
+                          {new Date(experience.startDate).getFullYear()} -{" "}
+                          {experience.endDate
+                            ? new Date(experience.endDate).getFullYear()
+                            : "Atual"}
+                          )
+                        </p>
+                        {experience.duties && (
+                          <div className="text-muted">
+                            <h6 className="fs-14 mb-1">
+                              Principais atividades:
+                            </h6>
+                            <p className="mb-0">{experience.duties}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">
-                        Líder de Equipe de Design e Desenvolvimento Web
-                      </h6>
-                      <p className="mb-2 text-muted">
-                        Agência Criativa - (2013 - 2016)
-                      </p>
-                      <p className="text-muted">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
+                  ))}
+                </div>
+                <div className="candidate-education-details mt-4">
+                  <h6 className="fs-18 fw-bold mb-0">Cursos e Certificações</h6>
+                  {data.trainings?.map((training, index) => (
+                    <div
+                      className="candidate-education-content mt-4 d-flex"
+                      key={index}
+                    >
+                      <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
+                        {training.course?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="ms-4">
+                        <h6 className="fs-16 mb-1">{training.course}</h6>
+                        <p className="mb-2 text-muted">
+                          {training.institution} • {training.location} • (
+                          {new Date(training.startDate).toLocaleDateString(
+                            "pt-BR",
+                            { month: "short", year: "numeric" }
+                          )}{" "}
+                          -{" "}
+                          {training.endDate
+                            ? new Date(training.endDate).toLocaleDateString(
+                                "pt-BR",
+                                { month: "short", year: "numeric" }
+                              )
+                            : "Atual"}
+                          )
+                        </p>
+                        {training.description && (
+                          <p className="text-muted mb-0">
+                            <strong>Conteúdo:</strong> {training.description}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <div className="candidate-education-content mt-4 d-flex">
-                    <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      {" "}
-                      G{" "}
-                    </div>
-                    <div className="ms-4">
-                      <h6 className="fs-16 mb-1">Gerente de Projetos</h6>
-                      <p className="mb-2 text-muted">
-                        Recruitment Technology Pvt.Ltd - (Presente)
-                      </p>
-                      <p className="text-muted mb-0">
-                        Existem muitas variações de trechos disponíveis, mas a
-                        maioria das alterações em algum formato. Como um
-                        especialista altamente qualificado e bem-sucedido em
-                        desenvolvimento de produtos e design com mais de 4 anos
-                        de experiência.
-                      </p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="mt-4">
                   <h5 className="fs-18 fw-bold">Habilidades</h5>
-                </div>
-                <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Gerenciamento de Nuvem
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Design Responsivo
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Arquitetura de Rede
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    PHP
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Bootstrap
-                  </span>
-                  <span className="badge fs-13 bg-blue-subtle text-blue mt-2">
-                    Designer UI & UX
-                  </span>
+                  <ul className="job-detail-list list-unstyled mb-0 text-muted">
+                    {data.skills?.map((skill, index) => (
+                      <li key={index}>
+                        <i className="uil uil-circle"></i> {skill.name}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="mt-4">
                   <h5 className="fs-18 fw-bold">Idiomas falados</h5>
                 </div>
                 <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Inglês
-                  </span>
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Alemão
-                  </span>
-                  <span className="badge fs-13 bg-success-subtle text-success mt-2">
-                    Francês
-                  </span>
+                  {data.languages?.map((language, index) => (
+                    <span
+                      className="badge fs-13 bg-success-subtle text-success mt-2"
+                      key={index}
+                    >
+                      {language.name}
+                    </span>
+                  ))}
                 </div>
               </TabPane>
               <TabPane tabId="2">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import {
   Container,
   Collapse,
@@ -133,7 +133,7 @@ const NavBar = () => {
     >
       <Container fluid className="custom-container">
         <Link
-          className="navbar-brand text-dark fw-bold mx-auto d-flex align-items-center gap-2"
+          className="navbar-brand text-dark fw-bold d-flex align-items-left gap-2"
           to="/"
           aria-label="Página inicial"
         >
