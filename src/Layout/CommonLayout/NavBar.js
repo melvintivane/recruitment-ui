@@ -1,4 +1,8 @@
+import { Icon } from "@iconify/react";
+import classnames from "classnames";
 import { useCallback, useContext, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import {
   Collapse,
   Container,
@@ -14,8 +18,6 @@ import {
 import darkLogo from "../../assets/images/dark-logo.png";
 import lightLogo from "../../assets/images/light-logo.png";
 import profileImage from "../../assets/images/user/user.png";
-import LanguageSwitcher from "../../components/LanguageSwitcher";
-import { useLanguage } from "../../context/LanguageContext";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -81,90 +83,49 @@ const NavBar = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Scroll suave apenas para navegações internas (não no carregamento inicial)
+    if (location.pathname !== "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     activateMenu();
   }, [location.pathname, activateMenu]);
 
-  //Language Context
-  const {language} = useLanguage();
-
   // Navigation items
-  const translations = {
-  pt: {
-    navItems: [
-      { path: "/", label: "Início" },
-      { path: "/joblist", label: "Vagas" },
-      { path: "/companylist", label: "Empresas" },
-      { path: "/contact", label: "Contacto" },
-      { path: "/blog", label: "Blog" },
-    ],
-    companyDropdownItems: [
-      { path: "/aboutus", label: "Sobre Nós", icon: "mdi-information-outline" },
-      {
-        path: "/privacyandpolicy",
-        label: "Privacidade & Política",
-        icon: "mdi-shield-account-outline",
-      },
-      {
-        path: "/faqs",
-        label: "Perguntas Frequentes",
-        icon: "mdi-help-circle-outline",
-      },
-    ],
-    profileDropdownItems: [
-      { path: "/myprofile", label: "Meu Perfil", icon: "mdi-account-outline" },
-      {
-        path: "/bookmarkjobs",
-        label: "Vagas Favoritas",
-        icon: "mdi-bookmark-multiple-outline",
-      },
-      {
-        path: "/managejobs",
-        label: "Minhas Candidaturas",
-        icon: "mdi-briefcase-outline",
-      },
-    ],
-  },
+  const navItems = [
+    { path: "/", label: "Início" },
+    { path: "/joblist", label: "Vagas" },
+    { path: "/companylist", label: "Empresas" },
+    { path: "/contact", label: "Contacto" },
+    { path: "/blog", label: "Blog" },
+  ];
 
-  en: {
-    navItems: [
-      { path: "/", label: "Home" },
-      { path: "/joblist", label: "Jobs" },
-      { path: "/companylist", label: "Companies" },
-      { path: "/contact", label: "Contact" },
-      { path: "/blog", label: "Blog" },
-    ],
-    companyDropdownItems: [
-      { path: "/aboutus", label: "About Us", icon: "mdi-information-outline" },
-      {
-        path: "/privacyandpolicy",
-        label: "Privacy & Policy",
-        icon: "mdi-shield-account-outline",
-      },
-      {
-        path: "/faqs",
-        label: "FAQs",
-        icon: "mdi-help-circle-outline",
-      },
-    ],
-    profileDropdownItems: [
-      { path: "/myprofile", label: "My Profile", icon: "mdi-account-outline" },
-      {
-        path: "/bookmarkjobs",
-        label: "Bookmarked Jobs",
-        icon: "mdi-bookmark-multiple-outline",
-      },
-      {
-        path: "/managejobs",
-        label: "My Applications",
-        icon: "mdi-briefcase-outline",
-      },
-    ],
-  },
-};
+  const companyDropdownItems = [
+    { path: "/aboutus", label: "Sobre Nós", icon: "mdi-information-outline" },
+    {
+      path: "/privacyandpolicy",
+      label: "Privacidade & Política",
+      icon: "mdi-shield-account-outline",
+    },
+    {
+      path: "/faqs",
+      label: "Perguntas Frequentes",
+      icon: "mdi-help-circle-outline",
+    },
+  ];
 
-
-const t = translations[language] || translations['pt']
+  const profileDropdownItems = [
+    { path: "/myprofile", label: "Meu Perfil", icon: "mdi-account-outline" },
+    {
+      path: "/bookmarkjobs",
+      label: "Vagas Favoritas",
+      icon: "mdi-bookmark-multiple-outline",
+    },
+    {
+      path: "/managejobs",
+      label: "Minhas Candidaturas",
+      icon: "mdi-briefcase-outline",
+    },
+  ];
 
   return (
     <nav
@@ -202,10 +163,8 @@ const t = translations[language] || translations['pt']
           id="navbarCollapse"
         >
           <ul className="navbar-nav mx-auto navbar-center">
-            <LanguageSwitcher breakpoint={"md"} visibility={"none"}/>
-            {t.navItems.map((item) => (
+            {navItems.map((item) => (
               <NavItem key={item.path}>
-                
                 <Link className="nav-link" to={item.path}>
                   {item.label}
                 </Link>
@@ -219,7 +178,7 @@ const t = translations[language] || translations['pt']
                 onClick={toggleCompanyDropdown}
                 aria-expanded={companyDropdownOpen}
               >
-                {language === 'pt' ? "Sobre Nós" : "About Us"} <div className="arrow-down"></div>
+                Sobre Nós <div className="arrow-down"></div>
               </NavLink>
               <ul
                 className={classnames(
@@ -228,7 +187,7 @@ const t = translations[language] || translations['pt']
                 )}
                 aria-labelledby="aboutDropdown"
               >
-                {t.companyDropdownItems.map((item) => (
+                {companyDropdownItems.map((item) => (
                   <li key={item.path}>
                     <Link className="dropdown-item" to={item.path}>
                       <i className={`mdi ${item.icon} me-2`}></i>
@@ -263,9 +222,6 @@ const t = translations[language] || translations['pt']
               />
             </button>
           </li>
-          <div className="d-none d-md-block">
-            <LanguageSwitcher/>
-          </div>
 
           {user && (
             <>
@@ -287,14 +243,14 @@ const t = translations[language] || translations['pt']
                     end
                   >
                     <div className="p-3 border-bottom">
-                      <h6 className="m-0">{language === 'pt' ? "Notificações" : "Notifications"}</h6>
+                      <h6 className="m-0">Notificações</h6>
                     </div>
                     <div
                       className="px-2"
                       style={{ maxHeight: "300px", overflowY: "auto" }}
                     >
                       <div className="text-center py-3">
-                        {language === 'pt' ? "Nenhuma notificação" : "No notifications"}
+                        Nenhuma notificação
                       </div>
                     </div>
                   </DropdownMenu>
@@ -319,7 +275,7 @@ const t = translations[language] || translations['pt']
                       className="rounded-circle me-1"
                     />
                     <span className="d-none d-md-inline-block fw-medium">
-                      {language === 'pt' ? "Olá" : "Hi" }, {user.name.split(" ")[0]}!
+                      Olá, {user.name.split(" ")[0]}!
                     </span>
                   </DropdownToggle>
                   <DropdownMenu
@@ -346,7 +302,7 @@ const t = translations[language] || translations['pt']
                       className="px-2"
                       style={{ maxHeight: "300px", overflowY: "auto" }}
                     >
-                      {t.profileDropdownItems.map((item) => (
+                      {profileDropdownItems.map((item) => (
                         <DropdownItem
                           key={item.path}
                           tag={Link}
@@ -363,7 +319,7 @@ const t = translations[language] || translations['pt']
                         className="dropdown-item text-danger"
                       >
                         <i className="mdi mdi-logout me-2"></i>
-                        {language === 'pt' ? "Sair" : "Log Out"}
+                        Sair
                       </DropdownItem>
                     </div>
                   </DropdownMenu>
@@ -381,7 +337,7 @@ const t = translations[language] || translations['pt']
                   aria-label="Fazer login"
                 >
                   <i className="mdi mdi-login me-1"></i>
-                  {language === 'pt' ? "Entrar" : "Sign In"}
+                  Entrar
                 </Button>
               </Link>
             </li>
