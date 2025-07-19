@@ -1,14 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button, Col, Collapse, Input, Label } from "reactstrap";
 
 const Sidebar = () => {
-  const [toggleFirst, setToggleFirst] = useState(true);
   const [toggleSecond, setToggleSecond] = useState(true);
   const [toggleThird, setToggleThird] = useState(true);
   const [toggleFourth, setToggleFourth] = useState(true);
-  const [toggleFifth, setToggleFifth] = useState(true);
-  const [value, setValue] = React.useState(50);
   const [isChecked, setIsChecked] = useState(true);
   const handleOnChange = () => setIsChecked(!isChecked);
   const [isDateChecked, setIsDateChecked] = useState(true);
@@ -19,60 +15,8 @@ const Sidebar = () => {
       <Col lg={3}>
         <div className="side-bar mt-5 mt-lg-0">
           <div className="accordion" id="accordionExample">
-            {/* Localização */}
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="locationOne">
-                <Button
-                  className="accordion-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setToggleFirst(!toggleFirst);
-                  }}
-                  role="button"
-                >
-                  Localização
-                </Button>
-              </h2>
-              <Collapse isOpen={toggleFirst}>
-                <div className="accordion-body">
-                  <div className="side-title">
-                    <div className="mb-3">
-                      <form className="position-relative">
-                        <Input
-                          className="form-control"
-                          type="search"
-                          placeholder="Pesquisar..."
-                        />
-                        <button
-                          className="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2"
-                          type="submit"
-                        >
-                          <span className="mdi mdi-magnify text-muted"></span>
-                        </button>
-                      </form>
-                    </div>
-                    <div className="area-range slidecontainer">
-                      <div className="form-label mb-4">
-                        Distância: {value}.00 km
-                      </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max="100"
-                        value={value}
-                        onChange={({ target: { value } }) => setValue(value)}
-                        className={`slider ${
-                          value > 50 ? "slider-50" : "slider-0"
-                        }`}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </Collapse>
-            </div>
-
             {/* Experiência de Trabalho */}
-            <div className="accordion-item mt-4">
+            <div className="accordion-item">
               <h2 className="accordion-header" id="experienceOne">
                 <Button
                   className="accordion-button"
@@ -323,40 +267,6 @@ const Sidebar = () => {
                         Últimos 30 dias
                       </Label>
                     </div>
-                  </div>
-                </div>
-              </Collapse>
-            </div>
-
-            {/* Nuvem de Tags */}
-            <div className="accordion-item mt-3">
-              <h2 className="accordion-header" id="tagCloud">
-                <Button
-                  className="accordion-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setToggleFifth(!toggleFifth);
-                  }}
-                  role="button"
-                >
-                  Nuvem de tags
-                </Button>
-              </h2>
-              <Collapse isOpen={toggleFifth}>
-                <div className="accordion-body">
-                  <div className="side-title">
-                    <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      design
-                    </Link>
-                    <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      marketing
-                    </Link>
-                    <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      negócios
-                    </Link>
-                    <Link to="#" className="badge tag-cloud fs-13 mt-2">
-                      programador
-                    </Link>
                   </div>
                 </div>
               </Collapse>

@@ -126,29 +126,33 @@ const NavBar = () => {
 
   return (
     <nav
-      className={classnames("navbar navbar-expand-lg fixed-top nav-sticky p-0", {
-        "nav-sticky": navSticky,
-      })}
+      className={classnames(
+        "navbar navbar-expand-lg fixed-top nav-sticky p-0",
+        {
+          "nav-sticky": navSticky,
+        }
+      )}
       id="navigation"
     >
       <Container fluid className="custom-container">
-        <Link
-          className="navbar-brand text-dark fw-bold d-flex align-items-left gap-2"
-          to="/"
-          aria-label="Página inicial"
-        >
-          <img src={lightLogo} height="30" alt="Logo" className="logo-dark" />
-          <img src={darkLogo} height="30" alt="Logo" className="logo-light" />
-          Recruitment.
-        </Link>
-
-        <NavbarToggler
-          className="me-3"
-          onClick={toggleNavbar}
-          aria-label="Alternar navegação"
-        >
-          <i className="mdi mdi-menu"></i>
-        </NavbarToggler>
+        <div className="d-flex align-items-center">
+          <NavbarToggler
+            className="me-3"
+            onClick={toggleNavbar}
+            aria-label="Alternar navegação"
+          >
+            <i className="mdi mdi-menu"></i>
+          </NavbarToggler>
+          <Link
+            className="navbar-brand text-dark fw-bold d-flex align-items-center gap-2"
+            to="/"
+            aria-label="Página inicial"
+          >
+            <img src={lightLogo} height="30" alt="Logo" className="logo-dark" />
+            <img src={darkLogo} height="30" alt="Logo" className="logo-light" />
+            <span className="d-none d-md-inline">Recruitment.</span>
+          </Link>
+        </div>
 
         <Collapse
           isOpen={isOpen}
