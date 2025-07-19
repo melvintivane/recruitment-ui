@@ -83,7 +83,10 @@ const NavBar = () => {
   }, [handleScroll]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Scroll suave apenas para navegações internas (não no carregamento inicial)
+    if (location.pathname !== "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     activateMenu();
   }, [location.pathname, activateMenu]);
 

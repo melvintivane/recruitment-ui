@@ -1,30 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "reactstrap";
 
-const ScrolltoTop = () => {
-  const buttonRef = useRef(null);
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  const scrollFunction = () => {
-    if (buttonRef.current) {
-      if (
-        document.body.scrollTop > 20 ||
-        document.documentElement.scrollTop > 20
-      ) {
-        buttonRef.current.style.display = "block";
-      } else {
-        buttonRef.current.style.display = "none";
-      }
+  // Mostra o botão quando a página é rolada para baixo
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
     }
   };
 
+  // Configura o listener do scroll
   useEffect(() => {
-    window.addEventListener("scroll", scrollFunction);
-    return () => {
-      window.removeEventListener("scroll", scrollFunction);
-    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  const scrollTop = () => {
+  // Função para voltar ao topo suavemente
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -32,16 +28,31 @@ const ScrolltoTop = () => {
   };
 
   return (
-    <Button
-      id="back-to-top"
-      className="p-0"
-      onClick={scrollTop}
-      ref={buttonRef}
-      style={{ display: "none" }}
-    >
-      <i className="mdi mdi-arrow-up"></i>
-    </Button>
+    <div className="scroll-to-top">
+      {isVisible && (
+        <Button
+          color="primary"
+          onClick={scrollToTop}
+          className="btn-icon"
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            right: "20px",
+            zIndex: 99,
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            padding: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <i className="mdi mdi-arrow-up" style={{ fontSize: "1.25rem" }}></i>
+        </Button>
+      )}
+    </div>
   );
 };
 
-export default ScrolltoTop;
+export default ScrollToTop;
