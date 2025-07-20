@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
+import classnames from "classnames";
+import { Link } from "react-router-dom";
 import {
-  Container,
-  Row,
   Col,
+  Container,
   Nav,
   NavLink,
+  Row,
   TabContent,
   TabPane,
 } from "reactstrap";
-import { Link } from "react-router-dom";
-import classnames from "classnames";
 
 //About Images
 import testImg01 from "../../../assets/images/about/img-02.jpg";
@@ -18,7 +18,10 @@ import testImg02 from "../../../assets/images/about/img-03.jpg";
 import testImg03 from "../../../assets/images/about/img-04.jpg";
 import testImg04 from "../../../assets/images/about/img-05.jpg";
 
+import { useLanguage } from "../../../context/LanguageContext";
+
 const CompanyTestimonal = () => {
+  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = (tab) => {
@@ -31,28 +34,25 @@ const CompanyTestimonal = () => {
           <Row className="align-items-center">
             <Col lg={5}>
               <div className="section-title mb-5 mb-lg-0">
-                <h4 className="title mb-4">Depoimento da Empresa</h4>
+                <h4 className="title mb-4">{language === 'pt' ? "Depoimento da Empresa" : "Company Testimony"}</h4>
                 <p className="text-muted">
-                  Nossa tarefa deve ser nos libertarmos, ampliando nosso círculo
-                  de compaixão para abraçar todas as criaturas vivas. Integer
-                  varius lacus non magna tempor congue natuasre, toda a sua
-                  beleza você vestibulum egestas faz-los sentir.
+                  {language === 'pt' ? "Nossa tarefa deve ser nos libertarmos, ampliando nosso círculo de compaixão para abraçar todas as criaturas vivas. Integervarius lacus non magna tempor congue natuasre, toda a sua beleza você vestibulum egestas faz-los sentir." :
+                  "Our task must be to free ourselves, expanding our circle of compassion to embrace all living creatures. Integer varius lacus non magna tempor congue natuasre, all their beauty you vestibulum egestas make them feel."}
                 </p>
                 <ul className="list-unstyled about-list text-muted mt-4">
-                  <li>Soluções de Marketing Digital para o Futuro.</li>
-                  <li>Nosso Talento & Agência de Marketing Experiente.</li>
+                  <li>{language === 'pt' ? "Soluções de Marketing Digital para o Futuro." : "Digital Marketing Solutions for the Future."}</li>
+                  <li>{language === 'pt' ? "Nosso Talento & Agência de Marketing Experiente." : "Our Talent & Experienced Marketing Agency."} </li>
                   <li>
-                    Crie sua própria identidade para combinar com sua marca.
+                    {language === 'pt' ? "Crie sua própria identidade para combinar com sua marca." : "Create your own identity to match your brand."}
                   </li>
                   <li>
-                    Diz-se que os compositores de canções do passado usavam
-                    textos.
+                    {language === 'pt' ? "Diz-se que os compositores de canções do passado usavam textos." : "It is said that songwriters of the past used texts."}
                   </li>
                 </ul>
                 <div className="d-flex align-items-center justify-content-between mt-4">
                   <div>
                     <Link to="/" className="btn btn-outline-primary">
-                      Saiba Mais <i className="uil uil-angle-right-b ms-1"></i>
+                      {language === 'pt' ? "Saiba Mais" : "Know More"} <i className="uil uil-angle-right-b ms-1"></i>
                     </Link>
                   </div>
                   <ul className="list-inline about-social-menu mb-0">

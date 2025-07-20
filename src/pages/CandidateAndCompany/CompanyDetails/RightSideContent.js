@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
-  Col,
   Card,
   CardBody,
-  Row,
+  Col,
   Input,
+  Label,
   Modal,
   ModalBody,
-  Label,
+  Row,
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 // Lightbox
 import Lightbox from "yet-another-react-lightbox";
@@ -26,12 +26,16 @@ import jobImage2 from "../../../assets/images/featured-job/img-02.png";
 import jobImage3 from "../../../assets/images/featured-job/img-03.png";
 import jobImage4 from "../../../assets/images/featured-job/img-04.png";
 
+import { useLanguage } from "../../../context/LanguageContext";
+
 const images = [blogImage1, blogImage3, blogImage12];
 
 const RightSideContent = () => {
   // Modal de Inscrição
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
+
+  const {language} = useLanguage();
 
   // Lightbox
   const [photoIndex, setphotoIndex] = useState(0);
@@ -135,7 +139,7 @@ const RightSideContent = () => {
         <Card className="ms-lg-4 mt-4 mt-lg-0">
           <CardBody className="p-4">
             <div className="mb-5">
-              <h6 className="fs-17 fw-medium mb-4">Sobre a Empresa</h6>
+              <h6 className="fs-17 fw-medium mb-4">{language === 'pt' ? "Sobre a Empresa" : "About the Company"}</h6>
               <p className="text-muted">
                 Objetivamente perseguir diversos catalisadores para mudança para
                 serviços meta-interoperáveis. Reengenheirar distintamente
@@ -204,7 +208,7 @@ const RightSideContent = () => {
             </div>
 
             <div>
-              <h6 className="fs-17 fw-medium mb-4">Vagas Abertas</h6>
+              <h6 className="fs-17 fw-medium mb-4">{language === 'pt' ? "Vagas Abertas" : "Open Vacancies"}</h6>
 
               {jobVacancyPost.map((jobVacancyPostDetails, key) => (
                 <div
@@ -297,7 +301,7 @@ const RightSideContent = () => {
                         <div>
                           <ul className="list-inline mb-0">
                             <li className="list-inline-item">
-                              <i className="uil uil-tag"></i> Palavras-chave :
+                              <i className="uil uil-tag"></i> {language === 'pt' ? "Palavras-chave" : "Keywords"} :
                             </li>
                             <li className="list-inline-item">
                               <Link to="#" className="primary-link text-muted">
@@ -321,7 +325,7 @@ const RightSideContent = () => {
                             onClick={openModal}
                             className="primary-link"
                           >
-                            Inscreva-se{" "}
+                            {language === 'pt' ? "Inscreva-se" : "Sign Up"}{" "}
                             <i className="mdi mdi-chevron-double-right"></i>
                           </Link>
                         </div>
@@ -343,7 +347,7 @@ const RightSideContent = () => {
                   <Modal isOpen={modal} toggle={openModal} centered>
                     <div className="modal-header">
                       <h5 className="modal-title" id="applyNow">
-                        Inscreva-se na vaga
+                        {language === 'pt' ? "Inscreva-se na vaga" : "Apply for the vacancy"}
                       </h5>
                       <button
                         type="button"
@@ -355,12 +359,12 @@ const RightSideContent = () => {
                     <ModalBody className="modal-body p-5">
                       <form>
                         <div className="mb-3">
-                          <Label for="nameControlInput">Nome</Label>
+                          <Label for="nameControlInput">{language === 'pt' ? "Nome" : "Name"}</Label>
                           <Input
                             type="text"
                             className="form-control"
                             id="nameControlInput"
-                            placeholder="Seu nome"
+                            placeholder={language === 'pt' ? "Seu nome" : "Your name" }
                           />
                         </div>
                         <div className="mb-3">
@@ -369,11 +373,11 @@ const RightSideContent = () => {
                             type="email"
                             className="form-control"
                             id="emailControlInput2"
-                            placeholder="Digite seu e-mail"
+                            placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"} 
                           />
                         </div>
                         <div className="mb-3">
-                          <Label for="phoneNumber">Telefone</Label>
+                          <Label for="phoneNumber">{language === 'pt' ? "Telefone" : "Telephone"}</Label>
                           <Input
                             type="text"
                             className="form-control"
@@ -383,7 +387,7 @@ const RightSideContent = () => {
                         </div>
                         <div className="mb-3">
                           <Label for="formFile" className="form-label">
-                            Enviar CV
+                            {language === 'pt' ? "Enviar CV" : "Send CV"}
                           </Label>
                           <Input
                             className="form-control"
@@ -392,18 +396,18 @@ const RightSideContent = () => {
                           />
                         </div>
                         <div className="mb-3">
-                          <Label for="messageControlTextarea">Mensagem</Label>
+                          <Label for="messageControlTextarea">{language === 'pt' ? "Mensagem" : "Message"}</Label>
                           <Input
                             as="textarea"
                             className="form-control"
                             id="messageControlTextarea"
                             rows="4"
-                            placeholder="Digite sua mensagem"
+                            placeholder={language === 'pt' ? "Digite sua mensagem" : "Enter your message"}
                           />
                         </div>
                         <div className="text-end">
                           <button type="submit" className="btn btn-primary">
-                            Enviar Inscrição
+                            {language === 'pt' ? "Enviar Inscrição" : "Submit Application"}
                           </button>
                         </div>
                       </form>
