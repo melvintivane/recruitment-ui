@@ -1,8 +1,10 @@
 import React from "react";
 import { Container, Row, Col, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Section = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="page-title-box">
@@ -18,7 +20,7 @@ const Section = () => {
                   >
                     <ol className="breadcrumb justify-content-center">
                       <li className="breadcrumb-item">
-                        <Link to="/">Ínicio</Link>
+                        <Link to="/">{language === 'pt' ? "Ínicio" : "Start"}</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"

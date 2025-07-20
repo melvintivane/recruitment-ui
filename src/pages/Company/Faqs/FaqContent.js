@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import {
   Col,
   Container,
-  Row,
   Nav,
   NavItem,
   NavLink,
+  Row,
   TabContent,
   TabPane,
 } from "reactstrap";
 
-import { Link } from "react-router-dom";
 import classnames from "classnames";
+import { Link, useLocation } from "react-router-dom";
 import AccordianContentLeft from "./AccordianContentLeft";
 import AccordianContentRight from "./AccordianContentRight";
 
@@ -22,6 +22,8 @@ const FaqContent = () => {
   const TabChange = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+  const {language} = useLocation();
 
   return (
     <React.Fragment>
@@ -43,7 +45,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Geral
+                    {language === 'pt' ? "Geral" : "General"}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -55,7 +57,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Compras
+                    {language === 'pt' ? "Compras" : "Shopping"}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -67,7 +69,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Pagamento
+                    {language === 'pt' ? "Pagamento" : "Payment"}
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -78,7 +80,7 @@ const FaqContent = () => {
                     }}
                     type="button"
                   >
-                    Suporte
+                    {language === 'pt' ? "Suporte" : "Support"}
                   </NavLink>
                 </NavItem>
               </Nav>
@@ -172,10 +174,10 @@ const FaqContent = () => {
             <Col lg={12}>
               <div className="text-center mt-5">
                 <Link to="/contact" className="btn btn-primary btn-hover mt-2">
-                  <i className="uil uil-phone"></i> Contate-nos
+                  <i className="uil uil-phone"></i> {language === 'pt' ? "Contate-nos" : "Contact us"}
                 </Link>
                 <Link to="#" className="btn btn-warning btn-hover mt-2 ms-md-2">
-                  <i className="uil uil-envelope"></i> Enviar E-mail
+                  <i className="uil uil-envelope"></i> {language === 'pt' ? "Enviar E-mail" : "Send E-mail"}
                 </Link>
               </div>
             </Col>
