@@ -19,6 +19,7 @@ import darkLogo from "../../assets/images/dark-logo.png";
 import lightLogo from "../../assets/images/light-logo.png";
 import profileImage from "../../assets/images/user/user.png";
 import LanguageSwitcher from "../../components/LanguageSwitcher";
+import { useLanguage } from "../../context/LanguageContext";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -26,6 +27,8 @@ const NavBar = () => {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
+
+  const {language} = useLanguage();
 
   // State management
   const [isOpen, setIsOpen] = useState(false);
@@ -93,37 +96,37 @@ const NavBar = () => {
 
   // Navigation items
   const navItems = [
-    { path: "/", label: "Início" },
-    { path: "/joblist", label: "Vagas" },
-    { path: "/companylist", label: "Empresas" },
-    { path: "/contact", label: "Contacto" },
+    { path: "/", label: language === 'pt' ? "Início" : "Home" },
+    { path: "/joblist", label: language === 'pt' ? "Vagas" : "Vacancies"},
+    { path: "/companylist", label: language === 'pt' ? "Empresas" : "Companies" },
+    { path: "/contact", label: language === 'pt' ? "Contacto" : "Contact"},
     { path: "/blog", label: "Blog" },
   ];
 
   const companyDropdownItems = [
-    { path: "/aboutus", label: "Sobre Nós", icon: "mdi-information-outline" },
+    { path: "/aboutus", label: language === 'pt' ? "Sobre Nós" : "About Us", icon: "mdi-information-outline" },
     {
       path: "/privacyandpolicy",
-      label: "Privacidade & Política",
+      label: language === 'pt' ? "Privacidade & Política" : "Privacy & Policy",
       icon: "mdi-shield-account-outline",
     },
     {
       path: "/faqs",
-      label: "Perguntas Frequentes",
+      label: language === 'pt' ? "Perguntas Frequentes" : "Frequently Asked Questions",
       icon: "mdi-help-circle-outline",
     },
   ];
 
   const profileDropdownItems = [
-    { path: "/myprofile", label: "Meu Perfil", icon: "mdi-account-outline" },
+    { path: "/myprofile", label: language === 'pt' ? "Meu Perfil" : "My Profile" , icon: "mdi-account-outline" },
     {
       path: "/bookmarkjobs",
-      label: "Vagas Favoritas",
+      label: language === 'pt' ? "Vagas Favoritas" : "Favorite Vacancies",
       icon: "mdi-bookmark-multiple-outline",
     },
     {
       path: "/managejobs",
-      label: "Minhas Candidaturas",
+      label: language === 'pt' ? "Minhas Candidaturas" : "My Applications",
       icon: "mdi-briefcase-outline",
     },
   ];
@@ -182,7 +185,7 @@ const NavBar = () => {
                 onClick={toggleCompanyDropdown}
                 aria-expanded={companyDropdownOpen}
               >
-                Sobre Nós <div className="arrow-down"></div>
+                {language === 'pt' ? "Sobre Nós" : "About Us"} <div className="arrow-down"></div>
               </NavLink>
               <ul
                 className={classnames(

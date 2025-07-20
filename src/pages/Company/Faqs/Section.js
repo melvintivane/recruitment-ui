@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Row, Col, Nav } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Col, Container, Nav, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
 
 const Section = () => {
@@ -20,7 +20,7 @@ const Section = () => {
                   >
                     <ol className="breadcrumb justify-content-center">
                       <li className="breadcrumb-item">
-                        <Link to="/">{language === 'pt' ? "Ínicio" : "Start"}</Link>
+                        <Link to="/">{language === 'pt' ? "Ínicio" : "Home"}</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"

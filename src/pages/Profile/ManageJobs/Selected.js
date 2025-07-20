@@ -1,13 +1,15 @@
 import React from "react";
 import { Col, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Selected = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <Row className="align-items-center">
         <Col lg={8}>
           <div className="mb-4 mb-lg-0">
-            <h6 className="mb-0"> Minhas Vagas Publicadas </h6>
+            <h6 className="mb-0"> {language === 'pt' ? "Minhas Vagas Publicadas" : "My Published Jobs"} </h6>
           </div>
         </Col>
         <Col lg={4}>
@@ -22,10 +24,10 @@ const Selected = () => {
                     id="choices-single-filter-orderby"
                     aria-label="Exemplo de seleção padrão"
                   >
-                    <option value="df">Padrão</option>
-                    <option value="ne">Mais Recentes</option>
-                    <option value="od">Mais Antigas</option>
-                    <option value="rd">Aleatório</option>
+                    <option value="df">{language === 'pt' ? "Padrão" : "Default"}</option>
+                    <option value="ne">{language === 'pt' ? "Mais recentes" : "Newest"}</option>
+                    <option value="od">{language === 'pt' ? "Mais antigos" : "Oldest"}</option>
+                    <option value="rd">{language === 'pt' ? "Aleatório" : "Random"}</option>
                   </select>
                 </div>
               </Col>
@@ -38,11 +40,11 @@ const Selected = () => {
                     id="choices-candidate-page"
                     aria-label="Exemplo de seleção padrão"
                   >
-                    <option value="df">Todas</option>
-                    <option value="2m">Últimos 2 Meses</option>
-                    <option value="6m">Últimos 6 Meses</option>
-                    <option value="12m">Últimos 12 Meses</option>
-                    <option value="2y">Últimos 2 Anos</option>
+                    <option value="df">{language === 'pt' ? "Todas" : "All"}</option>
+                    <option value="2m">{language === 'pt' ? "Últimos 2 Meses" : "Last 2 Months"}</option>
+                    <option value="6m">{language === 'pt' ? "Últimos 6 Meses" : "Last 6 Months"}</option>
+                    <option value="12m">{language === 'pt' ? "Últimos 12 Meses" : "Last 12 Months"}</option>
+                    <option value="2y">{language === 'pt' ? "Últimos 2 Anos" : "Last 2 Years"}</option>
                   </select>
                 </div>
               </Col>
