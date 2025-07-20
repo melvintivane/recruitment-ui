@@ -1,14 +1,14 @@
 import React from "react";
-import { Col, Row, Container } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
 
 //Logo Images
-import LogoImage1 from "../../assets/images/logo/logo-01.png";
-import LogoImage2 from "../../assets/images/logo/logo-02.png";
-import LogoImage3 from "../../assets/images/logo/logo-03.png";
-import LogoImage4 from "../../assets/images/logo/logo-04.png";
-import LogoImage5 from "../../assets/images/logo/logo-05.png";
-import LogoImage6 from "../../assets/images/logo/logo-06.png";
+import LogoImage1 from "../../assets/images/logo/alliance-media.png";
+import LogoImage5 from "../../assets/images/logo/ctrg.png";
+import LogoImage4 from "../../assets/images/logo/icap.png";
+import LogoImage6 from "../../assets/images/logo/jica.png";
+import LogoImage2 from "../../assets/images/logo/salam.png";
+import LogoImage3 from "../../assets/images/logo/tongaa-hulett.png";
 
 const Client = () => {
   const client = [

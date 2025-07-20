@@ -18,6 +18,7 @@ import {
 import darkLogo from "../../assets/images/dark-logo.png";
 import lightLogo from "../../assets/images/light-logo.png";
 import profileImage from "../../assets/images/user/user.png";
+import LanguageSwitcher from "../../components/LanguageSwitcher";
 import { ThemeContext } from "../../context/ThemeContext";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -162,6 +163,9 @@ const NavBar = () => {
           className="navbar-collapse"
           id="navbarCollapse"
         >
+          <div className="d-block w-25 py-2 px-2 border border-secondary rounded-2 mt-2 d-md-none ">
+            <LanguageSwitcher/>
+          </div>
           <ul className="navbar-nav mx-auto navbar-center">
             {navItems.map((item) => (
               <NavItem key={item.path}>
@@ -223,6 +227,10 @@ const NavBar = () => {
             </button>
           </li>
 
+          <div className="d-none d-md-block ">
+            <LanguageSwitcher/>
+          </div>
+          
           {user && (
             <>
               <li className="list-inline-item me-4">
