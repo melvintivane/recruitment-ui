@@ -1,24 +1,26 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { Col, Input, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const BlogForm = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <Form action="#" className="contact-form mt-5">
-        <h5 className="border-bottom pb-3">Deixe uma Mensagem</h5>
+        <h5 className="border-bottom pb-3">{language === 'pt' ? "Deixe uma Mensagem" : "Leave a message"}</h5>
         <Row className="mt-4">
           <Col lg={6}>
             <div className="position-relative mb-3">
               <label htmlFor="name" className="form-label">
-                Nome
+                {language === 'pt' ? "Nome" : "Name"}
               </label>
               <Input
                 name="name"
                 id="name"
                 type="text"
                 className="form-control"
-                placeholder="Digite seu nome*"
+                placeholder={language === 'pt' ? "Digite seu nome*" : "Enter your name*"}
                 required=""
               />
             </div>
@@ -26,14 +28,14 @@ const BlogForm = () => {
           <Col lg={6}>
             <div className="position-relative mb-3">
               <label htmlFor="email" className="form-label">
-                Endereço de e-mail
+                {language === 'pt' ? "Endereço de e-mail" : "E-mail adress"}
               </label>
               <Input
                 name="email"
                 id="email"
                 type="email"
                 className="form-control"
-                placeholder="Digite seu e-mail*"
+                placeholder={language === 'pt' ? "Digite seu e-mail*" : "Enter your e-mail*"}
                 required=""
               />
             </div>
@@ -41,28 +43,28 @@ const BlogForm = () => {
           <Col lg={12}>
             <div className="position-relative mb-3">
               <label htmlFor="subject" className="form-label">
-                Assunto
+                {language === 'pt' ? "Assunto" : "Subject"}
               </label>
               <Input
                 name="subject"
                 id="subject"
                 type="text"
                 className="form-control"
-                placeholder="Assunto"
+                placeholder={language === 'pt' ? "Assunto" : "Subject"}
               />
             </div>
           </Col>
           <Col lg={12}>
             <div className="position-relative mb-3">
               <label htmlFor="comments" className="form-label">
-                Mensagem
+                {language === 'pt' ? "Mensagem" : "Message"}
               </label>
               <textarea
                 name="comments"
                 id="comments"
                 rows="4"
                 className="form-control"
-                placeholder="Digite sua mensagem"
+                placeholder={language === 'pt' ? "Digite sua mensagem" : "Enter your message"}
               ></textarea>
             </div>
           </Col>
@@ -75,7 +77,7 @@ const BlogForm = () => {
               id="submit"
               className="btn btn-primary btn-hover"
             >
-              Enviar Mensagem <i className="uil uil-message ms-1"></i>
+              {language === 'pt' ? "Enviar Mensagem" : "Send Message"} <i className="uil uil-message ms-1"></i>
             </button>
           </Col>
         </Row>

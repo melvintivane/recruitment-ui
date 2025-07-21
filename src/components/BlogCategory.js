@@ -1,11 +1,27 @@
 import React, { useState } from "react";
-import { Input, Form } from "reactstrap";
+import { useQuery } from "react-query";
+import { Form, Input } from "reactstrap";
+import { useLanguage } from "../context/LanguageContext";
+import { getAllBlogCategories } from "../services/blogService";
 
 const CategoriaBlog = () => {
-  const [isChecked, setIsChecked] = useState(true);
-  const handleOnChange = () => {
-    setIsChecked(!isChecked);
-  };
+  const {language} = useLanguage();
+
+  const [pagination, setPagination] = useState({
+      page: 0,
+      size: 10,
+    });
+
+  const { data, isLoading, error } = useQuery({
+      queryKey: ["categories", pagination.page, pagination.size],
+      queryFn: () =>
+        getAllBlogCategories({
+          page: pagination.page,
+          size: pagination.size,
+        }),
+      keepPreviousData: true,
+    });
+
 
   return (
     <React.Fragment>
@@ -14,7 +30,7 @@ const CategoriaBlog = () => {
           <Input
             className="form-control"
             type="search"
-            placeholder="Pesquisar..."
+            placeholder={language === 'pt' ? "Pesquisar..." : "Search..."}
           />
           <button
             className="bg-transparent border-0 position-absolute top-50 end-0 translate-middle-y me-2"
@@ -26,106 +42,24 @@ const CategoriaBlog = () => {
       </aside>
       <div className="mt-4 pt-2">
         <div className="sd-title">
-          <h6 className="fs-16 mb-3">Categorias</h6>
+          <h6 className="fs-16 mb-3">{language === 'pt' ? "Categorias" : "Categories"}</h6>
         </div>
+
         <div className="my-3">
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="educacao"
-            />
-            <label className="form-check-label ms-2" htmlFor="educacao">
-              Educação
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked1"
-              checked={isChecked}
-              onChange={handleOnChange}
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked1"
-            >
-              Negócios
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked2"
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked2"
-            >
-              Informação
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked3"
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked3"
-            >
-              Entrevista
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked4"
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked4"
-            >
-              Viagem
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked5"
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked5"
-            >
-              Empregos
-            </label>
-          </div>
-          <div className="form-check mb-2">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="flexCheckChecked6"
-            />
-            <label
-              className="form-check-label ms-2"
-              htmlFor="flexCheckChecked6"
-            >
-              Moda
-            </label>
-          </div>
+          {data?.content?.map((category, index) => (
+            <div className="form-check mb-2" key={index}>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id={category.name}
+              />
+              <label className="form-check-label ms-2" htmlFor={category.name}>
+                {category.name}
+              </label>
+            </div>
+          ))}
+          
         </div>
       </div>
     </React.Fragment>

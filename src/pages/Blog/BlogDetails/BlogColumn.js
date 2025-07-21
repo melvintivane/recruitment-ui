@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 // Importar imagem do usuário
 import userImage3 from "../../../assets/images/user/img-03.jpg";
 
-const BlogColumn = () => {
+const BlogColumn = ({data}) => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <ul className="list-inline mb-0 mt-3 text-muted">
@@ -19,7 +21,7 @@ const BlogColumn = () => {
             </div>
             <div className="ms-3">
               <Link to="/blogauther" className="primary-link">
-                <h6 className="mb-0">Por Alice Mellor</h6>
+                <h6 className="mb-0">{language === 'pt' ? `Por ${data.author}` : `By ${data.author}`}</h6>
               </Link>
             </div>
           </div>
@@ -30,7 +32,13 @@ const BlogColumn = () => {
               <i className="uil uil-calendar-alt"></i>
             </div>
             <div className="ms-2">
-              <p className="mb-0">02 de Agosto de 2021</p>
+              <p className="mb-0">
+                {new Date(data.createdAt.split('.')[0]).toLocaleString(language === 'pt' ? "pt-PT" : "en-US", {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                })}
+              </p>
             </div>
           </div>
         </li>
@@ -40,56 +48,31 @@ const BlogColumn = () => {
               <i className="uil uil-comments-alt"></i>
             </div>
             <div className="ms-2 flex-grow-1">
-              <p className="mb-0">2 Comentários</p>
+              <p className="mb-0">{language === 'pt' ? `${data.commentsCount} os` : `${data.commentsCount} Comments`}</p>
             </div>
           </div>
         </li>
       </ul>
       <div className="mt-4">
-        <h5>O que torna um espaço de coworking ideal?</h5>
-        <p className="text-muted">
-          Persiga objetivamente catalisadores diversos de mudança para serviços
-          interconectáveis. Reprojetar distintamente serviços revolucionários e
-          arquiteturas premium. Incube de forma intrínseca oportunidades
-          intuitivas e potencialidades em tempo real. Comunique-se de forma
-          apropriada com tecnologia individualizada.
-        </p>
+        <h5>{data.title}</h5>
         <p className="text-muted mb-4">
-          Reformas residenciais, especialmente aquelas com muita demolição,
-          podem ser extremamente empoeiradas. O mesmo acontece quando
-          experimentamos a sensação emocional de estresse desde nossas primeiras
-          experiências de rejeição ou ridicularização social. Aprendemos
-          rapidamente a temer e, assim, evitar automaticamente situações
-          potencialmente estressantes de todos os tipos, incluindo o mais comum
-          de todos: cometer erros.
+          {data.body}
         </p>
         <figure className="blog-blockquote text-center">
           <blockquote className="blockquote">
             <p className="fs-17">
-              "Uma agência de consultoria empresarial está envolvida no
-              planejamento, implementação e educação de negócios."
+              {data.quote}
             </p>
           </blockquote>
           <figcaption className="blockquote-footer fs-15 mb-4">
             Agência Criativa
             <cite title="Source Title" className="text-primary fw-semibold">
               {" "}
-              Alice Mellor
+              {data.author}
             </cite>
           </figcaption>
         </figure>
-        <p className="text-muted">
-          Seja um artigo novo coberto apressadamente por ela. Dinheiro, livros
-          espirituosos nem o filho acrescentam. Galinha acreditava na idade da
-          noite, mas continuava fingindo. No conselho perdido, minha irmã não.
-          Senhorita disse que o presunto era sem graça, sabia que ela podia ver
-          de perto. Espírito dela completamente chamado.
-        </p>
-        <p className="text-muted">
-          A vantagem de sua origem latina e do relativo vazio de sentido do
-          Lorum Ipsum é que o texto não chama atenção para si nem distrai a
-          atenção do espectador em relação ao layout.
-        </p>
+        
         <div className="d-flex align-items-center mb-4">
           <div className="flex-shrink-0">
             <b>Tags:</b>
@@ -123,7 +106,7 @@ const BlogColumn = () => {
         </div>
         <ul className="blog-social-menu list-inline mb-0 text-end">
           <li className="list-inline-item">
-            <b>Compartilhar post:</b>
+            <b>{language === 'pt' ? "Compartilhar post" : "Share post"}:</b>
           </li>
           <li className="list-inline-item">
             <Link to="#" className="social-link bg-primary-subtle text-primary">
