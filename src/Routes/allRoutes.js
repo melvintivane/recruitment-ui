@@ -2,42 +2,42 @@ import React from "react";
 
 //Company Section
 import AboutUs from "../pages/Company/AboutUs/AboutUs";
-import PrivacyAndPolicy from "../pages/Company/PrivacyAndPolicy/PrivacyAndPolicy";
 import Faqs from "../pages/Company/Faqs/Faqs";
+import PrivacyAndPolicy from "../pages/Company/PrivacyAndPolicy/PrivacyAndPolicy";
 
 //Jobs Section
-import JobList from "../pages/Jobs/JobList/JobList";
 import JobDetails from "../pages/Jobs/JobDetails/JobDetails";
+import JobList from "../pages/Jobs/JobList/JobList";
 import JobsCategories from "../pages/Jobs/JobsCategories/JobsCategories";
 
 //Candidate and Company Section
-import CandidateList from "../pages/CandidateAndCompany/CandidateList/CandidateList";
-import CandidateGrid from "../pages/CandidateAndCompany/CandidateGrid/CandidateGrid";
 import CandidateDetails from "../pages/CandidateAndCompany/CandidateDetails/CandidateDetails";
-import CompanyList from "../pages/CandidateAndCompany/CompanyList/CompanyList";
+import CandidateGrid from "../pages/CandidateAndCompany/CandidateGrid/CandidateGrid";
+import CandidateList from "../pages/CandidateAndCompany/CandidateList/CandidateList";
 import CompanyDetails from "../pages/CandidateAndCompany/CompanyDetails/CompanyDetails";
+import CompanyList from "../pages/CandidateAndCompany/CompanyList/CompanyList";
 
 //Blog Section
 import Blog from "../pages/Blog/Blog/Blog";
-import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 import BlogAuther from "../pages/Blog/BlogAuther/BlogAuther";
+import BlogDetails from "../pages/Blog/BlogDetails/BlogDetails";
 
 //Contacts
 import Contact from "../pages/Contact/Contact";
 
 //AuthPages
-import SignIn from "../pages/ExtraPages/SignIn";
-import SignUp from "../pages/ExtraPages/SignUp";
-import SignOut from "../pages/ExtraPages/SignOut";
-import ResetPassword from "../pages/ExtraPages/ResetPassword";
 import ComingSoon from "../pages/ExtraPages/ComingSoon";
-import Error404 from "../pages/ExtraPages/Error404";
 import Components from "../pages/ExtraPages/Components/Components";
+import Error404 from "../pages/ExtraPages/Error404";
+import ResetPassword from "../pages/ExtraPages/ResetPassword";
+import SignIn from "../pages/ExtraPages/SignIn";
+import SignOut from "../pages/ExtraPages/SignOut";
+import SignUp from "../pages/ExtraPages/SignUp";
 
 //profile section(User Profile)
 import BookMarkJobPost from "../pages/Profile/BookMarkJobPost/BookMarkJobPost";
-import ManageJobs from "../pages/Profile/ManageJobs/ManageJobs";
 import BookMarkJobs from "../pages/Profile/BookMarkJobs/BookMarkJobs";
+import ManageJobs from "../pages/Profile/ManageJobs/ManageJobs";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 
 //Home Section
@@ -58,7 +58,7 @@ const userRoutes = [
 
   // Blog Section
   { path: "/blogauther", component: <BlogAuther /> },
-  { path: "/blogdetails", component: <BlogDetails /> },
+  { path: "/blogdetails/:id", component: <BlogDetails /> },
   { path: "/blog", component: <Blog /> },
 
   //Candidate and Company Section
@@ -90,4 +90,5 @@ const authRoutes = [
   { path: "/signin", component: <SignIn /> },
   { path: "*", component: <Error404 /> },
 ];
-export { userRoutes, authRoutes };
+export { authRoutes, userRoutes };
+

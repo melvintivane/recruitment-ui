@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const Archives = () => {
+
+  const {language} = useLanguage();
+
   const archives = [
     {
       id: 1,
@@ -33,7 +37,7 @@ const Archives = () => {
     <React.Fragment>
       <div className="mt-4 pt-2">
         <div className="sd-title">
-          <h6 className="fs-16 mb-3">Archives</h6>
+          <h6 className="fs-16 mb-3">{language === 'pt' ? "Arquivos" : "Archives"}</h6>
         </div>
         <ul className="list-unstyled mb-0 mt-3">
           {archives.map((archivesDetails, key) => (

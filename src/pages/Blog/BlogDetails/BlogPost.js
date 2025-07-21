@@ -1,21 +1,24 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 //swiper css
 import "swiper/css";
-import "swiper/css/virtual";
-import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import "swiper/css/pagination";
+import "swiper/css/virtual";
 
 //Importar imagens de blog
+import { Link } from "react-router-dom";
+import { Card } from "reactstrap";
 import blogImage4 from "../../../assets/images/blog/img-04.jpg";
 import blogImage5 from "../../../assets/images/blog/img-05.jpg";
 import blogImage6 from "../../../assets/images/blog/img-06.jpg";
-import { Link } from "react-router-dom";
-import { Card } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const BlogPost = () => {
+
+  const {language} = useLanguage();
   const blogPost = [
     {
       id: 1,
@@ -43,7 +46,7 @@ const BlogPost = () => {
   return (
     <React.Fragment>
       <div className="mt-5">
-        <h5 className="border-bottom pb-3">Postagens Relacionadas</h5>
+        <h5 className="border-bottom pb-3">{language === 'pt' ? "Postagens Relacionadas" : "Related Posts"}</h5>
         <Swiper
           loop={true}
           slidesPerView={2}

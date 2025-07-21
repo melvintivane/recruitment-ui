@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 
 // Imagens dos usuários
 import userImage1 from "../../../assets/images/user/img-01.jpg";
@@ -17,9 +18,10 @@ import blogImage9 from "../../../assets/images/blog/img-09.jpg";
 import blogImage10 from "../../../assets/images/blog/img-10.jpg";
 
 import { useLanguage } from "../../../context/LanguageContext";
+import { getAllBlogs } from "../../../services/blogService";
 
 const BlogContent = () => {
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   const blogContentText = [
     {
       id: 1,
@@ -113,6 +115,46 @@ const BlogContent = () => {
     },
   ];
 
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+  });
+
+  // Fetch blogs query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["vacancies", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllBlogs({
+        page: pagination.page,
+        size: pagination.size,
+      }),
+    keepPreviousData: true,
+  });
+
+  // Fetch blog category query
+ 
+
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
+      setPagination((prev) => ({ ...prev, page: newPage }));
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
+  };
+
+  if (isLoading) {
+    return <div>Loading vacancies...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">Error: {error.message}</div>;
+  }
+
+
   return (
     <React.Fragment>
       <section className="section">
@@ -179,57 +221,61 @@ const BlogContent = () => {
               <h4>{language === 'pt' ? "Todos os Posts de Blog" : "All Blog Posts"}</h4>
             </div>
           </Col>
-          {blogContentText.map((blogContentDetails, key) => (
+          {data?.content?.map((blogContentDetails, key) => (
             <Row key={key}>
-              {blogContentDetails.blogRow.map((blogContentInner, key) => (
-                <Col lg={6} key={key}>
-                  <article className="post position-relative mt-4" key={key}>
-                    <div className="post-preview overflow-hidden mb-3 rounded-3">
-                      <Link to="/blogdetails">
-                        <img
-                          src={blogContentInner.blogImage}
-                          alt=""
-                          className="img-fluid blog-img"
-                        />
-                      </Link>
+
+              <Col lg={6} key={key}>
+                <article className="post position-relative mt-4" key={key}>
+                  <div className="post-preview overflow-hidden mb-3 rounded-3">
+                    <Link to={`/blogdetails/${blogContentDetails.id}`}>
+                      <img
+                        src={blogImage5}
+                        alt=""
+                        className="img-fluid blog-img"
+                      />
+                    </Link>
+                  </div>
+                  <p className="text-muted mb-2">
+                    <b>{blogContentDetails.category || "Category"}</b> -{" "}
+                    {new Date(blogContentDetails.createdAt.split('.')[0]).toLocaleString(language === 'pt' ? "pt-PT" : "en-US", {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </p>
+                  <h5 className="mb-3">
+                    <Link to={`/blogdetails/${blogContentDetails.id}`} className="primary-link">
+                      {blogContentDetails.title}
+                    </Link>
+                  </h5>
+                  <p className="text-muted">{blogContentDetails.body.slice(0, 200)}...</p>
+                  <div className="d-flex align-items-center mt-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        src={userImage1 || blogContentDetails.image}
+                        alt=""
+                        className="avatar-sm rounded-circle"
+                      />
                     </div>
-                    <p className="text-muted mb-2">
-                      <b>{blogContentInner.blogTitle}</b> -{" "}
-                      {blogContentInner.blogDate}
-                    </p>
-                    <h5 className="mb-3">
-                      <Link to="/blogdetails" className="primary-link">
-                        {blogContentInner.blogHeading}
+                    <div className="flex-grow-1 ms-3">
+                      <Link to="/blogauther" className="primary-link">
+                        <h6 className="fs-16 mb-0">
+                          {blogContentDetails.author}
+                        </h6>
                       </Link>
-                    </h5>
-                    <p className="text-muted">{blogContentInner.blogText}</p>
-                    <div className="d-flex align-items-center mt-4">
-                      <div className="flex-shrink-0">
-                        <img
-                          src={blogContentInner.blogAuthorImage}
-                          alt=""
-                          className="avatar-sm rounded-circle"
-                        />
-                      </div>
-                      <div className="flex-grow-1 ms-3">
-                        <Link to="/blogauther" className="primary-link">
-                          <h6 className="fs-16 mb-0">
-                            {blogContentInner.blogAuthorName}
-                          </h6>
-                        </Link>
-                        <p className="text-muted mb-0">
-                          {blogContentInner.BlogAuthorPosition}
-                        </p>
-                      </div>
+                      <p className="text-muted mb-0">
+                        {blogContentDetails.role || "Blogger"}
+                      </p>
                     </div>
-                  </article>
-                </Col>
-              ))}
+                  </div>
+                </article>
+              </Col>
+
             </Row>
           ))}
 
           <Row>
-            <Col lg={12} className="mt-5">
+            {/*<Col lg={12} className="mt-5">
               <nav aria-label="Exemplo de navegação de página">
                 <ul className="pagination job-pagination mb-0 justify-content-center">
                   <li className="page-item disabled">
@@ -264,7 +310,73 @@ const BlogContent = () => {
                   </li>
                 </ul>
               </nav>
-            </Col>
+            </Col>*/}
+            {/* Pagination */}
+            <div className="d-flex justify-content-between align-items-center mt-4">
+              <div className="text-muted">
+                {language === 'pt' ? "Mostrando" : "Showing"}{" "}
+                <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
+                <span className="fw-bold">{data?.totalElements || 0}</span> {"blogs"}
+                <select
+                  className="form-select form-select-sm ms-2 d-inline-block w-auto"
+                  value={pagination.size}
+                  onChange={handlePageSizeChange}
+                >
+                  {[5, 10, 20, 50].map((size) => (
+                    <option key={size} value={size}>
+                      {size} {language === 'pt' ? "por página" : "per page"}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <nav aria-label="Page navigation">
+                <Pagination className="mb-0">
+                  <PaginationItem disabled={pagination.page === 0}>
+                    <PaginationLink
+                      previous
+                      onClick={() => handlePageChange(pagination.page - 1)}
+                    />
+                  </PaginationItem>
+
+                  {Array.from(
+                    { length: Math.min(5, data?.totalPages || 0) },
+                    (_, i) => {
+                      let pageNum;
+                      if ((data?.totalPages || 0) <= 5) {
+                        pageNum = i;
+                      } else if (pagination.page <= 2) {
+                        pageNum = i;
+                      } else if (pagination.page >= (data?.totalPages || 0) - 3) {
+                        pageNum = (data?.totalPages || 0) - 5 + i;
+                      } else {
+                        pageNum = pagination.page - 2 + i;
+                      }
+
+                      return (
+                        <PaginationItem
+                          key={pageNum}
+                          active={pageNum === pagination.page}
+                        >
+                          <PaginationLink onClick={() => handlePageChange(pageNum)}>
+                            {pageNum + 1}
+                          </PaginationLink>
+                        </PaginationItem>
+                      );
+                    }
+                  )}
+
+                  <PaginationItem
+                    disabled={pagination.page === (data?.totalPages || 0) - 1}
+                  >
+                    <PaginationLink
+                      next
+                      onClick={() => handlePageChange(pagination.page + 1)}
+                    />
+                  </PaginationItem>
+                </Pagination>
+              </nav>
+            </div>
           </Row>
         </Container>
       </section>
