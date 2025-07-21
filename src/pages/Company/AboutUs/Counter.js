@@ -1,8 +1,10 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
 import CountUp from "react-countup";
+import { Col, Container, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Counter = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="section bg-light">
@@ -16,7 +18,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3 ">Vagas Disponíveis</h6>
+                  <h6 className="fs-16 mt-3 ">{language === 'pt' ? "Vagas Disponíveis" : "Available Vacancies"}</h6>
                 </div>
               </div>
             </Col>
@@ -28,7 +30,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Candidaturas</h6>
+                  <h6 className="fs-16 mt-3">{language === 'pt' ? "Candidaturas" : "Applications"}</h6>
                 </div>
               </div>
             </Col>
@@ -41,7 +43,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Feedback Positivo</h6>
+                  <h6 className="fs-16 mt-3">{language === 'pt' ? "Feedback Positivo" : "Positive Feedback"}</h6>
                 </div>
               </div>
             </Col>
@@ -53,7 +55,7 @@ const Counter = () => {
                     duration={1}
                     className="counter mb-0"
                   ></CountUp>
-                  <h6 className="fs-16 mt-3">Membros</h6>
+                  <h6 className="fs-16 mt-3">{language === 'pt' ? "Membros" : "Members"}</h6>
                 </div>
               </div>
             </Col>

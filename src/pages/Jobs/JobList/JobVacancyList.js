@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 import { getAllVacancies } from "../../../services/vacancyService";
-import { Col, Row, PaginationItem, PaginationLink, Pagination } from "reactstrap";
 
 //Images Import
 import jobImage1 from "../../../assets/images/light-logo.png";
@@ -27,6 +28,8 @@ const JobVacancyList = ({ filters }) => {
     keepPreviousData: true,
   });
 
+  const {language} = useLanguage();
+
   const handlePageChange = (newPage) => {
     if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
       setPagination((prev) => ({ ...prev, page: newPage }));
@@ -45,6 +48,8 @@ const JobVacancyList = ({ filters }) => {
   if (error) {
     return <div className="text-danger">Error: {error.message}</div>;
   }
+
+  
 
   return (
     <>
@@ -159,8 +164,8 @@ const JobVacancyList = ({ filters }) => {
                 <Col md={4}>
                   <div>
                     <p className="text-muted mb-0">
-                      <span className="text-dark">Experiência: </span>
-                      {vacancy.yearsOfExperience} anos
+                      <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>
+                      {vacancy.yearsOfExperience} {language === 'pt' ? "anos" : "years"}
                     </p>
                   </div>
                 </Col>
@@ -170,7 +175,7 @@ const JobVacancyList = ({ filters }) => {
                       to={`/jobdetails/${vacancy.id}`}
                       className="primary-link"
                     >
-                      Inscreva-se{" "}
+                      {language === 'pt' ? "Inscreva-se" : "Sign up"}{" "}
                       <i className="mdi mdi-chevron-double-right"></i>
                     </Link>
                   </div>
@@ -183,9 +188,9 @@ const JobVacancyList = ({ filters }) => {
         {/* Pagination */}
         <div className="d-flex justify-content-between align-items-center mt-4">
           <div className="text-muted">
-            Mostrando{" "}
-            <span className="fw-bold">{data?.content?.length || 0}</span> de{" "}
-            <span className="fw-bold">{data?.totalElements || 0}</span> vagas
+            {language === 'pt' ? "Mostrando" : "Showing" }{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span> {language === 'pt' ? "vagas" : "vacancies"}
             <select
               className="form-select form-select-sm ms-2 d-inline-block w-auto"
               value={pagination.size}
@@ -193,7 +198,7 @@ const JobVacancyList = ({ filters }) => {
             >
               {[5, 10, 20, 50].map((size) => (
                 <option key={size} value={size}>
-                  {size} por página
+                  {size} {language === 'pt' ? "por página" : "per page"}
                 </option>
               ))}
             </select>

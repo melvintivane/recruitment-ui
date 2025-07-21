@@ -1,8 +1,10 @@
 import React from "react";
-import { Col, Row, Container } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Col, Container, Row } from "reactstrap";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Cta = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="section bg-light">
@@ -11,17 +13,16 @@ const Cta = () => {
             <Col lg={7}>
               <div className="text-center">
                 <h2 className="text-primary mb-4">
-                  Explore as Nossas{" "}
-                  <span className="text-warning fw-bold">5.000+</span> Vagas
-                  Recentes
+                  {language === 'pt' ? "Explore as Nossas" : "Explore our"}{" "}
+                  <span className="text-warning fw-bold">5.000+</span> {language === 'pt' ? "Vagas Recentes" : "Latest Vacancies"}
                 </h2>
                 <p className="text-muted">
-                  Publique um trabalho para nos contar sobre o seu projeto. Nós
-                  o conectaremos rapidamente com os candidatos certos.
+                  {language === 'pt' ? "Publique uma vaga para nos contar sobre seu projeto. Iremos conectá-lo rapidamente com os candidatos certos." : "Post a job to tell us about your project. We'll quickly connect you with the right candidates."}
+                  
                 </p>
                 <div className="mt-4 pt-2">
                   <Link to="/joblist" className="btn btn-primary btn-hover">
-                    Comece Agora{" "}
+                    {language === 'pt' ? "Comece Agora" : "Get Started"}{" "}
                     <i className="uil uil-rocket align-middle ms-1"></i>
                   </Link>
                 </div>

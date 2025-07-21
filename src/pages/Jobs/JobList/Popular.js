@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Popular = ({ populars }) => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <div className="wedget-popular-title mt-4">
-        <h6>Populares</h6>
+        <h6>{language === 'pt' ? "Populares" : "Popular"}</h6>
         <ul className="list-inline">
           {(populars || []).map((detalhePopular) => (
             <li className="list-inline-item" key={detalhePopular.id}>

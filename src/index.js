@@ -6,10 +6,11 @@
 // reportWebVitals();
 
 import ReactDOM from "react-dom/client";
-import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import { ReactQueryProvider } from "./providers/QueryClientProvider";
+import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+import { LanguageProvider } from "./context/LanguageContext";
+import { ReactQueryProvider } from "./providers/QueryClientProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,7 +18,9 @@ root.render(
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ReactQueryProvider>
         <AuthProvider>
-          <App />
+          <LanguageProvider>
+            <App />
+          </LanguageProvider>
         </AuthProvider>
       </ReactQueryProvider>
     </BrowserRouter>

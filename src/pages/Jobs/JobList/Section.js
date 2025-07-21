@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Col, Container, Row, Nav } from "reactstrap";
+import { Col, Container, Nav, Row } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Section = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="page-title-box">
@@ -10,7 +12,7 @@ const Section = () => {
           <Row className="justify-content-center">
             <Col md={6}>
               <div className="text-center text-white">
-                <h3 className="mb-4">Listagem de Vagas</h3>
+                <h3 className="mb-4">{language === 'pt' ? "Listagem de Vagas" : "Job Listing"}</h3>
                 <div className="page-next">
                   <Nav
                     className="d-inline-block"
@@ -18,14 +20,14 @@ const Section = () => {
                   >
                     <ol className="breadcrumb justify-content-center">
                       <li className="breadcrumb-item">
-                        <Link to="/">Ínicio</Link>
+                        <Link to="/">{language === 'pt' ? "Ínicio" : "Home"}</Link>
                       </li>
                       <li
                         className="breadcrumb-item active"
                         aria-current="page"
                       >
                         {" "}
-                        Listagem de Vagas{" "}
+                        {language === 'pt' ? "Listagem de Vagas" : "Job Listing"}{" "}
                       </li>
                     </ol>
                   </Nav>

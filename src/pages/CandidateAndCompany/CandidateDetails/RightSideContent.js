@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Col, Card, CardBody, Row, Input } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Card, CardBody, Col, Input, Row } from "reactstrap";
 
 //Lightbox
 import Lightbox from "yet-another-react-lightbox";
@@ -12,14 +12,17 @@ import blogImage2 from "../../../assets/images/blog/img-02.jpg";
 import blogImage3 from "../../../assets/images/blog/img-03.jpg";
 
 //Import user Images
-import userImage4 from "../../../assets/images/user/img-04.jpg";
 import userImage2 from "../../../assets/images/user/img-02.jpg";
+import userImage4 from "../../../assets/images/user/img-04.jpg";
+
+import { useLanguage } from "../../../context/LanguageContext";
 
 const images = [blogImage1, blogImage1, blogImage3];
 
 const RightSideContent = () => {
   const [photoIndex, setphotoIndex] = useState(0);
   const [isGallery, setisGallery] = useState(false);
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       {isGallery ? (
@@ -34,7 +37,7 @@ const RightSideContent = () => {
         <Card className="candidate-details ms-lg-4 mt-4 mt-lg-0">
           <CardBody className="p-4 candidate-personal-detail">
             <div>
-              <h6 className="fs-17 fw-semibold mb-3">Sobre Mim</h6>
+              <h6 className="fs-17 fw-semibold mb-3">{language === 'pt' ? "Sobre Mim" : "About Us"}</h6>
               <p className="text-muted mb-2">
                 Comunicação muito bem pensada e articulada. Marcos claros,
                 prazos e trabalho rápido. Paciência. Paciência infinita. Sem
@@ -52,7 +55,7 @@ const RightSideContent = () => {
             </div>
 
             <div className="candidate-education-details mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Educação</h6>
+              <h6 className="fs-17 fw-bold mb-0">{language === 'pt' ? "Educação" : "Education"}</h6>
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
@@ -115,7 +118,7 @@ const RightSideContent = () => {
               </div>
             </div>
             <div className="candidate-education-details mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Experiência</h6>
+              <h6 className="fs-17 fw-bold mb-0">{language === 'pt' ? "Experiência" : "Experience"}</h6>
               <div className="candidate-education-content mt-4 d-flex">
                 <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
                   {" "}
@@ -157,7 +160,7 @@ const RightSideContent = () => {
               </div>
             </div>
             <div className="candidate-portfolio mt-4 pt-3">
-              <h6 className="fs-17 fw-bold mb-0">Projecos</h6>
+              <h6 className="fs-17 fw-bold mb-0">{language === 'pt' ? "Projetos" : "Projects"}</h6>
               <Row>
                 <Col lg={4} className="mt-4">
                   <div className="candidate-portfolio-box card border-0">
@@ -268,22 +271,22 @@ const RightSideContent = () => {
             </div>
             <form action="#" className="mt-4 pt-3">
               <h6 className="fs-17 fw-semibold mb-2">
-                Adicionar uma avaliação
+                {language === 'pt' ? "Adicionar uma avaliação" : "Add a review" }
               </h6>
               <p className="text-muted mb-3">
-                Sua avaliação para esta listagem
+                {language === 'pt' ? "Sua avaliação para esta listagem" : "Your rating for this listing"}
               </p>
               <Row>
                 <Col lg={12}>
                   <div className="mb-3">
                     <label htmlFor="inputname" className="form-label">
-                      Seu Nome
+                      {language === 'pt' ? "Seu Nome" : "Your Name"}
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="inputname"
-                      placeholder="Digite seu nome"
+                      placeholder={language === 'pt' ? "Digite seu nome" : "Enter your name"}
                     />
                   </div>
                 </Col>
@@ -296,40 +299,40 @@ const RightSideContent = () => {
                       type="email"
                       className="form-control"
                       id="inputemail"
-                      placeholder="Digite seu e-mail"
+                      placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"}
                     />
                   </div>
                 </Col>
                 <Col lg={6}>
                   <div className="mb-3">
                     <label htmlFor="inputsubject" className="form-label">
-                      Assunto
+                      {language === 'pt' ? "Assunto" : "Subject"}
                     </label>
                     <Input
                       type="text"
                       className="form-control"
                       id="inputsubject"
-                      placeholder="Assunto"
+                      placeholder={language === 'pt' ? "Assunto" : "Subject"} 
                     />
                   </div>
                 </Col>
                 <Col lg={12}>
                   <div className="mb-3">
                     <label htmlFor="inputcoment" className="form-label">
-                      Avaliação
+                      {language === 'pt' ? "Avaliação" : "Evaluation"}
                     </label>
                     <textarea
                       className="form-control"
                       id="inputcoment"
                       rows="3"
-                      placeholder="Adicione sua avaliação"
+                      placeholder={language === 'pt' ? "Adicione sua avaliação" : "Add your review"}
                     ></textarea>
                   </div>
                 </Col>
               </Row>
               <div className="text-end">
                 <button type="submit" className="btn btn-primary btn-hover">
-                  Enviar Avaliação <i className="uil uil-angle-right-b"></i>
+                  {language === 'pt' ? "Enviar Avaliação" : "Send Review"} <i className="uil uil-angle-right-b"></i>
                 </button>
               </div>
             </form>

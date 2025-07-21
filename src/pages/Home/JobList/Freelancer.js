@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Col, Row } from "reactstrap";
 
 //jobImages
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
@@ -8,8 +8,10 @@ import jobImage2 from "../../../assets/images/featured-job/img-02.png";
 import jobImage3 from "../../../assets/images/featured-job/img-03.png";
 import jobImage4 from "../../../assets/images/featured-job/img-04.png";
 import JobApplicationModal from "../../../components/JobApplicationModal";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Freelancer = () => {
+  const {language} = useLanguage();
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => setModalOpen(!modalOpen);
 
@@ -173,7 +175,7 @@ const Freelancer = () => {
               <Col md={4}>
                 <div>
                   <p className="text-muted mb-0">
-                    <span className="text-dark">Experiência: </span>{" "}
+                    <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>{" "}
                     {freelancerJobdetails.experience}
                   </p>
                 </div>
@@ -184,7 +186,7 @@ const Freelancer = () => {
                 <div>
                   <p className="text-muted mb-0">
                     <span className="text-dark">
-                      {freelancerJobdetails.Notes === null ? "" : "Notas: "}
+                      {freelancerJobdetails.Notes === null ? "" : language === 'pt' ? "Notas:" : "Notes:"}
                     </span>
                     {freelancerJobdetails.Notes}{" "}
                   </p>
@@ -199,7 +201,7 @@ const Freelancer = () => {
                     data-bs-toggle="modal"
                     className="primary-link"
                   >
-                    Inscreva-se <i className="mdi mdi-chevron-double-right"></i>
+                    {language === 'pt' ? "Inscreva-se" : "Sign up"} <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -209,7 +211,7 @@ const Freelancer = () => {
       ))}
       <div className="text-center mt-4 pt-2">
         <Link to="/joblist" className="btn btn-primary">
-          Ver Mais <i className="uil uil-arrow-right"></i>
+        {language === 'pt' ? "Ver Mais" : "See More"} <i className="uil uil-arrow-right"></i>
         </Link>
       </div>
 

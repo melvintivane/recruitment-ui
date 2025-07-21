@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 //jobImages
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
@@ -10,6 +11,7 @@ import jobImage4 from "../../../assets/images/featured-job/img-04.png";
 import JobApplicationModal from "../../../components/JobApplicationModal";
 
 const Parttime = () => {
+  const {language} = useLanguage();
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => setModalOpen(!modalOpen);
 
@@ -171,7 +173,7 @@ const Parttime = () => {
               <Col md={4}>
                 <div>
                   <p className="text-muted mb-0">
-                    <span className="text-dark">Experiência: </span>{" "}
+                    <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>{" "}
                     {partTimeJobdetails.experience}
                   </p>
                 </div>
@@ -182,7 +184,7 @@ const Parttime = () => {
                 <div>
                   <p className="text-muted mb-0">
                     <span className="text-dark">
-                      {partTimeJobdetails.Notes === null ? "" : "Notas: "}
+                      {partTimeJobdetails.Notes === null ? "" : language === 'pt' ? "Notas:" : "Notes:"}
                     </span>
                     {partTimeJobdetails.Notes}{" "}
                   </p>
@@ -197,7 +199,7 @@ const Parttime = () => {
                     data-bs-toggle="modal"
                     className="primary-link"
                   >
-                    Inscreva-se <i className="mdi mdi-chevron-double-right"></i>
+                     {language === 'pt' ? "Inscreva-se" : "Sign up"} <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -207,7 +209,7 @@ const Parttime = () => {
       ))}
       <div className="text-center mt-4 pt-2">
         <Link to="/joblist" className="btn btn-primary">
-          Ver Mais <i className="uil uil-arrow-right"></i>
+         {language === 'pt' ? "Ver Mais" : "See More"} <i className="uil uil-arrow-right"></i>
         </Link>
       </div>
 

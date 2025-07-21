@@ -3,8 +3,10 @@ import { Col, Container, Row } from "reactstrap";
 
 //Import Image
 import subscribeImg from "../../assets/images/subscribe.png";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Subscribe = () => {
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <section className="bg-subscribe">
@@ -13,10 +15,10 @@ const Subscribe = () => {
             <Col lg={6}>
               <div className="text-center text-lg-start">
                 <h4 className="text-white">
-                  Receba notificações de novas vagas!
+                  {language === 'pt' ? "Receba notificações de novas vagas!" : "Receive notifications of new vacancies!"}
                 </h4>
                 <p className="text-white-50 mb-0">
-                  Inscreva-se e receba notificações de vagas relacionadas.
+                   {language === 'pt' ? "Inscreva-se e receba notificações de vagas relacionadas." : "Sign up and receive notifications of related vacancies."}
                 </p>
               </div>
             </Col>
@@ -28,14 +30,14 @@ const Subscribe = () => {
                       type="text"
                       className="form-control"
                       id="subscribe"
-                      placeholder="Digite seu e-mail"
+                      placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"}
                     />
                     <button
                       className="btn btn-primary"
                       type="button"
                       id="subscribebtn"
                     >
-                      Inscrever-se
+                      {language === 'pt' ? "Inscrever-se" : "Subscribe"}
                     </button>
                   </div>
                 </form>

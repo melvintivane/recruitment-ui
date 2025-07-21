@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Col, Row } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 
 // Imagens dos usuários
 import userImage1 from "../../../assets/images/user/img-01.jpg";
@@ -16,7 +16,10 @@ import blogImage8 from "../../../assets/images/blog/img-08.jpg";
 import blogImage9 from "../../../assets/images/blog/img-09.jpg";
 import blogImage10 from "../../../assets/images/blog/img-10.jpg";
 
+import { useLanguage } from "../../../context/LanguageContext";
+
 const BlogContent = () => {
+  const {language} = useLanguage();
   const blogContentText = [
     {
       id: 1,
@@ -117,7 +120,7 @@ const BlogContent = () => {
           <Row className="align-items-center">
             <Col lg={12}>
               <div className="mb-4">
-                <h4>Últimos & Posts de Blog em Alta</h4>
+                <h4>{language === 'pt' ? "Últimos & Posts de Blog em Alta" : "Latest & Trending Blog Posts"}</h4>
               </div>
             </Col>
             <Col lg={7}>
@@ -173,7 +176,7 @@ const BlogContent = () => {
 
           <Col lg={12} className="mt-5">
             <div>
-              <h4>Todos os Posts de Blog</h4>
+              <h4>{language === 'pt' ? "Todos os Posts de Blog" : "All Blog Posts"}</h4>
             </div>
           </Col>
           {blogContentText.map((blogContentDetails, key) => (

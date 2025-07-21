@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Collapse, Input, Label } from "reactstrap";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const Sidebar = () => {
   const [toggleSecond, setToggleSecond] = useState(true);
@@ -9,6 +10,8 @@ const Sidebar = () => {
   const handleOnChange = () => setIsChecked(!isChecked);
   const [isDateChecked, setIsDateChecked] = useState(true);
   const handleDateOnChange = () => setIsDateChecked(!isDateChecked);
+
+  const {language} = useLanguage();
 
   return (
     <React.Fragment>
@@ -26,7 +29,7 @@ const Sidebar = () => {
                   }}
                   role="button"
                 >
-                  Experiência de trabalho
+                  {language === 'pt' ? "Experiência de trabalho" : "Work experience"}
                 </Button>
               </h2>
               <Collapse isOpen={toggleSecond}>
@@ -42,7 +45,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="check1"
                       >
-                        Sem experiência
+                        {language === 'pt' ? "Sem experiência" : "No experience"}
                       </label>
                     </div>
                     <div className="form-check mt-2">
@@ -57,7 +60,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="check2"
                       >
-                        0-3 anos
+                        0-3 {language === 'pt' ? "anos"  : "years"}
                       </label>
                     </div>
                     <div className="form-check mt-2">
@@ -70,7 +73,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="check3"
                       >
-                        3-6 anos
+                        3-6 {language === 'pt' ? "anos"  : "years"}
                       </label>
                     </div>
                     <div className="form-check mt-2">
@@ -83,7 +86,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="check4"
                       >
-                        Mais de 6 anos
+                        {language === 'pt' ? "Mais de" : "More than"} 6 {language === 'pt' ? "anos"  : "years"}
                       </label>
                     </div>
                   </div>
@@ -102,7 +105,7 @@ const Sidebar = () => {
                   }}
                   role="button"
                 >
-                  Tipo de emprego
+                  {language === 'pt' ? "Tipo de emprego" : "Job type"}
                 </Button>
               </h2>
               <Collapse isOpen={toggleThird}>
@@ -134,7 +137,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="fulltime"
                       >
-                        Tempo integral
+                        {language === 'pt' ? "Tempo integral" : "Full time"}
                       </label>
                     </div>
                     <div className="form-check mt-2">
@@ -148,7 +151,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="internship"
                       >
-                        Estágio
+                        {language === 'pt' ? "Estágio" : "Internship"}
                       </label>
                     </div>
                     <div className="form-check mt-2">
@@ -162,7 +165,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="parttime"
                       >
-                        Meio período
+                        {language === 'pt' ? "Meio período" : "Part time"}
                       </label>
                     </div>
                   </div>
@@ -181,7 +184,7 @@ const Sidebar = () => {
                   }}
                   role="button"
                 >
-                  Data de publicação
+                  {language === 'pt' ? "Data de publicação" : "Publication date"}
                 </Button>
               </h2>
               <Collapse isOpen={toggleFourth}>
@@ -197,7 +200,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="allDates"
                       >
-                        Todas
+                        {language === 'pt' ? "Todas" : "All"}
                       </Label>
                     </div>
                     <div className="form-check mt-2">
@@ -212,7 +215,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="lastHour"
                       >
-                        Última hora
+                        {language === 'pt' ? "Última hora" : "Last hour"}
                       </Label>
                     </div>
                     <div className="form-check mt-2">
@@ -225,7 +228,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="last24"
                       >
-                        Últimas 24 horas
+                        {language === 'pt' ? "Últimas 24 horas" : "Last 24 hours"}
                       </Label>
                     </div>
                     <div className="form-check mt-2">
@@ -238,7 +241,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="last7"
                       >
-                        Últimos 7 dias
+                        {language === 'pt' ? "Últimos 7 dias" : "Last 7 days"}
                       </Label>
                     </div>
                     <div className="form-check mt-2">
@@ -251,7 +254,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="last14"
                       >
-                        Últimos 14 dias
+                        {language === 'pt' ? "Últimos 14 dias" : "Last 14 days"}
                       </Label>
                     </div>
                     <div className="form-check mt-2">
@@ -264,7 +267,7 @@ const Sidebar = () => {
                         className="form-check-label ms-2 text-muted"
                         htmlFor="last30"
                       >
-                        Últimos 30 dias
+                        {language === 'pt' ? "Últimos 30 dias" : "Last 30 days"}
                       </Label>
                     </div>
                   </div>
