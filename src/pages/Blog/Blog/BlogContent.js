@@ -122,7 +122,7 @@ const BlogContent = () => {
 
   // Fetch blogs query
   const { data, isLoading, error } = useQuery({
-    queryKey: ["vacancies", pagination.page, pagination.size],
+    queryKey: ["blogs", pagination.page, pagination.size],
     queryFn: () =>
       getAllBlogs({
         page: pagination.page,
@@ -147,7 +147,7 @@ const BlogContent = () => {
   };
 
   if (isLoading) {
-    return <div>Loading vacancies...</div>;
+    return <div>Loading blogs...</div>;
   }
 
   if (error) {
@@ -221,9 +221,9 @@ const BlogContent = () => {
               <h4>{language === 'pt' ? "Todos os Posts de Blog" : "All Blog Posts"}</h4>
             </div>
           </Col>
-          {data?.content?.map((blogContentDetails, key) => (
-            <Row key={key}>
-
+        
+            <Row>
+            {data?.content?.map((blogContentDetails, key) => (
               <Col lg={6} key={key}>
                 <article className="post position-relative mt-4" key={key}>
                   <div className="post-preview overflow-hidden mb-3 rounded-3">
@@ -270,9 +270,9 @@ const BlogContent = () => {
                   </div>
                 </article>
               </Col>
-
+            ))}
             </Row>
-          ))}
+       
 
           <Row>
             {/*<Col lg={12} className="mt-5">

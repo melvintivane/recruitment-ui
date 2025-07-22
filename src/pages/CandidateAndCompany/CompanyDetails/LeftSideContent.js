@@ -6,7 +6,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 //Importar imagem
 import featureImage from "../../../assets/images/featured-job/img-01.png";
 
-const LeftSideContent = () => {
+const LeftSideContent = ({data}) => {
   const {language} = useLanguage;
   return (
     <React.Fragment>
@@ -19,8 +19,8 @@ const LeftSideContent = () => {
                 alt=""
                 className="avatar-lg rounded-circle"
               />
-              <h6 className="fs-18 mb-1 mt-4">Recruitment Technology Pvt.Ltd</h6>
-              <p className="text-muted mb-4">Desde julho de 2017</p>
+              <h6 className="fs-18 mb-1 mt-4">{data.name}</h6>
+              <p className="text-muted mb-4">{language === 'pt' ? "Desde" : "Since"} {data.foundedYear}</p>
               <ul className="candidate-detail-social-menu list-inline mb-0">
                 <li className="list-inline-item">
                   <Link to="#" className="social-link">
@@ -48,7 +48,7 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Nome do proprietário" : "Owner's name"}</label>
                   <div>
-                    <p className="text-muted mb-0">Charles Dickens</p>
+                    <p className="text-muted mb-0">{data.ownerName || "Charles Dickens"}</p>
                   </div>
                 </div>
               </li>
@@ -56,7 +56,7 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Funcionários" : "Employees"}</label>
                   <div>
-                    <p className="text-muted mb-0">1500 - 1850</p>
+                    <p className="text-muted mb-0">{data.numberOfEmployees}</p>
                   </div>
                 </div>
               </li>
@@ -64,7 +64,7 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Localização" : "Location"}</label>
                   <div>
-                    <p className="text-muted mb-0">Nova Iorque</p>
+                    <p className="text-muted mb-0">{data.country}{"-"}{data.city}</p>
                   </div>
                 </div>
               </li>
@@ -73,7 +73,7 @@ const LeftSideContent = () => {
                   <label className="text-dark">Website</label>
                   <div>
                     <p className="text-muted text-break mb-0">
-                      www.Recruitmenttecnologypvt.ltd.com
+                      {data.website}
                     </p>
                   </div>
                 </div>
@@ -82,7 +82,7 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Fundada em" : "Founded in"}</label>
                   <div>
-                    <p className="text-muted mb-0">10 de julho de 2017</p>
+                    <p className="text-muted mb-0">{data.foundedYear}</p>
                   </div>
                 </div>
               </li>
@@ -126,7 +126,7 @@ const LeftSideContent = () => {
                     {language === 'pt' ? "Sábado" : "Saturday"}<span>9h - 17h</span>
                   </li>
                   <li>
-                    {language === 'pt' ? "Domingo" : "Sunday"}<span className="text-danger">Fechado</span>
+                    {language === 'pt' ? "Domingo" : "Sunday"}<span className="text-danger">{language === 'pt' ? "Fechado" : "Closed"}</span>
                   </li>
                 </ul>
               </div>

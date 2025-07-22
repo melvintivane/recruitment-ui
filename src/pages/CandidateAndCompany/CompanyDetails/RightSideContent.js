@@ -30,7 +30,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 
 const images = [blogImage1, blogImage3, blogImage12];
 
-const RightSideContent = () => {
+const RightSideContent = ({data}) => {
   // Modal de Inscrição
   const [modal, setModal] = useState(false);
   const openModal = () => setModal(!modal);
@@ -141,29 +141,13 @@ const RightSideContent = () => {
             <div className="mb-5">
               <h6 className="fs-17 fw-medium mb-4">{language === 'pt' ? "Sobre a Empresa" : "About the Company"}</h6>
               <p className="text-muted">
-                Objetivamente perseguir diversos catalisadores para mudança para
-                serviços meta-interoperáveis. Reengenheirar distintamente
-                serviços meta-revolucionários e arquiteturas premium. Incubar
-                intuitivamente oportunidades e potencialidades em tempo real.
-                Comunicar adequadamente a tecnologia de forma personalizada.
+                {data.description}
               </p>
 
-              <p className="text-muted">
-                Incubar intuitivamente oportunidades e potencialidades em tempo
-                real. Comunicar adequadamente a tecnologia de forma
-                personalizada.
-              </p>
-
-              <p className="text-muted">
-                Exercício de estúdio fotográfico, bolsa de lona stumptown
-                Banksy, elit pequeno lote freegan sed. Cerveja artesanal elit
-                seitan exercício, estúdio fotográfico e chips kale 8-bit
-                proident chillwave deep v. Aliquip veniam delectus, Marfa
-                eiusmod Pinterest em do umami readymade swag.
-              </p>
+              
             </div>
             <div className="candidate-portfolio mb-5">
-              <h6 className="fs-17 fw-medium mb-4">Galeria</h6>
+              <h6 className="fs-17 fw-medium mb-4">{language === 'pt' ? "Galeria" : "Gallery"}</h6>
               <Row className="g-3">
                 <Col lg={6}>
                   <Link to="#" className="image-popup">
