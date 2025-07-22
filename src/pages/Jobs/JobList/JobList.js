@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import Section from "../../Jobs/JobList/Section";
 import JobSearchOptions from "./JobSearchOptions";
 import JobVacancyList from "./JobVacancyList";
-import Popular from "./Popular";
+// import Popular from "./Popular";
 import Sidebar from "./Sidebar";
 import { useQuery } from "react-query";
 import { getJobCategories } from "../../../services/vacancyService";
@@ -15,6 +15,9 @@ const JobList = () => {
     searchQuery: "",
     location: "",
     jobCategoryId: 0,
+    experienceRange: null,
+    type: null,
+    createdAt: null,
   };
 
   const [filters, setFilters] = useState(initialFilters);
@@ -43,31 +46,34 @@ const JobList = () => {
       searchQuery: "",
       location: "",
       jobCategoryId: "",
+      experienceRange: null,
+      type: null,
+      createdAt: null,
     });
   };
 
-  const populars = [
-    {
-      id: 1,
-      count: 20,
-      jobTitle: "Designer UI/UX",
-    },
-    {
-      id: 2,
-      count: 18,
-      jobTitle: "Gerente de RH",
-    },
-    {
-      id: 3,
-      count: 10,
-      jobTitle: "Gerente de Vendas",
-    },
-    {
-      id: 4,
-      count: 15,
-      jobTitle: "Desenvolvedor",
-    },
-  ];
+  // const populars = [
+  //   {
+  //     id: 1,
+  //     count: 20,
+  //     jobTitle: "Designer UI/UX",
+  //   },
+  //   {
+  //     id: 2,
+  //     count: 18,
+  //     jobTitle: "Gerente de RH",
+  //   },
+  //   {
+  //     id: 3,
+  //     count: 10,
+  //     jobTitle: "Gerente de Vendas",
+  //   },
+  //   {
+  //     id: 4,
+  //     count: 15,
+  //     jobTitle: "Desenvolvedor",
+  //   },
+  // ];
 
   return (
     <>
@@ -84,17 +90,20 @@ const JobList = () => {
                   categoriesData={categoriesData || []}
                   isLoading={isLoading}
                 />
-                <Popular populars={populars} />
+                {/* <Popular populars={populars} /> */}
                 <JobVacancyList
                   filters={{
                     searchQuery: filters.searchQuery,
                     location: filters.location?.label || "",
                     jobCategoryId: filters.jobCategoryId,
+                    experienceRange: filters.experienceRange,
+                    type: filters.type,
+                    createdAt: filters.createdAt
                   }}
                 />
               </div>
             </Col>
-            <Sidebar />
+            <Sidebar filters={filters} onFilterChange={handleFilterChange} />
           </Row>
         </Container>
       </section>

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
+import {
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Row,
+} from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
 import { getAllVacancies } from "../../../services/vacancyService";
 
@@ -24,11 +30,14 @@ const JobVacancyList = ({ filters }) => {
         search: filters.searchQuery,
         location: filters.location,
         category: filters.jobCategoryId,
+        yearsOfExperience: filters.experienceRange,
+        type: filters.type,
+        createdAt: filters.createdAt,
       }),
     keepPreviousData: true,
   });
 
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   const handlePageChange = (newPage) => {
     if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
@@ -49,11 +58,11 @@ const JobVacancyList = ({ filters }) => {
     return <div className="text-danger">Error: {error.message}</div>;
   }
 
-  
-
   return (
     <>
-      <div>
+      <div className="wedget-popular-title mt-4">
+        <h6>{language === "pt" ? "Recentes" : "Recent"}</h6>
+
         {data?.content?.map((vacancy, key) => (
           <div key={key} className="job-box card mt-4">
             <div className="bookmark-label text-center">
@@ -164,8 +173,11 @@ const JobVacancyList = ({ filters }) => {
                 <Col md={4}>
                   <div>
                     <p className="text-muted mb-0">
-                      <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>
-                      {vacancy.yearsOfExperience} {language === 'pt' ? "anos" : "years"}
+                      <span className="text-dark">
+                        {language === "pt" ? "Experiência" : "Experience"}:{" "}
+                      </span>
+                      {vacancy.yearsOfExperience}{" "}
+                      {language === "pt" ? "anos" : "years"}
                     </p>
                   </div>
                 </Col>
@@ -175,7 +187,7 @@ const JobVacancyList = ({ filters }) => {
                       to={`/jobdetails/${vacancy.id}`}
                       className="primary-link"
                     >
-                      {language === 'pt' ? "Inscreva-se" : "Sign up"}{" "}
+                      {language === "pt" ? "Inscreva-se" : "Sign up"}{" "}
                       <i className="mdi mdi-chevron-double-right"></i>
                     </Link>
                   </div>
@@ -188,9 +200,11 @@ const JobVacancyList = ({ filters }) => {
         {/* Pagination */}
         <div className="d-flex justify-content-between align-items-center mt-4">
           <div className="text-muted">
-            {language === 'pt' ? "Mostrando" : "Showing" }{" "}
-            <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
-            <span className="fw-bold">{data?.totalElements || 0}</span> {language === 'pt' ? "vagas" : "vacancies"}
+            {language === "pt" ? "Mostrando" : "Showing"}{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span>{" "}
+            {language === "pt" ? "de" : "of"}{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span>{" "}
+            {language === "pt" ? "vagas" : "vacancies"}
             <select
               className="form-select form-select-sm ms-2 d-inline-block w-auto"
               value={pagination.size}
@@ -198,7 +212,7 @@ const JobVacancyList = ({ filters }) => {
             >
               {[5, 10, 20, 50].map((size) => (
                 <option key={size} value={size}>
-                  {size} {language === 'pt' ? "por página" : "per page"}
+                  {size} {language === "pt" ? "por página" : "per page"}
                 </option>
               ))}
             </select>
