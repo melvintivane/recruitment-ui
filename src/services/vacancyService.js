@@ -1,6 +1,6 @@
 import { API_ENDPOINTS } from "../config/api";
 
-export const getAllVacancies = async ({ page, size, search, location, category, yearsOfExperience, type, createdAt }) => {
+export const getAllVacancies = async ({ page, size, search, location, category, yearsOfExperience, jobType, timePeriod }) => {
   const params = new URLSearchParams();
   params.append("page", page);
   params.append("size", size);
@@ -8,9 +8,9 @@ export const getAllVacancies = async ({ page, size, search, location, category, 
   if (search) params.append("searchQuery", search);
   if (location) params.append("location", location);
   if (category) params.append("jobCategoryId", category);
-  if (type) params.append("type", type);
+  if (jobType) params.append("jobType", jobType);
   if (yearsOfExperience) params.append("yearsOfExperience", yearsOfExperience);
-  if (createdAt) params.append("createdAt", createdAt);
+  if (timePeriod) params.append("timePeriod", timePeriod);
 
   if (!API_ENDPOINTS?.VACANCIES) {
     throw new Error("Endpoint de vagas não configurado");

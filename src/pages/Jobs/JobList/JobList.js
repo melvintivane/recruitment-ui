@@ -16,8 +16,8 @@ const JobList = () => {
     location: "",
     jobCategoryId: 0,
     experienceRange: null,
-    type: null,
-    createdAt: null,
+    jobType: null,
+    timePeriod: null,
   };
 
   const [filters, setFilters] = useState(initialFilters);
@@ -47,8 +47,8 @@ const JobList = () => {
       location: "",
       jobCategoryId: "",
       experienceRange: null,
-      type: null,
-      createdAt: null,
+      jobType: null,
+      timePeriod: null,
     });
   };
 
@@ -97,8 +97,8 @@ const JobList = () => {
                     location: filters.location?.label || "",
                     jobCategoryId: filters.jobCategoryId,
                     experienceRange: filters.experienceRange,
-                    type: filters.type,
-                    createdAt: filters.createdAt
+                    jobType: filters.jobType,
+                    timePeriod: filters.timePeriod
                   }}
                 />
               </div>

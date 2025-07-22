@@ -15,12 +15,12 @@ const Sidebar = ({ filters, onFilterChange }) => {
     );
   };
 
-  const handleJobTypeChange = (type) => {
-    onFilterChange("type", type === filters.type ? null : type);
+  const handleJobTypeChange = (jobType) => {
+    onFilterChange("jobType", jobType === filters.jobType ? null : jobType);
   };
 
   const handleTimePeriodChange = (period) => {
-    onFilterChange("createdAt", period === filters.createdAt ? null : period);
+    onFilterChange("timePeriod", period === filters.timePeriod ? null : period);
   };
 
   return (
@@ -136,9 +136,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="type"
+                        name="jobType"
                         id="fulltime"
-                        checked={filters.type === "FULL_TIME"}
+                        checked={filters.jobType === "FULL_TIME"}
                         onChange={() => handleJobTypeChange("FULL_TIME")}
                       />
                       <label
@@ -152,9 +152,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="type"
+                        name="jobType"
                         id="parttime"
-                        checked={filters.type === "PART_TIME"}
+                        checked={filters.jobType === "PART_TIME"}
                         onChange={() => handleJobTypeChange("PART_TIME")}
                       />
                       <label
@@ -168,9 +168,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="type"
+                        name="jobType"
                         id="freelance"
-                        checked={filters.type === "FREELANCE"}
+                        checked={filters.jobType === "FREELANCE"}
                         onChange={() => handleJobTypeChange("FREELANCE")}
                       />
                       <label
@@ -184,9 +184,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="type"
+                        name="jobType"
                         id="internship"
-                        checked={filters.type === "INTERNSHIP"}
+                        checked={filters.jobType === "INTERNSHIP"}
                         onChange={() => handleJobTypeChange("INTERNSHIP")}
                       />
                       <label
@@ -220,29 +220,13 @@ const Sidebar = ({ filters, onFilterChange }) => {
               <Collapse isOpen={toggleFourth}>
                 <div className="accordion-body">
                   <div className="side-title form-check-all">
-                    <div className="form-check">
-                      <Input
-                        className="form-check-input"
-                        type="checkbox"
-                        name="createdAt"
-                        id="allDates"
-                        checked={!filters.createdAt}
-                        onChange={() => handleTimePeriodChange(null)}
-                      />
-                      <Label
-                        className="form-check-label ms-2 text-muted"
-                        htmlFor="allDates"
-                      >
-                        {language === "pt" ? "Todas" : "All"}
-                      </Label>
-                    </div>
                     <div className="form-check mt-2">
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="createdAt"
+                        name="timePeriod"
                         id="lastHour"
-                        checked={filters.createdAt === "LAST_HOUR"}
+                        checked={filters.timePeriod === "LAST_HOUR"}
                         onChange={() => handleTimePeriodChange("LAST_HOUR")}
                       />
                       <Label
@@ -256,9 +240,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="createdAt"
+                        name="timePeriod"
                         id="last24"
-                        checked={filters.createdAt === "LAST_24_HOURS"}
+                        checked={filters.timePeriod === "LAST_24_HOURS"}
                         onChange={() => handleTimePeriodChange("LAST_24_HOURS")}
                       />
                       <Label
@@ -274,9 +258,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="createdAt"
+                        name="timePeriod"
                         id="last7"
-                        checked={filters.createdAt === "LAST_7_DAYS"}
+                        checked={filters.timePeriod === "LAST_7_DAYS"}
                         onChange={() => handleTimePeriodChange("LAST_7_DAYS")}
                       />
                       <Label
@@ -290,9 +274,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="createdAt"
+                        name="timePeriod"
                         id="last14"
-                        checked={filters.createdAt === "LAST_14_DAYS"}
+                        checked={filters.timePeriod === "LAST_14_DAYS"}
                         onChange={() => handleTimePeriodChange("LAST_14_DAYS")}
                       />
                       <Label
@@ -306,9 +290,9 @@ const Sidebar = ({ filters, onFilterChange }) => {
                       <Input
                         className="form-check-input"
                         type="checkbox"
-                        name="createdAt"
+                        name="timePeriod"
                         id="last30"
-                        checked={filters.createdAt === "LAST_30_DAYS"}
+                        checked={filters.timePeriod === "LAST_30_DAYS"}
                         onChange={() => handleTimePeriodChange("LAST_30_DAYS")}
                       />
                       <Label
