@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 
 const SocialConnect = () => {
+
+    const {language} = useLanguage();
+
     const socialConnect = [
         {
             id:1,
@@ -29,7 +33,7 @@ const SocialConnect = () => {
         <React.Fragment>
             <div className="mt-4 pt-2">
                 <div className="sd-title">
-                    <h6 className="fs-16 mb-3">Siga & Conecte-se</h6>
+                    <h6 className="fs-16 mb-3">{language === 'pt' ? "Siga & Conecte-se" : "Follow & Connect"}</h6>
                 </div>
                 <ul className="widget-social-menu list-inline mb-0 mt-3">
                 {(socialConnect).map((socialConnectDetails,key)=>(

@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 
 const Tags = () => {
+
+  const {language} = useLanguage();
+
   const tags = [
     {
       id: 1,
@@ -36,7 +40,7 @@ const Tags = () => {
     <React.Fragment>
       <div className="mt-4 pt-2">
         <div className="sd-title">
-          <h6 className="fs-16 mb-3">Últimas Tags</h6>
+          <h6 className="fs-16 mb-3">{language === 'pt' ? "Últimas Tags" : "Last Tags"}</h6>
         </div>
         <div className="tagcloud mt-3 d-flex flex-wrap align-items-start gap-1 ">
           {tags.map((tagsDetails, key) => (
