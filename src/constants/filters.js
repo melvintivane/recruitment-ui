@@ -1,0 +1,21 @@
+export const ExperienceRange = {
+  NO_EXPERIENCE: "NO_EXPERIENCE",
+  ENTRY_LEVEL: "ENTRY_LEVEL",
+  MID_LEVEL: "MID_LEVEL",
+  SENIOR: "SENIOR",
+};
+
+export const JobType = {
+  FREELANCE: "FREELANCE",
+  FULL_TIME: "FULL_TIME",
+  INTERNSHIP: "INTERNSHIP",
+  PART_TIME: "PART_TIME",
+};
+
+export const TimePeriod = {
+  LAST_HOUR: "LAST_HOUR",
+  LAST_24_HOURS: "LAST_24_HOURS",
+  LAST_7_DAYS: "LAST_7_DAYS",
+  LAST_14_DAYS: "LAST_14_DAYS",
+  LAST_30_DAYS: "LAST_30_DAYS",
+};
