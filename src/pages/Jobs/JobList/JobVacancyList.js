@@ -31,8 +31,8 @@ const JobVacancyList = ({ filters }) => {
         location: filters.location,
         category: filters.jobCategoryId,
         yearsOfExperience: filters.experienceRange,
-        type: filters.type,
-        createdAt: filters.createdAt,
+        jobType: filters.jobType,
+        timePeriod: filters.timePeriod,
       }),
     keepPreviousData: true,
   });
