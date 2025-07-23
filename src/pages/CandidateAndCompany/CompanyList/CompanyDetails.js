@@ -19,11 +19,37 @@ const CompanyDetails = () => {
   const initialFilters = {
     searchQuery: "",
     location: "",
-    jobCategoryId: 0,
+    industry: "",
     experienceRange: null,
     type: null,
     createdAt: null,
   };
+
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+  });
+
+
+  // Fetch employers query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["employers", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllEmployers({
+        page: pagination.page,
+        size: pagination.size,
+      }),
+    keepPreviousData: true,
+  });
+
+  // Fetch industry  query
+
+  const industryData = [...new Set(data?.content?.map(e => e.industry))]
+  .filter(Boolean)
+  .map(industry => ({
+    value: industry.toLowerCase().replace(/\s+/g, '-'),
+    label: industry
+  }));
 
   const [filters, setFilters] = useState(initialFilters);
 
@@ -50,7 +76,7 @@ const CompanyDetails = () => {
     setFilters({
       searchQuery: "",
       location: "",
-      jobCategoryId: "",
+      industry: "",
       experienceRange: null,
       type: null,
       createdAt: null,
@@ -143,30 +169,8 @@ const CompanyDetails = () => {
     },
   ];*/
 
-  const [pagination, setPagination] = useState({
-    page: 0,
-    size: 10,
-  });
-
-  // Fetch blogs query
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["employers", pagination.page, pagination.size],
-    queryFn: () =>
-      getAllEmployers({
-        page: pagination.page,
-        size: pagination.size,
-      }),
-    keepPreviousData: true,
-  });
-
-  // Fetch blog category query
-
-  const industryData = [...new Set(data?.content?.map(e => e.industry))]
-  .filter(Boolean)
-  .map(industry => ({
-    value: industry.toLowerCase().replace(/\s+/g, '-'),
-    label: industry
-  }));
+  
+  
 
   const handlePageChange = (newPage) => {
     if (newPage >= 0 && newPage < (data?.totalPages || 0)) {

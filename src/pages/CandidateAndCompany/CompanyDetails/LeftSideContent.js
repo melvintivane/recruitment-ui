@@ -7,7 +7,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import featureImage from "../../../assets/images/featured-job/img-01.png";
 
 const LeftSideContent = ({data}) => {
-  const {language} = useLanguage;
+  const {language} = useLanguage();
   return (
     <React.Fragment>
       <Col lg={4}>
@@ -46,7 +46,7 @@ const LeftSideContent = ({data}) => {
             <ul className="list-unstyled mb-0">
               <li>
                 <div className="d-flex">
-                  <label className="text-dark">{language === 'pt' ? "Nome do proprietário" : "Owner's name"}</label>
+                  <label className="text-dark">{language === 'pt' ? "Proprietário" : "Owner's name"}</label>
                   <div>
                     <p className="text-muted mb-0">{data.ownerName || "Charles Dickens"}</p>
                   </div>
