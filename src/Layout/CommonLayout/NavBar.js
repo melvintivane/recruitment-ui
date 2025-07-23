@@ -157,7 +157,7 @@ const NavBar = () => {
           >
             <img src={lightLogo} height="30" alt="Logo" className="logo-dark" />
             <img src={darkLogo} height="30" alt="Logo" className="logo-light" />
-            <span className="d-none d-md-inline">Recruitment.</span>
+            <span className="d-none d-md-inline">Recruitment</span>
           </Link>
         </div>
 

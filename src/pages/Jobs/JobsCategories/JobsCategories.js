@@ -1,6 +1,6 @@
 import React from "react";
 import Categories from "./Categories";
-import Cta from "./Cta";
+// import Cta from "./Cta";
 import Section from "./Section";
 
 const JobsCategories = () => {
@@ -10,7 +10,7 @@ const JobsCategories = () => {
     <React.Fragment>
       <Section />
       <Categories />
-      <Cta />
+      {/* <Cta /> */}
     </React.Fragment>
   );
 };

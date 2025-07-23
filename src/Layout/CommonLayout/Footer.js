@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useLanguage } from "../../context/LanguageContext";
 
+import darkLogo from "../../assets/images/dark-logo.png";
+import lightLogo from "../../assets/images/light-logo.png";
+
 const Footer = () => {
   const { language } = useLanguage();
   const translatedLinks = {
@@ -16,8 +19,6 @@ const Footer = () => {
             { id: 2, link: "/contact", subTitle: "Fale Conosco" },
             { id: 3, link: "/services", subTitle: "Serviços" },
             { id: 4, link: "/blog", subTitle: "Blog" },
-            { id: 5, link: "/team", subTitle: "Equipe" },
-            { id: 6, link: "/pricing", subTitle: "Preços" },
           ],
         },
         {
@@ -34,7 +35,11 @@ const Footer = () => {
           title: "Para Recrutadores",
           menu: [
             { id: 1, link: "/candidatelist", subTitle: "Lista de Candidatos" },
-            { id: 3, link: "/candidatedetails", subTitle: "Detalhes do Candidato" },
+            {
+              id: 3,
+              link: "/candidatedetails",
+              subTitle: "Detalhes do Candidato",
+            },
           ],
         },
         {
@@ -50,7 +55,7 @@ const Footer = () => {
             },
           ],
         },
-      ]
+      ],
     },
     en: {
       footer: [
@@ -62,8 +67,6 @@ const Footer = () => {
             { id: 2, link: "/contact", subTitle: "Contact Us" },
             { id: 3, link: "/services", subTitle: "Services" },
             { id: 4, link: "/blog", subTitle: "Blog" },
-            { id: 5, link: "/team", subTitle: "Team" },
-            { id: 6, link: "/pricing", subTitle: "Pricing" },
           ],
         },
         {
@@ -96,10 +99,9 @@ const Footer = () => {
             },
           ],
         },
-      ]
-
-    }
-  }
+      ],
+    },
+  };
 
   const footerIcons = [
     {
@@ -120,7 +122,7 @@ const Footer = () => {
     },
   ];
 
-  const t = translatedLinks[language] || translatedLinks['pt']
+  const t = translatedLinks[language] || translatedLinks["pt"];
   return (
     <React.Fragment>
       <section className="bg-footer">
@@ -128,11 +130,33 @@ const Footer = () => {
           <Row>
             <Col lg={4}>
               <div className="footer-item mt-4 mt-lg-0 me-lg-5">
-                <h4 className="text-white mb-4">Recruitment</h4>
+                <Link
+                  className="navbar-brand text-dark fw-bold d-flex align-items-center gap-2 mb-4"
+                  to="/"
+                  aria-label="Página inicial"
+                >
+                  <img
+                    src={lightLogo}
+                    height="30"
+                    alt="Logo"
+                    className="logo-dark"
+                  />
+                  <img
+                    src={darkLogo}
+                    height="30"
+                    alt="Logo"
+                    className="logo-light"
+                  />
+                  <h5 className="d-none d-md-inline">Recruitment</h5>
+                </Link>
                 <p className="text-white-50">
-                  {language === 'pt' ? "É um fato estabelecido que um leitor se distrairá com o conteúdo de uma página ao observar seu layout." : "It's an established fact that a reader will be distracted by the content of a page when looking at its layout."}
+                  {language === "pt"
+                    ? "É um fato estabelecido que um leitor se distrairá com o conteúdo de uma página ao observar seu layout."
+                    : "It's an established fact that a reader will be distracted by the content of a page when looking at its layout."}
                 </p>
-                <p className="text-white mt-3">{language === 'pt' ? "Siga-nos em" : "Follow us"}:</p>
+                <p className="text-white mt-3">
+                  {language === "pt" ? "Siga-nos em" : "Follow us"}:
+                </p>
                 <ul className="footer-social-menu list-inline mb-0">
                   {footerIcons.map((footerIcondetails, key) => (
                     <li className="list-inline-item" key={key}>
@@ -169,14 +193,13 @@ const Footer = () => {
           <Row>
             <Col lg={12}>
               <p className="text-white-50 text-center mb-0">
-                {new Date().getFullYear()} &copy; Recruitment - Job Listing Page
-                by{" "}
+                {new Date().getFullYear()} &copy; EP Recruitment developed by{" "}
                 <Link
-                  to="//MobiSolutions.in/"
+                  to="https://mymobisolutions.com/"
                   target="_blank"
                   className="text-reset text-decoration-underline"
                 >
-                  MyMobi Solutions
+                  MyMobiSolutions
                 </Link>
               </p>
             </Col>

@@ -19,7 +19,7 @@ const translatedData = {
         {
           id: 3,
           policyInnerRule:
-            " Esta política de privacidade se aplica apenas às nossas atividades online e é válida para os visitantes do nosso site em relação às informações que eles compartilharam e/ou coletaram no Recruitment. Esta política não se aplica a nenhuma informação coletada offline ou por canais que não sejam este site."
+            " Esta política de privacidade se aplica apenas às nossas atividades online e é válida para os visitantes do nosso site em relação às informações que eles compartilharam e/ou coletaram no Recruitment Esta política não se aplica a nenhuma informação coletada offline ou por canais que não sejam este site."
         },
         {
           id: 4,
@@ -90,7 +90,7 @@ const translatedData = {
         {
           id: 3,
           policyInnerRule:
-            "This privacy policy applies only to our online activities and is valid for visitors to our website with regard to the information they shared and/or collected at Recruitment. This policy does not apply to any information collected offline or via channels other than this website."
+            "This privacy policy applies only to our online activities and is valid for visitors to our website with regard to the information they shared and/or collected at Recruitment This policy does not apply to any information collected offline or via channels other than this website."
         },
         {
           id: 4,
