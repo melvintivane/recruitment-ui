@@ -52,12 +52,17 @@ const RightSideContent = ({ data }) => {
                       {education.course}
                     </h6>
                     <p className="mb-2 text-muted">
-                      {education.location} • {new Date(education.startDate).getFullYear()} {" - "} 
-                       {education.endDate ? new Date(education.endDate).getFullYear() : ""}
+                      {education.location} • {new Date(education.startDate).getFullYear()} {" - "}
+                      {education.endDate ? new Date(education.endDate).getFullYear() : ""}
                     </p>
                     <p className="text-muted">
                       {education.description}
                     </p>
+
+                    <p className="text-muted small mt-1">
+                      <strong>{language === 'pt' ? "Grau" : "Degree"}:</strong> {education.degree}
+                    </p>
+
                   </div>
                 </div>
               ))}
@@ -67,15 +72,15 @@ const RightSideContent = ({ data }) => {
               {data.experiences?.map((experience, index) => (
                 <div key={index} className="candidate-education-content mt-4 d-flex">
                   <div className="circle flex-shrink-0 bg-primary-subtle text-primary">
-                      {experience.company?.charAt(0).toUpperCase()}
+                    {experience.company?.charAt(0).toUpperCase()}
                   </div>
                   <div className="ms-4">
                     <h6 className="fs-16 mb-1">
-                      {experience.position}
+                      {experience.company}
                     </h6>
                     <p className="mb-2 text-muted">
-                      {experience.location} • {new Date(experience.startDate).getFullYear()} {" - "} 
-                       {experience.endDate ? new Date(experience.endDate).getFullYear() : ""}
+                      {experience.position} • {experience.location} • {new Date(experience.startDate).getFullYear()} {" - "}
+                      {experience.endDate ? new Date(experience.endDate).getFullYear() : language === 'pt' ? "Atual" : "Current"}
                     </p>
                     <p className="text-muted">
                       {experience.duties}
@@ -85,8 +90,8 @@ const RightSideContent = ({ data }) => {
               ))}
             </div>
 
-              
-            
+
+
             {/*<form action="#" className="mt-4 pt-3">
               <h6 className="fs-17 fw-semibold mb-2">
                 {language === 'pt' ? "Adicionar uma avaliação" : "Add a review"}

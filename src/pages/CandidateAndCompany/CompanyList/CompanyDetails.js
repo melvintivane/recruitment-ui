@@ -283,7 +283,7 @@ const CompanyDetails = () => {
                     {companyDetails.country}{"-"}{companyDetails.city}
                   </p>
                   <Link to="/companydetails" className="btn btn-primary">
-                    {companyDetails.numberOfVacancy} {language === 'pt' ? "Vagas abertas" : "Open vacancies"}
+                    {companyDetails.jobCount} {language === 'pt' ? "Vagas abertas" : "Open vacancies"}
                   </Link>
                 </div>
               </CardBody>

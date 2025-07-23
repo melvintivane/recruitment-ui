@@ -24,17 +24,17 @@ const LeftSideContent = ({data}) => {
               <p className="text-muted mb-4">{data.desiredJobCategory}</p>
               <ul className="candidate-detail-social-menu list-inline mb-0">
                 <li className="list-inline-item">
-                  <Link to="#" className="social-link">
+                  <Link to={`https://wa.me/${data.phone}`} className="social-link" target="_blank">
                     <i className="uil uil-whatsapp"></i>
                   </Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#" className="social-link">
+                  <Link to={data.linkedin} className="social-link" target="_blank">
                     <i className="uil uil-linkedin"></i>
                   </Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#" className="social-link">
+                  <Link to={`tel:${data.phone}`} className="social-link">
                     <i className="uil uil-phone-alt"></i>
                   </Link>
                 </li>
@@ -169,7 +169,7 @@ const LeftSideContent = ({data}) => {
                   </div>
                 </div>
               </li>
-              <li>
+              {/*<li>
                 <div className="d-flex align-items-center mt-4">
                   <div className="icon bg-primary-subtle text-primary flex-shrink-0">
                     <i className="uil uil-linkedin-alt"></i>
@@ -179,7 +179,7 @@ const LeftSideContent = ({data}) => {
                     <p className="text-muted mb-0">@gabrielpalmer</p>
                   </div>
                 </div>
-              </li>
+              </li>*/}
             </ul>
           </CardBody>
         </Card>
