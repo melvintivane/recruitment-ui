@@ -1,25 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Row } from "reactstrap";
+import { Card, CardBody, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
+import { getJobCategories } from "../../../services/blogService";
+import { getAllEmployers } from "../../../services/companyService";
+import CompanySearchOptions from "../CompanyList/CompanySearchOptions";
+
 
 //Import Job Images
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
-import jobImage2 from "../../../assets/images/featured-job/img-02.png";
-import jobImage3 from "../../../assets/images/featured-job/img-03.png";
-import jobImage5 from "../../../assets/images/featured-job/img-05.png";
-import jobImage6 from "../../../assets/images/featured-job/img-06.png";
-import jobImage7 from "../../../assets/images/featured-job/img-07.png";
-import jobImage8 from "../../../assets/images/featured-job/img-08.png";
-import jobImage9 from "../../../assets/images/featured-job/img-09.png";
-import jobImage10 from "../../../assets/images/featured-job/img-10.png";
 
 import { useLanguage } from "../../../context/LanguageContext";
 
 const CompanyDetails = () => {
 
-  const {language} = useLanguage();
 
-  const companyDetails = [
+
+  const initialFilters = {
+    searchQuery: "",
+    location: "",
+    jobCategoryId: 0,
+    experienceRange: null,
+    type: null,
+    createdAt: null,
+  };
+
+  const [filters, setFilters] = useState(initialFilters);
+
+  const { data: categoriesData, } = useQuery({
+    queryKey: ["jobCategories"],
+    queryFn: getJobCategories,
+    select: (data) =>
+      data.content.map((category) => ({
+        value: category.id,
+        label: category.name,
+      })),
+    staleTime: 60 * 60 * 1000, // 1 hora de cache
+  });
+
+  const handleFilterChange = (name, value) => {
+    setFilters((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSearch = () => {
+    // API call or state update that triggers JobVacancyList refresh
+    setFilters({
+      searchQuery: "",
+      location: "",
+      jobCategoryId: "",
+      experienceRange: null,
+      type: null,
+      createdAt: null,
+    });
+  };
+
+  const { language } = useLanguage();
+
+  /*const companyDetails = [
     {
       id: 1,
       jobImg: jobImage1,
@@ -101,19 +141,78 @@ const CompanyDetails = () => {
       label: true,
       labelRating: 3.0,
     },
-  ];
+  ];*/
+
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+  });
+
+  // Fetch blogs query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["employers", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllEmployers({
+        page: pagination.page,
+        size: pagination.size,
+      }),
+    keepPreviousData: true,
+  });
+
+  // Fetch blog category query
+
+  const industryData = [...new Set(data?.content?.map(e => e.industry))]
+  .filter(Boolean)
+  .map(industry => ({
+    value: industry.toLowerCase().replace(/\s+/g, '-'),
+    label: industry
+  }));
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
+      setPagination((prev) => ({ ...prev, page: newPage }));
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
+  };
+
+  if (isLoading) {
+    return <div>Loading employers...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">Error: {error.message}</div>;
+  }
+
+
+
   return (
     <React.Fragment>
       <Row className="align-items-center mb-4">
-        <Col lg={8}>
+        {/*<Col lg={8}>
           <div className="mb-3 mb-lg-0">
-            <h6 className="fs-16 mb-0"> 
+            <h6 className="fs-16 mb-0">
               {language === 'pt' ? `Exibindo ${1} - ${8} de ${11} resultados` : `Showing ${1} - ${8} of ${11} results`}
-               </h6>
+            </h6>
+          </div>
+        </Col>*/}
+        <Col lg={9}>
+          <div className="me-lg-5">
+
+            <CompanySearchOptions
+              filters={filters}
+              onFilterChange={handleFilterChange}
+              onSearch={handleSearch}
+              industryData={industryData || []}
+              isLoading={isLoading}
+            />
           </div>
         </Col>
 
-        <Col lg={4}>
+        <Col lg={3}>
           <div className="candidate-list-widgets">
             <Row>
               <Col lg={6}>
@@ -153,40 +252,108 @@ const CompanyDetails = () => {
       </Row>
 
       <Row>
-        {companyDetails.map((companyDetailsNew, key) => (
+        {data?.content?.map((companyDetails, key) => (
           <Col lg={4} md={6} key={key}>
             <Card className="text-center mb-4">
               <CardBody className="px-4 py-5">
-                {companyDetailsNew.label && (
+                {companyDetails.label && (
                   <div className="featured-label">
                     <span className="featured">
-                      {companyDetailsNew.labelRating}{" "}
+                      {companyDetails.labelRating}{" "}
                       <i className="mdi mdi-star-outline"></i>
                     </span>
                   </div>
                 )}
                 <img
-                  src={companyDetailsNew.jobImg}
+                  src={jobImage1}
                   alt=""
                   className="img-fluid rounded-3"
                 />
                 <div className="mt-4">
-                  <Link to="/companydetails" className="primary-link">
+                  <Link to={`/companydetails/${companyDetails.id}`} className="primary-link">
                     <h6 className="fs-18 mb-2">
-                      {companyDetailsNew.compnayName}
+                      {companyDetails.name}
                     </h6>
                   </Link>
                   <p className="text-muted mb-4">
-                    {companyDetailsNew.location}
+                    {companyDetails.country}{"-"}{companyDetails.city}
                   </p>
                   <Link to="/companydetails" className="btn btn-primary">
-                    {companyDetailsNew.numberOfVacancy} {language === 'pt' ? "Vagas abertas" : "Open vacancies"}
+                    {companyDetails.numberOfVacancy} {language === 'pt' ? "Vagas abertas" : "Open vacancies"}
                   </Link>
                 </div>
               </CardBody>
             </Card>
           </Col>
         ))}
+      </Row>
+      <Row>
+        {/* Pagination */}
+        <div className="d-flex justify-content-between align-items-center mt-4">
+          <div className="text-muted">
+            {language === 'pt' ? "Mostrando" : "Showing"}{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span> {language === 'pt' ? "empresas" : "companies"}
+            <select
+              className="form-select form-select-sm ms-2 d-inline-block w-auto"
+              value={pagination.size}
+              onChange={handlePageSizeChange}
+            >
+              {[5, 10, 20, 50].map((size) => (
+                <option key={size} value={size}>
+                  {size} {language === 'pt' ? "por página" : "per page"}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <nav aria-label="Page navigation">
+            <Pagination className="mb-0">
+              <PaginationItem disabled={pagination.page === 0}>
+                <PaginationLink
+                  previous
+                  onClick={() => handlePageChange(pagination.page - 1)}
+                />
+              </PaginationItem>
+
+              {Array.from(
+                { length: Math.min(5, data?.totalPages || 0) },
+                (_, i) => {
+                  let pageNum;
+                  if ((data?.totalPages || 0) <= 5) {
+                    pageNum = i;
+                  } else if (pagination.page <= 2) {
+                    pageNum = i;
+                  } else if (pagination.page >= (data?.totalPages || 0) - 3) {
+                    pageNum = (data?.totalPages || 0) - 5 + i;
+                  } else {
+                    pageNum = pagination.page - 2 + i;
+                  }
+
+                  return (
+                    <PaginationItem
+                      key={pageNum}
+                      active={pageNum === pagination.page}
+                    >
+                      <PaginationLink onClick={() => handlePageChange(pageNum)}>
+                        {pageNum + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                }
+              )}
+
+              <PaginationItem
+                disabled={pagination.page === (data?.totalPages || 0) - 1}
+              >
+                <PaginationLink
+                  next
+                  onClick={() => handlePageChange(pagination.page + 1)}
+                />
+              </PaginationItem>
+            </Pagination>
+          </nav>
+        </div>
       </Row>
     </React.Fragment>
   );

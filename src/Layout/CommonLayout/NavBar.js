@@ -348,7 +348,7 @@ const NavBar = () => {
                   aria-label="Fazer login"
                 >
                   <i className="mdi mdi-login me-1"></i>
-                  Entrar
+                  {language === 'pt' ? "Entrar" : "Log In"}
                 </Button>
               </Link>
             </li>
