@@ -1,21 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { CardBody, Col, Row } from "reactstrap";
+import { getAllCandidates } from "../../../services/candidateService";
 
 //Import images
 import userImage1 from "../../../assets/images/user/img-01.jpg";
-import userImage2 from "../../../assets/images/user/img-02.jpg";
-import userImage3 from "../../../assets/images/user/img-03.jpg";
-import userImage4 from "../../../assets/images/user/img-04.jpg";
-import userImage5 from "../../../assets/images/user/img-05.jpg";
-import userImage6 from "../../../assets/images/user/img-06.jpg";
-import userImage7 from "../../../assets/images/user/img-07.jpg";
-import userImage8 from "../../../assets/images/user/img-08.jpg";
 import { useLanguage } from "../../../context/LanguageContext";
 
 const CandidateDetails = () => {
-  const {language} = useLanguage();
-  const candidateDetails = [
+  const { language } = useLanguage();
+
+  const [pagination, setPagination] = useState({
+    page: 0,
+    size: 10,
+  });
+
+  // Fetch vacancies query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["vacancies", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllCandidates({
+        page: pagination.page,
+        size: pagination.size,
+      }),
+    keepPreviousData: true,
+  });
+
+  const handlePageChange = (newPage) => {
+    if (newPage >= 0 && newPage < (data?.totalPages || 0)) {
+      setPagination((prev) => ({ ...prev, page: newPage }));
+    }
+  };
+
+  const handlePageSizeChange = (e) => {
+    const newSize = parseInt(e.target.value);
+    setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
+  };
+
+  if (isLoading) {
+    return <div>Loading vacancies...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">Error: {error.message}</div>;
+  }
+  /*const candidateDetails = [
     {
       id: 1,
       userImg: userImage1,
@@ -205,15 +235,15 @@ const CandidateDetails = () => {
         }
       ]
     }
-  ];
+  ];*/
   return (
     <React.Fragment>
       <Row className="align-items-center">
-        <Col lg={8}>
+        {/*<Col lg={8}>
           <div className="mb-3 mb-lg-0">
             <h6 className="fs-16 mb-0"> {language === 'pt' ? `Mostrando ${1} - ${8} de ${11} resultados` : `Showing ${1} – ${8} of ${11} results`}  </h6>
           </div>
-        </Col>
+        </Col>*/}
 
         <Col lg={4}>
           <div className="candidate-list-widgets">
@@ -254,11 +284,11 @@ const CandidateDetails = () => {
         </Col>
       </Row>
       <div className="candidate-list">
-        {candidateDetails.map((candidateDetailsNew, key) => (
+        {data?.content?.map((candidateDetails, key) => (
           <div
             key={key}
             className={
-              candidateDetailsNew.addclassNameBookmark === true
+              candidateDetails.addclassNameBookmark === true
                 ? "candidate-list-box bookmark-post card mt-4"
                 : "candidate-list-box card mt-4"
             }
@@ -267,9 +297,9 @@ const CandidateDetails = () => {
               <Row className="align-items-center">
                 <div className="col-auto">
                   <div className="candidate-list-images">
-                    <Link to="#">
+                    <Link to={`/candidatedetails/${candidateDetails.id}`} >
                       <img
-                        src={candidateDetailsNew.userImg}
+                        src={candidateDetails.picture || userImage1}
                         alt=""
                         className="avatar-md img-thumbnail rounded-circle"
                       />
@@ -279,27 +309,29 @@ const CandidateDetails = () => {
                 <Col lg={5}>
                   <div className="candidate-list-content mt-3 mt-lg-0">
                     <h5 className="fs-19 mb-0">
-                      <Link to="/candidatedetails" className="primary-link">
-                        {candidateDetailsNew.candidateName}
+                      <Link to={`/candidatedetails/${candidateDetails.id}`} className="primary-link">
+                        {candidateDetails.user.firstName} {candidateDetails.user.lastName}
                       </Link>
 
-                      <span className={candidateDetailsNew.ratingClass}>
+                      {/*<span className={candidateDetails.ratingClass}>
                         <i className="mdi mdi-star align-middle"></i>
-                        {candidateDetailsNew.rating}
-                      </span>
+                        {candidateDetails.rating}
+                      </span>*/}
                     </h5>
                     <p className="text-muted mb-2">
                       {" "}
-                      {candidateDetailsNew.candidateDesignation}
+                      {candidateDetails.desiredJobCategory}
                     </p>
                     <ul className="list-inline mb-0 text-muted">
                       <li className="list-inline-item">
                         <i className="mdi mdi-map-marker"></i>{" "}
-                        {candidateDetailsNew.location}
+                        {candidateDetails.city} {candidateDetails.country}
                       </li>
                       <li className="list-inline-item">
-                        <i className="uil uil-wallet"></i>{" "}
-                        {candidateDetailsNew.salary}
+                        {candidateDetails.desiredSalary && (
+                          <i className="uil uil-wallet"></i>
+                        )}
+                        {candidateDetails.desiredSalary || ""}
                       </li>
                     </ul>
                   </div>
@@ -307,7 +339,7 @@ const CandidateDetails = () => {
 
                 <Col lg={4}>
                   <div className="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-                    {(candidateDetailsNew.badges || []).map(
+                    {(candidateDetails.badges || []).map(
                       (badgesInner, key) => (
                         <span
                           className={`badge bg-${badgesInner.classname}-subtle text-${badgesInner.classname} fs-14 mt-1`}

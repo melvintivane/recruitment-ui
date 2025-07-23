@@ -7,6 +7,11 @@ import userImage3 from "../../../assets/images/user/img-03.jpg";
 
 const BlogColumn = ({data}) => {
   const {language} = useLanguage();
+
+  const extractText = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
   return (
     <React.Fragment>
       <ul className="list-inline mb-0 mt-3 text-muted">
@@ -56,7 +61,7 @@ const BlogColumn = ({data}) => {
       <div className="mt-4">
         <h5>{data.title}</h5>
         <p className="text-muted mb-4">
-          {data.body}
+          {extractText(data.body)}
         </p>
         <figure className="blog-blockquote text-center">
           <blockquote className="blockquote">
