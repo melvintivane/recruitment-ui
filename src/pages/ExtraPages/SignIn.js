@@ -102,7 +102,7 @@ const SignIn = () => {
                           <div className="text-center mb-4">
                             <h5>Bem-vindo de Volta!</h5>
                             <p className="text-white-70">
-                              Faça login para continuar na Recruitment.
+                              Faça login para continuar na Recruitment
                             </p>
                           </div>
 

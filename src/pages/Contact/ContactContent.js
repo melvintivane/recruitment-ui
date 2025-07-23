@@ -128,7 +128,7 @@ const ContactContent = () => {
                     <i className="uil uil-envelope"></i>
                   </div>
                   <div className="flex-grow-1 ms-2">
-                    <p className="mb-0">contactus@Recruitment.com</p>
+                    <p className="mb-0">contactus@Recruitmentcom</p>
                   </div>
                 </div>
                 <div className="d-flex text-muted align-items-center mt-2">

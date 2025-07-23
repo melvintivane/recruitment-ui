@@ -56,7 +56,7 @@ const ResetPassword = () => {
                             <div className="text-center mb-4">
                               <h5>Redefinir Senha</h5>
                               <p className="text-white-50">
-                                Redefina sua senha com a Recruitment.
+                                Redefina sua senha com a Recruitment
                               </p>
                             </div>
                             <Form className="auth-form text-white">
