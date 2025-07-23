@@ -5,115 +5,16 @@ import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 
 
 // Imagens dos usuários
 import userImage1 from "../../../assets/images/user/img-01.jpg";
-import userImage2 from "../../../assets/images/user/img-02.jpg";
-import userImage3 from "../../../assets/images/user/img-03.jpg";
 
 // Imagens do blog
 import blogImage4 from "../../../assets/images/blog/img-04.jpg";
 import blogImage5 from "../../../assets/images/blog/img-05.jpg";
-import blogImage6 from "../../../assets/images/blog/img-06.jpg";
-import blogImage7 from "../../../assets/images/blog/img-07.jpg";
-import blogImage8 from "../../../assets/images/blog/img-08.jpg";
-import blogImage9 from "../../../assets/images/blog/img-09.jpg";
-import blogImage10 from "../../../assets/images/blog/img-10.jpg";
 
 import { useLanguage } from "../../../context/LanguageContext";
 import { getAllBlogs } from "../../../services/blogService";
 
 const BlogContent = () => {
   const { language } = useLanguage();
-  const blogContentText = [
-    {
-      id: 1,
-      blogRow: [
-        {
-          id: 1,
-          blogImage: blogImage6,
-          blogTitle: "Moda",
-          blogDate: "29 de Julho, 2021",
-          blogHeading: "Um dia na vida de um designer de moda profissional",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage2,
-          blogAuthorName: "Rebecca Swartz",
-          BlogAuthorPosition: "Designer de Moda",
-        },
-        {
-          id: 2,
-          blogImage: blogImage5,
-          blogTitle: "Negócios",
-          blogDate: "25 de Julho, 2021",
-          blogHeading:
-            "Designer de stack Olivia Murphy oferece conselhos sobre freelancing",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage3,
-          blogAuthorName: "Olivia Murphy",
-          BlogAuthorPosition: "Líder de Produto",
-        },
-      ],
-    },
-    {
-      id: 2,
-      blogRow: [
-        {
-          id: 1,
-          blogImage: blogImage7,
-          blogTitle: "Negócios",
-          blogDate: "25 de Julho, 2021",
-          blogHeading:
-            "Como gerenciar o espaço em branco em layouts responsivos?",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage2,
-          blogAuthorName: "Olivia Murphy",
-          BlogAuthorPosition: "Líder de Produto",
-        },
-        {
-          id: 2,
-          blogImage: blogImage8,
-          blogTitle: "Desenvolvimento",
-          blogDate: "29 de Julho, 2021",
-          blogHeading: "Como ser criativo no seu trabalho?",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage3,
-          blogAuthorName: "Rebecca Swartz",
-          BlogAuthorPosition: "Designer de Moda",
-        },
-      ],
-    },
-    {
-      id: 3,
-      blogRow: [
-        {
-          id: 1,
-          blogImage: blogImage9,
-          blogTitle: "Negócios",
-          blogDate: "25 de Julho, 2021",
-          blogHeading: "O que o processo de planejamento precisa?",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage3,
-          blogAuthorName: "Olivia Murphy",
-          BlogAuthorPosition: "Líder de Produto",
-        },
-        {
-          id: 2,
-          blogImage: blogImage10,
-          blogTitle: "Desenvolvimento",
-          blogDate: "29 de Julho, 2021",
-          blogHeading:
-            "Como se tornar o melhor vendedor de marketing em um ano!",
-          blogText:
-            "Busque diversos catalisadores para mudanças em metas interoperáveis. Reprojetar de forma distinta meta-serviços revolucionários e arquiteturas premium. Incubar de forma intrínseca oportunidades intuitivas e potencialidades em tempo real. Comunicar adequadamente a tecnologia um a um.",
-          blogAuthorImage: userImage3,
-          blogAuthorName: "Rebecca Swartz",
-          BlogAuthorPosition: "Designer de Moda",
-        },
-      ],
-    },
-  ];
 
   const [pagination, setPagination] = useState({
     page: 0,
