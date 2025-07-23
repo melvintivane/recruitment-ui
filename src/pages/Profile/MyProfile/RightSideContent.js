@@ -1,25 +1,27 @@
 import React, { useState } from "react";
 import {
+  Card,
+  CardBody,
   Col,
-  Row,
+  Form,
+  Input,
+  Label,
   Nav,
+  NavItem,
   NavLink,
+  Row,
   TabContent,
   TabPane,
-  Card,
-  Input,
-  Form,
-  NavItem,
-  CardBody,
-  Label,
 } from "reactstrap";
 
 import classnames from "classnames";
+import { useLanguage } from "../../../context/LanguageContext";
 
 //Images Import
 import userImage2 from "../../../assets/images/user/img-02.jpg";
 
 const RightSideContent = ({ data }) => {
+  const {language} = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
 
   const tabChange = (tab) => {
@@ -54,7 +56,7 @@ const RightSideContent = ({ data }) => {
                 }}
                 type="button"
               >
-                Visão geral
+                {language === 'pt' ? "Visão geral" : "Overview"}
               </NavLink>
             </NavItem>
             <NavItem role="presentation">
@@ -66,7 +68,7 @@ const RightSideContent = ({ data }) => {
                 }}
                 type="button"
               >
-                Editar Perfil
+                {language === 'pt' ? "Editar Perfil" : "Edit Profile"}
               </NavLink>
             </NavItem>
           </Nav>
@@ -76,12 +78,12 @@ const RightSideContent = ({ data }) => {
               <TabPane tabId="1">
                 {data.professinalSummary && (
                   <div>
-                    <h5 className="fs-18 fw-bold">Sobre Mim</h5>
+                    <h5 className="fs-18 fw-bold">{language === 'pt' ? "Sobre Mim" : "About Me"}</h5>
                     <p className="text-muted mt-4">{data.professinalSummary}</p>
                   </div>
                 )}
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Educação</h6>
+                  <h6 className="fs-18 fw-bold mb-0">{language === 'pt' ? "Educação" : "Education"}</h6>
                   {data.educations?.map((education, index) => (
                     <div
                       className="candidate-education-content mt-4 d-flex"
@@ -109,7 +111,7 @@ const RightSideContent = ({ data }) => {
                         {education.degree &&
                           education.degree !== education.course && (
                             <p className="text-muted small mt-1">
-                              <strong>Grau:</strong> {education.degree}
+                              <strong>{language === 'pt' ? "Grau" : "Degree" }:</strong> {education.degree}
                             </p>
                           )}
                       </div>
@@ -118,7 +120,7 @@ const RightSideContent = ({ data }) => {
                 </div>
                 <div className="candidate-education-details mt-4">
                   <h6 className="fs-18 fw-bold mb-0">
-                    Experiência Profissional
+                    {language === 'pt' ? "Experiência Profissional" : "Profissional Experience"}
                   </h6>
                   {data.experiences?.map((experience, index) => (
                     <div
@@ -141,7 +143,7 @@ const RightSideContent = ({ data }) => {
                         {experience.duties && (
                           <div className="text-muted">
                             <h6 className="fs-14 mb-1">
-                              Principais atividades:
+                              {language === 'pt' ? "Principais atividades:" : "Main duties"}
                             </h6>
                             <p className="mb-0">{experience.duties}</p>
                           </div>
@@ -151,7 +153,7 @@ const RightSideContent = ({ data }) => {
                   ))}
                 </div>
                 <div className="candidate-education-details mt-4">
-                  <h6 className="fs-18 fw-bold mb-0">Cursos e Certificações</h6>
+                  <h6 className="fs-18 fw-bold mb-0">{language === 'pt' ? "Cursos e Certificações" : "Courses and Certifications"}</h6>
                   {data.trainings?.map((training, index) => (
                     <div
                       className="candidate-education-content mt-4 d-flex"
@@ -174,12 +176,12 @@ const RightSideContent = ({ data }) => {
                                 "pt-BR",
                                 { month: "short", year: "numeric" }
                               )
-                            : "Atual"}
+                            : language === 'pt' ? "Atual" : "Current"}
                           )
                         </p>
                         {training.description && (
                           <p className="text-muted mb-0">
-                            <strong>Conteúdo:</strong> {training.description}
+                            <strong>{language === 'pt' ? "Conteúdo" : "Content"}:</strong> {training.description}
                           </p>
                         )}
                       </div>
@@ -187,7 +189,7 @@ const RightSideContent = ({ data }) => {
                   ))}
                 </div>
                 <div className="mt-4">
-                  <h5 className="fs-18 fw-bold">Habilidades</h5>
+                  <h5 className="fs-18 fw-bold">{language === 'pt' ? "Habilidades" : "Skills"}</h5>
                   <ul className="job-detail-list list-unstyled mb-0 text-muted">
                     {data.skills?.map((skill, index) => (
                       <li key={index}>
@@ -197,7 +199,7 @@ const RightSideContent = ({ data }) => {
                   </ul>
                 </div>
                 <div className="mt-4">
-                  <h5 className="fs-18 fw-bold">Idiomas falados</h5>
+                  <h5 className="fs-18 fw-bold">{language === 'pt' ? "Idiomas falados" : "Spoken languages"}</h5>
                 </div>
                 <div className="mt-0 d-flex flex-wrap align-items-start gap-1">
                   {data.languages?.map((language, index) => (
@@ -213,7 +215,7 @@ const RightSideContent = ({ data }) => {
               <TabPane tabId="2">
                 <Form action="#">
                   <div>
-                    <h5 className="fs-17 fw-semibold mb-3 mb-0">Minha Conta</h5>
+                    <h5 className="fs-17 fw-semibold mb-3 mb-0">{language === 'pt' ? "Minha Conta" : "My Account"}</h5>
                     <div className="text-center">
                       <div className="mb-4 profile-user">
                         <img
@@ -241,7 +243,7 @@ const RightSideContent = ({ data }) => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <label htmlFor="firstName" className="form-label">
-                            Nome
+                            {language === 'pt' ? "Nome" : "Name"}
                           </label>
                           <Input
                             type="text"
@@ -254,7 +256,7 @@ const RightSideContent = ({ data }) => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <Label htmlFor="lastName" className="form-label">
-                            Sobrenome
+                            {language === 'pt' ? "Sobrenome" : "Last Name"}
                           </Label>
                           <Input
                             type="text"
@@ -280,7 +282,7 @@ const RightSideContent = ({ data }) => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <Label htmlFor="phone" className="form-label">
-                            Telefone
+                            {language === 'pt' ? "Telefone" : "Phone"}
                           </Label>
                           <Input
                             type="tel"
@@ -295,7 +297,7 @@ const RightSideContent = ({ data }) => {
 
                   <div className="mt-4">
                     <h5 className="fs-17 fw-semibold mb-3">
-                      Perfil Profissional
+                      {language === 'pt' ? "Perfil Profissional" : "Professional Profile"}
                     </h5>
                     <Row>
                       <Col lg={12}>
@@ -304,7 +306,7 @@ const RightSideContent = ({ data }) => {
                             htmlFor="professionalSummary"
                             className="form-label"
                           >
-                            Resumo Profissional
+                            {language ===  'pt' ? "Resumo Profissional" : "Professional Summary"}
                           </Label>
                           <textarea
                             className="form-control"
@@ -317,7 +319,7 @@ const RightSideContent = ({ data }) => {
                       <Col lg={12}>
                         <div className="mb-3">
                           <Label htmlFor="attachmentscv" className="form-label">
-                            Anexar CV
+                            {language === 'pt' ? "Anexar CV" : "Attach CV"}
                           </Label>
                           <Input
                             className="form-control"
@@ -330,7 +332,7 @@ const RightSideContent = ({ data }) => {
                       <Col lg={6}>
                         <div className="mb-3">
                           <label htmlFor="location" className="form-label">
-                            Localização
+                            {language === 'pt' ? "Localização" : "Location"}
                           </label>
                           <Input
                             type="text"
@@ -344,7 +346,7 @@ const RightSideContent = ({ data }) => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Educação</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">{language === 'pt' ? "Educação" : "Education"}</h5>
                     {data.educations?.map((education, index) => (
                       <div key={index} className="mb-4 p-3 border rounded">
                         <Row>
@@ -370,7 +372,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`education-institution-${index}`}
                                 className="form-label"
                               >
-                                Instituição
+                                {language === 'pt' ? "Instituição" : "Institution"}
                               </Label>
                               <Input
                                 type="text"
@@ -386,7 +388,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`education-startDate-${index}`}
                                 className="form-label"
                               >
-                                Data de Início
+                                {language === 'pt' ? "Data de Início" : "Start Date"}
                               </Label>
                               <Input
                                 type="date"
@@ -402,7 +404,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`education-endDate-${index}`}
                                 className="form-label"
                               >
-                                Data de Término
+                                {language === 'pt' ? "Data de Término" : "End Date"}
                               </Label>
                               <Input
                                 type="date"
@@ -418,7 +420,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`education-description-${index}`}
                                 className="form-label"
                               >
-                                Descrição
+                                {language === 'pt' ? "Descrição" : "Description"}
                               </Label>
                               <textarea
                                 className="form-control"
@@ -431,13 +433,13 @@ const RightSideContent = ({ data }) => {
                       </div>
                     ))}
                     <button type="button" className="btn btn-outline-primary">
-                      + Adicionar Educação
+                      + {language === 'pt' ? "Adicionar Educação" : "Add Education"}
                     </button>
                   </div>
 
                   <div className="mt-4">
                     <h5 className="fs-17 fw-semibold mb-3">
-                      Experiência Profissional
+                      {language === 'pt' ? "Experiência Profissional" : "Professional Experience"}
                     </h5>
                     {data.experiences?.map((experience, index) => (
                       <div key={index} className="mb-4 p-3 border rounded">
@@ -448,7 +450,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`experience-position-${index}`}
                                 className="form-label"
                               >
-                                Cargo
+                                {language === 'pt' ? "Cargo" : "Position"}
                               </Label>
                               <Input
                                 type="text"
@@ -464,7 +466,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`experience-company-${index}`}
                                 className="form-label"
                               >
-                                Empresa
+                                {language === 'pt' ? "Empresa" : "Company"}
                               </Label>
                               <Input
                                 type="text"
@@ -480,7 +482,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`experience-startDate-${index}`}
                                 className="form-label"
                               >
-                                Data de Início
+                                {language === 'pt' ? "Data de Início" : "Start Date"}
                               </Label>
                               <Input
                                 type="date"
@@ -496,7 +498,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`experience-endDate-${index}`}
                                 className="form-label"
                               >
-                                Data de Término
+                                {language === 'pt' ? "Data de Término" : "End Date"}
                               </Label>
                               <Input
                                 type="date"
@@ -512,7 +514,7 @@ const RightSideContent = ({ data }) => {
                                 htmlFor={`experience-duties-${index}`}
                                 className="form-label"
                               >
-                                Principais Atividades
+                                {language === 'pt' ? "Atividades" : "Duties"}
                               </Label>
                               <textarea
                                 className="form-control"
@@ -525,15 +527,15 @@ const RightSideContent = ({ data }) => {
                       </div>
                     ))}
                     <button type="button" className="btn btn-outline-primary">
-                      + Adicionar Experiência
+                      + {language === 'pt' ? "Adicionar Experiência" : "Add Experience"}
                     </button>
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Habilidades</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">{language === 'pt' ? "Habilidades" : "Skills"}</h5>
                     <div className="mb-3">
                       <Label htmlFor="skills" className="form-label">
-                        Suas Habilidades (separadas por vírgula)
+                        {language === 'pt' ? "Habilidades Profissionais (separadas por vírgula)" : "Professional Skills (comma separated)"}
                       </Label>
                       <Input
                         type="text"
@@ -548,10 +550,10 @@ const RightSideContent = ({ data }) => {
                   </div>
 
                   <div className="mt-4">
-                    <h5 className="fs-17 fw-semibold mb-3">Idiomas</h5>
+                    <h5 className="fs-17 fw-semibold mb-3">{language === 'pt' ? "Idiomas" : "Languages"}</h5>
                     <div className="mb-3">
                       <Label htmlFor="languages" className="form-label">
-                        Idiomas que você fala (separados por vírgula)
+                        {language === 'pt' ? "Idiomas que você fala (separados por vírgula)" : "Languages you speak (comma separated)"}
                       </Label>
                       <Input
                         type="text"
@@ -567,7 +569,7 @@ const RightSideContent = ({ data }) => {
 
                   <div className="mt-4 text-end">
                     <button type="submit" className="btn btn-primary">
-                      Atualizar Perfil
+                      {language === 'pt' ? "Atualizar Perfil" : "Update Profile"}
                     </button>
                   </div>
                 </Form>

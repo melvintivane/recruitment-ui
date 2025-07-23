@@ -57,7 +57,7 @@ const CompanySearchOptions = ({
                 loading={isLoading}
                 options={industryData}
                 value={filters.jobCategoryId}
-                onChange={(value) => onFilterChange("jobCategoryId", value)}
+                onChange={(value) => onFilterChange("industry", value)}
               />
             </div>
           </Col>
