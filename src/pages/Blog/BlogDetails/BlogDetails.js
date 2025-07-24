@@ -4,14 +4,9 @@ import { useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Archives from "../../../components/Archives";
 import BlogCategory from "../../../components/BlogCategory";
-import PopularPost from "../../../components/PopularPost";
-import SocialConnect from "../../../components/SocialConnect";
 import Tags from "../../../components/Tags";
-import TextWidget from "../../../components/TextWidget";
-import { getAllBlogCategories, getBlogById } from "../../../services/blogService";
+import { getBlogById } from "../../../services/blogService";
 import BlogColumn from "../BlogDetails/BlogColumn";
-import BlogComments from "../BlogDetails/BlogComments";
-import BlogForm from "../BlogDetails/BlogForm";
 import BlogPost from "../BlogDetails/BlogPost";
 import BlogSwiper from "../BlogDetails/BlogSwiper";
 import BlogTitle from "../BlogDetails/BlogTitle";
@@ -80,19 +75,19 @@ const BlogDetails = () => {
               <div className="blog-post">
                 <BlogSwiper />
                 <BlogColumn data={blog}/>
-                <BlogComments />
-                <BlogForm />
+                {/*<BlogComments />*/}
+                {/*<BlogForm />*/}
                 <BlogPost />
               </div>
             </Col>
             <Col lg={4} md={5}>
               <div className="sidebar ms-lg-4 ps-lg-4 mt-5 mt-lg-0">
                 <BlogCategory />
-                <PopularPost />
-                <TextWidget />
+                {/*<PopularPost />*/}
+                {/*<TextWidget />*/}
                 <Archives />
                 <Tags />
-                <SocialConnect />
+                {/*<SocialConnect />*/}
               </div>
             </Col>
           </Row>

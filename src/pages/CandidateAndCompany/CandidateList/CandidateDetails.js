@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { CardBody, Col, Row } from "reactstrap";
+import { CardBody, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 import { getAllCandidates } from "../../../services/candidateService";
+
 
 //Import images
 import userImage1 from "../../../assets/images/user/img-01.jpg";
@@ -352,15 +353,84 @@ const CandidateDetails = () => {
                   </div>
                 </Col>
               </Row>
-              <div className="favorite-icon">
+
+              {/*<div className="favorite-icon">
                 <Link to="#">
                   <i className="uil uil-heart-alt fs-18"></i>
                 </Link>
-              </div>
+              </div>*/}
             </CardBody>
           </div>
         ))}
       </div>
+      <Row>
+        {/* Pagination */}
+        <div className="d-flex justify-content-between align-items-center mt-4">
+          <div className="text-muted">
+            {language === 'pt' ? "Mostrando" : "Showing"}{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span> {"blogs"}
+            <select
+              className="form-select form-select-sm ms-2 d-inline-block w-auto"
+              value={pagination.size}
+              onChange={handlePageSizeChange}
+            >
+              {[5, 10, 20, 50].map((size) => (
+                <option key={size} value={size}>
+                  {size} {language === 'pt' ? "por página" : "per page"}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <nav aria-label="Page navigation">
+            <Pagination className="mb-0">
+              <PaginationItem disabled={pagination.page === 0}>
+                <PaginationLink
+                  previous
+                  onClick={() => handlePageChange(pagination.page - 1)}
+                />
+              </PaginationItem>
+
+              {Array.from(
+                { length: Math.min(5, data?.totalPages || 0) },
+                (_, i) => {
+                  let pageNum;
+                  if ((data?.totalPages || 0) <= 5) {
+                    pageNum = i;
+                  } else if (pagination.page <= 2) {
+                    pageNum = i;
+                  } else if (pagination.page >= (data?.totalPages || 0) - 3) {
+                    pageNum = (data?.totalPages || 0) - 5 + i;
+                  } else {
+                    pageNum = pagination.page - 2 + i;
+                  }
+
+                  return (
+                    <PaginationItem
+                      key={pageNum}
+                      active={pageNum === pagination.page}
+                    >
+                      <PaginationLink onClick={() => handlePageChange(pageNum)}>
+                        {pageNum + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                }
+              )}
+
+              <PaginationItem
+                disabled={pagination.page === (data?.totalPages || 0) - 1}
+              >
+                <PaginationLink
+                  next
+                  onClick={() => handlePageChange(pagination.page + 1)}
+                />
+              </PaginationItem>
+            </Pagination>
+          </nav>
+        </div>
+      </Row>
     </React.Fragment>
   );
 };

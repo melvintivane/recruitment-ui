@@ -5,22 +5,22 @@ import { useLanguage } from "../context/LanguageContext";
 import { getAllBlogCategories } from "../services/blogService";
 
 const CategoriaBlog = () => {
-  const {language} = useLanguage();
+  const { language } = useLanguage();
 
   const [pagination, setPagination] = useState({
-      page: 0,
-      size: 10,
-    });
+    page: 0,
+    size: 10,
+  });
 
   const { data, isLoading, error } = useQuery({
-      queryKey: ["categories", pagination.page, pagination.size],
-      queryFn: () =>
-        getAllBlogCategories({
-          page: pagination.page,
-          size: pagination.size,
-        }),
-      keepPreviousData: true,
-    });
+    queryKey: ["categories", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllBlogCategories({
+        page: pagination.page,
+        size: pagination.size,
+      }),
+    keepPreviousData: true,
+  });
 
 
   return (
@@ -46,20 +46,14 @@ const CategoriaBlog = () => {
         </div>
 
         <div className="my-3">
-          {data?.content?.map((category, index) => (
-            <div className="form-check mb-2" key={index}>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                value=""
-                id={category.name}
-              />
-              <label className="form-check-label ms-2" htmlFor={category.name}>
-                {category.name}
-              </label>
-            </div>
-          ))}
-          
+          <ul className="list-unstyled mb-0 mt-3">
+            {data?.content?.map((category, key) => (
+              <li className="py-1 text-muted" key={key}>
+                <i className="uil uil-angle-right-b"></i> {category.name}
+              </li>
+            ))}
+          </ul>
+
         </div>
       </div>
     </React.Fragment>

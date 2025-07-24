@@ -63,7 +63,7 @@ const BlogColumn = ({data}) => {
         <p className="text-muted mb-4">
           {extractText(data.body)}
         </p>
-        <figure className="blog-blockquote text-center">
+       {/*} <figure className="blog-blockquote text-center">
           <blockquote className="blockquote">
             <p className="fs-17">
               {data.quote}
@@ -76,7 +76,7 @@ const BlogColumn = ({data}) => {
               {data.author}
             </cite>
           </figcaption>
-        </figure>
+        </figure>*/}
         
         <div className="d-flex align-items-center mb-4">
           <div className="flex-shrink-0">
