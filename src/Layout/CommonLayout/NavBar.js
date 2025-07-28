@@ -254,14 +254,14 @@ const NavBar = () => {
                     end
                   >
                     <div className="p-3 border-bottom">
-                      <h6 className="m-0">Notificações</h6>
+                      <h6 className="m-0">{language === 'pt' ? "Notificações" : "Notifications"}</h6>
                     </div>
                     <div
                       className="px-2"
                       style={{ maxHeight: "300px", overflowY: "auto" }}
                     >
                       <div className="text-center py-3">
-                        Nenhuma notificação
+                        {language === 'pt' ? "Nenhuma notificação" : "No notifications"}
                       </div>
                     </div>
                   </DropdownMenu>
@@ -286,7 +286,7 @@ const NavBar = () => {
                       className="rounded-circle me-1"
                     />
                     <span className="d-none d-md-inline-block fw-medium">
-                      Olá, {user.name.split(" ")[0]}!
+                      {language === 'pt' ? "Olá" : "Hi"}, {user.name.split(" ")[0]}!
                     </span>
                   </DropdownToggle>
                   <DropdownMenu
@@ -330,7 +330,7 @@ const NavBar = () => {
                         className="dropdown-item text-danger"
                       >
                         <i className="mdi mdi-logout me-2"></i>
-                        Sair
+                        {language === 'pt' ? "Sair" : "Exit"}
                       </DropdownItem>
                     </div>
                   </DropdownMenu>

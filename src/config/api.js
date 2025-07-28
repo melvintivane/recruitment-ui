@@ -9,7 +9,7 @@ export const API_ENDPOINTS = {
   LOGIN: `${API_BASE_URL}/auth/login`,
   BLOGS:`${API_BASE_URL}/blogs`,
   BLOGS_CATEGORIES : `${API_BASE_URL}/blog-categories`,
-  EMPLOYERS : `${API_BASE_URL}/employers`
+  EMPLOYERS : `${API_BASE_URL}/employers`,
 };
 
 export default API_ENDPOINTS;

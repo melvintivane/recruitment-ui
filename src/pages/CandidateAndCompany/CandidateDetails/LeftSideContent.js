@@ -7,7 +7,7 @@ import userImage1 from "../../../assets/images/user/img-01.jpg";
 
 import { useLanguage } from "../../../context/LanguageContext";
 
-const LeftSideContent = () => {
+const LeftSideContent = ({data}) => {
   const {language} = useLanguage()
   return (
     <React.Fragment>
@@ -20,21 +20,21 @@ const LeftSideContent = () => {
                 alt=""
                 className="avatar-lg rounded-circle"
               />
-              <h6 className="fs-18 mb-0 mt-4">Gabriel Palmer</h6>
-              <p className="text-muted mb-4">Designer Criativo</p>
+              <h6 className="fs-18 mb-0 mt-4">{data.user.firstName} {data.user.lastName}</h6>
+              <p className="text-muted mb-4">{data.desiredJobCategory}</p>
               <ul className="candidate-detail-social-menu list-inline mb-0">
                 <li className="list-inline-item">
-                  <Link to="#" className="social-link">
-                    <i className="uil uil-twitter-alt"></i>
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#" className="social-link">
+                  <Link to={`https://wa.me/${data.phone}`} className="social-link" target="_blank">
                     <i className="uil uil-whatsapp"></i>
                   </Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#" className="social-link">
+                  <Link to={data.linkedin} className="social-link" target="_blank">
+                    <i className="uil uil-linkedin"></i>
+                  </Link>
+                </li>
+                <li className="list-inline-item">
+                  <Link to={`tel:${data.phone}`} className="social-link">
                     <i className="uil uil-phone-alt"></i>
                   </Link>
                 </li>
@@ -45,11 +45,11 @@ const LeftSideContent = () => {
           <CardBody className="candidate-profile-overview border-top p-4">
             <h6 className="fs-17 fw-medium mb-3">{language === 'pt' ? "Visão Geral do Perfil" : "Profile Overview"}</h6>
             <ul className="list-unstyled mb-0">
-              <li>
+              {/*<li>
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Categorias" : "Categories"}</label>
                   <div>
-                    <p className="text-muted mb-0">Contabilidade / Finanças</p>
+                    <p className="text-muted mb-0">{data.jobCategories || ""}</p>
                   </div>
                 </div>
               </li>
@@ -57,15 +57,17 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Salário" : "Salary"}</label>
                   <div>
-                    <p className="text-muted mb-0">$450 por hora</p>
+                    <p className="text-muted mb-0">{data.desiredSalary || ""}</p>
                   </div>
                 </div>
-              </li>
+              </li>*/}
               <li>
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Idiomas" : "Languages"}</label>
                   <div>
-                    <p className="text-muted mb-0">Inglês, Turco, Japonês</p>
+                  {data?.languages?.map((language,index) => (
+                      <p key={index} className="text-muted mb-0">{language.name}</p>
+                  ))}
                   </div>
                 </div>
               </li>
@@ -73,7 +75,7 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}</label>
                   <div>
-                    <p className="text-muted mb-0">3 Anos</p>
+                    <p className="text-muted mb-0">{data.yearsOfExperience} {language === 'pt' ? "Anos" : "Years"}</p>
                   </div>
                 </div>
               </li>
@@ -81,18 +83,20 @@ const LeftSideContent = () => {
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Qualificação" : "Qualification"}</label>
                   <div>
-                    <p className="text-muted mb-0">Diploma de Associate</p>
+                  {data?.trainings?.map((training,index) => (
+                      <p key={index} className="text-muted mb-0">{training.course}</p>
+                  ))}
                   </div>
                 </div>
               </li>
-              <li>
+              {/*<li>
                 <div className="d-flex">
                   <label className="text-dark">{language === 'pt' ? "Visualizações" : "Views"}</label>
                   <div>
-                    <p className="text-muted mb-0">2574</p>
+                    <p className="text-muted mb-0">{data.profileVisualizations || ""}</p>
                   </div>
                 </div>
-              </li>
+              </li>*/}
             </ul>
             <div className="mt-3">
               <Link to="#" className="btn btn-danger btn-hover w-100">
@@ -122,21 +126,11 @@ const LeftSideContent = () => {
           <CardBody className="p-4 border-top">
             <h6 className="fs-17 fw-medium mb-3">{language === 'pt' ? "Habilidades Profissionais" :"Professional Skills" }</h6>
             <div className="d-flex flex-wrap align-items-start gap-1">
-              <span className="badge bg-success-subtle text-success fs-13 mt-1">
-                Design de Interface de Usuário
+              {data?.skills?.map((skill, index) =>(
+                  <span key={index} className="badge bg-success-subtle text-success fs-13 mt-1">
+                     {skill.name}
               </span>
-              <span className="badge bg-success-subtle text-success fs-13 mt-1">
-                Design de Sites
-              </span>
-              <span className="badge bg-success-subtle text-success fs-13 mt-1">
-                Design Responsivo
-              </span>
-              <span className="badge bg-success-subtle text-success fs-13 mt-1">
-                Design de Aplicativos Móveis
-              </span>
-              <span className="badge bg-success-subtle text-success fs-13 mt-1">
-                Design de UI
-              </span>
+              ))}
             </div>
           </CardBody>
           <CardBody className="candidate-contact-details p-4 border-top">
@@ -149,7 +143,7 @@ const LeftSideContent = () => {
                   </div>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-1">Email</h6>
-                    <p className="text-muted mb-0">gabrielpalmer@gmail.com</p>
+                    <p className="text-muted mb-0">{data.user.email}</p>
                   </div>
                 </div>
               </li>
@@ -160,7 +154,7 @@ const LeftSideContent = () => {
                   </div>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-1">{language === 'pt' ? "Endereço" : "Address"}</h6>
-                    <p className="text-muted mb-0">Matola, T3</p>
+                    <p className="text-muted mb-0">{data.address}</p>
                   </div>
                 </div>
               </li>
@@ -171,11 +165,11 @@ const LeftSideContent = () => {
                   </div>
                   <div className="ms-3">
                     <h6 className="fs-14 mb-1">{language === 'pt' ? "Telefone" : "Telephone"}</h6>
-                    <p className="text-muted mb-0">+258 84 207 4393</p>
+                    <p className="text-muted mb-0">{data.phone}</p>
                   </div>
                 </div>
               </li>
-              <li>
+              {/*<li>
                 <div className="d-flex align-items-center mt-4">
                   <div className="icon bg-primary-subtle text-primary flex-shrink-0">
                     <i className="uil uil-linkedin-alt"></i>
@@ -185,7 +179,7 @@ const LeftSideContent = () => {
                     <p className="text-muted mb-0">@gabrielpalmer</p>
                   </div>
                 </div>
-              </li>
+              </li>*/}
             </ul>
           </CardBody>
         </Card>

@@ -17,7 +17,7 @@ const Footer = () => {
           menu: [
             { id: 1, link: "/about", subTitle: "Sobre Nós" },
             { id: 2, link: "/contact", subTitle: "Fale Conosco" },
-            { id: 3, link: "/services", subTitle: "Serviços" },
+            //{ id: 3, link: "/services", subTitle: "Serviços" },
             { id: 4, link: "/blog", subTitle: "Blog" },
           ],
         },
@@ -35,11 +35,11 @@ const Footer = () => {
           title: "Para Recrutadores",
           menu: [
             { id: 1, link: "/candidatelist", subTitle: "Lista de Candidatos" },
-            {
+            /*{
               id: 3,
               link: "/candidatedetails",
               subTitle: "Detalhes do Candidato",
-            },
+            },*/
           ],
         },
         {
@@ -65,7 +65,7 @@ const Footer = () => {
           menu: [
             { id: 1, link: "/about", subTitle: "About Us" },
             { id: 2, link: "/contact", subTitle: "Contact Us" },
-            { id: 3, link: "/services", subTitle: "Services" },
+            //{ id: 3, link: "/services", subTitle: "Services" },
             { id: 4, link: "/blog", subTitle: "Blog" },
           ],
         },
@@ -83,7 +83,7 @@ const Footer = () => {
           title: "For Recruiters",
           menu: [
             { id: 1, link: "/candidatelist", subTitle: "Candidate List" },
-            { id: 3, link: "/candidatedetails", subTitle: "Candidate Details" },
+            //{ id: 3, link: "/candidatedetails", subTitle: "Candidate Details" },
           ],
         },
         {

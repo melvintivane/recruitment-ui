@@ -55,6 +55,10 @@ const BlogContent = () => {
     return <div className="text-danger">Error: {error.message}</div>;
   }
 
+  const extractText = (html) => {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
 
   return (
     <React.Fragment>
@@ -149,7 +153,7 @@ const BlogContent = () => {
                       {blogContentDetails.title}
                     </Link>
                   </h5>
-                  <p className="text-muted">{blogContentDetails.body.slice(0, 200)}...</p>
+                  <p className="text-muted">{extractText(blogContentDetails.body).slice(0, 200)}...</p>
                   <div className="d-flex align-items-center mt-4">
                     <div className="flex-shrink-0">
                       <img
