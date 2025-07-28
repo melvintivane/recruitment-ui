@@ -1,12 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
+import { getAllJobCategories } from "../../../services/jobCategorieService";
 import translatedData from "../../../translations/JobCategories";
 
 const Categories = () => {
   const {language} = useLanguage();
   const t = translatedData[language] || translatedData['pt'];
+
+  const [pagination, setPagination] = useState({
+        page: 0,
+        size: 20,
+      });
+    
+      // Fetch vacancies query
+      const { data, isLoading, error } = useQuery({
+        queryKey: ["categories", pagination.page, pagination.size],
+        queryFn: () =>
+          getAllJobCategories({
+            page: pagination.page,
+            size: pagination.size,
+            /*search: filters.searchQuery,
+            location: filters.location,
+            category: filters.jobCategoryId,
+            yearsOfExperience: filters.experienceRange,
+            jobType: filters.jobType,
+            timePeriod: filters.timePeriod,*/
+          }),
+        keepPreviousData: true,
+      });
 
   return (
     <React.Fragment>
@@ -27,23 +51,20 @@ const Categories = () => {
             </Col>
           </Row>
           <Row>
-            {t.categories.map((categoriesDetails, key) => (
+            {data?.content?.map((categorie, key) => (
               <Col lg={4} key={key}>
                 <Card className="job-Categories-box bg-light border-0">
                   <CardBody className="p-4">
                     <ul className="list-unstyled job-Categories-list mb-0">
-                      {(categoriesDetails.jobCategories || []).map(
-                        (jobCategoriesDetails, key) => (
+                   
                           <li key={key}>
                             <Link to="/joblist" className="primary-link">
-                              {jobCategoriesDetails.jobName}{" "}
+                              {categorie.name}{" "}
                               <span className="badge bg-info-subtle text-info float-end">
-                                {jobCategoriesDetails.jobNumbers}
+                                {categorie.jobNumbers || 0}
                               </span>
                             </Link>
                           </li>
-                        )
-                      )}
                     </ul>
                   </CardBody>
                 </Card>

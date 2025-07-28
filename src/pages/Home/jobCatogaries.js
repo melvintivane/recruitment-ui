@@ -1,121 +1,50 @@
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import { useLanguage } from "../../context/LanguageContext";
+import { getAllJobCategories } from "../../services/jobCategorieService";
 
 const Jobcatogaries = () => {
 
   const { language } = useLanguage();
+     const [pagination, setPagination] = useState({
+      page: 0,
+      size: 8,
+    });
+  
+    // Fetch vacancies query
+    const { data, isLoading, error } = useQuery({
+      queryKey: ["categories", pagination.page, pagination.size],
+      queryFn: () =>
+        getAllJobCategories({
+          page: pagination.page,
+          size: pagination.size,
+          /*search: filters.searchQuery,
+          location: filters.location,
+          category: filters.jobCategoryId,
+          yearsOfExperience: filters.experienceRange,
+          jobType: filters.jobType,
+          timePeriod: filters.timePeriod,*/
+        }),
+      keepPreviousData: true,
+    });
 
-  const translatedCategories = {
-    pt: {
-      categories: [
-        {
-          id: 1,
-          icon: "uim-layers-alt",
-          name: "TI & Software",
-          job: 2024,
-        },
-        {
-          id: 2,
-          icon: "uim-airplay",
-          name: "Tecnologia",
-          job: 1250,
-        },
-        {
-          id: 3,
-          icon: "uim-bag",
-          name: "Governo",
-          job: 802,
-        },
-        {
-          id: 4,
-          icon: "uim-user-md",
-          name: "Finanças",
-          job: 577,
-        },
-        {
-          id: 5,
-          icon: "uim-hospital",
-          name: "Construção",
-          job: 285,
-        },
-        {
-          id: 6,
-          icon: "uim-telegram-alt",
-          name: "Telecomunicações",
-          job: 495,
-        },
-        {
-          id: 7,
-          icon: "uim-scenery",
-          name: "Design & Multimídia",
-          job: 1045,
-        },
-        {
-          id: 8,
-          icon: "uim-android-alt",
-          name: "Recursos Humanos",
-          job: 1516,
-        },
-      ]
-    },
-    en: {
-      categories :[
-        {
-          id: 1,
-          icon: "uim-layers-alt",
-          name: "IT & Software",
-          job: 2024,
-        },
-        {
-          id: 2,
-          icon: "uim-airplay",
-          name: "Technology",
-          job: 1250,
-        },
-        {
-          id: 3,
-          icon: "uim-bag",
-          name: "Government",
-          job: 802,
-        },
-        {
-          id: 4,
-          icon: "uim-user-md",
-          name: "Finance",
-          job: 577,
-        },
-        {
-          id: 5,
-          icon: "uim-hospital",
-          name: "Construction",
-          job: 285,
-        },
-        {
-          id: 6,
-          icon: "uim-telegram-alt",
-          name: "Telecommunications",
-          job: 495,
-        },
-        {
-          id: 7,
-          icon: "uim-scenery",
-          name: "Design & Multimedia",
-          job: 1045,
-        },
-        {
-          id: 8,
-          icon: "uim-android-alt",
-          name: "Human Resources",
-          job: 1516,
-        },
-      ]
-    }
+
+    const icons = ["uim-layers-alt","uim-airplay","uim-bag","uim-user-md","uim-hospital","uim-telegram-alt","uim-scenery","uim-file",]
+    
+ 
+   
+
+
+   if (isLoading) {
+    return <div>Loading categories...</div>;
   }
 
-  const t = translatedCategories[language] || translatedCategories['pt']
+  if (error) {
+    return <div className="text-danger">Error: {error.message}</div>;
+  }
 
   return (
     <React.Fragment>
@@ -136,17 +65,17 @@ const Jobcatogaries = () => {
           </Row>
 
           <Row>
-            {(t.categories || []).map((item, key) => (
+            { data?.content?.map((item, key) => (
               <Col lg={3} md={6} className="pt-2 mt-4" key={key}>
                 <div className="popu-category-box rounded text-center">
                   <div className="popu-category-icon icons-md">
-                    <Icon icon={item.icon} className="text-primary" />
+                      <Icon  icon={icons[key]} className="text-primary" />  
                   </div>
                   <div className="popu-category-content mt-4">
                     <Link to="/joblist" className="text-dark stretched-link">
                       <h5 className="fs-18">{item.name}</h5>
                     </Link>
-                    <p className="text-muted mb-0">{item.job} {language === 'pt' ? "Vagas" : "Vancancies"}</p>
+                    <p className="text-muted mb-0">{item.jobs || 0} {language === 'pt' ? "Vagas" : "Vancancies"}</p>
                   </div>
                 </div>
               </Col>
