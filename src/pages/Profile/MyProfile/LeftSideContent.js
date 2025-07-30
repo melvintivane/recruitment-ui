@@ -8,9 +8,6 @@ import { downloadCv } from "../../../services/profileService";
 import profileImage from "../../../assets/images/user/user.png";
 
 const LeftSideContent = ({ data }) => {
-  if (!data) {
-    return <div>Loading...</div>;
-  }
 
   const handleDownloadCv = async (cvPath) => {
     try {

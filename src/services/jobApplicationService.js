@@ -1,14 +1,17 @@
 import {API_ENDPOINTS} from "../config/api";
 
 
-export const applyToVacancy = async (vacancyId, formData) => {
+export const applyToVacancy = async (vacancyId, data) => {
   if (!API_ENDPOINTS?.JOB_APPLICATIONS) {
     throw new Error("Endpoint de candidaturas não configurado");
   }
   
   const response = await fetch(`${API_ENDPOINTS.JOB_APPLICATIONS}/${vacancyId}/apply`, {
     method: "POST",
-    body: formData,
+    headers: {  
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {

@@ -231,10 +231,6 @@ const RightSideContent = ({ data }) => {
     return date.getFullYear();
   };
 
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <React.Fragment>
       <Col lg={8}>

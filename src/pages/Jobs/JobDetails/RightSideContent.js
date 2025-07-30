@@ -1,15 +1,18 @@
-import { useState } from "react";
 import { Card, CardBody, Badge } from "reactstrap";
 import { Link } from "react-router-dom";
-import JobApplicationModal from "../../../components/JobApplicationModal";
 
 //Import Images
 import jobImages2 from "../../../assets/images/featured-job/img-02.png";
-import { translateCareerLevel, translateJobType } from "../../../utils/jobTranslations";
+import {
+  translateCareerLevel,
+  translateJobType,
+} from "../../../utils/jobTranslations";
+import { applyToVacancy } from "../../../services/jobApplicationService";
+import { useAuth } from "../../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 const RightSideContent = ({ job }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const toggleModal = () => setModalOpen(!modalOpen);
+  const { user } = useAuth();
 
   if (!job) return null;
 
@@ -23,10 +26,32 @@ const RightSideContent = ({ job }) => {
     const postedDate = new Date(dateString);
     const now = new Date();
     const diffHours = Math.floor((now - postedDate) / (1000 * 60 * 60));
-    
-    if (diffHours < 24) return `Publicado há ${diffHours} hora${diffHours !== 1 ? 's' : ''}`;
+
+    if (diffHours < 24)
+      return `Publicado há ${diffHours} hora${diffHours !== 1 ? "s" : ""}`;
     const diffDays = Math.floor(diffHours / 24);
-    return `Publicado há ${diffDays} dia${diffDays !== 1 ? 's' : ''}`;
+    return `Publicado há ${diffDays} dia${diffDays !== 1 ? "s" : ""}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!user?.candidateId) {
+      toast.info("Usuário não autenticado");
+      return;
+    }
+
+    try {
+      const applicationDto = {
+        candidateId: user.candidateId,
+      };
+
+      await applyToVacancy(job.id, applicationDto);
+
+      toast.success("Candidatura enviada com sucesso!");
+    } catch (err) {
+      toast.error(err.message || "Erro ao enviar candidatura");
+    }
   };
 
   return (
@@ -50,7 +75,9 @@ const RightSideContent = ({ job }) => {
                 <div className="ms-3">
                   <h6 className="fs-14 mb-2">Experiência</h6>
                   <p className="text-muted mb-0">
-                    {job.yearsOfExperience || '0'}-{job.yearsOfExperience ? job.yearsOfExperience + 2 : '3'} Anos
+                    {job.yearsOfExperience || "0"}-
+                    {job.yearsOfExperience ? job.yearsOfExperience + 2 : "3"}{" "}
+                    Anos
                   </p>
                 </div>
               </div>
@@ -61,8 +88,12 @@ const RightSideContent = ({ job }) => {
                 <div className="ms-3">
                   <h6 className="fs-14 mb-2">Localização</h6>
                   <p className="text-muted mb-0">
-                    {job.city || job.state || job.country || 'Remoto'}
-                    {job.remoteAllowed && <Badge color="success" className="ms-2">Remoto</Badge>}
+                    {job.city || job.state || job.country || "Remoto"}
+                    {job.remoteAllowed && (
+                      <Badge color="success" className="ms-2">
+                        Remoto
+                      </Badge>
+                    )}
                   </p>
                 </div>
               </div>
@@ -73,9 +104,9 @@ const RightSideContent = ({ job }) => {
                 <div className="ms-3">
                   <h6 className="fs-14 mb-2">Salário Oferecido</h6>
                   <p className="text-muted mb-0">
-                    {job.minSalary && job.maxSalary 
+                    {job.minSalary && job.maxSalary
                       ? formatSalary(job.minSalary, job.maxSalary)
-                      : 'A combinar'}
+                      : "A combinar"}
                   </p>
                 </div>
               </div>
@@ -86,7 +117,7 @@ const RightSideContent = ({ job }) => {
                 <div className="ms-3">
                   <h6 className="fs-14 mb-2">Qualificação</h6>
                   <p className="text-muted mb-0">
-                    {job.degreeRequired || 'Não especificado'}
+                    {job.degreeRequired || "Não especificado"}
                   </p>
                 </div>
               </div>
@@ -127,15 +158,14 @@ const RightSideContent = ({ job }) => {
           </ul>
           <div className="mt-3">
             <Link
-              to="#applyNow"
-              onClick={toggleModal}
+              to="#"
+              onClick={handleSubmit}
               className="btn btn-primary btn-hover w-100 mt-2"
             >
               Candidatar-se <i className="uil uil-arrow-right"></i>
             </Link>
             <Link
               to="/candidatelist"
-              onClick={toggleModal}
               className="btn btn-primary btn-hover w-100 mt-2"
             >
               Ver Candidatos <i className="uil uil-arrow-right"></i>
@@ -154,17 +184,17 @@ const RightSideContent = ({ job }) => {
         <Card className="company-profile mt-4">
           <CardBody className="p-4">
             <div className="text-center">
-              <img 
-                src={job.company.logo || jobImages2} 
-                alt={job.company.name} 
-                className="img-fluid rounded-3" 
-                style={{ maxHeight: '80px' }}
+              <img
+                src={job.company.logo || jobImages2}
+                alt={job.company.name}
+                className="img-fluid rounded-3"
+                style={{ maxHeight: "80px" }}
               />
 
               <div className="mt-4">
                 <h6 className="fs-17 mb-1">{job.company.name}</h6>
                 <p className="text-muted">
-                  Desde {job.company.foundedYear || 'N/A'}
+                  Desde {job.company.foundedYear || "N/A"}
                 </p>
               </div>
             </div>
@@ -175,7 +205,7 @@ const RightSideContent = ({ job }) => {
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Telefone</h6>
                     <p className="text-muted fs-14 mb-0">
-                      {job.company.mobileNumber || 'N/A'}
+                      {job.company.mobileNumber || "N/A"}
                     </p>
                   </div>
                 </div>
@@ -186,7 +216,7 @@ const RightSideContent = ({ job }) => {
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Email</h6>
                     <p className="text-muted fs-14 mb-0">
-                      {job.company.email || 'N/A'}
+                      {job.company.email || "N/A"}
                     </p>
                   </div>
                 </div>
@@ -198,10 +228,16 @@ const RightSideContent = ({ job }) => {
                     <h6 className="fs-14 mb-2">Website</h6>
                     <p className="text-muted fs-14 text-break mb-0">
                       {job.company.website ? (
-                        <a href={job.company.website} target="_blank" rel="noopener noreferrer">
-                          {job.company.website.replace(/^https?:\/\//, '')}
+                        <a
+                          href={job.company.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {job.company.website.replace(/^https?:\/\//, "")}
                         </a>
-                      ) : 'N/A'}
+                      ) : (
+                        "N/A"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -212,9 +248,13 @@ const RightSideContent = ({ job }) => {
                   <div className="ms-3">
                     <h6 className="fs-14 mb-2">Localização</h6>
                     <p className="text-muted fs-14 mb-0">
-                      {[job.company.city, job.company.state, job.company.country]
+                      {[
+                        job.company.city,
+                        job.company.state,
+                        job.company.country,
+                      ]
                         .filter(Boolean)
-                        .join(', ')}
+                        .join(", ")}
                     </p>
                   </div>
                 </div>
@@ -236,19 +276,14 @@ const RightSideContent = ({ job }) => {
         <h6 className="fs-16 mb-3">Localização da Vaga</h6>
         <iframe
           title={job.title}
-          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7179.076962023161!2d32.583142!3d-25.968347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee6bcb6286d3971%3A0x21497f5c37e40b66!2sPra%C3%A7a%20da%20OMM!5e0!3m2!1spt-PT!2smz!4v1713262686123!5m2!1spt-PT!2smz&q=${encodeURIComponent(job.city || job.state || job.country || '')}`}
+          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7179.076962023161!2d32.583142!3d-25.968347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee6bcb6286d3971%3A0x21497f5c37e40b66!2sPra%C3%A7a%20da%20OMM!5e0!3m2!1spt-PT!2smz!4v1713262686123!5m2!1spt-PT!2smz&q=${encodeURIComponent(
+            job.city || job.state || job.country || ""
+          )}`}
           style={{ width: `100%`, height: `250px` }}
           allowFullScreen=""
           loading="lazy"
         ></iframe>
       </div>
-
-      <JobApplicationModal 
-        isOpen={modalOpen} 
-        toggle={toggleModal} 
-        jobId={job.id}
-        jobTitle={job.title}
-      />
     </div>
   );
 };
