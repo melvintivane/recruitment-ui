@@ -90,32 +90,13 @@ const LeftSideContent = ({ data }) => {
                       <i className="uil uil-file"></i>
                     </div>
                     <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Curriculo.pdf</h6>
+                      <h6 className="fs-16 mb-0">Curriculum.pdf</h6>
                       <p className="text-muted mb-0">1.25 MB</p>
                     </div>
                     <div className="ms-auto">
-                      <Link to="#" download className="fs-20 text-muted">
+                      <Link onClick={() => handleDownloadCv(data.cvPath)} to="#" download className="fs-20 text-muted">
                         <i className="uil uil-import"></i>
                       </Link>
-                    </div>
-                  </div>
-                </li>
-                <li>
-                  <div className="profile-document-list d-flex align-items-center mt-4 ">
-                    <div className="icon flex-shrink-0">
-                      <i className="uil uil-file"></i>
-                    </div>
-                    <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Carta.pdf</h6>
-                      <p className="text-muted mb-0">1.25 MB</p>
-                    </div>
-                    <div className="ms-auto">
-                      <button
-                        onClick={() => handleDownloadCv(data.cvPath)}
-                        className="fs-20 text-muted"
-                      >
-                        <i className="uil uil-import"></i>
-                      </button>
                     </div>
                   </div>
                 </li>

@@ -11,6 +11,7 @@ export const API_ENDPOINTS = {
   BLOGS_CATEGORIES : `${API_BASE_URL}/blog-categories`,
   EMPLOYERS : `${API_BASE_URL}/employers`,
   CV_DOWNLOAD: `${API_BASE_URL}/cv/download`,
+  API_BASE_URL: API_BASE_URL,
 };
 
 export default API_ENDPOINTS;

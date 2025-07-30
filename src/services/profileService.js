@@ -23,19 +23,45 @@ export const getCandidateById = async (candidateId) => {
   return response.json();
 };
 
-export const updateProfile = async (candidateId, userData) => {
-  const response = await fetch(`${API_ENDPOINTS.CANDIDATES}/${candidateId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
+export const updateProfile = async (
+  candidateId,
+  userData,
+  imageFile = null,
+  cvFile = null
+) => {
+  const formData = new FormData();
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || "Erro ao atualizar candidato");
+  formData.append(
+    "dto",
+    new Blob([JSON.stringify(userData)], {
+      type: "application/json",
+    })
+  );
+
+  if (imageFile) {
+    formData.append("imageFile", imageFile);
+  }
+  if (cvFile) {
+    formData.append("cvFile", cvFile);
   }
 
-  return await response.json();
+  try {
+    const response = await fetch(`${API_ENDPOINTS.CANDIDATES}/${candidateId}`, {
+      method: "PUT",
+      // headers: {
+      //   'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      // },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || "Erro ao atualizar candidato");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Erro na requisição:", error);
+    throw error;
+  }
 };
