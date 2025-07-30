@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 
 // import images
-import userImage2 from "../../../assets/images/user/img-02.jpg";
+import userImage2 from "../../../assets/images/user/user.png";
 
 const Images = () => {
   return (

@@ -18,7 +18,7 @@ import classnames from "classnames";
 import { useLanguage } from "../../../context/LanguageContext";
 
 //Images Import
-import userImage2 from "../../../assets/images/user/img-02.jpg";
+import userImage2 from "../../../assets/images/user/user.png";
 
 const RightSideContent = ({ data }) => {
   const {language} = useLanguage();

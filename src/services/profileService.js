@@ -1,5 +1,18 @@
 import API_ENDPOINTS from "../config/api";
 
+export const downloadCv = async (filename) => {
+  const response = await fetch(`${API_ENDPOINTS.CV_DOWNLOAD}/${filename}`, {
+    method: "GET",
+  });
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(errorBody || "Failed to download CV");
+  }
+
+  return response.blob();
+};
+
 export const getCandidateById = async (candidateId) => {
   const response = await fetch(`${API_ENDPOINTS.CANDIDATES}/${candidateId}`);
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
 
 // Importar imagem do usuário
-import userImage3 from "../../../assets/images/user/img-03.jpg";
+import userImage3 from "../../../assets/images/user/user.png";
 
 const BlogColumn = ({data}) => {
   const {language} = useLanguage();

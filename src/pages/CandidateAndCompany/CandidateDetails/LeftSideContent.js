@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, CardBody, Col } from "reactstrap";
 
 // Importar imagem do usuário
-import userImage1 from "../../../assets/images/user/img-01.jpg";
+import userImage1 from "../../../assets/images/user/user.png";
 
 import { useLanguage } from "../../../context/LanguageContext";
 
