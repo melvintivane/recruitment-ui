@@ -23,7 +23,46 @@ const MyProfile = () => {
     staleTime: 60 * 1000,
     retry: 1,
   });
-  
+
+  if (isLoading) {
+    return (
+      <>
+        <Section />
+        <section className="section">
+          <Container>
+            <div className="text-center py-5">
+              <div
+                className="spinner-grow text-primary"
+                style={{ width: "3rem", height: "3rem" }}
+                role="status"
+              >
+                <span className="visually-hidden">Carregando...</span>
+              </div>
+              <p className="mt-3">Carregando detalhes do perfil...</p>
+            </div>
+          </Container>
+        </section>
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <Section />
+        <section className="section">
+          <Container>
+            <div className="text-center py-5">
+              <p className="mt-3 text-danger">
+                Erro ao carregar detalhes do perfil: {error.message}
+              </p>
+            </div>
+          </Container>
+        </section>
+      </>
+    );
+  }
+
   return (
     <React.Fragment>
       <Section />

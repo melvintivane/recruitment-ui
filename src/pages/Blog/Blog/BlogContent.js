@@ -4,11 +4,7 @@ import { Link } from "react-router-dom";
 import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
 
 // Imagens dos usuários
-import userImage1 from "../../../assets/images/user/img-01.jpg";
-
-// Imagens do blog
-import blogImage4 from "../../../assets/images/blog/img-04.jpg";
-import blogImage5 from "../../../assets/images/blog/img-05.jpg";
+import userImage1 from "../../../assets/images/user/user.png";
 
 import { useLanguage } from "../../../context/LanguageContext";
 import { getAllBlogs } from "../../../services/blogService";
@@ -74,7 +70,7 @@ const BlogContent = () => {
               <div className="post-preview overflow-hidden rounded-3 mb-3 mb-lg-0">
                 <Link to="/blogdetails">
                   <img
-                    src={blogImage4}
+                    src={userImage1}
                     alt="Blog"
                     className="img-fluid blog-img"
                   />
@@ -134,7 +130,7 @@ const BlogContent = () => {
                   <div className="post-preview overflow-hidden mb-3 rounded-3">
                     <Link to={`/blogdetails/${blogContentDetails.id}`}>
                       <img
-                        src={blogImage5}
+                        src={userImage1}
                         alt=""
                         className="img-fluid blog-img"
                       />

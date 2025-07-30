@@ -1,11 +1,10 @@
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { Col, Row } from "reactstrap";
+import { getAllVacancies } from "../../../services/vacancyService";
 
 //jobImages
-import jobImage1 from "../../../assets/images/featured-job/img-01.png";
-import jobImage2 from "../../../assets/images/featured-job/img-02.png";
-import jobImage3 from "../../../assets/images/featured-job/img-03.png";
 import jobImage4 from "../../../assets/images/featured-job/img-04.png";
 import JobApplicationModal from "../../../components/JobApplicationModal";
 import { useLanguage } from "../../../context/LanguageContext";
@@ -15,7 +14,29 @@ const RecentJobs = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => setModalOpen(!modalOpen);
 
-  const recentJob = [
+   const [pagination, setPagination] = useState({
+    page: 0,
+    size: 4,
+  });
+
+  // Fetch vacancies query
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["vacancies", pagination.page, pagination.size],
+    queryFn: () =>
+      getAllVacancies({
+        page: pagination.page,
+        size: pagination.size,
+        /*search: filters.searchQuery,
+        location: filters.location,
+        category: filters.jobCategoryId,
+        yearsOfExperience: filters.experienceRange,
+        jobType: filters.jobType,
+        timePeriod: filters.timePeriod,*/
+      }),
+    keepPreviousData: true,
+  });
+
+  /*const recentJob = [
     {
       id: 1,
       companyImg: jobImage1,
@@ -104,11 +125,19 @@ const RecentJobs = () => {
       experience: "0 - 1 ano",
       Notes: null,
     },
-  ];
+  ];*/
+
+  if (isLoading) {
+    return <div>Loading vacancies...</div>;
+  }
+
+  if (error) {
+    return <div className="text-danger">Error: {error.message}</div>;
+  }
 
   return (
     <React.Fragment>
-      {recentJob.map((recentJobDetails, key) => (
+      {data?.content?.map((recentJobDetails, key) => (
         <div
           key={key}
           className={
@@ -126,9 +155,9 @@ const RecentJobs = () => {
             <Row className="align-items-center">
               <Col md={2}>
                 <div className="text-center mb-4 mb-md-0">
-                  <Link to="/companydetails">
+                  <Link to={`/companydetails/${recentJobDetails.company.id}`}>
                     <img
-                      src={recentJobDetails.companyImg}
+                      src={recentJobDetails.picture || jobImage4}
                       alt=""
                       className="img-fluid rounded-3"
                     />
@@ -139,12 +168,12 @@ const RecentJobs = () => {
               <Col md={3}>
                 <div className="mb-2 mb-md-0">
                   <h5 className="fs-18 mb-1">
-                    <Link to="/jobdetails" className="text-dark">
-                      {recentJobDetails.jobDescription}
+                    <Link to={`/jobdetails/${recentJobDetails.id}`} className="text-dark">
+                      {recentJobDetails.title}
                     </Link>
                   </h5>
                   <p className="text-muted fs-14 mb-0">
-                    {recentJobDetails.companyName}
+                    {recentJobDetails.company.name}
                   </p>
                 </div>
               </Col>
@@ -154,7 +183,7 @@ const RecentJobs = () => {
                   <div className="flex-shrink-0">
                     <i className="mdi mdi-map-marker text-primary me-1"></i>
                   </div>
-                  <p className="text-muted mb-0">{recentJobDetails.location}</p>
+                  <p className="text-muted mb-0">{recentJobDetails.location || language === 'pt' ? "Maputo,Moçambique" : "Maputo,Mozambique"}</p>
                 </div>
               </Col>
 
@@ -162,7 +191,7 @@ const RecentJobs = () => {
                 <div>
                   <p className="text-muted mb-2">
                     <span className="text-primary">$</span>
-                    {recentJobDetails.salary}
+                    {recentJobDetails.minSalary}-{recentJobDetails.maxSalary}/m
                   </p>
                 </div>
               </Col>
@@ -171,16 +200,16 @@ const RecentJobs = () => {
                 <div>
                   <span
                     className={
-                      recentJobDetails.fullTime === true
+                      recentJobDetails.type === "FULL_TIME"
                         ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
-                        : recentJobDetails.partTime === true
+                        : recentJobDetails.type === "PART_TIME"
                         ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
-                        : recentJobDetails.freelancer === true
+                        : recentJobDetails.type === "FREELANCE"
                         ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
                         : ""
                     }
                   >
-                    {recentJobDetails.timing}
+                    {recentJobDetails.type}
                   </span>
 
                   {(recentJobDetails.badges || []).map((badgeInner, key) => (
@@ -203,21 +232,21 @@ const RecentJobs = () => {
                 <div>
                   <p className="text-muted mb-0">
                     <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>{" "}
-                    {recentJobDetails.experience}
+                    {recentJobDetails.yearsOfExperience || "N/A"} {recentJobDetails.yearsOfExperience ? (language === 'pt' ? "anos" : "years") : ""}
                   </p>
                 </div>
               </Col>
 
               <Col lg={6} md={5}>
                 {}
-                <div>
+                {/*<div>
                   <p className="text-muted mb-0">
                     <span className="text-dark">
                       {recentJobDetails.Notes === null ? "" : language === 'pt' ? "Notas:" : "Notes:"}
                     </span>
                     {recentJobDetails.Notes}{" "}
                   </p>
-                </div>
+                </div>*/}
               </Col>
 
               <Col lg={2} md={3}>

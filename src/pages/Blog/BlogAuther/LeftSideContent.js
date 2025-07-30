@@ -6,30 +6,11 @@ import { Link } from "react-router-dom";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-//Import Images
-import UserImage3 from "../../../assets/images/user/img-03.jpg";
-
 //blogImages
-import blogImages1 from "../../../assets/images/blog/img-01.jpg";
-import blogImages2 from "../../../assets/images/blog/img-02.jpg";
-import blogImages3 from "../../../assets/images/blog/img-03.jpg";
-import blogImages4 from "../../../assets/images/blog/img-04.jpg";
-import blogImages5 from "../../../assets/images/blog/img-05.jpg";
-import blogImages6 from "../../../assets/images/blog/img-06.jpg";
-import blogImages7 from "../../../assets/images/blog/img-07.jpg";
-import blogImages8 from "../../../assets/images/blog/img-08.jpg";
-import blogImages10 from "../../../assets/images/blog/img-10.jpg";
+import image from "../../../assets/images/user/user.png";
 
 const images = [
-  blogImages1,
-  blogImages2,
-  blogImages3,
-  blogImages4,
-  blogImages5,
-  blogImages6,
-  blogImages7,
-  blogImages8,
-  blogImages10,
+  image
 ];
 
 const LeftSideContent = () => {
@@ -58,7 +39,7 @@ const LeftSideContent = () => {
               <h5 className="blog-title mb-4">Sobre Mim</h5>
               <div className="text-center">
                 <img
-                  src={UserImage3}
+                  src={image}
                   alt=""
                   className="avatar-lg img-thumbnail mb-4 rounded-circle"
                 />
@@ -108,7 +89,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages1}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(0);
@@ -121,7 +102,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages2}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(1);
@@ -134,7 +115,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages3}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(2);
@@ -147,7 +128,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages4}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(3);
@@ -160,7 +141,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages5}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(4);
@@ -173,7 +154,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages6}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(5);
@@ -186,7 +167,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages7}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(6);
@@ -199,7 +180,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages8}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(7);
@@ -212,7 +193,7 @@ const LeftSideContent = () => {
                 <Col sm={4}>
                   <Link to="#" className="image-popup">
                     <img
-                      src={blogImages10}
+                      src={image}
                       onClick={() => {
                         setisGallery(true);
                         setphotoIndex(8);

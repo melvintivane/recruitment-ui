@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import { Col, Row, Modal, ModalBody, Input, Label, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import userImage1 from "../../../assets/images/user/img-01.jpg";
-import userImage2 from "../../../assets/images/user/img-02.jpg";
-import userImage3 from "../../../assets/images/user/img-03.jpg";
-import userImage4 from "../../../assets/images/user/img-04.jpg";
-import userImage5 from "../../../assets/images/user/img-05.jpg";
-import userImage6 from "../../../assets/images/user/img-06.jpg";
-import userImage7 from "../../../assets/images/user/img-07.jpg";
-import userImage8 from "../../../assets/images/user/img-08.jpg";
-import userImage9 from "../../../assets/images/user/img-09.jpg";
+import userImage1 from "../../../assets/images/user/user.png";
 
 const CandidateGridDetails = () => {
   //Apply Now Model
@@ -33,7 +25,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 2,
-      userImg: userImage2,
+      userImg: userImage1,
       candidateName: "Gabriel Palmer",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
@@ -45,7 +37,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 3,
-      userImg: userImage3,
+      userImg: userImage1,
       candidateName: "James Lemire",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-danger",
@@ -59,7 +51,7 @@ const CandidateGridDetails = () => {
 
     {
       id: 4,
-      userImg: userImage4,
+      userImg: userImage1,
       candidateName: "Rebecca Swartz",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
@@ -71,7 +63,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 5,
-      userImg: userImage5,
+      userImg: userImage1,
       candidateName: "Betty Richards",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
@@ -83,7 +75,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 6,
-      userImg: userImage6,
+      userImg: userImage1,
       candidateName: "Jeffrey Montgomery",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
@@ -95,7 +87,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 7,
-      userImg: userImage7,
+      userImg: userImage1,
       candidateName: "Brooke Hayes",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
@@ -107,7 +99,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 8,
-      userImg: userImage8,
+      userImg: userImage1,
       candidateName: "Cerys Woods",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-danger",
@@ -119,7 +111,7 @@ const CandidateGridDetails = () => {
     },
     {
       id: 9,
-      userImg: userImage9,
+      userImg: userImage1,
       candidateName: "Olivia Murphy",
       candidateStatusClassName:
         "profile-active position-absolute badge rounded-circle bg-success",
