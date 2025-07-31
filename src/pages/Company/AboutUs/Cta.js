@@ -19,14 +19,8 @@ const Cta = () => {
                 "Get started with Recruitment, which can provide everything you need to generate awareness, attract traffic, and connect."}
               </p>
               <div className="mt-4">
-                <Link to="#" className="btn btn-primary btn-hover mt-2">
+                <Link to="/contact" className="btn btn-primary btn-hover mt-2">
                   <i className="uil uil-rocket me-1"></i> {language === 'pt' ? "Comece Agora" : "Get Started"}
-                </Link>
-                <Link
-                  to="#"
-                  className="btn btn-outline-primary btn-hover ms-sm-1 mt-2"
-                >
-                  <i className="uil uil-capsule me-1"></i> {language === 'pt' ? "Teste Gratuito" : "Free Trial"}
                 </Link>
               </div>
             </div>
