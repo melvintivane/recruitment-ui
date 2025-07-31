@@ -5,9 +5,12 @@ import Counter from "../../../pages/Company/AboutUs/Counter";
 import Features from "../../../pages/Company/AboutUs/Features";
 import Cta from "../../../pages/Company/AboutUs/Cta";
 import CompanyTestimonal from "../../../pages/Company/AboutUs/CompanyTestimonal";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const AboutUs = () => {
-  document.title = "About Us | Recruitment - Job Listing | MobiSolutions";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Sobre Nós" : "About Us";
+
   return (
     <React.Fragment>
       <Section />

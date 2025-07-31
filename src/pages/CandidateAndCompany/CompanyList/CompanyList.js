@@ -2,9 +2,12 @@ import React from "react";
 import { Container } from "reactstrap";
 import CompanyDetails from "./CompanyDetails";
 import Section from "./Section";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const CompanyList = () => {
-  document.title = "Company List | Recruitment - Job Listing | MobiSolutions";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Lista de Empresas" : "Company List";
+
   return (
     <React.Fragment>
       <Section />

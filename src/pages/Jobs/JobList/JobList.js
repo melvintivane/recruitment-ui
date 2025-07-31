@@ -7,9 +7,11 @@ import JobVacancyList from "./JobVacancyList";
 import Sidebar from "./Sidebar";
 import { useQuery } from "react-query";
 import { getJobCategories } from "../../../services/vacancyService";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const JobList = () => {
-  document.title = "Listagem de Vagas";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Lista de Vagas" : "Job List";
 
   const initialFilters = {
     searchQuery: "",
