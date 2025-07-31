@@ -1,9 +1,12 @@
 import React from "react";
 import Section from "../Contact/Section";
 import ContactContent from "../Contact/ContactContent";
+import { useLanguage } from "../../context/LanguageContext";
 
 const Contact = () => {
-  document.title = "Contacto";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Contacto" : "Contact";
+
   return (
     <React.Fragment>
       <Section />

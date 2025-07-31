@@ -1,10 +1,12 @@
 import React from "react";
 import Section from "./Section";
 import PrivacyAndPolicyPage from "../../Company/PrivacyAndPolicy/PrivacyAndPolicyPage";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const PrivacyAndPolicy = () => {
-  document.title =
-    "Privacy & Policy | Recruitment - Job Listing | MobiSolutions";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Política de Privacidade" : "Privacy Policy";
+  
   return (
     <React.Fragment>
       <Section />

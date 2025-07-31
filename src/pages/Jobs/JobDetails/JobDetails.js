@@ -7,9 +7,11 @@ import JobVacancyPost from "./JobVacancyPost";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
 import { getVacancyById } from "../../../services/vacancyService";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const JobDetails = () => {
-  document.title = "Detalhes da Vaga";
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Detalhes da Vaga" : "Job Details";
   const { id } = useParams();
 
   const {

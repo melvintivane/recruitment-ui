@@ -6,9 +6,12 @@ import Section from "./Section";
 import { getCandidateById } from "../../../services/profileService";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const MyProfile = () => {
-  document.title = "My Profile | Recruitment - Job Listing | MobiSolutions";
+  const { language } = useLanguage();
+  document.title =
+    language === "pt" ? "Perfil Profissional" : "Professional Profile";
 
   const id = useParams().id || localStorage.getItem("candidateId");
 
