@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
 import CountryOptions from "../SubSection/CountryOptions";
@@ -8,22 +8,56 @@ import JobType from "../SubSection/JobType";
 
 const Section = () => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
+  
+  // Estados para os campos de pesquisa
+  const [searchParams, setSearchParams] = useState({
+    jobTitle: "",
+    country: "",
+    jobType: ""
+  });
+
   const sectionText = {
     pt: {
       titleFirstWords: "Explore As Nossas",
       titleSecondWords: "10.000+",
       titleThirdWords: "Vagas Abertas",
-      paragraph: "Encontre empregos, crie currículos rastreáveis e valorize suas candidaturas."
+      paragraph:
+        "Encontre empregos, crie currículos rastreáveis e valorize suas candidaturas.",
     },
     en: {
       titleFirstWords: "Explore Our",
       titleSecondWords: "10,000+",
       titleThirdWords: "Job Openings",
-      paragraph: "Find jobs, build trackable résumés, and enhance your applications."
-    }
-  }
+      paragraph:
+        "Find jobs, build trackable résumés, and enhance your applications.",
+    },
+  };
 
-  const t = sectionText[language] || sectionText['pt']
+  // Manipulador de mudança genérico para os campos
+  const handleInputChange = (field, value) => {
+    setSearchParams(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  // Manipulador de submissão do formulário
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Aqui você pode:
+    // 1. Fazer uma chamada API para buscar vagas
+    // 2. Navegar para uma página de resultados com os parâmetros
+    // 3. Filtrar dados locais
+    
+    // Exemplo: navegar para a página de resultados com os parâmetros
+    navigate(`/jobs?title=${encodeURIComponent(searchParams.jobTitle)}&country=${encodeURIComponent(searchParams.country)}&type=${encodeURIComponent(searchParams.jobType)}`);
+    
+    // Ou alternativamente, você poderia usar um contexto ou estado global para armazenar os parâmetros
+  };
+
+  const t = sectionText[language] || sectionText["pt"];
   return (
     <React.Fragment>
       <section className="bg-home" id="home">
@@ -34,35 +68,44 @@ const Section = () => {
               <div className="text-center text-white mb-5">
                 <h1 className="display-5 fw-semibold mb-3">
                   {t.titleFirstWords}{" "}
-                  <span className="text-warning fw-bold">{t.titleSecondWords} </span>
+                  <span className="text-warning fw-bold">
+                    {t.titleSecondWords}{" "}
+                  </span>
                   {t.titleThirdWords}
                 </h1>
-                <p className="fs-17">
-                  {t.paragraph}
-                </p>
+                <p className="fs-17">{t.paragraph}</p>
               </div>
             </Col>
           </Row>
 
-          <Form action="#">
+          <Form onSubmit={handleSubmit}>
             <div className="registration-form">
               <Row className="g-0">
                 <Col lg={3}>
                   <div className="filter-search-form filter-border mt-3 mt-lg-0">
                     <i className="uil uil-briefcase-alt"></i>
-                    <JobSearch />
+                    <JobSearch 
+                      value={searchParams.jobTitle}
+                      onChange={(value) => handleInputChange('jobTitle', value)}
+                    />
                   </div>
                 </Col>
                 <Col lg={3}>
                   <div className="filter-search-form filter-border mt-3 mt-lg-0">
-                    <i className="uil uil-map-marker "></i>
-                    <CountryOptions />
+                    <i className="uil uil-map-marker"></i>
+                    <CountryOptions 
+                      value={searchParams.country}
+                      onChange={(value) => handleInputChange('country', value)}
+                    />
                   </div>
                 </Col>
                 <Col lg={3}>
                   <div className="filter-search-form mt-3 mt-lg-0">
                     <i className="uil uil-clipboard-notes"></i>
-                    <JobType />
+                    <JobType 
+                      value={searchParams.jobType}
+                      onChange={(value) => handleInputChange('jobType', value)}
+                    />
                   </div>
                 </Col>
                 <Col lg={3}>
@@ -79,24 +122,31 @@ const Section = () => {
             </div>
           </Form>
 
+
           <Row>
             <Col lg={12}>
               <ul className="treding-keywords list-inline mb-0 text-white-50 mt-4 mt-lg-3 text-center">
                 <li className="list-inline-item text-white">
                   <i className="mdi mdi-tag-multiple-outline text-warning fs-18"></i>{" "}
-                  {language === 'pt' ? "Palavras-chave em alta:" : "Trending Keywords:"}
+                  {language === "pt"
+                    ? "Palavras-chave em alta:"
+                    : "Trending Keywords:"}
                 </li>
                 <li className="list-inline-item">
                   <Link to="#">Design,</Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">{language === 'pt' ? "Desenvolvimento," : "Development,"}</Link>
+                  <Link to="#">
+                    {language === "pt" ? "Desenvolvimento," : "Development,"}
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">{language === 'pt' ? "Gestor," : "Manager,"}</Link>
+                  <Link to="#">
+                    {language === "pt" ? "Gestor," : "Manager,"}
+                  </Link>
                 </li>
                 <li className="list-inline-item">
-                  <Link to="#">{language === 'pt' ? "Sênior" : "Senior"}</Link>
+                  <Link to="#">{language === "pt" ? "Sênior" : "Senior"}</Link>
                 </li>
               </ul>
             </Col>
