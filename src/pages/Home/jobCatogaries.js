@@ -63,8 +63,8 @@ const Jobcatogaries = () => {
                 </h3>
                 <p className="text-muted">
                   {language === "pt"
-                    ? "Publique uma vaga para nos contar sobre o seu projeto. Iremos rapidamente conectá-lo  com os candidatos ideais."
-                    : "Post a job to tell us about your project. We'll quickly connect you with the ideal candidates."}
+                    ? "Candidate-se às vagas que combinam com o seu perfil e dê o próximo passo na sua carreira profissional."
+                    : "Apply to jobs that match your profile and take the next step in your professional career."}
                 </p>
               </div>
             </Col>

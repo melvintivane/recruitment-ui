@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { CardBody, Col, Pagination, PaginationItem, PaginationLink, Row } from "reactstrap";
+import {
+  CardBody,
+  Col,
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+  Row,
+} from "reactstrap";
 import { getAllCandidates } from "../../../services/candidateService";
 
-
-//Import images
 import userImage1 from "../../../assets/images/user/user.png";
 import { useLanguage } from "../../../context/LanguageContext";
 
@@ -17,8 +22,7 @@ const CandidateDetails = () => {
     size: 10,
   });
 
-  // Fetch vacancies query
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["vacancies", pagination.page, pagination.size],
     queryFn: () =>
       getAllCandidates({
@@ -40,212 +44,41 @@ const CandidateDetails = () => {
   };
 
   if (isLoading) {
-    return <div>Loading vacancies...</div>;
+    return (
+      <div className="text-center py-5">
+        <div
+          className="spinner-grow text-primary"
+          style={{ width: "3rem", height: "3rem" }}
+          role="status"
+        >
+          <span className="visually-hidden">
+            {language === "pt" ? "Carregando..." : "Loading..."}
+          </span>
+        </div>
+        <p className="mt-3">
+          {language === "pt"
+            ? "Carregando lista de vagas..."
+            : "Loading vacancy list..."}
+        </p>
+      </div>
+    );
   }
 
-  if (error) {
-    return <div className="text-danger">Error: {error.message}</div>;
+  if (isError) {
+    return (
+      <div className="text-center py-5">
+        <p className="mt-3 text-danger">
+          {language === "pt"
+            ? "Erro ao carregar lista de vagas"
+            : "Error loading vacancy list"}
+        </p>
+      </div>
+    );
   }
-  /*const candidateDetails = [
-    {
-      id: 1,
-      userImg: userImage1,
-      candidateName: "Charles Dickens",
-      candidateDesignation: "Project Manager",
-      location: "Oakridge Lane Richardson",
-      salary: "$650 / hours",
-      rating: 4.8,
-      ratingClass: "badge bg-success ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Leader",
-          classname: "success"
-        },
-        {
-          id: 2,
-          badgeName: "Manager",
-          classname: "primary"
-        },
-        {
-          id: 2,
-          badgeName: "Developer",
-          classname: "warning"
-        }
-      ]
-    },
-    {
-      id: 2,
-      userImg: userImage2,
-      candidateName: "Gabriel Palmer",
-      candidateDesignation: "HTML Developer",
-      location: "Oakridge Lane California",
-      salary: "$250 / hours",
-      rating: 3.4,
-      ratingClass: "badge bg-warning ms-1",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Design",
-          classname: "info"
-        },
-        {
-          id: 2,
-          badgeName: "Developer",
-          classname: "primary"
-        }
-      ]
-    },
-    {
-      id: 3,
-      userImg: userImage3,
-      candidateName: "Rebecca Swartz ",
-      candidateDesignation: "Graphic Designer",
-      location: "Oakridge Lane Richardson",
-      salary: "$380 / hours",
-      rating: 4.3,
-      ratingClass: "badge bg-success ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Design",
-          classname: "success"
-        },
-        {
-          id: 2,
-          badgeName: "Developer",
-          classname: "primary"
-        }
-      ]
-    },
-    {
-      id: 4,
-      userImg: userImage4,
-      candidateName: "Betty Richards",
-      candidateDesignation: "Education Training",
-      location: "Oakridge Lane Richardson",
-      salary: "$650 / hours",
-      rating: 4.5,
-      ratingClass: "badge bg-success ms-1",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Trainer",
-          classname: "warning"
-        },
-        {
-          id: 2,
-          badgeName: "Adobe illustrator",
-          classname: "info"
-        }
-      ]
-    },
-    {
-      id: 5,
-      userImg: userImage5,
-      candidateName: "Jeffrey Montgomery",
-      candidateDesignation: "Restaurant Team Member",
-      location: "Oakridge Lane Richardson",
-      salary: "$125 / hours",
-      rating: 4.9,
-      ratingClass: "badge bg-success ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Trainer",
-          classname: "primary"
-        },
-        {
-          id: 2,
-          badgeName: "Adobe illustrator",
-          classname: "warning"
-        }
-      ]
-    },
-    {
-      id: 6,
-      userImg: userImage6,
-      candidateName: "Milton Osborn",
-      candidateDesignation: "Assistant / Store Keeper",
-      location: "Oakridge Lane Richardson",
-      salary: "$455 / hours",
-      rating: 2.5,
-      ratingClass: "badge bg-danger ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Trainer",
-          classname: "info"
-        },
-        {
-          id: 2,
-          badgeName: "Adobe illustrator",
-          classname: "primary"
-        }
-      ]
-    },
-    {
-      id: 7,
-      userImg: userImage7,
-      candidateName: "Harold Jordan",
-      candidateDesignation: "Executive, HR Operations",
-      location: "Oakridge Lane Richardson",
-      salary: "$799 / hours",
-      rating: 4.9,
-      ratingClass: "badge bg-success ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Trainer",
-          classname: "success"
-        },
-        {
-          id: 2,
-          badgeName: "Adobe illustrator",
-          classname: "primary"
-        }
-      ]
-    },
-    {
-      id: 8,
-      userImg: userImage8,
-      candidateName: "MichaeL Drake ",
-      candidateDesignation: "Full Stack Engineer",
-      location: "Oakridge Lane Richardson",
-      salary: "$240 / hours",
-      rating: 3.9,
-      ratingClass: "badge bg-warning ms-1",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeName: "Trainer",
-          classname: "info"
-        },
-        {
-          id: 2,
-          badgeName: "Adobe illustrator",
-          classname: "warning"
-        }
-      ]
-    }
-  ];*/
+
   return (
     <React.Fragment>
       <Row className="align-items-center">
-        {/*<Col lg={8}>
-          <div className="mb-3 mb-lg-0">
-            <h6 className="fs-16 mb-0"> {language === 'pt' ? `Mostrando ${1} - ${8} de ${11} resultados` : `Showing ${1} – ${8} of ${11} results`}  </h6>
-          </div>
-        </Col>*/}
-
         <Col lg={4}>
           <div className="candidate-list-widgets">
             <Row>
@@ -258,10 +91,18 @@ const CandidateDetails = () => {
                     id="choices-single-filter-orderby"
                     aria-label="Default select example"
                   >
-                    <option value="df">{language === 'pt' ? "Padrão" : "Default"}</option>
-                    <option value="ne">{language === 'pt' ? "Mais recentes" : "Newest"}</option>
-                    <option value="od">{language === 'pt' ? "Mais antigos" : "Oldest"}</option>
-                    <option value="rd">{language === 'pt' ? "Aleatório" : "Random"}</option>
+                    <option value="df">
+                      {language === "pt" ? "Padrão" : "Default"}
+                    </option>
+                    <option value="ne">
+                      {language === "pt" ? "Mais recentes" : "Newest"}
+                    </option>
+                    <option value="od">
+                      {language === "pt" ? "Mais antigos" : "Oldest"}
+                    </option>
+                    <option value="rd">
+                      {language === "pt" ? "Aleatório" : "Random"}
+                    </option>
                   </select>
                 </div>
               </Col>
@@ -274,9 +115,17 @@ const CandidateDetails = () => {
                     id="choices-candidate-page"
                     aria-label="Default select example"
                   >
-                    <option value="df">{language === 'pt' ? "Todos" : "All"}</option>
-                    <option value="ne">{language === 'pt' ? `${8} por página` : `${8} per page`}</option>
-                    <option value="ne">{language === 'pt' ? `${12} por página` : `${12} per page`}</option>
+                    <option value="df">
+                      {language === "pt" ? "Todos" : "All"}
+                    </option>
+                    <option value="ne">
+                      {language === "pt" ? `${8} por página` : `${8} per page`}
+                    </option>
+                    <option value="ne">
+                      {language === "pt"
+                        ? `${12} por página`
+                        : `${12} per page`}
+                    </option>
                   </select>
                 </div>
               </Col>
@@ -298,7 +147,7 @@ const CandidateDetails = () => {
               <Row className="align-items-center">
                 <div className="col-auto">
                   <div className="candidate-list-images">
-                    <Link to={`/candidatedetails/${candidateDetails.id}`} >
+                    <Link to={`/candidatedetails/${candidateDetails.id}`}>
                       <img
                         src={candidateDetails.picture || userImage1}
                         alt=""
@@ -310,14 +159,13 @@ const CandidateDetails = () => {
                 <Col lg={5}>
                   <div className="candidate-list-content mt-3 mt-lg-0">
                     <h5 className="fs-19 mb-0">
-                      <Link to={`/candidatedetails/${candidateDetails.id}`} className="primary-link">
-                        {candidateDetails.user.firstName} {candidateDetails.user.lastName}
+                      <Link
+                        to={`/candidatedetails/${candidateDetails.id}`}
+                        className="primary-link"
+                      >
+                        {candidateDetails.user.firstName}{" "}
+                        {candidateDetails.user.lastName}
                       </Link>
-
-                      {/*<span className={candidateDetails.ratingClass}>
-                        <i className="mdi mdi-star align-middle"></i>
-                        {candidateDetails.rating}
-                      </span>*/}
                     </h5>
                     <p className="text-muted mb-2">
                       {" "}
@@ -340,25 +188,17 @@ const CandidateDetails = () => {
 
                 <Col lg={4}>
                   <div className="mt-2 mt-lg-0 d-flex flex-wrap align-items-start gap-1">
-                    {(candidateDetails.badges || []).map(
-                      (badgesInner, key) => (
-                        <span
-                          className={`badge bg-${badgesInner.classname}-subtle text-${badgesInner.classname} fs-14 mt-1`}
-                          key={key}
-                        >
-                          {badgesInner.badgeName}
-                        </span>
-                      )
-                    )}
+                    {(candidateDetails.badges || []).map((badgesInner, key) => (
+                      <span
+                        className={`badge bg-${badgesInner.classname}-subtle text-${badgesInner.classname} fs-14 mt-1`}
+                        key={key}
+                      >
+                        {badgesInner.badgeName}
+                      </span>
+                    ))}
                   </div>
                 </Col>
               </Row>
-
-              {/*<div className="favorite-icon">
-                <Link to="#">
-                  <i className="uil uil-heart-alt fs-18"></i>
-                </Link>
-              </div>*/}
             </CardBody>
           </div>
         ))}
@@ -367,9 +207,11 @@ const CandidateDetails = () => {
         {/* Pagination */}
         <div className="d-flex justify-content-between align-items-center mt-4">
           <div className="text-muted">
-            {language === 'pt' ? "Mostrando" : "Showing"}{" "}
-            <span className="fw-bold">{data?.content?.length || 0}</span> {language === 'pt' ? "de" : "of"}{" "}
-            <span className="fw-bold">{data?.totalElements || 0}</span> {"blogs"}
+            {language === "pt" ? "Mostrando" : "Showing"}{" "}
+            <span className="fw-bold">{data?.content?.length || 0}</span>{" "}
+            {language === "pt" ? "de" : "of"}{" "}
+            <span className="fw-bold">{data?.totalElements || 0}</span>{" "}
+            {"blogs"}
             <select
               className="form-select form-select-sm ms-2 d-inline-block w-auto"
               value={pagination.size}
@@ -377,7 +219,7 @@ const CandidateDetails = () => {
             >
               {[5, 10, 20, 50].map((size) => (
                 <option key={size} value={size}>
-                  {size} {language === 'pt' ? "por página" : "per page"}
+                  {size} {language === "pt" ? "por página" : "per page"}
                 </option>
               ))}
             </select>

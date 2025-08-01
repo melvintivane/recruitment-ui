@@ -164,12 +164,12 @@ const RightSideContent = ({ job }) => {
             >
               Candidatar-se <i className="uil uil-arrow-right"></i>
             </Link>
-            <Link
+            {/* <Link
               to="/candidatelist"
               className="btn btn-primary btn-hover w-100 mt-2"
             >
               Ver Candidatos <i className="uil uil-arrow-right"></i>
-            </Link>
+            </Link> */}
             <Link
               to="/bookmarkjobs"
               className="btn btn-soft-warning btn-hover w-100 mt-2"
@@ -260,14 +260,14 @@ const RightSideContent = ({ job }) => {
                 </div>
               </li>
             </ul>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Link
                 to={`/company/${job.company.slug || job.company.id}`}
                 className="btn btn-primary btn-hover w-100 rounded"
               >
                 <i className="mdi mdi-eye"></i> Ver Perfil
               </Link>
-            </div>
+            </div> */}
           </CardBody>
         </Card>
       )}

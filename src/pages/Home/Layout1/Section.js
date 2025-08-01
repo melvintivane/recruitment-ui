@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
-import CountryOptions from "../SubSection/CountryOptions";
 import JobSearch from "../SubSection/JobSearch";
-import JobType from "../SubSection/JobType";
 
 const Section = () => {
   const { language } = useLanguage();
@@ -81,7 +79,7 @@ const Section = () => {
           <Form onSubmit={handleSubmit}>
             <div className="registration-form">
               <Row className="g-0">
-                <Col lg={3}>
+                <Col>
                   <div className="filter-search-form filter-border mt-3 mt-lg-0">
                     <i className="uil uil-briefcase-alt"></i>
                     <JobSearch 
@@ -90,24 +88,8 @@ const Section = () => {
                     />
                   </div>
                 </Col>
-                <Col lg={3}>
-                  <div className="filter-search-form filter-border mt-3 mt-lg-0">
-                    <i className="uil uil-map-marker"></i>
-                    <CountryOptions 
-                      value={searchParams.country}
-                      onChange={(value) => handleInputChange('country', value)}
-                    />
-                  </div>
-                </Col>
-                <Col lg={3}>
-                  <div className="filter-search-form mt-3 mt-lg-0">
-                    <i className="uil uil-clipboard-notes"></i>
-                    <JobType 
-                      value={searchParams.jobType}
-                      onChange={(value) => handleInputChange('jobType', value)}
-                    />
-                  </div>
-                </Col>
+                
+                
                 <Col lg={3}>
                   <div className="mt-3 mt-lg-0 h-100">
                     <button
@@ -129,7 +111,7 @@ const Section = () => {
                 <li className="list-inline-item text-white">
                   <i className="mdi mdi-tag-multiple-outline text-warning fs-18"></i>{" "}
                   {language === "pt"
-                    ? "Palavras-chave em alta:"
+                    ? "Palavras-chave em alta:"   
                     : "Trending Keywords:"}
                 </li>
                 <li className="list-inline-item">

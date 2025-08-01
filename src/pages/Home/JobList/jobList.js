@@ -20,7 +20,7 @@ import Parttime from "../JobList/Parttime.js";
 import RecentJobs from "./RecentJobs";
 
 const JobList = () => {
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
 
   const tabChange = (tab) => {
@@ -33,10 +33,15 @@ const JobList = () => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <div className="section-title text-center mb-4 pb-2">
-                <h4 className="title">{language === 'pt' ? "Vagas Novas e Aleatórias" : "New and Random Vacancies"}</h4>
+                <h4 className="title">
+                  {language === "pt"
+                    ? "Vagas Novas e Aleatórias"
+                    : "New and Random Vacancies"}
+                </h4>
                 <p className="text-muted mb-1">
-                  {language === 'pt' ? "Publique uma vaga para nos contar sobre seu projeto. Iremos conectá-lo rapidamente com os candidatos certos." : "Post a job to tell us about your project. We'll quickly connect you with the right candidates."}
-                  
+                  {language === "pt"
+                    ? "Encontre oportunidades que combinam com suas habilidades e avance na sua jornada profissional com confiança."
+                    : "Find opportunities that match your skills and move forward in your professional journey with confidence."}
                 </p>
               </div>
             </Col>
@@ -59,7 +64,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    {language === 'pt' ? "Recentes" : "Latest"}
+                    {language === "pt" ? "Recentes" : "Latest"}
                   </NavLink>
                 </NavItem>
 
@@ -73,7 +78,7 @@ const JobList = () => {
                     type="button"
                     role="tab"
                   >
-                    {language === 'pt' ? "Em Destaque" : "Featured"}
+                    {language === "pt" ? "Em Destaque" : "Featured"}
                   </NavLink>
                 </NavItem>
                 <NavItem role="presentation">

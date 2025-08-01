@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
 //Logo Images
@@ -14,53 +13,53 @@ const Client = () => {
   const client = [
     {
       id: 1,
-      logoImage: LogoImage1
+      logoImage: LogoImage1,
     },
     {
       id: 2,
-      logoImage: LogoImage2
+      logoImage: LogoImage2,
     },
     {
       id: 3,
-      logoImage: LogoImage3
+      logoImage: LogoImage3,
     },
     {
       id: 4,
-      logoImage: LogoImage4
+      logoImage: LogoImage4,
     },
 
     {
       id: 5,
-      logoImage: LogoImage5
+      logoImage: LogoImage5,
     },
     {
       id: 6,
-      logoImage: LogoImage6
-    }
+      logoImage: LogoImage6,
+    },
   ];
+
   return (
     <React.Fragment>
-      <div className="py-4">
+      <section className="py-4 bg-light">
         <Container>
-          <Row>
+          <div className="d-flex flex-wrap justify-content-center align-items-center gap-4">
             {(client || []).map((item, key) => (
-              <Col lg={2} key={key}>
-                <div className="text-center p-3">
-                  <Link
-                    to="#"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="top"
-                    title=""
-                    data-bs-original-title="Woocommerce"
-                  >
-                    <img src={item.logoImage} alt="" className=" img-fluid " />
-                  </Link>
-                </div>
-              </Col>
+              <div key={key} className="p-2">
+                <img
+                  src={item.logoImage}
+                  alt={`Logo ${key}`}
+                  className="img-fluid"
+                  style={{
+                    width: "120px",
+                    height: "auto",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
             ))}
-          </Row>
+          </div>
         </Container>
-      </div>
+      </section>
     </React.Fragment>
   );
 };

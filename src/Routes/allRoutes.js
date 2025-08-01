@@ -13,7 +13,7 @@ import JobsCategories from "../pages/Jobs/JobsCategories/JobsCategories";
 //Candidate and Company Section
 import CandidateDetails from "../pages/CandidateAndCompany/CandidateDetails/CandidateDetails";
 import CandidateGrid from "../pages/CandidateAndCompany/CandidateGrid/CandidateGrid";
-import CandidateList from "../pages/CandidateAndCompany/CandidateList/CandidateList";
+// import CandidateList from "../pages/CandidateAndCompany/CandidateList/CandidateList";
 import CompanyDetails from "../pages/CandidateAndCompany/CompanyDetails/CompanyDetails";
 import CompanyList from "../pages/CandidateAndCompany/CompanyList/CompanyList";
 
@@ -36,7 +36,7 @@ import SignUp from "../pages/ExtraPages/SignUp";
 
 //profile section(User Profile)
 import BookMarkJobPost from "../pages/Profile/BookMarkJobPost/BookMarkJobPost";
-import BookMarkJobs from "../pages/Profile/BookMarkJobs/BookMarkJobs";
+// import BookMarkJobs from "../pages/Profile/BookMarkJobs/BookMarkJobs";
 import ManageJobs from "../pages/Profile/ManageJobs/ManageJobs";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 
@@ -47,7 +47,7 @@ const userRoutes = [
   //profile Section(User Profile)
   { path: "/bookmarkjobpost", component: <BookMarkJobPost /> },
   { path: "/myprofile", component: <MyProfile /> },
-  { path: "/bookmarkjobs", component: <BookMarkJobs /> },
+  // { path: "/bookmarkjobs", component: <BookMarkJobs /> },
   { path: "/managejobs", component: <ManageJobs /> },
 
   //Components Section(Extra Pages)
@@ -66,7 +66,7 @@ const userRoutes = [
   { path: "/companylist", component: <CompanyList /> },
   { path: "/candidatedetails/:id", component: <CandidateDetails /> },
   { path: "/candidategrid", component: <CandidateGrid /> },
-  { path: "/candidatelist", component: <CandidateList /> },
+  // { path: "/candidatelist", component: <CandidateList /> },
 
   //Jobs Section
   { path: "/jobscategories", component: <JobsCategories /> },

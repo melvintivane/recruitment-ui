@@ -12,7 +12,6 @@ import {
 } from "reactstrap";
 import { getAllEmployers } from "../../../services/companyService";
 
-//Import Job Images
 import jobImage1 from "../../../assets/images/featured-job/img-01.png";
 
 import { useLanguage } from "../../../context/LanguageContext";
@@ -20,25 +19,12 @@ import { useLanguage } from "../../../context/LanguageContext";
 const CompanyDetails = () => {
   const { language } = useLanguage();
 
-  /*const companyDetails = [
-    {
-      id: 1,
-      jobImg: jobImage1,
-      compnayName: "Recruitment Consulting",
-      location: "New York",
-      numberOfVacancy: 52,
-      label: true,
-      labelRating: 4.9,
-    }
-  ];*/
-
   const [pagination, setPagination] = useState({
     page: 0,
     size: 10,
   });
 
-  // Fetch blogs query
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["employers", pagination.page, pagination.size],
     queryFn: () =>
       getAllEmployers({
@@ -60,11 +46,36 @@ const CompanyDetails = () => {
   };
 
   if (isLoading) {
-    return <div>Loading employers...</div>;
+    return (
+      <div className="text-center py-5">
+        <div
+          className="spinner-grow text-primary"
+          style={{ width: "3rem", height: "3rem" }}
+          role="status"
+        >
+          <span className="visually-hidden">
+            {language === "pt" ? "Carregando..." : "Loading..."}
+          </span>
+        </div>
+        <p className="mt-3">
+          {language === "pt"
+            ? "Carregando lista de empresas..."
+            : "Loading company list..."}
+        </p>
+      </div>
+    );
   }
 
-  if (error) {
-    return <div className="text-danger">Error: {error.message}</div>;
+  if (isError) {
+    return (
+      <div className="text-center py-5">
+        <p className="mt-3 text-danger">
+          {language === "pt"
+            ? "Erro ao carregar a lista de empresas"
+            : "Error loading company list"}
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -149,7 +160,8 @@ const CompanyDetails = () => {
                 <img src={jobImage1} alt="" className="img-fluid rounded-3" />
                 <div className="mt-4">
                   <Link
-                    to={`/companydetails/${companyDetails.id}`}
+                    // to={`/companydetails/${companyDetails.id}`}
+                    to="#"
                     className="primary-link"
                   >
                     <h6 className="fs-18 mb-2">{companyDetails.name}</h6>
@@ -159,8 +171,9 @@ const CompanyDetails = () => {
                     {"-"}
                     {companyDetails.city}
                   </p>
-                  <Link to="/companydetails" className="btn btn-primary">
-                    {companyDetails.jobCount} {language === 'pt' ? "Vagas abertas" : "Open vacancies"}
+                  <Link to="/joblist" className="btn btn-primary">
+                    {companyDetails.jobCount}{" "}
+                    {language === "pt" ? "Vagas abertas" : "Open vacancies"}
                   </Link>
                 </div>
               </CardBody>
@@ -168,6 +181,7 @@ const CompanyDetails = () => {
           </Col>
         ))}
       </Row>
+
       <Row>
         {/* Pagination */}
         <div className="d-flex justify-content-between align-items-center mt-4">

@@ -50,14 +50,6 @@ const JobVacancyList = ({ filters }) => {
     setPagination((prev) => ({ ...prev, size: newSize, page: 0 }));
   };
 
-  if (isLoading) {
-    return <div>Loading vacancies...</div>;
-  }
-
-  if (error) {
-    return <div className="text-danger">Error: {error.message}</div>;
-  }
-
   return (
     <>
       <div className="wedget-popular-title mt-4">

@@ -3,7 +3,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import Section from "../../Jobs/JobList/Section";
 import JobSearchOptions from "./JobSearchOptions";
 import JobVacancyList from "./JobVacancyList";
-// import Popular from "./Popular";
 import Sidebar from "./Sidebar";
 import { useQuery } from "react-query";
 import { getJobCategories } from "../../../services/vacancyService";
@@ -11,7 +10,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 
 const JobList = () => {
   const { language } = useLanguage();
-  document.title = language === "pt" ? "Lista de Vagas" : "Job List";
+  document.title = language === "pt" ? "Lista de Vagas" : "Vacancy List";
 
   const initialFilters = {
     searchQuery: "",
@@ -24,7 +23,7 @@ const JobList = () => {
 
   const [filters, setFilters] = useState(initialFilters);
 
-  const { data: categoriesData, isLoading } = useQuery({
+  const { data: categoriesData, isLoading, isError } = useQuery({
     queryKey: ["jobCategories"],
     queryFn: getJobCategories,
     select: (data) =>
@@ -54,28 +53,44 @@ const JobList = () => {
     });
   };
 
-  // const populars = [
-  //   {
-  //     id: 1,
-  //     count: 20,
-  //     jobTitle: "Designer UI/UX",
-  //   },
-  //   {
-  //     id: 2,
-  //     count: 18,
-  //     jobTitle: "Gerente de RH",
-  //   },
-  //   {
-  //     id: 3,
-  //     count: 10,
-  //     jobTitle: "Gerente de Vendas",
-  //   },
-  //   {
-  //     id: 4,
-  //     count: 15,
-  //     jobTitle: "Desenvolvedor",
-  //   },
-  // ];
+  if (isLoading) {
+    return (
+      <>
+        <Section />
+        <section className="section">
+          <Container>
+            <div className="text-center py-5">
+              <div
+                className="spinner-grow text-primary"
+                style={{ width: "3rem", height: "3rem" }}
+                role="status"
+              >
+                <span className="visually-hidden">{language === "pt" ? "Carregando..." : "Loading..."}</span>
+              </div>
+              <p className="mt-3">{language === "pt" ? "Carregando lista de vagas..." : "Loading vacancy list..."}</p>
+            </div>
+          </Container>
+        </section>
+      </>
+    );
+  }
+
+  if (isError) {
+    return (
+      <>
+        <Section />
+        <section className="section">
+          <Container>
+            <div className="text-center py-5">
+              <p className="mt-3 text-danger">
+                {language === "pt" ? "Erro ao carregar lista de vagas" : "Error loading vacancy list"}
+              </p>
+            </div>
+          </Container>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -92,7 +107,6 @@ const JobList = () => {
                   categoriesData={categoriesData || []}
                   isLoading={isLoading}
                 />
-                {/* <Popular populars={populars} /> */}
                 <JobVacancyList
                   filters={{
                     searchQuery: filters.searchQuery,

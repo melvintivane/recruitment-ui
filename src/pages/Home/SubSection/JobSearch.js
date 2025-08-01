@@ -10,7 +10,7 @@ const JobSearch = () => {
         type="search"
         id="job-title"
         className="form-control filter-input-box"
-        placeholder={language === 'pt' ? "Emprego, nome da empresa..." : "Job, company name..."}
+        placeholder={language === 'pt' ? "Título da vaga, etc..." : "Job title, etc..."}
       />
     </React.Fragment>
   );

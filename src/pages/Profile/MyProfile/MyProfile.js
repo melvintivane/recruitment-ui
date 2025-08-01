@@ -19,7 +19,6 @@ const MyProfile = () => {
     data: profile,
     isLoading,
     isError,
-    error,
   } = useQuery({
     queryKey: ["profile", id],
     queryFn: () => getCandidateById(id),
@@ -39,9 +38,9 @@ const MyProfile = () => {
                 style={{ width: "3rem", height: "3rem" }}
                 role="status"
               >
-                <span className="visually-hidden">Carregando...</span>
+                <span className="visually-hidden">{language === "pt" ? "Carregando..." : "Loading..."}</span>
               </div>
-              <p className="mt-3">Carregando detalhes do perfil...</p>
+              <p className="mt-3">{language === "pt" ? "Carregando detalhes do perfil..." : "Loading profile details..."}</p>
             </div>
           </Container>
         </section>
@@ -57,7 +56,7 @@ const MyProfile = () => {
           <Container>
             <div className="text-center py-5">
               <p className="mt-3 text-danger">
-                Erro ao carregar detalhes do perfil: {error.message}
+                {language === "pt" ? "Erro ao carregar o perfil: " : "Error loading profile: "}
               </p>
             </div>
           </Container>

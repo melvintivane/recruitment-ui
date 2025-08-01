@@ -1,13 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { Col, Container, Input, Label, Row } from "reactstrap";
 import { useLanguage } from "../../context/LanguageContext";
 
-//Importar imagens
 import contactImage from "../../assets/images/contact.png";
+import { toast } from "react-toastify";
 
 const ContactContent = () => {
   const {language} = useLanguage();
+  const [formData, setFormData] = useState({
+    name: "",
+    subject: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    toast.success(language === 'pt' ? "Mensagem enviada com sucesso!" : "Message sent successfully!");
+    
+    console.log("Form Data Submitted:", data);
+    // Aqui você pode adicionar a lógica para enviar os dados do formulário, por exemplo, usando
+    // uma API ou serviço de backend. 
+
+    setFormData({
+      name: "",
+      subject: "",
+      email: "",
+      message: "",
+    });
+  };
+
   return (
     <React.Fragment>
       <section className="section">
@@ -24,6 +51,7 @@ const ContactContent = () => {
                   className="contact-form mt-4"
                   name="myForm"
                   id="myForm"
+                  onSubmit={handleSubmit}
                 >
                   <span id="error-msg"></span>
                   <Row>
@@ -33,11 +61,14 @@ const ContactContent = () => {
                           {language === 'pt' ? "Nome" : "Name"}
                         </Label>
                         <Input
+                          required
                           type="text"
                           name="name"
                           id="name"
                           className="form-control"
                           placeholder={language === 'pt' ? "Digite seu nome" : "Enter your name"}
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         />
                       </div>
                     </Col>
@@ -47,10 +78,13 @@ const ContactContent = () => {
                           {language === 'pt' ? "Assunto" : "Subject"}
                         </Label>
                         <Input
+                          required
                           type="text"
                           className="form-control"
                           name="subject"
                           placeholder={language === 'pt' ? "Digite o assunto" : "Enter the subject"}
+                          value={formData.subject}
+                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         />
                       </div>
                     </Col>
@@ -60,11 +94,14 @@ const ContactContent = () => {
                           E-mail
                         </Label>
                         <Input
+                          required
                           type="email"
                           className="form-control"
                           id="email"
                           name="email"
                           placeholder={language === 'pt' ? "Digite seu e-mail" : "Enter your e-mail"}
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         />
                       </div>
                     </Col>
@@ -78,6 +115,8 @@ const ContactContent = () => {
                           className="form-control"
                           name="contact"
                           placeholder={language === 'pt' ? "Digite o seu contacto" : "Enter  your contact"}
+                          value={formData.contact || ""}
+                          onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                         />
                       </div>
                     </Col>
@@ -91,13 +130,15 @@ const ContactContent = () => {
                           placeholder={language === 'pt' ?"Digite sua mensagem" : "Enter your message"}
                           name="comments"
                           rows="3"
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         ></textarea>
                       </div>
                     </Col>
                   </Row>
                   <div className="text-end">
                     <button
-                      type="button"
+                      type="submit"
                       id="submit"
                       name="submit"
                       className="btn btn-primary"
