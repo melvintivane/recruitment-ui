@@ -63,7 +63,7 @@ const Footer = () => {
           id: 1,
           title: "Company",
           menu: [
-            { id: 1, link: "/about", subTitle: "About Us" },
+            { id: 1, link: "/aboutus", subTitle: "About Us" },
             { id: 2, link: "/contact", subTitle: "Contact Us" },
             //{ id: 3, link: "/services", subTitle: "Services" },
             { id: 4, link: "/blog", subTitle: "Blog" },
@@ -160,7 +160,10 @@ const Footer = () => {
                 <ul className="footer-social-menu list-inline mb-0">
                   {footerIcons.map((footerIcondetails, key) => (
                     <li className="list-inline-item" key={key}>
-                      <Link to="#">
+                      <Link
+                        target="_blank"
+                        to="https://www.linkedin.com/company/ep-management-consultancy-services/posts/?feedView=all"
+                      >
                         <i className={footerIcondetails.socialIcon}></i>
                       </Link>
                     </li>

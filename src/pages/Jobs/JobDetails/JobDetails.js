@@ -53,7 +53,7 @@ const JobDetails = () => {
         <section className="section">
           <Container>
             <div className="text-center py-5 text-danger">
-              Error: {error.message || "Failed to fetch job details"}
+              Failed to fetch job details
             </div>
           </Container>
         </section>

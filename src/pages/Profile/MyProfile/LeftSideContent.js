@@ -6,8 +6,10 @@ import { downloadCv } from "../../../services/profileService";
 
 //Import images
 import profileImage from "../../../assets/images/user/user.png";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const LeftSideContent = ({ data }) => {
+  const { language } = useLanguage;
 
   const handleDownloadCv = async (cvPath) => {
     try {
@@ -79,7 +81,7 @@ const LeftSideContent = ({ data }) => {
             </div>
 
             <div className="mt-4 border-bottom pb-4">
-              <h5 className="fs-17 fw-bold mb-3">Documentos</h5>
+              <h5 className="fs-17 fw-bold mb-3">{language === "pt" ? "Documentos" : "Documents"}</h5>
               <ul className="profile-document list-unstyled mb-0">
                 <li>
                   <div className="profile-document-list d-flex align-items-center mt-4 ">
@@ -101,7 +103,7 @@ const LeftSideContent = ({ data }) => {
             </div>
 
             <div className="mt-4">
-              <h5 className="fs-17 fw-bold mb-3">Contatos</h5>
+              <h5 className="fs-17 fw-bold mb-3">{language === "pt" ? "Contactos" : "Contacts"}</h5>
               <div className="profile-contact">
                 <ul className="list-unstyled mb-0">
                   <li>
@@ -116,7 +118,7 @@ const LeftSideContent = ({ data }) => {
                   </li>
                   <li>
                     <div className="d-flex">
-                      <label>Telefone</label>
+                      <label>{language === "pt" ? "Telefone" : "Telephone"}</label>
                       <div>
                         <p className="text-muted mb-0">{data.phone}</p>
                       </div>
@@ -124,7 +126,7 @@ const LeftSideContent = ({ data }) => {
                   </li>
                   <li>
                     <div className="d-flex">
-                      <label>Localização</label>
+                      <label>{language === "pt" ? "Localização" : "Location"}</label>
                       <div>
                         <p className="text-muted mb-0">
                           {data.city}, {data.state}, {data.country}

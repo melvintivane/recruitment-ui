@@ -7,12 +7,15 @@ import {
   translateCareerLevel,
   translateJobType,
 } from "../../../utils/jobTranslations";
-import { applyToVacancy } from "../../../services/jobApplicationService";
+import { applyToVacancy } from "../../../services/applicationService";
 import { useAuth } from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const RightSideContent = ({ job }) => {
   const { user } = useAuth();
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Detalhes da Vaga" : "Job Details";
 
   if (!job) return null;
 
@@ -37,7 +40,7 @@ const RightSideContent = ({ job }) => {
     e.preventDefault();
 
     if (!user?.candidateId) {
-      toast.info("Usuário não autenticado");
+      toast.info(language === "pt" ? "Usuário não autenticado!" : "User not authenticated!");
       return;
     }
 
@@ -164,18 +167,18 @@ const RightSideContent = ({ job }) => {
             >
               Candidatar-se <i className="uil uil-arrow-right"></i>
             </Link>
-            <Link
+            {/* <Link
               to="/candidatelist"
               className="btn btn-primary btn-hover w-100 mt-2"
             >
               Ver Candidatos <i className="uil uil-arrow-right"></i>
-            </Link>
-            <Link
+            </Link> */}
+            {/* <Link
               to="/bookmarkjobs"
               className="btn btn-soft-warning btn-hover w-100 mt-2"
             >
               <i className="uil uil-bookmark"></i> Adicionar aos Favoritos
-            </Link>
+            </Link> */}
           </div>
         </CardBody>
       </Card>
@@ -260,14 +263,14 @@ const RightSideContent = ({ job }) => {
                 </div>
               </li>
             </ul>
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Link
                 to={`/company/${job.company.slug || job.company.id}`}
                 className="btn btn-primary btn-hover w-100 rounded"
               >
                 <i className="mdi mdi-eye"></i> Ver Perfil
               </Link>
-            </div>
+            </div> */}
           </CardBody>
         </Card>
       )}

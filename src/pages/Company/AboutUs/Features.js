@@ -25,31 +25,26 @@ const Features = () => {
     },
     {
       id: 4,
-      featureIcon: "uim-user-md",
-      featureName: "Perfis de Recrutadores",
-    },
-    {
-      id: 5,
       featureIcon: "uim-airplay",
       featureName: "Exibir Vagas",
     },
     {
-      id: 6,
+      id: 5,
       featureIcon: "uim-rocket",
       featureName: "Para Agências",
     },
     {
-      id: 7,
+      id: 6,
       featureIcon: "uim-history",
       featureName: "Suporte Rápido",
     },
     {
-      id: 8,
+      id: 7,
       featureIcon: "uim-bookmark",
       featureName: "Favoritar Vagas",
     },
     {
-      id: 9,
+      id: 8,
       featureIcon: "uim-graph-bar",
       featureName: "Análise em Tempo Real",
     },
@@ -74,31 +69,26 @@ const Features = () => {
   },
   {
     id: 4,
-    featureIcon: "uim-user-md",
-    featureName: "Recruiter Profiles",
-  },
-  {
-    id: 5,
     featureIcon: "uim-airplay",
     featureName: "Display Jobs",
   },
   {
-    id: 6,
+    id: 5,
     featureIcon: "uim-rocket",
     featureName: "For Agencies",
   },
   {
-    id: 7,
+    id: 6,
     featureIcon: "uim-history",
     featureName: "Fast Support",
   },
   {
-    id: 8,
+    id: 7,
     featureIcon: "uim-bookmark",
     featureName: "Bookmark Jobs",
   },
   {
-    id: 9,
+    id: 8,
     featureIcon: "uim-graph-bar",
     featureName: "Real-Time Analytics",
   },

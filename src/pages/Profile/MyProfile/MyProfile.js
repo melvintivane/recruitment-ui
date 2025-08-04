@@ -1,25 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row } from "reactstrap";
 import LeftSideContent from "./LeftSideContent";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
 import { getCandidateById } from "../../../services/profileService";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useAuth } from "../../../hooks/useAuth";
 
 const MyProfile = () => {
   const { language } = useLanguage();
-  document.title =
-    language === "pt" ? "Perfil Profissional" : "Professional Profile";
+  const navigate = useNavigate();
+  const params = useParams();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  
+  const id = params.id || localStorage.getItem("candidateId");
 
-  const id = useParams().id || localStorage.getItem("candidateId");
+  useEffect(() => {
+    if (authLoading) return; // Aguarda a verificação de autenticação
+
+    if (!isAuthenticated) {
+      navigate("/", { 
+        replace: true,
+        // state: { from: location.pathname }
+      });
+      return;
+    }
+
+  }, [language, navigate, id, isAuthenticated, authLoading]);
 
   const {
     data: profile,
     isLoading,
     isError,
-    error,
   } = useQuery({
     queryKey: ["profile", id],
     queryFn: () => getCandidateById(id),
@@ -39,9 +53,9 @@ const MyProfile = () => {
                 style={{ width: "3rem", height: "3rem" }}
                 role="status"
               >
-                <span className="visually-hidden">Carregando...</span>
+                <span className="visually-hidden">{language === "pt" ? "Carregando..." : "Loading..."}</span>
               </div>
-              <p className="mt-3">Carregando detalhes do perfil...</p>
+              <p className="mt-3">{language === "pt" ? "Carregando detalhes do perfil..." : "Loading profile details..."}</p>
             </div>
           </Container>
         </section>
@@ -57,7 +71,7 @@ const MyProfile = () => {
           <Container>
             <div className="text-center py-5">
               <p className="mt-3 text-danger">
-                Erro ao carregar detalhes do perfil: {error.message}
+                {language === "pt" ? "Erro ao carregar o perfil: " : "Error loading profile: "}
               </p>
             </div>
           </Container>

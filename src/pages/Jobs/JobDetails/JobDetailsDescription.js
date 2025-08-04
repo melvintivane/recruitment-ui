@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, Col, Row } from "reactstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 // Import Images (you might want to update these with actual company images)
 import JobDetailImage from "../../../assets/images/job-detail.jpg";
@@ -139,7 +139,7 @@ const JobDetailsDescription = ({ job }) => {
             </div>
           </div>
 
-          <div className="mt-4 pt-3">
+          {/* <div className="mt-4 pt-3">
             <ul className="list-inline mb-0">
               <li className="list-inline-item mt-1">Compartilhar esta vaga:</li>
               <li className="list-inline-item mt-1">
@@ -158,7 +158,7 @@ const JobDetailsDescription = ({ job }) => {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </CardBody>
       </Card>
     </React.Fragment>

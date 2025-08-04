@@ -33,31 +33,25 @@ const NavBar = () => {
   // State management
   const [isOpen, setIsOpen] = useState(false);
   const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
-  const [notificationDropdownOpen, setNotificationDropdownOpen] =
-    useState(false);
+  // const [notificationDropdownOpen, setNotificationDropdownOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [navSticky, setNavSticky] = useState(false);
 
-  // Toggle functions
   const toggleNavbar = () => setIsOpen((prev) => !prev);
   const toggleCompanyDropdown = () => setCompanyDropdownOpen((prev) => !prev);
-  const toggleNotificationDropdown = () =>
-    setNotificationDropdownOpen((prev) => !prev);
+  // const toggleNotificationDropdown = () => setNotificationDropdownOpen((prev) => !prev);
   const toggleProfileDropdown = () => setProfileDropdownOpen((prev) => !prev);
 
-  // Scroll effect
   const handleScroll = useCallback(() => {
     setNavSticky(window.pageYOffset > 0);
   }, []);
 
-  // Menu activation
   const activateMenu = useCallback(() => {
     const navbar = document.getElementById("navbarCollapse");
     if (!navbar) return;
 
     const menuItems = navbar.getElementsByTagName("a");
 
-    // Remove active class from all items
     Array.from(menuItems).forEach((item) => {
       item.classList.remove("active");
       if (item.parentElement) {
@@ -65,7 +59,6 @@ const NavBar = () => {
       }
     });
 
-    // Find and activate current route
     const currentItem = Array.from(menuItems).find(
       (item) => location.pathname === item.pathname
     );
@@ -80,7 +73,6 @@ const NavBar = () => {
     }
   }, [location.pathname]);
 
-  // Effects
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -94,7 +86,6 @@ const NavBar = () => {
     activateMenu();
   }, [location.pathname, activateMenu]);
 
-  // Navigation items
   const navItems = [
     { path: "/", label: language === 'pt' ? "Início" : "Home" },
     { path: "/joblist", label: language === 'pt' ? "Vagas" : "Vacancies"},
@@ -119,13 +110,13 @@ const NavBar = () => {
 
   const profileDropdownItems = [
     { path: "/myprofile", label: language === 'pt' ? "Meu Perfil" : "My Profile" , icon: "mdi-account-outline" },
+    // {
+    //   path: "/bookmarkjobs",
+    //   label: language === 'pt' ? "Vagas Favoritas" : "Favorite Vacancies",
+    //   icon: "mdi-bookmark-multiple-outline",
+    // },
     {
-      path: "/bookmarkjobs",
-      label: language === 'pt' ? "Vagas Favoritas" : "Favorite Vacancies",
-      icon: "mdi-bookmark-multiple-outline",
-    },
-    {
-      path: "/managejobs",
+      path: "/myapplications",
       label: language === 'pt' ? "Minhas Candidaturas" : "My Applications",
       icon: "mdi-briefcase-outline",
     },
@@ -236,7 +227,7 @@ const NavBar = () => {
           
           {user && (
             <>
-              <li className="list-inline-item me-4">
+              {/* <li className="list-inline-item me-4">
                 <Dropdown
                   isOpen={notificationDropdownOpen}
                   toggle={toggleNotificationDropdown}
@@ -266,7 +257,7 @@ const NavBar = () => {
                     </div>
                   </DropdownMenu>
                 </Dropdown>
-              </li>
+              </li> */}
 
               <li className="list-inline-item">
                 <Dropdown

@@ -10,17 +10,17 @@ import JobApplicationModal from "../../../components/JobApplicationModal";
 import { useLanguage } from "../../../context/LanguageContext";
 
 const RecentJobs = () => {
-  const {language} = useLanguage();
+  const { language } = useLanguage();
   const [modalOpen, setModalOpen] = useState(false);
   const toggleModal = () => setModalOpen(!modalOpen);
 
-   const [pagination, setPagination] = useState({
+  const [pagination, setPagination] = useState({
     page: 0,
     size: 4,
   });
 
   // Fetch vacancies query
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["vacancies", pagination.page, pagination.size],
     queryFn: () =>
       getAllVacancies({
@@ -36,103 +36,37 @@ const RecentJobs = () => {
     keepPreviousData: true,
   });
 
-  /*const recentJob = [
-    {
-      id: 1,
-      companyImg: jobImage1,
-      jobDescription: "Desenvolvedor Web",
-      companyName: "Web Technology pvt.Ltd",
-      location: "Oakridge Lane ssRichardson",
-      salary: "1000-1200/m",
-      fullTime: true,
-      timing: "Tempo Integral",
-      category: "Vagas Recentes",
-      addclassNameBookmark: false,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Privado",
-        },
-      ],
-      experience: "1 - 2 anos",
-      Notes: "As línguas só diferem em sua gramática.",
-    },
-    {
-      id: 2,
-      companyImg: jobImage2,
-      jobDescription: "Associado de Negócios",
-      companyName: "Pixel Technology pvt.Ltd",
-      location: "Dodge City, Louisiana",
-      salary: "800-1800/m",
-      partTime: true,
-      timing: "Meio Período",
-      category: "Vagas Recentes",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Privado",
-        },
-        {
-          id: 2,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-      ],
-      experience: "0 - 1 ano",
-      Notes: "As línguas só diferem em sua gramática.",
-    },
-    {
-      id: 3,
-      companyImg: jobImage3,
-      jobDescription: "Gerente de Marketing Digital",
-      companyName: "Recruitment Technology Pvt.Ltd",
-      location: "Phoenix, Arizona",
-      salary: "1500-2400/m",
-      freelancer: true,
-      timing: "Freelancer",
-      category: "Vagas Recentes",
-      addclassNameBookmark: true,
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-info-subtle text-info",
-          badgeName: "Privado",
-        },
-      ],
-      experience: "0 - 1 ano",
-      Notes: null,
-    },
-    {
-      id: 4,
-      companyImg: jobImage4,
-      jobDescription: "Diretor de Produto",
-      companyName: "Creative Agency",
-      location: "Escondido, Califórnia",
-      salary: "1500-2400/m",
-      fullTime: true,
-      timing: "Tempo Integral",
-      category: "Vagas Recentes",
-      badges: [
-        {
-          id: 1,
-          badgeclassName: "bg-warning-subtle text-warning",
-          badgeName: "Urgente",
-        },
-      ],
-      experience: "0 - 1 ano",
-      Notes: null,
-    },
-  ];*/
-
   if (isLoading) {
-    return <div>Loading vacancies...</div>;
+    return (
+      <div className="text-center py-5">
+        <div
+          className="spinner-grow text-primary"
+          style={{ width: "3rem", height: "3rem" }}
+          role="status"
+        >
+          <span className="visually-hidden">
+            {language === "pt" ? "Carregando..." : "Loading..."}
+          </span>
+        </div>
+        <p className="mt-3">
+          {language === "pt"
+            ? "Carregando lista de vagas..."
+            : "Loading vacancy list..."}
+        </p>
+      </div>
+    );
   }
 
-  if (error) {
-    return <div className="text-danger">Error: {error.message}</div>;
+  if (isError) {
+    return (
+      <div className="text-center py-5">
+        <p className="mt-3 text-danger">
+          {language === "pt"
+            ? "Erro ao carregar lista de vagas"
+            : "Error loading vacancy list"}
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -168,7 +102,10 @@ const RecentJobs = () => {
               <Col md={3}>
                 <div className="mb-2 mb-md-0">
                   <h5 className="fs-18 mb-1">
-                    <Link to={`/jobdetails/${recentJobDetails.id}`} className="text-dark">
+                    <Link
+                      to={`/jobdetails/${recentJobDetails.id}`}
+                      className="text-dark"
+                    >
                       {recentJobDetails.title}
                     </Link>
                   </h5>
@@ -183,7 +120,11 @@ const RecentJobs = () => {
                   <div className="flex-shrink-0">
                     <i className="mdi mdi-map-marker text-primary me-1"></i>
                   </div>
-                  <p className="text-muted mb-0">{recentJobDetails.location || language === 'pt' ? "Maputo,Moçambique" : "Maputo,Mozambique"}</p>
+                  <p className="text-muted mb-0">
+                    {recentJobDetails.location || language === "pt"
+                      ? "Maputo,Moçambique"
+                      : "Maputo,Mozambique"}
+                  </p>
                 </div>
               </Col>
 
@@ -231,8 +172,15 @@ const RecentJobs = () => {
               <Col md={4}>
                 <div>
                   <p className="text-muted mb-0">
-                    <span className="text-dark">{language === 'pt' ? "Experiência" : "Experience"}: </span>{" "}
-                    {recentJobDetails.yearsOfExperience || "N/A"} {recentJobDetails.yearsOfExperience ? (language === 'pt' ? "anos" : "years") : ""}
+                    <span className="text-dark">
+                      {language === "pt" ? "Experiência" : "Experience"}:{" "}
+                    </span>{" "}
+                    {recentJobDetails.yearsOfExperience || "N/A"}{" "}
+                    {recentJobDetails.yearsOfExperience
+                      ? language === "pt"
+                        ? "anos"
+                        : "years"
+                      : ""}
                   </p>
                 </div>
               </Col>
@@ -252,7 +200,8 @@ const RecentJobs = () => {
               <Col lg={2} md={3}>
                 <div className="text-start text-md-end">
                   <Link to="#" onClick={toggleModal} className="primary-link">
-                    {language === 'pt' ? "Inscreva-se" : "Sign up"} <i className="mdi mdi-chevron-double-right"></i>
+                    {language === "pt" ? "Inscreva-se" : "Sign up"}{" "}
+                    <i className="mdi mdi-chevron-double-right"></i>
                   </Link>
                 </div>
               </Col>
@@ -262,7 +211,8 @@ const RecentJobs = () => {
       ))}
       <div className="text-center mt-4 pt-2">
         <Link to="/joblist" className="btn btn-primary">
-          {language === 'pt' ? "Ver Mais" : "See More"} <i className="uil uil-arrow-right"></i>
+          {language === "pt" ? "Ver Mais" : "See More"}{" "}
+          <i className="uil uil-arrow-right"></i>
         </Link>
       </div>
       <div

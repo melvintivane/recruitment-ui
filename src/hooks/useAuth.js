@@ -64,7 +64,7 @@ export function useAuth() {
       const token = localStorage.getItem('authToken');
       if (token && isTokenExpired(token)) {
         logout();
-        navigate('/login', { state: { sessionExpired: true } });
+        navigate('/signin', { state: { sessionExpired: true } });
       }
     }, 60000); // Verifica a cada minuto
 
