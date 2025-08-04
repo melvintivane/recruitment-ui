@@ -17,8 +17,7 @@ const JobDetails = () => {
   const {
     data: job,
     isLoading,
-    isError,
-    error,
+    isError
   } = useQuery({
     queryKey: ["jobDetails", id],
     queryFn: () => getVacancyById(id),

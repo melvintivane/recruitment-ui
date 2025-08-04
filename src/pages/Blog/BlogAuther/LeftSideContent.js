@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Card, CardBody, Row, Input } from "reactstrap";
+import { Col, Card, CardBody, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 
 //Lightbox

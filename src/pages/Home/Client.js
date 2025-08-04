@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
+import { Container } from "reactstrap";
 
 //Logo Images
 import LogoImage1 from "../../assets/images/logo/alliance-media.png";

@@ -18,12 +18,8 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { updateProfile } from "../../../services/profileService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-import API_ENDPOINTS from "../../../config/api";
-
-//Images Import
-import userImage2 from "../../../assets/images/user/user.png";
-import { QueryClient, useMutation } from "react-query";
+import { QueryClient, useMutation, useQuery } from "react-query";
+import { getAllJobCategories } from "../../../services/jobCategorieService";
 
 const RightSideContent = ({ data }) => {
   const countries = [
@@ -271,6 +267,19 @@ const RightSideContent = ({ data }) => {
     { value: "15.1", label: "Zambia" },
     { value: "15.2", label: "Zimbabwe" },
   ];
+  const genders = [
+    {
+      value: "MALE",
+      label: "Male",
+      labelPt: "Masculino",
+    },
+    {
+      value: "FEMALE",
+      label: "Female",
+      labelPt: "Feminino",
+    },
+  ];
+
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
@@ -280,6 +289,12 @@ const RightSideContent = ({ data }) => {
     email: "",
     phone: "",
     country: "",
+    gender: "",
+    birthDate: "",
+    linkedin: "",
+    address: "",
+    yearsOfExperience: 0,
+    desiredJobCategory: "",
     professionalSummary: "",
     skills: [],
     languages: [],
@@ -287,11 +302,11 @@ const RightSideContent = ({ data }) => {
     experiences: [],
   });
   const [imageFile, setImageFile] = useState(null);
-  const [imagePreview, setImagePreview] = useState(
-    data?.user?.imagePath
-      ? `${API_ENDPOINTS.API_BASE_URL}${data.user.imagePath}`
-      : userImage2
-  );
+  // const [imagePreview, setImagePreview] = useState(
+  //   data?.user?.imagePath
+  //     ? `${API_ENDPOINTS.API_BASE_URL}${data.user.imagePath}`
+  //     : userImage2
+  // );
   const [cvFile, setCvFile] = useState(null);
 
   const tabChange = (tab) => {
@@ -306,6 +321,11 @@ const RightSideContent = ({ data }) => {
         email: data.user?.email || "",
         phone: data.phone || "",
         linkedin: data.linkedin || "",
+        gender: data.user?.gender || "",
+        birthDate: data.birthDate || "",
+        address: data.address || "",
+        yearsOfExperience: data.yearsOfExperience || 0,
+        desiredJobCategory: data.desiredJobCategory || "",
         country: data.country || "",
         professionalSummary: data.professionalSummary || "",
         skills: data.skills || [],
@@ -335,6 +355,18 @@ const RightSideContent = ({ data }) => {
                 endDate: "",
               },
             ],
+        trainings: data.trainings?.length
+          ? [...data.trainings]
+          : [
+              {
+                course: "",
+                institution: "",
+                description: "",
+                location: "",
+                startDate: "",
+                endDate: "",
+              },
+            ],
       });
     }
   }, [data]);
@@ -358,6 +390,12 @@ const RightSideContent = ({ data }) => {
     }
   );
 
+  const { data: categoriesData, isError } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => getAllJobCategories({}),
+    keepPreviousData: true,
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -368,17 +406,19 @@ const RightSideContent = ({ data }) => {
       email: formData.email,
       phone: formData.phone,
       country: formData.country,
+      gender: formData.gender,
+      yearsOfExperience: formData.yearsOfExperience,
+      birthDate: formData.birthDate,
       professionalSummary: formData.professionalSummary,
-      desiredJobTitle: data.desiredJobTitle,
       linkedin: formData.linkedin,
       address: formData.address,
       desiredJobCategory: formData.desiredJobCategory,
       nationality: formData.nationality,
       skills: formData.skills,
-      gender: formData.gender,
       languages: formData.languages,
       educations: formData.educations,
       experiences: formData.experiences,
+      trainings: formData.trainings,
     };
 
     // Chamar a mutação
@@ -425,11 +465,28 @@ const RightSideContent = ({ data }) => {
     });
   };
 
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImageFile(e.target.files[0]);
-    }
+  const handleAddTraining = () => {
+    setFormData({
+      ...formData,
+      trainings: [
+        ...formData.trainings,
+        {
+          course: "",
+          institution: "",
+          description: "",
+          location: "",
+          startDate: "",
+          endDate: "",
+        },
+      ],
+    });
   };
+
+  // const handleImageChange = (e) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setImageFile(e.target.files[0]);
+  //   }
+  // };
 
   const handleCvChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -449,6 +506,12 @@ const RightSideContent = ({ data }) => {
     setFormData({ ...formData, educations: updatedEducations });
   };
 
+  const handleTrainingChange = (index, field, value) => {
+    const updatedTrainings = [...formData.trainings];
+    updatedTrainings[index][field] = value;
+    setFormData({ ...formData, trainings: updatedTrainings });
+  };
+
   const handleRemoveExperience = (index) => {
     if (formData.experiences.length > 1) {
       // Garante que pelo menos uma experiência permaneça
@@ -466,6 +529,16 @@ const RightSideContent = ({ data }) => {
         (_, i) => i !== index
       );
       setFormData({ ...formData, educations: filteredEducations });
+    }
+  };
+
+  const handleRemoveTraining = (index) => {
+    if (formData.trainings.length > 1) {
+      // Garante que pelo menos um treinamento permaneça
+      const filteredTrainings = formData.trainings.filter(
+        (_, i) => i !== index
+      );
+      setFormData({ ...formData, trainings: filteredTrainings });
     }
   };
 
@@ -818,6 +891,73 @@ const RightSideContent = ({ data }) => {
                       </Col>
                       <Col lg={6}>
                         <div className="mb-3">
+                          <Label htmlFor="birthDate" className="form-label">
+                            {language === "pt"
+                              ? "Data de Nascimento"
+                              : "Birthdate"}
+                          </Label>
+                          <Input
+                            type="date"
+                            className="form-control"
+                            id="birthDate"
+                            defaultValue={formData.birthDate || ""}
+                            value={formData.birthDate || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                birthDate: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </Col>
+                      <Col lg={6}>
+                        <div className="mb-3">
+                          <Label htmlFor="address" className="form-label">
+                            {language === "pt" ? "Endereço" : "Address"}
+                          </Label>
+                          <Input
+                            type="tel"
+                            className="form-control"
+                            id="address"
+                            defaultValue={formData.address || ""}
+                            value={formData.address || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                address: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </Col>
+                      <Col lg={6}>
+                        <div className="mb-3">
+                          <Label
+                            htmlFor="yearsOfExperience"
+                            className="form-label"
+                          >
+                            {language === "pt"
+                              ? "Anos de Experiência"
+                              : "Years of Experience"}
+                          </Label>
+                          <Input
+                            type="number"
+                            className="form-control"
+                            id="yearsOfExperience"
+                            defaultValue={formData.yearsOfExperience || ""}
+                            value={formData.yearsOfExperience || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                yearsOfExperience: e.target.value,
+                              })
+                            }
+                          />
+                        </div>
+                      </Col>
+                      <Col lg={6}>
+                        <div className="mb-3">
                           <label htmlFor="country" className="form-label">
                             {language === "pt" ? "Localização" : "Location"}
                           </label>
@@ -847,48 +987,137 @@ const RightSideContent = ({ data }) => {
                           </Input>
                         </div>
                       </Col>
-                      <Col>
+                      <Col lg={6}>
                         <div className="mb-3">
-                          <Label htmlFor="linkedin" className="form-label">
-                            LinkedIn
-                          </Label>
-                          <div className="input-group">
-                            <span
-                              className="input-group-text"
-                              id="linkedin-prefix"
-                            >
-                              https://www.linkedin.com/in/
-                            </span>
-                            <Input
-                              type="text"
-                              className="form-control"
-                              id="linkedin"
-                              placeholder="seu-username"
-                              value={
-                                formData.linkedin?.replace(
-                                  "https://www.linkedin.com/in/",
-                                  ""
-                                ) || ""
-                              }
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  linkedin: `https://www.linkedin.com/in/${e.target.value.replace(
-                                    /^https:\/\/www\.linkedin\.com\/in\//,
-                                    ""
-                                  )}`,
-                                })
-                              }
-                            />
-                          </div>
-                          <small className="text-muted">
-                            {language === "pt"
-                              ? "Apenas o nome de usuário após \"linkedin.com/in/\"."
-                              : "Only the username after \"linkedin.com/in/\"."}
-                          </small>
+                          <label htmlFor="gender" className="form-label">
+                            {language === "pt" ? "Gênero" : "Gender"}
+                          </label>
+                          <Input
+                            type="select"
+                            className="form-control"
+                            id="gender"
+                            value={formData.gender || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                gender: e.target.value,
+                              })
+                            }
+                            aria-label={
+                              language === "pt"
+                                ? "Selecione um gênero"
+                                : "Select gender"
+                            }
+                          >
+                            <option value="">
+                              {language === "pt"
+                                ? "Selecione um gênero"
+                                : "Select a gender"}
+                            </option>
+                            {genders.map((gender) => (
+                              <option key={gender.value} value={gender.value}>
+                                {language === "pt"
+                                  ? gender.value === "MALE"
+                                    ? "Masculino"
+                                    : "Feminino"
+                                  : gender.label}
+                              </option>
+                            ))}
+                          </Input>
                         </div>
                       </Col>
                     </Row>
+                    <Col lg={6}>
+                      <div className="mb-3">
+                        <label
+                          htmlFor="desiredJobCategory"
+                          className="form-label"
+                        >
+                          {language === "pt"
+                            ? "Categoria do Trabalho Desejado"
+                            : "Desired Job Category"}
+                        </label>
+
+                        {isLoading ? (
+                          <div className="text-muted">
+                            {language === "pt"
+                              ? "Carregando categorias..."
+                              : "Loading categories..."}
+                          </div>
+                        ) : isError ? (
+                          <div className="text-danger">
+                            {language === "pt"
+                              ? "Erro ao carregar categorias"
+                              : "Error loading categories"}
+                          </div>
+                        ) : (
+                          <Input
+                            type="select"
+                            className="form-control"
+                            id="desiredJobCategory"
+                            value={formData.desiredJobCategory || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                desiredJobCategory: e.target.value,
+                              })
+                            }
+                          >
+                            <option value="">
+                              {language === "pt"
+                                ? "Selecione uma categoria"
+                                : "Select a category"}
+                            </option>
+                            {categoriesData?.content?.map((category) => (
+                              <option key={category.code} value={category.name}>
+                                {category.name}
+                              </option>
+                            ))}
+                          </Input>
+                        )}
+                      </div>
+                    </Col>
+                    <Col>
+                      <div className="mb-3">
+                        <Label htmlFor="linkedin" className="form-label">
+                          LinkedIn
+                        </Label>
+                        <div className="input-group">
+                          <span
+                            className="input-group-text"
+                            id="linkedin-prefix"
+                          >
+                            https://www.linkedin.com/in/
+                          </span>
+                          <Input
+                            type="text"
+                            className="form-control"
+                            id="linkedin"
+                            placeholder="seu-username"
+                            value={
+                              formData.linkedin?.replace(
+                                "https://www.linkedin.com/in/",
+                                ""
+                              ) || ""
+                            }
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                linkedin: `https://www.linkedin.com/in/${e.target.value.replace(
+                                  /^https:\/\/www\.linkedin\.com\/in\//,
+                                  ""
+                                )}`,
+                              })
+                            }
+                          />
+                        </div>
+                        <small className="text-muted">
+                          {language === "pt"
+                            ? 'Apenas o nome de usuário após "linkedin.com/in/".'
+                            : 'Only the username after "linkedin.com/in/".'}
+                        </small>
+                      </div>
+                    </Col>
                   </div>
 
                   <div className="mt-4">
@@ -1333,6 +1562,188 @@ const RightSideContent = ({ data }) => {
 
                   <div className="mt-4">
                     <h5 className="fs-17 fw-semibold mb-3">
+                      {language === "pt"
+                        ? "Cursos e Certificações"
+                        : "Courses and Certifications"}
+                    </h5>
+                    {formData.trainings?.map((training, index) => (
+                      <div
+                        key={index}
+                        className="mb-4 p-3 border rounded position-relative"
+                      >
+                        {index > 0 && (
+                          <button
+                            type="button"
+                            className="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 cursor-pointer"
+                            onClick={() => handleRemoveTraining(index)}
+                          >
+                            ×
+                          </button>
+                        )}
+
+                        <Row>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-institution-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt"
+                                  ? "Instituição"
+                                  : "Institution"}
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`training-institution-${index}`}
+                                defaultValue={training.institution || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "institution",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-course-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt" ? "Curso" : "Course"}
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`training-course-${index}`}
+                                defaultValue={training.course || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "course",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-location-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt" ? "Localização" : "Location"}
+                              </Label>
+                              <Input
+                                type="text"
+                                className="form-control"
+                                id={`training-location-${index}`}
+                                defaultValue={training.location || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "location",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-startDate-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt"
+                                  ? "Data de Início"
+                                  : "Start Date"}
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`training-startDate-${index}`}
+                                defaultValue={training.startDate || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "startDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={6}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-endDate-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt"
+                                  ? "Data de Término"
+                                  : "End Date"}
+                              </Label>
+                              <Input
+                                type="date"
+                                className="form-control"
+                                id={`training-endDate-${index}`}
+                                defaultValue={training.endDate || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "endDate",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                          <Col lg={12}>
+                            <div className="mb-3">
+                              <Label
+                                htmlFor={`training-description-${index}`}
+                                className="form-label"
+                              >
+                                {language === "pt"
+                                  ? "Descrição"
+                                  : "Description"}
+                              </Label>
+                              <textarea
+                                className="form-control"
+                                id={`training-description-${index}`}
+                                defaultValue={training.description || ""}
+                                onChange={(e) =>
+                                  handleTrainingChange(
+                                    index,
+                                    "description",
+                                    e.target.value
+                                  )
+                                }
+                              />
+                            </div>
+                          </Col>
+                        </Row>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={handleAddTraining}
+                    >
+                      +{" "}
+                      {language === "pt"
+                        ? "Adicionar Formação"
+                        : "Add Training"}
+                    </button>
+                  </div>
+
+                  <div className="mt-4">
+                    <h5 className="fs-17 fw-semibold mb-3">
                       {language === "pt" ? "Habilidades" : "Skills"}
                     </h5>
                     <div className="mb-3">
@@ -1345,9 +1756,30 @@ const RightSideContent = ({ data }) => {
                         type="text"
                         className="form-control"
                         id="skills"
-                        defaultValue={
-                          data.skills?.map((skill) => skill.name).join(", ") ||
-                          ""
+                        value={
+                          formData.skills
+                            ?.map((lang) => lang.name)
+                            .join(", ") || ""
+                        }
+                        onChange={(e) => {
+                          const skillsArray = e.target.value
+                            .split(",")
+                            .map((lang) => lang.trim())
+                            .filter((lang) => lang !== "")
+                            .map((lang) => ({
+                              name: lang,
+                              proficiency: "INTERMEDIATE", // Define um valor padrão
+                            }));
+
+                          setFormData({
+                            ...formData,
+                            skills: skillsArray,
+                          });
+                        }}
+                        placeholder={
+                          language === "pt"
+                            ? "Ex: Spring Boot, Cybersecurity"
+                            : "Ex: Spring Boot, Cybersecurity"
                         }
                       />
                       <small className="text-muted">
