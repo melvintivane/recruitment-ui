@@ -68,7 +68,7 @@ const BlogPost = () => {
                   />
                   <div className="bg-overlay"></div>
                   <div className="card-img-overlay">
-                    <Link to="/blogdetails" className="text-white">
+                    <Link to={`/blogdetails/${blogPostDetails.id}`} className="text-white">
                       <h5 className="card-title">
                         {blogPostDetails.blogTitle}
                       </h5>

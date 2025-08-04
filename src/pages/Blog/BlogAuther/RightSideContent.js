@@ -57,7 +57,7 @@ const RightSideContent = () => {
                 {/* <span className="badge bg-info-subtle text-info mb-2">
                   {blogContentDetails.badgeName}
                 </span> */}
-                <Link to="/blogdetails" className="primary-link">
+                <Link to={`/blogdetails/${blogContentDetails.id}`} className="primary-link">
                   <h5 className="text-center mb-1">
                     {blogContentDetails.blogTitle}
                   </h5>
@@ -65,7 +65,7 @@ const RightSideContent = () => {
                 <p className="text-muted">{blogContentDetails.blogDate}</p>
               </div>
               <div className="mb-3">
-                <Link to="/blogdetails">
+                <Link to={`/blogdetails/${blogContentDetails.id}`}>
                   <img
                     src={blogContentDetails.blogImage}
                     alt=""
@@ -76,7 +76,7 @@ const RightSideContent = () => {
               <p className="text-muted mb-2">
                 {blogContentDetails.blogContent}
               </p>
-              <Link to="/blogdetails" className="text-primary">
+              <Link to={`/blogdetails/${blogContentDetails.id}`} className="text-primary">
                 Leia mais <i className="uil uil-angle-right-b"></i>
               </Link>
             </div>

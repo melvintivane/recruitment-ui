@@ -12,7 +12,7 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { getAllVacancies } from "../../../services/vacancyService";
 
 //Images Import
-import jobImage1 from "../../../assets/images/light-logo.png";
+import jobImage from "../../../assets/images/light-logo.png";
 
 const JobVacancyList = ({ filters }) => {
   const [pagination, setPagination] = useState({
@@ -21,7 +21,7 @@ const JobVacancyList = ({ filters }) => {
   });
 
   // Fetch vacancies query
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["vacancies", pagination.page, pagination.size, filters],
     queryFn: () =>
       getAllVacancies({
@@ -68,7 +68,7 @@ const JobVacancyList = ({ filters }) => {
                   <div className="text-center mb-4 mb-md-0">
                     <Link to={`/companydetails/${vacancy.company.id}`}>
                       <img
-                        src={vacancy.company.logo || jobImage1}
+                        src={vacancy.company.logo || jobImage}
                         alt={vacancy.company.name}
                         className="img-fluid rounded-3"
                       />

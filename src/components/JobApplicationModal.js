@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Modal, ModalBody, Input, Label } from "reactstrap";
 import { toast } from "react-toastify";
-import { applyToVacancy } from "../services/jobApplicationService";
+import { applyToVacancy } from "../services/applicationService";
 import { useAuth } from "../hooks/useAuth";
 
 const JobApplicationModal = ({ jobId, isOpen, toggle }) => {

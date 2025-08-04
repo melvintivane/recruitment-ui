@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row } from "reactstrap";
 import LeftSideContent from "./LeftSideContent";
 import RightSideContent from "./RightSideContent";
 import Section from "./Section";
 import { getCandidateById } from "../../../services/profileService";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../../context/LanguageContext";
+import { useAuth } from "../../../hooks/useAuth";
 
 const MyProfile = () => {
   const { language } = useLanguage();
-  document.title =
-    language === "pt" ? "Perfil Profissional" : "Professional Profile";
+  const navigate = useNavigate();
+  const params = useParams();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  
+  const id = params.id || localStorage.getItem("candidateId");
 
-  const id = useParams().id || localStorage.getItem("candidateId");
+  useEffect(() => {
+    if (authLoading) return; // Aguarda a verificação de autenticação
+
+    if (!isAuthenticated) {
+      navigate("/", { 
+        replace: true,
+        // state: { from: location.pathname }
+      });
+      return;
+    }
+
+  }, [language, navigate, id, isAuthenticated, authLoading]);
 
   const {
     data: profile,

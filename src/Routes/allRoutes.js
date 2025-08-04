@@ -35,9 +35,9 @@ import SignOut from "../pages/ExtraPages/SignOut";
 import SignUp from "../pages/ExtraPages/SignUp";
 
 //profile section(User Profile)
-import BookMarkJobPost from "../pages/Profile/BookMarkJobPost/BookMarkJobPost";
+// import BookMarkJobPost from "../pages/Profile/BookMarkJobPost/BookMarkJobPost";
 // import BookMarkJobs from "../pages/Profile/BookMarkJobs/BookMarkJobs";
-import ManageJobs from "../pages/Profile/ManageJobs/ManageJobs";
+import MyApplications from "../pages/Profile/ManageJobs/MyApplications";
 import MyProfile from "../pages/Profile/MyProfile/MyProfile";
 
 //Home Section
@@ -45,10 +45,10 @@ const Layout1 = React.lazy(() => import("../pages/Home/Layout1/Layout1"));
 
 const userRoutes = [
   //profile Section(User Profile)
-  { path: "/bookmarkjobpost", component: <BookMarkJobPost /> },
-  { path: "/myprofile", component: <MyProfile /> },
+  // { path: "/bookmarkjobpost", component: <BookMarkJobPost /> },
   // { path: "/bookmarkjobs", component: <BookMarkJobs /> },
-  { path: "/managejobs", component: <ManageJobs /> },
+  { path: "/myprofile", component: <MyProfile /> },
+  { path: "/myapplications", component: <MyApplications /> },
 
   //Components Section(Extra Pages)
   { path: "/components", component: <Components /> },

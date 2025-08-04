@@ -94,7 +94,7 @@ const BlogContent = () => {
     <React.Fragment>
       <section className="section">
         <Container>
-          <Row className="align-items-center">
+          {/* <Row className="align-items-center">
             <Col lg={12}>
               <div className="mb-4">
                 <h4>
@@ -152,14 +152,14 @@ const BlogContent = () => {
                 </div>
               </article>
             </Col>
-          </Row>
+          </Row> */}
 
           <Col lg={12} className="mt-5">
             <div>
               <h4>
                 {language === "pt"
-                  ? "Todos os Posts de Blog"
-                  : "All Blog Posts"}
+                  ? "Posts de Blog"
+                  : "Blog Posts"}
               </h4>
             </div>
           </Col>

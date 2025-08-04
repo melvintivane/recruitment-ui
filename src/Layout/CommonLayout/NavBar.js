@@ -110,13 +110,13 @@ const NavBar = () => {
 
   const profileDropdownItems = [
     { path: "/myprofile", label: language === 'pt' ? "Meu Perfil" : "My Profile" , icon: "mdi-account-outline" },
+    // {
+    //   path: "/bookmarkjobs",
+    //   label: language === 'pt' ? "Vagas Favoritas" : "Favorite Vacancies",
+    //   icon: "mdi-bookmark-multiple-outline",
+    // },
     {
-      path: "/bookmarkjobs",
-      label: language === 'pt' ? "Vagas Favoritas" : "Favorite Vacancies",
-      icon: "mdi-bookmark-multiple-outline",
-    },
-    {
-      path: "/managejobs",
+      path: "/myapplications",
       label: language === 'pt' ? "Minhas Candidaturas" : "My Applications",
       icon: "mdi-briefcase-outline",
     },

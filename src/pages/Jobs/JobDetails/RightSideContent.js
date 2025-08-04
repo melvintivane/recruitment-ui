@@ -7,12 +7,15 @@ import {
   translateCareerLevel,
   translateJobType,
 } from "../../../utils/jobTranslations";
-import { applyToVacancy } from "../../../services/jobApplicationService";
+import { applyToVacancy } from "../../../services/applicationService";
 import { useAuth } from "../../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const RightSideContent = ({ job }) => {
   const { user } = useAuth();
+  const { language } = useLanguage();
+  document.title = language === "pt" ? "Detalhes da Vaga" : "Job Details";
 
   if (!job) return null;
 
@@ -37,7 +40,7 @@ const RightSideContent = ({ job }) => {
     e.preventDefault();
 
     if (!user?.candidateId) {
-      toast.info("Usuário não autenticado");
+      toast.info(language === "pt" ? "Usuário não autenticado!" : "User not authenticated!");
       return;
     }
 
@@ -170,12 +173,12 @@ const RightSideContent = ({ job }) => {
             >
               Ver Candidatos <i className="uil uil-arrow-right"></i>
             </Link> */}
-            <Link
+            {/* <Link
               to="/bookmarkjobs"
               className="btn btn-soft-warning btn-hover w-100 mt-2"
             >
               <i className="uil uil-bookmark"></i> Adicionar aos Favoritos
-            </Link>
+            </Link> */}
           </div>
         </CardBody>
       </Card>

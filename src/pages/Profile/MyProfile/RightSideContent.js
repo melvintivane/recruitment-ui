@@ -26,6 +26,251 @@ import userImage2 from "../../../assets/images/user/user.png";
 import { QueryClient, useMutation } from "react-query";
 
 const RightSideContent = ({ data }) => {
+  const countries = [
+    { value: "0", label: "Afghanistan" },
+    { value: "1", label: "Åland Islands" },
+    { value: "2", label: "Albania" },
+    { value: "3", label: "Algeria" },
+    { value: "4", label: "American Samoa" },
+    { value: "5", label: "Andorra" },
+    { value: "6", label: "Angola" },
+    { value: "7", label: "Anguilla" },
+    { value: "8", label: "Antarctica" },
+    { value: "9", label: "Antigua and Barbuda" },
+    { value: "10", label: "Argentina" },
+    { value: "11", label: "Armenia" },
+    { value: "12", label: "Aruba" },
+    { value: "13", label: "Australia" },
+    { value: "14", label: "Austria" },
+    { value: "15", label: "Azerbaijan" },
+    { value: "16", label: "Bahamas" },
+    { value: "17", label: "Bahrain" },
+    { value: "18", label: "Bangladesh" },
+    { value: "19", label: "Barbados" },
+    { value: "20", label: "Belarus" },
+    { value: "21", label: "Belgium" },
+    { value: "22", label: "Belize" },
+    { value: "23", label: "Benin" },
+    { value: "24", label: "Bermuda" },
+    { value: "25", label: "Bhutan" },
+    { value: "26", label: "Bolivia" },
+    { value: "27", label: "Bosnia and Herzegovina" },
+    { value: "28", label: "Botswana" },
+    { value: "29", label: "Bouvet Island" },
+    { value: "30", label: "Brazil" },
+    { value: "31", label: "British Indian Ocean Territory" },
+    { value: "32", label: "Brunei" },
+    { value: "33", label: "Bulgaria" },
+    { value: "34", label: "Burkina Faso" },
+    { value: "35", label: "Burundi" },
+    { value: "36", label: "Cambodia" },
+    { value: "37", label: "Cameroon" },
+    { value: "38", label: "Canada" },
+    { value: "39", label: "Cape Verde" },
+    { value: "40", label: "Cayman Islands" },
+    { value: "41", label: "Central African Republic" },
+    { value: "42", label: "Chad" },
+    { value: "43", label: "Chile" },
+    { value: "44", label: "China" },
+    { value: "45", label: "Christmas Island" },
+    { value: "46", label: "Cocos (Keeling) Islands" },
+    { value: "47", label: "Colombia" },
+    { value: "48", label: "Comoros" },
+    { value: "49", label: "Congo" },
+    { value: "50", label: "Democratic Republic of the Congo" },
+    { value: "51", label: "Cook Islands" },
+    { value: "52", label: "Costa Rica" },
+    { value: "53", label: "Ivory Coast" },
+    { value: "54", label: "Croatia" },
+    { value: "55", label: "Cuba" },
+    { value: "56", label: "Cyprus" },
+    { value: "57", label: "Czech Republic" },
+    { value: "58", label: "Denmark" },
+    { value: "59", label: "Djibouti" },
+    { value: "60", label: "Dominica" },
+    { value: "61", label: "Dominican Republic" },
+    { value: "62", label: "Ecuador" },
+    { value: "63", label: "Egypt" },
+    { value: "64", label: "El Salvador" },
+    { value: "65", label: "Equatorial Guinea" },
+    { value: "66", label: "Eritrea" },
+    { value: "67", label: "Estonia" },
+    { value: "68", label: "Ethiopia" },
+    { value: "69", label: "Falkland Islands" },
+    { value: "70", label: "Faroe Islands" },
+    { value: "71", label: "Fiji" },
+    { value: "72", label: "Finland" },
+    { value: "73", label: "France" },
+    { value: "74", label: "French Guiana" },
+    { value: "75", label: "French Polynesia" },
+    { value: "76", label: "French Southern Territories" },
+    { value: "77", label: "Gabon" },
+    { value: "78", label: "Gambia" },
+    { value: "79", label: "Georgia" },
+    { value: "80", label: "Germany" },
+    { value: "81", label: "Ghana" },
+    { value: "82", label: "Gibraltar" },
+    { value: "83", label: "Greece" },
+    { value: "84", label: "Greenland" },
+    { value: "85", label: "Grenada" },
+    { value: "86", label: "Guadeloupe" },
+    { value: "87", label: "Guam" },
+    { value: "88", label: "Guatemala" },
+    { value: "89", label: "Guernsey" },
+    { value: "90", label: "Guinea" },
+    { value: "91", label: "Guinea-Bissau" },
+    { value: "92", label: "Guyana" },
+    { value: "93", label: "Haiti" },
+    { value: "94", label: "Heard Island and McDonald Islands" },
+    { value: "95", label: "Vatican City" },
+    { value: "96", label: "Honduras" },
+    { value: "97", label: "Hong Kong" },
+    { value: "98", label: "Hungary" },
+    { value: "99", label: "Iceland" },
+    { value: "100", label: "India" },
+    { value: "1.1", label: "Indonesia" },
+    { value: "1.2", label: "Iran" },
+    { value: "1.3", label: "Iraq" },
+    { value: "1.4", label: "Ireland" },
+    { value: "1.5", label: "Isle of Man" },
+    { value: "1.6", label: "Israel" },
+    { value: "1.7", label: "Italy" },
+    { value: "1.8", label: "Jamaica" },
+    { value: "1.9", label: "Japan" },
+    { value: "2.0", label: "Jersey" },
+    { value: "2.1", label: "Jordan" },
+    { value: "2.2", label: "Kazakhstan" },
+    { value: "2.3", label: "Kenya" },
+    { value: "2.4", label: "Kiribati" },
+    { value: "2.5", label: "North Korea" },
+    { value: "2.6", label: "South Korea" },
+    { value: "2.7", label: "Kuwait" },
+    { value: "2.8", label: "Kyrgyzstan" },
+    { value: "2.9", label: "Laos" },
+    { value: "3.0", label: "Latvia" },
+    { value: "3.1", label: "Lebanon" },
+    { value: "3.2", label: "Lesotho" },
+    { value: "3.3", label: "Liberia" },
+    { value: "3.4", label: "Libya" },
+    { value: "3.5", label: "Liechtenstein" },
+    { value: "3.6", label: "Lithuania" },
+    { value: "3.7", label: "Luxembourg" },
+    { value: "3.8", label: "Macau" },
+    { value: "3.9", label: "North Macedonia" },
+    { value: "4.0", label: "Madagascar" },
+    { value: "4.1", label: "Malawi" },
+    { value: "4.2", label: "Malaysia" },
+    { value: "4.3", label: "Maldives" },
+    { value: "4.4", label: "Mali" },
+    { value: "4.5", label: "Malta" },
+    { value: "4.6", label: "Marshall Islands" },
+    { value: "4.7", label: "Martinique" },
+    { value: "4.8", label: "Mauritania" },
+    { value: "4.9", label: "Mauritius" },
+    { value: "5.0", label: "Mayotte" },
+    { value: "5.1", label: "Mexico" },
+    { value: "5.2", label: "Micronesia" },
+    { value: "5.3", label: "Moldova" },
+    { value: "5.4", label: "Monaco" },
+    { value: "5.5", label: "Mongolia" },
+    { value: "5.6", label: "Montenegro" },
+    { value: "5.7", label: "Montserrat" },
+    { value: "5.8", label: "Morocco" },
+    { value: "5.9", label: "Mozambique" },
+    { value: "6.0", label: "Myanmar (Burma)" },
+    { value: "6.1", label: "Namibia" },
+    { value: "6.2", label: "Nauru" },
+    { value: "6.3", label: "Nepal" },
+    { value: "6.4", label: "Netherlands" },
+    { value: "6.5", label: "New Caledonia" },
+    { value: "6.6", label: "New Zealand" },
+    { value: "6.7", label: "Nicaragua" },
+    { value: "6.8", label: "Niger" },
+    { value: "6.9", label: "Nigeria" },
+    { value: "7.0", label: "Niue" },
+    { value: "7.1", label: "Norfolk Island" },
+    { value: "7.2", label: "Northern Mariana Islands" },
+    { value: "7.3", label: "Norway" },
+    { value: "7.4", label: "Oman" },
+    { value: "7.5", label: "Pakistan" },
+    { value: "7.6", label: "Palau" },
+    { value: "7.7", label: "Palestinian Territories" },
+    { value: "7.8", label: "Panama" },
+    { value: "7.9", label: "Papua New Guinea" },
+    { value: "8.0", label: "Paraguay" },
+    { value: "8.1", label: "Peru" },
+    { value: "8.2", label: "Philippines" },
+    { value: "8.3", label: "Pitcairn Islands" },
+    { value: "8.4", label: "Poland" },
+    { value: "8.5", label: "Portugal" },
+    { value: "8.6", label: "Puerto Rico" },
+    { value: "8.7", label: "Qatar" },
+    { value: "8.8", label: "Réunion" },
+    { value: "8.9", label: "Romania" },
+    { value: "9.0", label: "Russia" },
+    { value: "9.1", label: "Rwanda" },
+    { value: "9.2", label: "Saint Barthélemy" },
+    { value: "9.3", label: "Saint Helena, Ascension and Tristan da Cunha" },
+    { value: "9.4", label: "Saint Kitts and Nevis" },
+    { value: "9.5", label: "Saint Lucia" },
+    { value: "9.6", label: "Saint Martin (French part)" },
+    { value: "9.7", label: "Saint Pierre and Miquelon" },
+    { value: "9.8", label: "Saint Vincent and the Grenadines" },
+    { value: "9.9", label: "Samoa" },
+    { value: "10.0", label: "San Marino" },
+    { value: "10.1", label: "São Tomé and Príncipe" },
+    { value: "10.2", label: "Saudi Arabia" },
+    { value: "10.3", label: "Senegal" },
+    { value: "10.4", label: "Serbia" },
+    { value: "10.5", label: "Seychelles" },
+    { value: "10.6", label: "Sierra Leone" },
+    { value: "10.7", label: "Singapore" },
+    { value: "10.8", label: "Slovakia" },
+    { value: "10.9", label: "Slovenia" },
+    { value: "11.0", label: "Solomon Islands" },
+    { value: "11.1", label: "Somalia" },
+    { value: "11.2", label: "South Africa" },
+    { value: "11.3", label: "South Georgia and the South Sandwich Islands" },
+    { value: "11.4", label: "South Sudan" },
+    { value: "11.5", label: "Spain" },
+    { value: "11.6", label: "Sri Lanka" },
+    { value: "11.7", label: "Sudan" },
+    { value: "11.8", label: "Suriname" },
+    { value: "11.9", label: "Svalbard and Jan Mayen" },
+    { value: "12.0", label: "Eswatini (Swaziland)" },
+    { value: "12.1", label: "Sweden" },
+    { value: "12.2", label: "Switzerland" },
+    { value: "12.3", label: "Syria" },
+    { value: "12.4", label: "Taiwan" },
+    { value: "12.5", label: "Tajikistan" },
+    { value: "12.6", label: "Tanzania" },
+    { value: "12.7", label: "Thailand" },
+    { value: "12.8", label: "Timor-Leste" },
+    { value: "12.9", label: "Togo" },
+    { value: "13.0", label: "Tokelau" },
+    { value: "13.1", label: "Tonga" },
+    { value: "13.2", label: "Trinidad and Tobago" },
+    { value: "13.3", label: "Tunisia" },
+    { value: "13.4", label: "Turkey" },
+    { value: "13.5", label: "Turkmenistan" },
+    { value: "13.6", label: "Turks and Caicos Islands" },
+    { value: "13.7", label: "Tuvalu" },
+    { value: "13.8", label: "Uganda" },
+    { value: "13.9", label: "Ukraine" },
+    { value: "14.0", label: "United Arab Emirates" },
+    { value: "14.1", label: "United Kingdom" },
+    { value: "14.2", label: "United States" },
+    { value: "14.3", label: "Uruguay" },
+    { value: "14.4", label: "Uzbekistan" },
+    { value: "14.5", label: "Vanuatu" },
+    { value: "14.6", label: "Venezuela" },
+    { value: "14.7", label: "Vietnam" },
+    { value: "14.8", label: "Wallis and Futuna" },
+    { value: "14.9", label: "Western Sahara" },
+    { value: "15.0", label: "Yemen" },
+    { value: "15.1", label: "Zambia" },
+    { value: "15.2", label: "Zimbabwe" },
+  ];
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
@@ -60,6 +305,7 @@ const RightSideContent = ({ data }) => {
         lastName: data.user?.lastName || "",
         email: data.user?.email || "",
         phone: data.phone || "",
+        linkedin: data.linkedin || "",
         country: data.country || "",
         professionalSummary: data.professionalSummary || "",
         skills: data.skills || [],
@@ -109,14 +355,6 @@ const RightSideContent = ({ data }) => {
         // Recarregar a página
         navigate(0);
       },
-      onError: (error) => {
-        console.error("Erro ao atualizar perfil:", error);
-        toast.error(
-          language === "pt"
-            ? "Erro ao atualizar perfil"
-            : "Error updating profile"
-        );
-      },
     }
   );
 
@@ -131,7 +369,13 @@ const RightSideContent = ({ data }) => {
       phone: formData.phone,
       country: formData.country,
       professionalSummary: formData.professionalSummary,
+      desiredJobTitle: data.desiredJobTitle,
+      linkedin: formData.linkedin,
+      address: formData.address,
+      desiredJobCategory: formData.desiredJobCategory,
+      nationality: formData.nationality,
       skills: formData.skills,
+      gender: formData.gender,
       languages: formData.languages,
       educations: formData.educations,
       experiences: formData.experiences,
@@ -445,7 +689,7 @@ const RightSideContent = ({ data }) => {
                       {language === "pt" ? "Minha Conta" : "My Account"}
                     </h5>
                     <div className="text-center">
-                      <div className="mb-4 profile-user position-relative">
+                      {/* <div className="mb-4 profile-user position-relative">
                         <img
                           src={imagePreview}
                           className="rounded-circle img-thumbnail profile-img"
@@ -509,7 +753,7 @@ const RightSideContent = ({ data }) => {
                             ×
                           </button>
                         )}
-                      </div>
+                      </div> */}
                     </div>
                     <Row>
                       <Col lg={6}>
@@ -522,6 +766,13 @@ const RightSideContent = ({ data }) => {
                             className="form-control"
                             id="firstName"
                             defaultValue={formData.firstName || ""}
+                            value={formData.firstName || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                firstName: e.target.value,
+                              })
+                            }
                           />
                         </div>
                       </Col>
@@ -535,19 +786,13 @@ const RightSideContent = ({ data }) => {
                             className="form-control"
                             id="lastName"
                             defaultValue={data.user.lastName || ""}
-                          />
-                        </div>
-                      </Col>
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <Label htmlFor="email" className="form-label">
-                            Email
-                          </Label>
-                          <Input
-                            type="email"
-                            className="form-control"
-                            id="email"
-                            defaultValue={data.user.email || ""}
+                            value={formData.lastName || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                lastName: e.target.value,
+                              })
+                            }
                           />
                         </div>
                       </Col>
@@ -560,8 +805,87 @@ const RightSideContent = ({ data }) => {
                             type="tel"
                             className="form-control"
                             id="phone"
-                            defaultValue={data.phone || ""}
+                            defaultValue={formData.phone || ""}
+                            value={formData.phone || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                phone: e.target.value,
+                              })
+                            }
                           />
+                        </div>
+                      </Col>
+                      <Col lg={6}>
+                        <div className="mb-3">
+                          <label htmlFor="country" className="form-label">
+                            {language === "pt" ? "Localização" : "Location"}
+                          </label>
+                          <Input
+                            type="select"
+                            className="form-control"
+                            id="country"
+                            defaultValue={data.country || ""}
+                            value={formData.country || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                country: e.target.value,
+                              })
+                            }
+                          >
+                            <option value="">
+                              {language === "pt"
+                                ? "Selecione um país"
+                                : "Select a country"}
+                            </option>
+                            {countries.map((country) => (
+                              <option key={country.value} value={country.label}>
+                                {country.label}
+                              </option>
+                            ))}
+                          </Input>
+                        </div>
+                      </Col>
+                      <Col>
+                        <div className="mb-3">
+                          <Label htmlFor="linkedin" className="form-label">
+                            LinkedIn
+                          </Label>
+                          <div className="input-group">
+                            <span
+                              className="input-group-text"
+                              id="linkedin-prefix"
+                            >
+                              https://www.linkedin.com/in/
+                            </span>
+                            <Input
+                              type="text"
+                              className="form-control"
+                              id="linkedin"
+                              placeholder="seu-username"
+                              value={
+                                formData.linkedin?.replace(
+                                  "https://www.linkedin.com/in/",
+                                  ""
+                                ) || ""
+                              }
+                              onChange={(e) =>
+                                setFormData({
+                                  ...formData,
+                                  linkedin: `https://www.linkedin.com/in/${e.target.value.replace(
+                                    /^https:\/\/www\.linkedin\.com\/in\//,
+                                    ""
+                                  )}`,
+                                })
+                              }
+                            />
+                          </div>
+                          <small className="text-muted">
+                            {language === "pt"
+                              ? "Apenas o nome de usuário após \"linkedin.com/in/\"."
+                              : "Only the username after \"linkedin.com/in/\"."}
+                          </small>
                         </div>
                       </Col>
                     </Row>
@@ -589,6 +913,13 @@ const RightSideContent = ({ data }) => {
                             rows="5"
                             id="professionalSummary"
                             defaultValue={data.professionalSummary || ""}
+                            value={formData.professionalSummary || ""}
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                professionalSummary: e.target.value,
+                              })
+                            }
                           />
                         </div>
                       </Col>
@@ -612,20 +943,6 @@ const RightSideContent = ({ data }) => {
                               {cvFile.name}
                             </div>
                           )}
-                        </div>
-                      </Col>
-
-                      <Col lg={6}>
-                        <div className="mb-3">
-                          <label htmlFor="country" className="form-label">
-                            {language === "pt" ? "Localização" : "Location"}
-                          </label>
-                          <Input
-                            type="text"
-                            className="form-control"
-                            id="country"
-                            defaultValue={data.country || ""}
-                          />
                         </div>
                       </Col>
                     </Row>
@@ -757,7 +1074,7 @@ const RightSideContent = ({ data }) => {
                                   : "Start Date"}
                               </Label>
                               <Input
-                                type="datetime-local"
+                                type="date"
                                 className="form-control"
                                 id={`education-startDate-${index}`}
                                 value={education.startDate || ""}
@@ -782,7 +1099,7 @@ const RightSideContent = ({ data }) => {
                                   : "End Date"}
                               </Label>
                               <Input
-                                type="datetime-local"
+                                type="date"
                                 className="form-control"
                                 id={`education-endDate-${index}`}
                                 value={education.endDate || ""}
@@ -938,7 +1255,7 @@ const RightSideContent = ({ data }) => {
                                   : "Start Date"}
                               </Label>
                               <Input
-                                type="datetime-local"
+                                type="date"
                                 className="form-control"
                                 id={`experience-startDate-${index}`}
                                 defaultValue={experience.startDate || ""}
@@ -963,7 +1280,7 @@ const RightSideContent = ({ data }) => {
                                   : "End Date"}
                               </Label>
                               <Input
-                                type="datetime-local"
+                                type="date"
                                 className="form-control"
                                 id={`experience-endDate-${index}`}
                                 defaultValue={experience.endDate || ""}
@@ -1021,8 +1338,8 @@ const RightSideContent = ({ data }) => {
                     <div className="mb-3">
                       <Label htmlFor="skills" className="form-label">
                         {language === "pt"
-                          ? "Habilidades Profissionais (separadas por vírgula)"
-                          : "Professional Skills (comma separated)"}
+                          ? "Habilidades Profissionais"
+                          : "Professional Skills"}
                       </Label>
                       <Input
                         type="text"
@@ -1033,6 +1350,11 @@ const RightSideContent = ({ data }) => {
                           ""
                         }
                       />
+                      <small className="text-muted">
+                        {language === "pt"
+                          ? "Separe as habilidades por vírgula"
+                          : "Separate skills with commas"}
+                      </small>
                     </div>
                   </div>
 
@@ -1043,18 +1365,44 @@ const RightSideContent = ({ data }) => {
                     <div className="mb-3">
                       <Label htmlFor="languages" className="form-label">
                         {language === "pt"
-                          ? "Idiomas que você fala (separados por vírgula)"
-                          : "Languages you speak (comma separated)"}
+                          ? "Idiomas que você fala"
+                          : "Languages you speak"}
                       </Label>
                       <Input
                         type="text"
                         className="form-control"
                         id="languages"
-                        defaultValue={
-                          data.languages?.map((lang) => lang.name).join(", ") ||
-                          ""
+                        value={
+                          formData.languages
+                            ?.map((lang) => lang.name)
+                            .join(", ") || ""
+                        }
+                        onChange={(e) => {
+                          const languagesArray = e.target.value
+                            .split(",")
+                            .map((lang) => lang.trim())
+                            .filter((lang) => lang !== "")
+                            .map((lang) => ({
+                              name: lang,
+                              proficiency: "INTERMEDIATE", // Define um valor padrão
+                            }));
+
+                          setFormData({
+                            ...formData,
+                            languages: languagesArray,
+                          });
+                        }}
+                        placeholder={
+                          language === "pt"
+                            ? "Ex: Português, Inglês"
+                            : "Ex: English, French"
                         }
                       />
+                      <small className="text-muted">
+                        {language === "pt"
+                          ? "Separe os idiomas por vírgula"
+                          : "Separate languages with commas"}
+                      </small>
                     </div>
                   </div>
 

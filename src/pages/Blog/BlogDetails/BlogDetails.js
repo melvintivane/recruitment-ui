@@ -7,7 +7,7 @@ import BlogCategory from "../../../components/BlogCategory";
 import Tags from "../../../components/Tags";
 import { getBlogById } from "../../../services/blogService";
 import BlogColumn from "../BlogDetails/BlogColumn";
-import BlogPost from "../BlogDetails/BlogPost";
+// import BlogPost from "../BlogDetails/BlogPost";
 import BlogSwiper from "../BlogDetails/BlogSwiper";
 import BlogTitle from "../BlogDetails/BlogTitle";
 import Section from "../BlogDetails/Section";
@@ -77,7 +77,7 @@ const BlogDetails = () => {
                 <BlogColumn data={blog}/>
                 {/*<BlogComments />*/}
                 {/*<BlogForm />*/}
-                <BlogPost />
+                {/* <BlogPost /> */}
               </div>
             </Col>
             <Col lg={4} md={5}>

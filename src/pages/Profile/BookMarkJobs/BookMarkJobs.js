@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "reactstrap";
-import Selected from "../ManageJobs/Selected";
+import Selected from "../myapplications/Selected";
 import BookmarkJobListing from "./BookmarkJobListing";
 import Section from "./Section";
 
