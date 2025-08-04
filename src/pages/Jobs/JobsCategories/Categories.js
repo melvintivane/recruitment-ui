@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
 import { getAllJobCategories } from "../../../services/jobCategorieService";
-import translatedData from "../../../translations/JobCategories";
+// import translatedData from "../../../translations/JobCategories";
 
 const Categories = () => {
   const { language } = useLanguage();
-  const t = translatedData[language] || translatedData["pt"];
+  // const t = translatedData[language] || translatedData["pt"];
 
   const [pagination, setPagination] = useState({
     page: 0,

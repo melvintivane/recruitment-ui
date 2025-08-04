@@ -20,91 +20,107 @@ const ApplicationList = ({
   totalPages,
   onPageChange,
   onPageSizeChange,
-  language
+  language,
 }) => {
   // const [modal, setModal] = useState(false);
   // const openModal = () => setModal(!modal);
 
   return (
     <React.Fragment>
-      <Row>
-        <Col lg={12}>
-          {jobList?.map((job, key) => (
-            <Card className="job-box card mt-4" key={key}>
-              <CardBody className="p-4">
-                <Row>
-                  <Col lg={1}>
-                    <Link to="/companydetails">
-                      <img
-                        src={jobImage}
-                        alt=""
-                        className="img-fluid rounded-3"
-                      />
-                    </Link>
-                  </Col>
+      {jobList?.length === 0 ? (
+        <div className="text-center py-5">
+          <i className="uil uil-exclamation-triangle fs-1 text-warning"></i>
+          <h5 className="mt-3">
+            {language === "pt"
+              ? "Nenhuma candidatura encontrada"
+              : "No applications found"}
+          </h5>
+          <p className="text-muted">
+            {language === "pt"
+              ? "Candidaturas aparecerão assim que se candidatar a vagas"
+              : "Applications will appear as soon as you apply to jobs"}
+          </p>
+        </div>
+      ) : (
+        jobList?.map((job, key) => (
+          <Row>
+            <Col lg={12}>
+              <Card className="job-box card mt-4" key={key}>
+                <CardBody className="p-4">
+                  <Row>
+                    <Col lg={1}>
+                      <Link to="/companydetails">
+                        <img
+                          src={jobImage}
+                          alt=""
+                          className="img-fluid rounded-3"
+                        />
+                      </Link>
+                    </Col>
 
-                  <Col lg={9}>
-                    <div className="mt-3 mt-lg-0">
-                      <h5 className="fs-17 mb-1">
-                        <Link
-                          to={`/jobdetails/${job.id}`}
-                          className="text-dark"
-                        >
-                          {job.title}
-                        </Link>
-                      </h5>
-                      <ul className="list-inline mb-0">
-                        <li className="list-inline-item">
-                          <p className="text-muted fs-14 mb-0">
-                            {job.description}
-                          </p>
-                        </li>
-                        <li className="list-inline-item">
-                          <p className="text-muted fs-14 mb-0">
-                            <i className="mdi mdi-map-marker"></i> {job.country}
-                          </p>
-                        </li>
-                      </ul>
-                      <div className="mt-2">
-                        <span
-                          className={
-                            job.type === "FULL_TIME"
-                              ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
+                    <Col lg={9}>
+                      <div className="mt-3 mt-lg-0">
+                        <h5 className="fs-17 mb-1">
+                          <Link
+                            to={`/jobdetails/${job.id}`}
+                            className="text-dark"
+                          >
+                            {job.title}
+                          </Link>
+                        </h5>
+                        <ul className="list-inline mb-0">
+                          <li className="list-inline-item">
+                            <p className="text-muted fs-14 mb-0">
+                              {job.description}
+                            </p>
+                          </li>
+                          <li className="list-inline-item">
+                            <p className="text-muted fs-14 mb-0">
+                              <i className="mdi mdi-map-marker"></i>{" "}
+                              {job.country}
+                            </p>
+                          </li>
+                        </ul>
+                        <div className="mt-2">
+                          <span
+                            className={
+                              job.type === "FULL_TIME"
+                                ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
+                                : job.type === "PART_TIME"
+                                ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
+                                : job.type === "CONTRACT"
+                                ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
+                                : "badge bg-info-subtle text-info mt-1"
+                            }
+                          >
+                            {job.type === "FULL_TIME"
+                              ? "Tempo Integral"
                               : job.type === "PART_TIME"
-                              ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
+                              ? "Meio Período"
                               : job.type === "CONTRACT"
-                              ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
-                              : "badge bg-info-subtle text-info mt-1"
-                          }
-                        >
-                          {job.type === "FULL_TIME"
-                            ? "Tempo Integral"
-                            : job.type === "PART_TIME"
-                            ? "Meio Período"
-                            : job.type === "CONTRACT"
-                            ? "Contrato"
-                            : "Estágio"}
-                        </span>
-                        <span
-                          className={
-                            job.status === "ACTIVE"
-                              ? "badge bg-success-subtle text-success fs-13 mt-1"
+                              ? "Contrato"
+                              : "Estágio"}
+                          </span>
+                          <span
+                            className={
+                              job.status === "ACTIVE"
+                                ? "badge bg-success-subtle text-success fs-13 mt-1"
+                                : job.status === "CLOSED"
+                                ? "badge bg-danger-subtle text-danger fs-13 mt-1"
+                                : "badge bg-warning-subtle text-warning fs-13 mt-1"
+                            }
+                          >
+                            {job.status === "ACTIVE"
+                              ? "Activa"
                               : job.status === "CLOSED"
-                              ? "badge bg-danger-subtle text-danger fs-13 mt-1"
-                              : "badge bg-warning-subtle text-warning fs-13 mt-1"
-                          }
-                        >
-                          {job.status === "ACTIVE"
-                            ? "Activa"
-                            : job.status === "CLOSED"
-                            ? "Fechada"
-                            : "Pendente"}
-                        </span>
+                              ? "Fechada"
+                              : "Pendente"}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </Col>
+                    </Col>
 
-                  {/* <Col lg={2} className="align-self-center">
+                    {/* <Col lg={2} className="align-self-center">
                     <ul className="list-inline mt-3 mb-0">
                       <li
                         className="list-inline-item"
@@ -135,83 +151,86 @@ const ApplicationList = ({
                       </li>
                     </ul>
                   </Col> */}
-                </Row>
-              </CardBody>
-            </Card>
-          ))}
-        </Col>
-      </Row>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        ))
+      )}
 
-      <Row>
-        {/* Pagination */}
-        <div className="d-flex justify-content-between align-items-center mt-4">
-          <div className="text-muted">
-            {language === "pt" ? "Mostrando" : "Showing"}{" "}
-            <span className="fw-bold">{jobList?.content?.length || 0}</span>{" "}
-            {language === "pt" ? "de" : "of"}{" "}
-            <span className="fw-bold">{totalElements || 0}</span>{" "}
-            {language === "pt" ? "empresas" : "companies"}
-            <select
-              className="form-select form-select-sm ms-2 d-inline-block w-auto"
-              value={pagination.size}
-              onChange={onPageSizeChange}
-            >
-              {[5, 10, 20, 50].map((size) => (
-                <option key={size} value={size}>
-                  {size} {language === "pt" ? "por página" : "per page"}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <nav aria-label="Page navigation">
-            <Pagination className="mb-0">
-              <PaginationItem disabled={pagination.page === 0}>
-                <PaginationLink
-                  previous
-                  onClick={() => onPageChange(pagination.page - 1)}
-                />
-              </PaginationItem>
-
-              {Array.from(
-                { length: Math.min(5, totalPages || 0) },
-                (_, i) => {
-                  let pageNum;
-                  if ((totalPages || 0) <= 5) {
-                    pageNum = i;
-                  } else if (pagination.page <= 2) {
-                    pageNum = i;
-                  } else if (pagination.page >= (totalPages || 0) - 3) {
-                    pageNum = (totalPages || 0) - 5 + i;
-                  } else {
-                    pageNum = pagination.page - 2 + i;
-                  }
-
-                  return (
-                    <PaginationItem
-                      key={pageNum}
-                      active={pageNum === pagination.page}
-                    >
-                      <PaginationLink onClick={() => onPageChange(pageNum)}>
-                        {pageNum + 1}
-                      </PaginationLink>
-                    </PaginationItem>
-                  );
-                }
-              )}
-
-              <PaginationItem
-                disabled={pagination.page === (totalPages || 0) - 1}
+      {/* Pagination */}
+      {jobList?.length > 0 && (
+        <Row>
+          <div className="d-flex justify-content-between align-items-center mt-4">
+            <div className="text-muted">
+              {language === "pt" ? "Mostrando" : "Showing"}{" "}
+              <span className="fw-bold">{jobList?.content?.length || 0}</span>{" "}
+              {language === "pt" ? "de" : "of"}{" "}
+              <span className="fw-bold">{totalElements || 0}</span>{" "}
+              {language === "pt" ? "empresas" : "companies"}
+              <select
+                className="form-select form-select-sm ms-2 d-inline-block w-auto"
+                value={pagination.size}
+                onChange={onPageSizeChange}
               >
-                <PaginationLink
-                  next
-                  onClick={() => onPageChange(pagination.page + 1)}
-                />
-              </PaginationItem>
-            </Pagination>
-          </nav>
-        </div>
-      </Row>
+                {[5, 10, 20, 50].map((size) => (
+                  <option key={size} value={size}>
+                    {size} {language === "pt" ? "por página" : "per page"}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <nav aria-label="Page navigation">
+              <Pagination className="mb-0">
+                <PaginationItem disabled={pagination.page === 0}>
+                  <PaginationLink
+                    previous
+                    onClick={() => onPageChange(pagination.page - 1)}
+                  />
+                </PaginationItem>
+
+                {Array.from(
+                  { length: Math.min(5, totalPages || 0) },
+                  (_, i) => {
+                    let pageNum;
+                    if ((totalPages || 0) <= 5) {
+                      pageNum = i;
+                    } else if (pagination.page <= 2) {
+                      pageNum = i;
+                    } else if (pagination.page >= (totalPages || 0) - 3) {
+                      pageNum = (totalPages || 0) - 5 + i;
+                    } else {
+                      pageNum = pagination.page - 2 + i;
+                    }
+
+                    return (
+                      <PaginationItem
+                        key={pageNum}
+                        active={pageNum === pagination.page}
+                      >
+                        <PaginationLink onClick={() => onPageChange(pageNum)}>
+                          {pageNum + 1}
+                        </PaginationLink>
+                      </PaginationItem>
+                    );
+                  }
+                )}
+
+                <PaginationItem
+                  disabled={pagination.page === (totalPages || 0) - 1}
+                >
+                  <PaginationLink
+                    next
+                    onClick={() => onPageChange(pagination.page + 1)}
+                  />
+                </PaginationItem>
+              </Pagination>
+            </nav>
+          </div>
+        </Row>
+      )}
 
       {/* <div
         className="modal fade"

@@ -12,7 +12,7 @@ const CategoriaBlog = () => {
     size: 10,
   });
 
-  const { data, isLoading, error } = useQuery({
+  const { data } = useQuery({
     queryKey: ["categories", pagination.page, pagination.size],
     queryFn: () =>
       getAllBlogCategories({
