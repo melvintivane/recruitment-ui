@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Col, Container, Form, Row } from "reactstrap";
 import { useLanguage } from "../../../context/LanguageContext";
-import JobSearch from "../SubSection/JobSearch";
+// import JobSearch from "../SubSection/JobSearch";
 
 const Section = () => {
   const { language } = useLanguage();
   const navigate = useNavigate();
-  
+
   // Estados para os campos de pesquisa
   const [searchParams, setSearchParams] = useState({
-    jobTitle: "",
-    country: "",
-    jobType: ""
+    location: "",
   });
 
   const sectionText = {
@@ -22,6 +20,8 @@ const Section = () => {
       titleThirdWords: "Vagas Abertas",
       paragraph:
         "Encontre empregos, crie currículos rastreáveis e valorize suas candidaturas.",
+      searchButton: "Buscar Vaga",
+      trendingKeywords: "Palavras-chave em alta:",
     },
     en: {
       titleFirstWords: "Explore Our",
@@ -29,33 +29,36 @@ const Section = () => {
       titleThirdWords: "Job Openings",
       paragraph:
         "Find jobs, build trackable résumés, and enhance your applications.",
+      searchButton: "Search Vacancy",
+      trendingKeywords: "Trending Keywords:",
     },
   };
 
-  // Manipulador de mudança genérico para os campos
   const handleInputChange = (field, value) => {
-    setSearchParams(prev => ({
+    setSearchParams((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
-  // Manipulador de submissão do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Aqui você pode:
-    // 1. Fazer uma chamada API para buscar vagas
-    // 2. Navegar para uma página de resultados com os parâmetros
-    // 3. Filtrar dados locais
-    
-    // Exemplo: navegar para a página de resultados com os parâmetros
-    navigate(`/jobs?title=${encodeURIComponent(searchParams.jobTitle)}&country=${encodeURIComponent(searchParams.country)}&type=${encodeURIComponent(searchParams.jobType)}`);
-    
-    // Ou alternativamente, você poderia usar um contexto ou estado global para armazenar os parâmetros
+
+    // Cria um objeto com os parâmetros não vazios
+    const queryParams = new URLSearchParams();
+
+    if (searchParams.search) queryParams.append("search", searchParams.search);
+
+    // Navega para a página de vagas com os parâmetros de pesquisa
+    navigate(`/joblist?${queryParams.toString()}`);
   };
 
+  // const handleTrendingKeywordClick = (keyword) => {
+  //   navigate(`/joblist?search=${encodeURIComponent(keyword)}`);
+  // };
+
   const t = sectionText[language] || sectionText["pt"];
+
   return (
     <React.Fragment>
       <section className="bg-home" id="home">
@@ -82,21 +85,27 @@ const Section = () => {
                 <Col>
                   <div className="filter-search-form filter-border mt-3 mt-lg-0">
                     <i className="uil uil-briefcase-alt"></i>
-                    <JobSearch 
-                      value={searchParams.jobTitle}
-                      onChange={(value) => handleInputChange('jobTitle', value)}
+                    <input
+                      type="text"
+                      className="form-control filter-input-box"
+                      placeholder={
+                        language === "pt" ? "Buscar vagas..." : "Search jobs..."
+                      }
+                      value={searchParams.search}
+                      onChange={(e) =>
+                        handleInputChange("search", e.target.value)
+                      }
                     />
                   </div>
                 </Col>
-                
-                
-                <Col lg={3}>
+
+                <Col lg={2}>
                   <div className="mt-3 mt-lg-0 h-100">
                     <button
                       className="btn btn-primary submit-btn w-100 h-100"
                       type="submit"
                     >
-                      <i className="uil uil-search me-1"></i> {language === 'pt' ? "Buscar Vaga" : "Search Vacancy"}
+                      <i className="uil uil-search me-1"></i> {t.searchButton}
                     </button>
                   </div>
                 </Col>
@@ -104,35 +113,34 @@ const Section = () => {
             </div>
           </Form>
 
-
-          <Row>
+          {/* <Row>
             <Col lg={12}>
               <ul className="treding-keywords list-inline mb-0 text-white-50 mt-4 mt-lg-3 text-center">
                 <li className="list-inline-item text-white">
                   <i className="mdi mdi-tag-multiple-outline text-warning fs-18"></i>{" "}
-                  {language === "pt"
-                    ? "Palavras-chave em alta:"   
-                    : "Trending Keywords:"}
+                  {t.trendingKeywords}
                 </li>
-                <li className="list-inline-item">
-                  <Link to="#">Design,</Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#">
-                    {language === "pt" ? "Desenvolvimento," : "Development,"}
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#">
-                    {language === "pt" ? "Gestor," : "Manager,"}
-                  </Link>
-                </li>
-                <li className="list-inline-item">
-                  <Link to="#">{language === "pt" ? "Sênior" : "Senior"}</Link>
-                </li>
+                {[
+                  "Design",
+                  language === "pt" ? "Desenvolvimento" : "Development",
+                  language === "pt" ? "Gestor" : "Manager",
+                  language === "pt" ? "Sênior" : "Senior",
+                ].map((keyword) => (
+                  <li className="list-inline-item" key={keyword}>
+                    <Link
+                      to="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleTrendingKeywordClick(keyword);
+                      }}
+                    >
+                      {keyword},
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </Col>
-          </Row>
+          </Row> */}
         </Container>
       </section>
 
