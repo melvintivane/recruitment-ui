@@ -49,7 +49,7 @@ const ApplicationList = ({
                 <CardBody className="p-4">
                   <Row>
                     <Col lg={1}>
-                      <Link to="/companydetails">
+                      <Link to={`/jobdetails/${job.id}`}>
                         <img
                           src={jobImage}
                           alt=""

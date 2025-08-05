@@ -51,9 +51,9 @@ const RightSideContent = ({ job }) => {
 
       await applyToVacancy(job.id, applicationDto);
 
-      toast.success("Candidatura enviada com sucesso!");
+      toast.success(language === "pt" ? "Candidatura enviada com sucesso!" : "Application submitted successfully!");
     } catch (err) {
-      toast.error(err.message || "Erro ao enviar candidatura");
+      toast.error(err.message || (language === "pt" ? "Erro ao enviar candidatura" : "Error submitting application"));
     }
   };
 
@@ -61,13 +61,13 @@ const RightSideContent = ({ job }) => {
     <div className="side-bar ms-lg-4">
       <Card className="job-overview">
         <CardBody className="p-4">
-          <h6 className="fs-17">Visão Geral da Vaga</h6>
+          <h6 className="fs-17">{language === "pt" ? "Visão Geral da Vaga" : "Job Overview"}</h6>
           <ul className="list-unstyled mt-4 mb-0">
             <li>
               <div className="d-flex mt-4">
                 <i className="uil uil-user icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Título da Vaga</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Título da Vaga" : "Job Title"}</h6>
                   <p className="text-muted mb-0">{job.title}</p>
                 </div>
               </div>
@@ -76,11 +76,11 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-star-half-alt icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Experiência</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Experiência" : "Experience"}</h6>
                   <p className="text-muted mb-0">
                     {job.yearsOfExperience || "0"}-
                     {job.yearsOfExperience ? job.yearsOfExperience + 2 : "3"}{" "}
-                    Anos
+                    {language === "pt" ? "Anos" : "Years"}
                   </p>
                 </div>
               </div>
@@ -89,12 +89,12 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-location-point icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Localização</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Localização" : "Location"}</h6>
                   <p className="text-muted mb-0">
                     {job.city || job.state || job.country || "Remoto"}
                     {job.remoteAllowed && (
                       <Badge color="success" className="ms-2">
-                        Remoto
+                        {language === "pt" ? "Remoto" : "Remote"}
                       </Badge>
                     )}
                   </p>
@@ -105,7 +105,7 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-usd-circle icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Salário Oferecido</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Salário Oferecido" : "Offered Salary"}</h6>
                   <p className="text-muted mb-0">
                     {job.minSalary && job.maxSalary
                       ? formatSalary(job.minSalary, job.maxSalary)
@@ -118,9 +118,9 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-graduation-cap icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Qualificação</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Qualificação" : "Qualification"}</h6>
                   <p className="text-muted mb-0">
-                    {job.degreeRequired || "Não especificado"}
+                    {job.degreeRequired || (language === "pt" ? "Não especificado" : "Not specified")}
                   </p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-briefcase-alt icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Tipo de Emprego</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Tipo de Emprego" : "Job Type"}</h6>
                   <p className="text-muted mb-0">
                     {translateJobType(job.type)}
                   </p>
@@ -140,7 +140,7 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-chart-line icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Nível de Carreira</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Nível de Carreira" : "Career Level"}</h6>
                   <p className="text-muted mb-0">
                     {translateCareerLevel(job.careerLevel)}
                   </p>
@@ -151,7 +151,7 @@ const RightSideContent = ({ job }) => {
               <div className="d-flex mt-4">
                 <i className="uil uil-history icon bg-primary-subtle text-primary"></i>
                 <div className="ms-3">
-                  <h6 className="fs-14 mb-2">Data da Publicação</h6>
+                  <h6 className="fs-14 mb-2">{language === "pt" ? "Data da Publicação" : "Date Posted"}</h6>
                   <p className="text-muted mb-0">
                     {getTimeSincePosting(job.createdAt)}
                   </p>
@@ -197,7 +197,7 @@ const RightSideContent = ({ job }) => {
               <div className="mt-4">
                 <h6 className="fs-17 mb-1">{job.company.name}</h6>
                 <p className="text-muted">
-                  Desde {job.company.foundedYear || "N/A"}
+                  {language === "pt" ? "Desde" : "Since"} {job.company.foundedYear || "N/A"}
                 </p>
               </div>
             </div>
@@ -206,7 +206,7 @@ const RightSideContent = ({ job }) => {
                 <div className="d-flex">
                   <i className="uil uil-phone-volume text-primary fs-4"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">Telefone</h6>
+                    <h6 className="fs-14 mb-2">{language === "pt" ? "Telefone" : "Phone"}</h6>
                     <p className="text-muted fs-14 mb-0">
                       {job.company.mobileNumber || "N/A"}
                     </p>
@@ -228,7 +228,7 @@ const RightSideContent = ({ job }) => {
                 <div className="d-flex">
                   <i className="uil uil-globe text-primary fs-4"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">Website</h6>
+                    <h6 className="fs-14 mb-2">{language === "pt" ? "Website" : "Website"}</h6>
                     <p className="text-muted fs-14 text-break mb-0">
                       {job.company.website ? (
                         <a
@@ -249,7 +249,7 @@ const RightSideContent = ({ job }) => {
                 <div className="d-flex">
                   <i className="uil uil-map-marker text-primary fs-4"></i>
                   <div className="ms-3">
-                    <h6 className="fs-14 mb-2">Localização</h6>
+                    <h6 className="fs-14 mb-2">{language === "pt" ? "Localização" : "Location"}</h6>
                     <p className="text-muted fs-14 mb-0">
                       {[
                         job.company.city,
@@ -265,7 +265,7 @@ const RightSideContent = ({ job }) => {
             </ul>
             {/* <div className="mt-4">
               <Link
-                to={`/company/${job.company.slug || job.company.id}`}
+                to={`/companydetails/${job.company.id}`}
                 className="btn btn-primary btn-hover w-100 rounded"
               >
                 <i className="mdi mdi-eye"></i> Ver Perfil
@@ -276,7 +276,7 @@ const RightSideContent = ({ job }) => {
       )}
 
       <div className="mt-4">
-        <h6 className="fs-16 mb-3">Localização da Vaga</h6>
+        <h6 className="fs-16 mb-3">{language === "pt" ? "Localização da Vaga" : "Job Location"}</h6>
         <iframe
           title={job.title}
           src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7179.076962023161!2d32.583142!3d-25.968347!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee6bcb6286d3971%3A0x21497f5c37e40b66!2sPra%C3%A7a%20da%20OMM!5e0!3m2!1spt-PT!2smz!4v1713262686123!5m2!1spt-PT!2smz&q=${encodeURIComponent(

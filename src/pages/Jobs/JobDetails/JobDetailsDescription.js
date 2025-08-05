@@ -10,8 +10,10 @@ import {
   translateJobType,
   translateSector,
 } from "../../../utils/jobTranslations";
+import { useLanguage } from "../../../context/LanguageContext";
 
 const JobDetailsDescription = ({ job }) => {
+  const { language } = useLanguage();
   if (!job) return <div className="text-center py-5">Vaga não encontrada</div>;
 
   const {
@@ -24,7 +26,7 @@ const JobDetailsDescription = ({ job }) => {
     responsibilities = [],
     qualifications = [],
     skills = [],
-    applicationCount,
+    viewCount,
   } = job;
 
   return (
@@ -48,7 +50,7 @@ const JobDetailsDescription = ({ job }) => {
                 <ul className="list-inline text-muted mb-0">
                   <li className="list-inline-item">
                     <i className="mdi mdi-account"></i>{" "}
-                    {applicationCount || "0"} Candidaturas
+                    {viewCount || "0"} {language === "pt" ? "Visualizações" : "Views"}
                   </li>
                 </ul>
               </Col>
@@ -59,21 +61,21 @@ const JobDetailsDescription = ({ job }) => {
             <Row className="g-2">
               <Col lg={3}>
                 <div className="border rounded-start p-3">
-                  <p className="text-muted mb-0 fs-13">Experiência</p>
+                  <p className="text-muted mb-0 fs-13">{language === "pt" ? "Experiência" : "Experience"}</p>
                   <p className="fw-medium fs-15 mb-0">
-                    {yearsOfExperience || "N/A"} Ano(s)
+                    {yearsOfExperience || "N/A"} {language === "pt" ? "Ano(s)" : "Year(s)"}
                   </p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
-                  <p className="text-muted fs-13 mb-0">Tipo de Emprego</p>
+                  <p className="text-muted fs-13 mb-0">{language === "pt" ? "Tipo de Emprego" : "Job Type"}</p>
                   <p className="fw-medium mb-0">{translateJobType(type)}</p>
                 </div>
               </Col>
               <Col lg={3}>
                 <div className="border p-3">
-                  <p className="text-muted fs-13 mb-0">Posição</p>
+                  <p className="text-muted fs-13 mb-0">{language === "pt" ? "Posição" : "Position"}</p>
                   <p className="fw-medium mb-0">
                     {translateCareerLevel(careerLevel)}
                   </p>
@@ -89,19 +91,19 @@ const JobDetailsDescription = ({ job }) => {
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Descrição da Vaga</h5>
+            <h5 className="mb-3">{language === "pt" ? "Descrição da Vaga" : "Job Description"}</h5>
             <div className="job-detail-desc">
               <p
                 className="text-muted mb-0"
                 dangerouslySetInnerHTML={{
-                  __html: description || "Nenhuma descrição fornecida.",
+                  __html: description || (language === "pt" ? "Nenhuma descrição fornecida." : "No description provided."),
                 }}
               />
             </div>
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Responsabilidades</h5>
+            <h5 className="mb-3">{language === "pt" ? "Responsabilidades" : "Responsibilities"}</h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 {responsibilities.map((responsibility) => (
@@ -114,7 +116,7 @@ const JobDetailsDescription = ({ job }) => {
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Qualificações</h5>
+            <h5 className="mb-3">{language === "pt" ? "Qualificações" : "Qualifications"}</h5>
             <div className="job-detail-desc mt-2">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 {qualifications.map((qualification) => (
@@ -127,7 +129,7 @@ const JobDetailsDescription = ({ job }) => {
           </div>
 
           <div className="mt-4">
-            <h5 className="mb-3">Habilidades e Experiência</h5>
+            <h5 className="mb-3">{language === "pt" ? "Habilidades e Experiência" : "Skills and Experience"}</h5>
             <div className="job-details-desc">
               <ul className="job-detail-list list-unstyled mb-0 text-muted">
                 {skills.map((skill) => (

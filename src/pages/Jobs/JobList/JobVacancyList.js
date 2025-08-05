@@ -72,108 +72,103 @@ const JobVacancyList = ({ filters }) => {
         ) : (
           data?.content?.map((vacancy, key) => (
             <div key={key} className="job-box card mt-4">
-              <div className="bookmark-label text-center">
-                <Link to="#" className="align-middle text-white">
-                  <i className="mdi mdi-star"></i>
-                </Link>
-              </div>
               <div className="p-4">
-                <Row className="align-items-center">
-                  <Col md={2}>
-                    <div className="text-center mb-4 mb-md-0">
-                      <Link to={`/companydetails/${vacancy.company.id}`}>
+                <Link to={`/jobdetails/${vacancy.id}`}>
+                  <Row className="align-items-center">
+                    <Col md={2}>
+                      <div className="text-center mb-4 mb-md-0">
                         <img
                           src={vacancy.company.logo || jobImage}
                           alt={vacancy.company.name}
                           className="img-fluid rounded-3"
                         />
-                      </Link>
-                    </div>
-                  </Col>
-
-                  <Col md={3}>
-                    <div className="mb-2 mb-md-0">
-                      <h5 className="fs-18 mb-0">
-                        <Link
-                          to={`/jobdetails/${vacancy.id}`}
-                          className="text-dark"
-                        >
-                          {vacancy.title}
-                        </Link>
-                      </h5>
-                      <p className="text-muted fs-14 mb-0">
-                        {vacancy.company.name}
-                      </p>
-                    </div>
-                  </Col>
-
-                  <Col md={3}>
-                    <div className="d-flex mb-2">
-                      <div className="flex-shrink-0">
-                        <i className="mdi mdi-map-marker text-primary me-1"></i>
                       </div>
-                      {(vacancy.city || vacancy.state || vacancy.country) && (
-                        <p className="text-muted mb-0">
-                          {[vacancy.city, vacancy.state, vacancy.country]
-                            .filter(Boolean)
-                            .join(", ")}
+                    </Col>
+
+                    <Col md={3}>
+                      <div className="mb-2 mb-md-0">
+                        <h5 className="fs-18 mb-0">
+                          <Link
+                            to={`/jobdetails/${vacancy.id}`}
+                            className="text-dark"
+                          >
+                            {vacancy.title}
+                          </Link>
+                        </h5>
+                        <p className="text-muted fs-14 mb-0">
+                          {vacancy.company.name}
                         </p>
-                      )}
-                    </div>
-                  </Col>
-
-                  <Col md={2}>
-                    <div className="d-flex mb-0">
-                      <div className="flex-shrink-0">
-                        <i className="uil uil-clock-three text-primary me-1"></i>
                       </div>
-                      <p className="text-muted mb-0">
-                        {new Date(vacancy.createdAt).toLocaleDateString()}
-                      </p>
-                    </div>
-                  </Col>
+                    </Col>
 
-                  <Col md={2}>
-                    <div>
-                      <span
-                        className={
-                          vacancy.type === "FULL_TIME"
-                            ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
-                            : vacancy.type === "PART_TIME"
-                            ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
-                            : vacancy.type === "CONTRACT"
-                            ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
-                            : "badge bg-info-subtle text-info mt-1"
-                        }
-                      >
-                        {vacancy.type === "FULL_TIME"
-                          ? "Tempo Integral"
-                          : vacancy.type === "PART_TIME"
-                          ? "Meio Período"
-                          : vacancy.type === "CONTRACT"
-                          ? "Contrato"
-                          : "Estágio"}
-                      </span>
-                      {
+                    <Col md={3}>
+                      <div className="d-flex mb-2">
+                        <div className="flex-shrink-0">
+                          <i className="mdi mdi-map-marker text-primary me-1"></i>
+                        </div>
+                        {(vacancy.city || vacancy.state || vacancy.country) && (
+                          <p className="text-muted mb-0">
+                            {[vacancy.city, vacancy.state, vacancy.country]
+                              .filter(Boolean)
+                              .join(", ")}
+                          </p>
+                        )}
+                      </div>
+                    </Col>
+
+                    <Col md={2}>
+                      <div className="d-flex mb-0">
+                        <div className="flex-shrink-0">
+                          <i className="uil uil-clock-three text-primary me-1"></i>
+                        </div>
+                        <p className="text-muted mb-0">
+                          {new Date(vacancy.createdAt).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </Col>
+
+                    <Col md={2}>
+                      <div>
                         <span
                           className={
-                            vacancy.status === "ACTIVE"
-                              ? "badge bg-success-subtle text-success fs-13 mt-1"
-                              : vacancy.status === "CLOSED"
-                              ? "badge bg-danger-subtle text-danger fs-13 mt-1"
-                              : "badge bg-warning-subtle text-warning fs-13 mt-1"
+                            vacancy.type === "FULL_TIME"
+                              ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
+                              : vacancy.type === "PART_TIME"
+                              ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
+                              : vacancy.type === "CONTRACT"
+                              ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
+                              : "badge bg-info-subtle text-info mt-1"
                           }
                         >
-                          {vacancy.status === "ACTIVE"
-                            ? "Activa"
-                            : vacancy.status === "CLOSED"
-                            ? "Fechada"
-                            : "Pendente"}
+                          {vacancy.type === "FULL_TIME"
+                            ? "Tempo Integral"
+                            : vacancy.type === "PART_TIME"
+                            ? "Meio Período"
+                            : vacancy.type === "CONTRACT"
+                            ? "Contrato"
+                            : "Estágio"}
                         </span>
-                      }
-                    </div>
-                  </Col>
-                </Row>
+                        {
+                          <span
+                            className={
+                              vacancy.status === "ACTIVE"
+                                ? "badge bg-success-subtle text-success fs-13 mt-1"
+                                : vacancy.status === "CLOSED"
+                                ? "badge bg-danger-subtle text-danger fs-13 mt-1"
+                                : "badge bg-warning-subtle text-warning fs-13 mt-1"
+                            }
+                          >
+                            {vacancy.status === "ACTIVE"
+                              ? "Activa"
+                              : vacancy.status === "CLOSED"
+                              ? "Fechada"
+                              : "Pendente"}
+                          </span>
+                        }
+                      </div>
+                    </Col>
+                  </Row>
+                </Link>
               </div>
               <div className="p-3 bg-light">
                 <Row className="justify-content-between">

@@ -103,7 +103,6 @@ const LeftSideContent = ({ data }) => {
                       </div>
                       <div className="ms-3">
                         <h6 className="fs-16 mb-0">Curriculum.pdf</h6>
-                        <p className="text-muted mb-0">1.25 MB</p>
                       </div>
                       <div className="ms-auto">
                         <Link

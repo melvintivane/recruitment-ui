@@ -18,13 +18,13 @@ import { useLanguage } from "../../../context/LanguageContext";
 import { updateProfile } from "../../../services/profileService";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { QueryClient, useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { getAllJobCategories } from "../../../services/jobCategorieService";
 
 const RightSideContent = ({ data }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const MAX_FILE_SIZE = 2 * 1024 * 1024;
   const [activeTab, setActiveTab] = useState("1");
   const [skillsInput, setSkillsInput] = useState("");
   const [languagesInput, setLanguagesInput] = useState("");
@@ -284,6 +284,11 @@ const RightSideContent = ({ data }) => {
       label: "Female",
       labelPt: "Feminino",
     },
+    {
+      value: "UNSPECIFIED",
+      label: "Not specified",
+      labelPt: "Não especificado",
+    },
   ];
   const [formData, setFormData] = useState({
     firstName: "",
@@ -386,8 +391,6 @@ const RightSideContent = ({ data }) => {
             ? "Perfil atualizado com sucesso!"
             : "Profile updated successfully!"
         );
-
-        QueryClient.invalidateQueries(["candidate", data.id]);
 
         // Recarregar a página
         navigate(0);
@@ -502,8 +505,8 @@ const RightSideContent = ({ data }) => {
     if (file.size > MAX_FILE_SIZE) {
       toast.error(
         language === "pt"
-          ? "O arquivo excede o tamanho máximo de 5MB"
-          : "File exceeds maximum size of 5MB",
+          ? "O arquivo excede o tamanho máximo de 2MB"
+          : "File exceeds maximum size of 2MB",
         {
           position: "top-right",
           autoClose: 5000,
@@ -872,7 +875,6 @@ const RightSideContent = ({ data }) => {
                             type="text"
                             className="form-control"
                             id="firstName"
-                            defaultValue={formData.firstName || ""}
                             value={formData.firstName || ""}
                             onChange={(e) =>
                               setFormData({
@@ -892,7 +894,6 @@ const RightSideContent = ({ data }) => {
                             type="text"
                             className="form-control"
                             id="lastName"
-                            defaultValue={data.user.lastName || ""}
                             value={formData.lastName || ""}
                             onChange={(e) =>
                               setFormData({
@@ -912,7 +913,6 @@ const RightSideContent = ({ data }) => {
                             type="tel"
                             className="form-control"
                             id="phone"
-                            defaultValue={formData.phone || ""}
                             value={formData.phone || ""}
                             onChange={(e) =>
                               setFormData({
@@ -934,7 +934,6 @@ const RightSideContent = ({ data }) => {
                             type="date"
                             className="form-control"
                             id="birthDate"
-                            defaultValue={formData.birthDate || ""}
                             value={formData.birthDate || ""}
                             onChange={(e) =>
                               setFormData({
@@ -951,10 +950,9 @@ const RightSideContent = ({ data }) => {
                             {language === "pt" ? "Endereço" : "Address"}
                           </Label>
                           <Input
-                            type="tel"
+                            type="text"
                             className="form-control"
                             id="address"
-                            defaultValue={formData.address || ""}
                             value={formData.address || ""}
                             onChange={(e) =>
                               setFormData({
@@ -979,7 +977,6 @@ const RightSideContent = ({ data }) => {
                             type="number"
                             className="form-control"
                             id="yearsOfExperience"
-                            defaultValue={formData.yearsOfExperience || ""}
                             value={formData.yearsOfExperience || ""}
                             onChange={(e) =>
                               setFormData({
@@ -999,7 +996,6 @@ const RightSideContent = ({ data }) => {
                             type="select"
                             className="form-control"
                             id="country"
-                            defaultValue={data.country || ""}
                             value={formData.country || ""}
                             onChange={(e) =>
                               setFormData({
@@ -1053,7 +1049,9 @@ const RightSideContent = ({ data }) => {
                                 {language === "pt"
                                   ? gender.value === "MALE"
                                     ? "Masculino"
-                                    : "Feminino"
+                                    : gender.value === "FEMALE"
+                                    ? "Feminino"
+                                    : "Não especificado"
                                   : gender.label}
                               </option>
                             ))}
@@ -1175,7 +1173,6 @@ const RightSideContent = ({ data }) => {
                             className="form-control"
                             rows="5"
                             id="professionalSummary"
-                            defaultValue={data.professionalSummary || ""}
                             value={formData.professionalSummary || ""}
                             onChange={(e) =>
                               setFormData({
