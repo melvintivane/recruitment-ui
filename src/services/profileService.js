@@ -26,7 +26,6 @@ export const getCandidateById = async (candidateId) => {
 export const updateProfile = async (
   candidateId,
   userData,
-  imageFile = null,
   cvFile = null
 ) => {
   const formData = new FormData();
@@ -38,9 +37,6 @@ export const updateProfile = async (
     })
   );
 
-  if (imageFile) {
-    formData.append("imageFile", imageFile);
-  }
   if (cvFile) {
     formData.append("cvFile", cvFile);
   }

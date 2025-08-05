@@ -70,17 +70,19 @@ const ApplicationList = ({
                         </h5>
                         <ul className="list-inline mb-0">
                           <li className="list-inline-item">
-                            <p className="text-muted fs-14 mb-0">
-                              {job.description}
-                            </p>
-                          </li>
-                          <li className="list-inline-item">
-                            <p className="text-muted fs-14 mb-0">
-                              <i className="mdi mdi-map-marker"></i>{" "}
-                              {job.country}
-                            </p>
+                            <p
+                              className="text-muted fs-14 mb-0"
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  job.description ||
+                                  "Nenhuma descrição fornecida.",
+                              }}
+                            ></p>
                           </li>
                         </ul>
+                        <p className="text-muted fs-14 mb-0">
+                          <i className="mdi mdi-map-marker"></i> {job.country}
+                        </p>
                         <div className="mt-2">
                           <span
                             className={
@@ -88,7 +90,7 @@ const ApplicationList = ({
                                 ? "badge bg-success-subtle text-success fs-13 mt-1 mx-1"
                                 : job.type === "PART_TIME"
                                 ? "badge bg-danger-subtle text-danger fs-13 mt-1 mx-1"
-                                : job.type === "CONTRACT"
+                                : job.type === "FIXED_TERM"
                                 ? "badge bg-primary-subtle text-primary fs-13 mt-1 mx-1"
                                 : "badge bg-info-subtle text-info mt-1"
                             }
@@ -97,9 +99,11 @@ const ApplicationList = ({
                               ? "Tempo Integral"
                               : job.type === "PART_TIME"
                               ? "Meio Período"
-                              : job.type === "CONTRACT"
+                              : job.type === "FIXED_TERM"
                               ? "Contrato"
-                              : "Estágio"}
+                              : job.type === "INTERNSHIP"
+                              ? "Estágio"
+                              : "Freelance"}
                           </span>
                           <span
                             className={
