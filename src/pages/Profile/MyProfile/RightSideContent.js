@@ -312,6 +312,9 @@ const RightSideContent = ({ data }) => {
     }
 
     if (data) {
+      const skillsString = data.skills?.map(skill => skill.name).join(", ") || "";
+      const languagesString = data.languages?.map(lang => lang.name).join(", ") || "";
+
       setFormData({
         firstName: data.user?.firstName || "",
         lastName: data.user?.lastName || "",
@@ -365,6 +368,9 @@ const RightSideContent = ({ data }) => {
               },
             ],
       });
+
+      setSkillsInput(skillsString);
+      setLanguagesInput(languagesString);
     }
   }, [data]);
 
