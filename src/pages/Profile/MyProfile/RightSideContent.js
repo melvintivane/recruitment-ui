@@ -283,6 +283,8 @@ const RightSideContent = ({ data }) => {
   const navigate = useNavigate();
   const { language } = useLanguage();
   const [activeTab, setActiveTab] = useState("1");
+  const [skillsInput, setSkillsInput] = useState("");
+  const [languagesInput, setLanguagesInput] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -301,19 +303,14 @@ const RightSideContent = ({ data }) => {
     educations: [],
     experiences: [],
   });
-  const [imageFile, setImageFile] = useState(null);
-  // const [imagePreview, setImagePreview] = useState(
-  //   data?.user?.imagePath
-  //     ? `${API_ENDPOINTS.API_BASE_URL}${data.user.imagePath}`
-  //     : userImage2
-  // );
   const [cvFile, setCvFile] = useState(null);
 
-  const tabChange = (tab) => {
-    if (activeTab !== tab) setActiveTab(tab);
-  };
-
   useEffect(() => {
+    const savedTab = localStorage.getItem("activeTab");
+    if (savedTab) {
+      setActiveTab(savedTab);
+    }
+
     if (data) {
       setFormData({
         firstName: data.user?.firstName || "",
@@ -372,8 +369,8 @@ const RightSideContent = ({ data }) => {
   }, [data]);
 
   const { mutate: updateProfileMutation, isLoading } = useMutation(
-    ({ candidateId, payload, imageFile, cvFile }) =>
-      updateProfile(candidateId, payload, imageFile, cvFile),
+    ({ candidateId, payload, cvFile }) =>
+      updateProfile(candidateId, payload, cvFile),
     {
       onSuccess: () => {
         toast.success(
@@ -399,6 +396,9 @@ const RightSideContent = ({ data }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const skillsArray = convertStringToArray(skillsInput);
+    const languagesArray = convertStringToArray(languagesInput);
+
     // Preparar os dados para envio
     const payload = {
       firstName: formData.firstName,
@@ -414,8 +414,8 @@ const RightSideContent = ({ data }) => {
       address: formData.address,
       desiredJobCategory: formData.desiredJobCategory,
       nationality: formData.nationality,
-      skills: formData.skills,
-      languages: formData.languages,
+      skills: skillsArray,
+      languages: languagesArray,
       educations: formData.educations,
       experiences: formData.experiences,
       trainings: formData.trainings,
@@ -425,9 +425,13 @@ const RightSideContent = ({ data }) => {
     updateProfileMutation({
       candidateId: data.id,
       payload,
-      imageFile,
       cvFile,
     });
+  };
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+    localStorage.setItem("activeTab", tabId);
   };
 
   const handleAddEducation = () => {
@@ -481,12 +485,6 @@ const RightSideContent = ({ data }) => {
       ],
     });
   };
-
-  // const handleImageChange = (e) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     setImageFile(e.target.files[0]);
-  //   }
-  // };
 
   const handleCvChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -548,6 +546,16 @@ const RightSideContent = ({ data }) => {
     return date.getFullYear();
   };
 
+  const convertStringToArray = (itemString) => {
+    return itemString
+      .split(",")
+      .map((item) => item.trim())
+      .filter((item) => item !== "")
+      .map((item) => ({
+        name: item,
+      }));
+  };
+
   return (
     <React.Fragment>
       <Col lg={8}>
@@ -561,9 +569,7 @@ const RightSideContent = ({ data }) => {
               <NavLink
                 to="#"
                 className={classnames({ active: activeTab === "1" })}
-                onClick={() => {
-                  tabChange("1");
-                }}
+                onClick={() => handleTabChange("1")}
                 type="button"
               >
                 {language === "pt" ? "Visão geral" : "Overview"}
@@ -573,9 +579,7 @@ const RightSideContent = ({ data }) => {
               <NavLink
                 to="#"
                 className={classnames({ active: activeTab === "2" })}
-                onClick={() => {
-                  tabChange("2");
-                }}
+                onClick={() => handleTabChange("2")}
                 type="button"
               >
                 {language === "pt" ? "Editar Perfil" : "Edit Profile"}
@@ -1756,31 +1760,22 @@ const RightSideContent = ({ data }) => {
                         type="text"
                         className="form-control"
                         id="skills"
-                        value={
-                          formData.skills
-                            ?.map((lang) => lang.name)
-                            .join(", ") || ""
-                        }
-                        onChange={(e) => {
-                          const skillsArray = e.target.value
-                            .split(",")
-                            .map((lang) => lang.trim())
-                            .filter((lang) => lang !== "")
-                            .map((lang) => ({
-                              name: lang,
-                              proficiency: "INTERMEDIATE", // Define um valor padrão
-                            }));
-
-                          setFormData({
-                            ...formData,
-                            skills: skillsArray,
-                          });
-                        }}
+                        value={skillsInput}
+                        onChange={(e) => setSkillsInput(e.target.value)}
                         placeholder={
                           language === "pt"
-                            ? "Ex: Spring Boot, Cybersecurity"
-                            : "Ex: Spring Boot, Cybersecurity"
+                            ? "Ex: Spring Boot, Cybersecurity, Node.js"
+                            : "Eg: Spring Boot, Cybersecurity, Node.js"
                         }
+                        onBlur={() => {
+                          setSkillsInput((prev) =>
+                            prev
+                              .split(",")
+                              .map((skill) => skill.trim())
+                              .filter((skill) => skill !== "")
+                              .join(", ")
+                          );
+                        }}
                       />
                       <small className="text-muted">
                         {language === "pt"
@@ -1804,31 +1799,22 @@ const RightSideContent = ({ data }) => {
                         type="text"
                         className="form-control"
                         id="languages"
-                        value={
-                          formData.languages
-                            ?.map((lang) => lang.name)
-                            .join(", ") || ""
-                        }
-                        onChange={(e) => {
-                          const languagesArray = e.target.value
-                            .split(",")
-                            .map((lang) => lang.trim())
-                            .filter((lang) => lang !== "")
-                            .map((lang) => ({
-                              name: lang,
-                              proficiency: "INTERMEDIATE", // Define um valor padrão
-                            }));
-
-                          setFormData({
-                            ...formData,
-                            languages: languagesArray,
-                          });
-                        }}
+                        value={languagesInput}
+                        onChange={(e) => setLanguagesInput(e.target.value)}
                         placeholder={
                           language === "pt"
                             ? "Ex: Português, Inglês"
                             : "Ex: English, French"
                         }
+                        onBlur={() => {
+                          setLanguagesInput((prev) =>
+                            prev
+                              .split(",")
+                              .map((lang) => lang.trim())
+                              .filter((lang) => lang !== "")
+                              .join(", ")
+                          );
+                        }}
                       />
                       <small className="text-muted">
                         {language === "pt"

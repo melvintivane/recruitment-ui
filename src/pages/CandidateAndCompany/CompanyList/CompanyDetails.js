@@ -88,60 +88,6 @@ const CompanyDetails = () => {
             </h6>
           </div>
         </Col>
-
-        <Col lg={3}>
-          <div className="candidate-list-widgets">
-            <Row>
-              <Col lg={6}>
-                <div className="selection-widget">
-                  <select
-                    className="form-select"
-                    data-trigger
-                    name="choices-single-filter-orderby"
-                    id="choices-single-filter-orderby"
-                    aria-label="Default select example"
-                  >
-                    <option value="df">
-                      {language === "pt" ? "Padrão" : "Default"}
-                    </option>
-                    <option value="ne">
-                      {language === "pt" ? "Mais recentes" : "Newest"}
-                    </option>
-                    <option value="od">
-                      {language === "pt" ? "Mais antigos" : "Oldest"}
-                    </option>
-                    <option value="rd">
-                      {language === "pt" ? "Aleatório" : "Random"}
-                    </option>
-                  </select>
-                </div>
-              </Col>
-              <Col lg={6}>
-                <div className="selection-widget mt-2 mt-lg-0">
-                  <select
-                    className="form-select"
-                    data-trigger
-                    name="choices-candidate-page"
-                    id="choices-candidate-page"
-                    aria-label="Default select example"
-                  >
-                    <option value="df">
-                      {language === "pt" ? "Todos" : "All"}
-                    </option>
-                    <option value="ne">
-                      {language === "pt" ? `${8} por página` : `${8} per page`}
-                    </option>
-                    <option value="ne">
-                      {language === "pt"
-                        ? `${12} por página`
-                        : `${12} per page`}
-                    </option>
-                  </select>
-                </div>
-              </Col>
-            </Row>
-          </div>
-        </Col>
       </Row>
 
       <Row>
