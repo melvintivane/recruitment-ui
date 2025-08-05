@@ -22,6 +22,12 @@ import { QueryClient, useMutation, useQuery } from "react-query";
 import { getAllJobCategories } from "../../../services/jobCategorieService";
 
 const RightSideContent = ({ data }) => {
+  const navigate = useNavigate();
+  const { language } = useLanguage();
+  const MAX_FILE_SIZE = 5 * 1024 * 1024;
+  const [activeTab, setActiveTab] = useState("1");
+  const [skillsInput, setSkillsInput] = useState("");
+  const [languagesInput, setLanguagesInput] = useState("");
   const countries = [
     { value: "0", label: "Afghanistan" },
     { value: "1", label: "Åland Islands" },
@@ -279,12 +285,6 @@ const RightSideContent = ({ data }) => {
       labelPt: "Feminino",
     },
   ];
-
-  const navigate = useNavigate();
-  const { language } = useLanguage();
-  const [activeTab, setActiveTab] = useState("1");
-  const [skillsInput, setSkillsInput] = useState("");
-  const [languagesInput, setLanguagesInput] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -312,6 +312,11 @@ const RightSideContent = ({ data }) => {
     }
 
     if (data) {
+      const skillsString =
+        data.skills?.map((skill) => skill.name).join(", ") || "";
+      const languagesString =
+        data.languages?.map((lang) => lang.name).join(", ") || "";
+
       setFormData({
         firstName: data.user?.firstName || "",
         lastName: data.user?.lastName || "",
@@ -365,6 +370,9 @@ const RightSideContent = ({ data }) => {
               },
             ],
       });
+
+      setSkillsInput(skillsString);
+      setLanguagesInput(languagesString);
     }
   }, [data]);
 
@@ -487,9 +495,31 @@ const RightSideContent = ({ data }) => {
   };
 
   const handleCvChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setCvFile(e.target.files[0]);
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error(
+        language === "pt"
+          ? "O arquivo excede o tamanho máximo de 5MB"
+          : "File exceeds maximum size of 5MB",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+
+      // Limpa o input de arquivo
+      e.target.value = "";
+      return;
     }
+
+    setCvFile(file);
   };
 
   const handleExperienceChange = (index, field, value) => {

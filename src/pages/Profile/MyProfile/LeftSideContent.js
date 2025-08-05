@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { Card, CardBody, Col } from "reactstrap";
 import { toast } from "react-toastify";
 import { downloadCv } from "../../../services/profileService";
+import { useLanguage } from "../../../context/LanguageContext";
 
 //Import images
 import profileImage from "../../../assets/images/user/user.png";
-import { useLanguage } from "../../../context/LanguageContext";
 
 const LeftSideContent = ({ data }) => {
   const { language } = useLanguage;
@@ -28,10 +28,14 @@ const LeftSideContent = ({ data }) => {
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
 
-      toast.success(`Download do CV iniciado`);
+      toast.success(
+        language === "pt" ? "Download do CV iniciado" : "CV download started"
+      );
     } catch (error) {
       console.error("Download error:", error);
-      toast.error("Erro ao baixar o CV");
+      toast.error(
+        language === "pt" ? "Erro ao baixar o CV" : "Error downloading CV"
+      );
     }
   };
 
@@ -86,78 +90,82 @@ const LeftSideContent = ({ data }) => {
               </ul>
             </div>
 
-            <div className="mt-4 border-bottom pb-4">
-              <h5 className="fs-17 fw-bold mb-3">
-                {language === "pt" ? "Documentos" : "Documents"}
-              </h5>
-              <ul className="profile-document list-unstyled mb-0">
-                <li>
-                  <div className="profile-document-list d-flex align-items-center mt-4 ">
-                    <div className="icon flex-shrink-0">
-                      <i className="uil uil-file"></i>
-                    </div>
-                    <div className="ms-3">
-                      <h6 className="fs-16 mb-0">Curriculum.pdf</h6>
-                      <p className="text-muted mb-0">1.25 MB</p>
-                    </div>
-                    <div className="ms-auto">
-                      <Link
-                        onClick={() => handleDownloadCv(data.cvPath)}
-                        to="#"
-                        download
-                        className="fs-20 text-muted"
-                      >
-                        <i className="uil uil-import"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-4">
-              <h5 className="fs-17 fw-bold mb-3">
-                {language === "pt" ? "Contactos" : "Contacts"}
-              </h5>
-              <div className="profile-contact">
-                <ul className="list-unstyled mb-0">
+            {data.cvPath && (
+              <div className="mt-4 border-bottom pb-4">
+                <h5 className="fs-17 fw-bold mb-3">
+                  {language === "pt" ? "Documentos" : "Documents"}
+                </h5>
+                <ul className="profile-document list-unstyled mb-0">
                   <li>
-                    <div className="d-flex">
-                      <label>Email</label>
-                      <div>
-                        <p className="text-muted text-break mb-0">
-                          {data.user.email}
-                        </p>
+                    <div className="profile-document-list d-flex align-items-center mt-4 ">
+                      <div className="icon flex-shrink-0">
+                        <i className="uil uil-file"></i>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="d-flex">
-                      <label>
-                        {language === "pt" ? "Telefone" : "Telephone"}
-                      </label>
-                      <div>
-                        <p className="text-muted mb-0">{data.phone}</p>
+                      <div className="ms-3">
+                        <h6 className="fs-16 mb-0">Curriculum.pdf</h6>
+                        <p className="text-muted mb-0">1.25 MB</p>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="d-flex">
-                      <label>
-                        {language === "pt" ? "Localização" : "Location"}
-                      </label>
-                      <div>
-                        <p className="text-muted mb-0">
-                          {/* {data.city} */}
-                          {/* {data.state}  */}
-                          {data.country}
-                        </p>
+                      <div className="ms-auto">
+                        <Link
+                          onClick={() => handleDownloadCv(data.cvPath)}
+                          to="#"
+                          download
+                          className="fs-20 text-muted"
+                        >
+                          <i className="uil uil-import"></i>
+                        </Link>
                       </div>
                     </div>
                   </li>
                 </ul>
               </div>
-            </div>
+            )}
+
+            {data.phone && (
+              <div className="mt-4">
+                <h5 className="fs-17 fw-bold mb-3">
+                  {language === "pt" ? "Contactos" : "Contacts"}
+                </h5>
+                <div className="profile-contact">
+                  <ul className="list-unstyled mb-0">
+                    <li>
+                      <div className="d-flex">
+                        <label>Email</label>
+                        <div>
+                          <p className="text-muted text-break mb-0">
+                            {data.user.email}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex">
+                        <label>
+                          {language === "pt" ? "Telefone" : "Telephone"}
+                        </label>
+                        <div>
+                          <p className="text-muted mb-0">{data.phone}</p>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="d-flex">
+                        <label>
+                          {language === "pt" ? "Localização" : "Location"}
+                        </label>
+                        <div>
+                          <p className="text-muted mb-0">
+                            {/* {data.city} */}
+                            {/* {data.state}  */}
+                            {data.country}
+                          </p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            )}
           </CardBody>
         </Card>
       </Col>

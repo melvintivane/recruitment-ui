@@ -1,8 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback } from "react";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 export function useAuth() {
   const [user, setUser] = useState(null);
@@ -21,14 +19,15 @@ export function useAuth() {
 
   // Função de logout
   const logout = useCallback(() => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
     setUser(null);
+    window.location.href = "/";
   }, []);
 
   // Carrega e valida o usuário a partir do token
   const loadUser = useCallback(() => {
-    const token = localStorage.getItem('authToken');
-    
+    const token = localStorage.getItem("authToken");
+
     if (!token) {
       setIsLoading(false);
       return;
@@ -61,28 +60,30 @@ export function useAuth() {
     if (!user) return;
 
     const checkTokenExpiration = setInterval(() => {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem("authToken");
       if (token && isTokenExpired(token)) {
         logout();
-        navigate('/signin', { state: { sessionExpired: true } });
+        navigate("/signin", { state: { sessionExpired: true } });
       }
     }, 60000); // Verifica a cada minuto
 
     return () => clearInterval(checkTokenExpiration);
   }, [user, isTokenExpired, navigate, logout]);
 
-
   // Verifica se o usuário tem uma role específica
-  const hasRole = useCallback((role) => {
-    if (!user?.scope) return false;
-    return user.scope.split(' ').includes(role);
-  }, [user]);
+  const hasRole = useCallback(
+    (role) => {
+      if (!user?.scope) return false;
+      return user.scope.split(" ").includes(role);
+    },
+    [user]
+  );
 
-  return { 
-    user, 
-    logout, 
-    isLoading, 
+  return {
+    user,
+    logout,
+    isLoading,
     isAuthenticated: !!user,
-    hasRole
+    hasRole,
   };
 }
